@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import LaNostraPizza from '../components/LaNostraPizza.astro';
+import Menu from '../components/Menu.astro';
+import Reviews from '../components/Reviews.astro';
+import LocationReservations from '../components/LocationReservations.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <!-- Header con transparencia en Hero y barra sólida verde oliva al salir del Hero -->
+  <Header />
+
+  <!-- Menú lateral responsive para móviles -->
+  <MobileMenu />
+
+  <main>
+    <!-- 1. Hero Principal -->
+    <Hero />
+
+    <!-- 2. Sobre Nosotros & Horno de Leña -->
+    <About />
+
+    <!-- 3. La Nostra Pizza (Infografía Artesanal con flechas SVG) -->
+    <LaNostraPizza />
+
+    <!-- 4. Menú & Carta Seleccionada -->
+    <Menu />
+
+    <!-- 5. Qué dicen de nosotros (Reseñas Google Maps 4.9★) -->
+    <Reviews />
+
+    <!-- 6. Dónde Estamos & Reservas (WhatsApp directo y mapa) -->
+    <LocationReservations />
+  </main>
+
+  <!-- Pie de página -->
+  <Footer />
+</Layout>
