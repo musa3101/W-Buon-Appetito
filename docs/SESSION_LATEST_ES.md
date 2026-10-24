@@ -18,8 +18,11 @@
    - **La Nostra Pizza (Experiencia idéntica a la referencia):** Eliminadas las tarjetas planas. Implementado el escenario infográfico móvil con la pizza artesanal y las flechas vectoriales SVG dibujadas a mano (`arrow1.svg`, `arrow2.svg`, `arrow3.svg`, `flash.svg`) y textos integrados.
    - **Menú y Reseñas más limpios:** Eliminados los textos indicadores redundantes (*"Desliza hacia los lados..."*), manteniendo el deslizamiento táctil horizontal fluido con el dedo.
    - **Mapa de Google Maps Simplificado:** Eliminada la barra superior redundante sobre el mapa; añadido el botón flotante directo `"CÓMO LLEGAR"` integrado dentro del mapa interactivo de Google Maps. Formulario de reserva con Fecha y Hora en 2 columnas lado a lado.
-5. **Validación técnica:**
-   - Compilación estática completada con éxito (`npx astro build`, 0 errores en 204ms).
+5. **Subida exitosa al repositorio remoto de GitHub:**
+   - Repositorio [musa3101/W-baa](https://github.com/musa3101/W-baa) vinculado y sincronizado en la rama `main`.
+   - Estructura limpia con `package.json` en la raíz del repositorio, listo para conectar directamente a **Cloudflare Pages**.
+6. **Validación técnica:**
+   - Compilación estática completada con éxito (`npx astro build`, 0 errores).
 
 ---
 
@@ -30,6 +33,7 @@
 * [`web/src/components/Menu.astro`](../web/src/components/Menu.astro): Carrusel limpio sin textos redundantes.
 * [`web/src/components/Reviews.astro`](../web/src/components/Reviews.astro): Carrusel limpio sin textos redundantes.
 * [`web/src/components/LocationReservations.astro`](../web/src/components/LocationReservations.astro): Mapa simplificado con botón flotante `"CÓMO LLEGAR"` y formulario compacto.
+* [`web/README.md`](../web/README.md): Documentación del restaurante, comandos y guía de despliegue en Cloudflare Pages.
 * [`docs/SESSION_LATEST_ES.md`](SESSION_LATEST_ES.md): Este informe de sesión.
 * [`docs/ROADMAP.md`](ROADMAP.md): Hoja de ruta actualizada.
 
@@ -39,8 +43,10 @@
 * **Scroll de fondo en menú móvil:** Ahora el fondo queda 100% congelado al abrir el menú móvil.
 * **Diseño soso de la pizza en móvil:** Sustituidas las tarjetas genéricas por la infografía con las flechas artesanales originales de la referencia.
 * **Elementos redundantes en móvil:** Banners de texto innecesarios eliminados y barra duplicada sobre el mapa sustituida por un botón directo integrado en el mapa.
+* **Repositorio desvinculado:** Repositorio remoto `musa3101/W-baa` configurado y sincronizado con éxito.
 
 ---
 
 ### ¿Qué queda pendiente?
-* Recibir el repositorio Git del usuario para vincular y subir la web, lista para conectar a Cloudflare Pages.
+* Conectar el repositorio `musa3101/W-baa` en el panel de Cloudflare Pages (o mediante Wrangler/Cloudflare MCP) para desplegar a producción.
+* Enlazar los archivos PDF reales de las cartas de comida y vinos.

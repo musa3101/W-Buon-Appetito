@@ -24,17 +24,15 @@
   * **La Nostra Pizza (Experiencia idéntica a la referencia):** Escenario infográfico móvil con pizza central y flechas vectoriales SVG artesanales (`arrow1.svg`, `arrow2.svg`, `arrow3.svg`, `flash.svg`) y textos integrados directos (adiós a los cuadritos sosos).
   * **Menú y Reseñas en Carrusel Limpio:** Deslizamiento táctil horizontal sin banners de texto innecesarios.
   * **Formulario de reservas ultracompacto:** Fecha y Hora en 2 columnas lado a lado en móvil, inputs compactos y comensales en chips.
-* [x] Renovación integral de **Dónde Estamos**:
-  * **Google Maps interactivo oficial embebido** centrado en Avenida Mateo Bosch, 24, Port d'Andratx.
-  * **Botón flotante `"CÓMO LLEGAR"`** integrado directamente sobre el mapa, eliminando barras externas redundantes.
-  * Fila de *Dirección Física* y contacto directo en la tarjeta de información.
+* [x] **Subida y sincronización en GitHub**:
+  * Repositorio remoto [musa3101/W-baa](https://github.com/musa3101/W-baa) inicializado, sincronizado y subido con éxito en la rama `main`.
+  * Estructura lista con `package.json` en la raíz para auto-detección instantánea en Cloudflare Pages.
 * [x] Compilación estática comprobada con éxito (`astro build`, 0 errores).
 
 ---
 
 ## 2. Tareas en Progreso ⏳
-* [ ] Recibir el enlace/URL del nuevo repositorio GitHub del usuario para inicializar git, hacer commit y push.
-* [ ] Conectar y desplegar a Cloudflare Pages.
+* [ ] Conectar y desplegar a Cloudflare Pages (vía panel o Wrangler/Cloudflare MCP).
 * [ ] Enlazar los archivos PDF reales de las cartas de comida y vinos.
 
 ---
