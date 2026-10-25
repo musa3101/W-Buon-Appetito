@@ -85,28 +85,28 @@
 
     </div>
 
-    <!-- Mobile Infographic Stage (md:hidden) — Alineación precisa idéntica a Desktop -->
-    <div class="md:hidden relative w-full max-w-[380px] mx-auto h-[540px] select-none overflow-visible">
+    <!-- Mobile Infographic Stage (md:hidden) — Distribución equilibrada sin vacíos laterales -->
+    <div class="md:hidden relative w-full max-w-[380px] mx-auto h-[530px] select-none overflow-visible">
       
-      <!-- 1. Pizza Central con halo sutil -->
-      <div class="absolute left-1/2 top-[265px] -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <!-- 1. Pizza Central con halo sutil (elevada sutilmente a y=215px para dar espacio limpio abajo) -->
+      <div class="absolute left-1/2 top-[215px] -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         <div class="absolute inset-0 flex items-center justify-center">
           <div class="w-44 h-44 bg-[#9E4221]/10 rounded-full blur-2xl"></div>
         </div>
         <img 
           src="/assets/our-pizza.png" 
           alt="La Nostra Pizza Artesanal" 
-          class="w-[230px] h-auto object-contain drop-shadow-[0_15px_30px_rgba(24,51,33,0.22)] pointer-events-auto"
+          class="w-[215px] h-auto object-contain drop-shadow-[0_15px_30px_rgba(24,51,33,0.22)] pointer-events-auto"
           loading="lazy"
         />
       </div>
 
-      <!-- 2. Callout 1 (Top-Left): Masa Larga Fermentación -->
-      <div class="absolute top-2 left-2 max-w-[145px] text-left z-10">
-        <h3 class="font-sans text-[15px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
+      <!-- 2. Callout 1 (Arriba-Izquierda): Masa Larga Fermentación -->
+      <div class="absolute top-2 left-3 max-w-[155px] text-left z-10">
+        <h3 class="font-sans text-[14px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
           Nuestra masa<br/>de larga<br/>fermentación
         </h3>
-        <p class="font-sans text-[10px] text-[#424842] mt-1 leading-snug">
+        <p class="font-sans text-[10px] text-[#424842] mt-0.5 leading-snug">
           Masa madre viva y 48h de maduración lenta.
         </p>
       </div>
@@ -114,47 +114,47 @@
       <img 
         src="/assets/arrow1.svg" 
         alt="Flecha masa" 
-        class="absolute top-[96px] left-[84px] w-[82px] h-auto pointer-events-none z-10"
+        class="absolute top-[80px] left-[78px] w-[75px] h-auto pointer-events-none z-10"
       />
 
-      <!-- 3. Callout 2 (Top-Right): Ingredientes de Proximidad -->
-      <div class="absolute top-2 right-2 max-w-[150px] text-left z-10">
-        <h3 class="font-sans text-[15px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
+      <!-- 3. Callout 2 (Abajo a la Derecha): Ingredientes de Proximidad (ocupa el flanco derecho) -->
+      <div class="absolute top-[315px] right-2 sm:right-3 max-w-[150px] text-left z-10">
+        <!-- Flecha: Nace sobre el texto y asciende apuntando a los ingredientes de la pizza -->
+        <img 
+          src="/assets/arrow3.svg" 
+          alt="Flecha ingredientes" 
+          class="w-[92px] h-auto mb-1 -ml-3 pointer-events-none scale-x-[-1]"
+        />
+        <h3 class="font-sans text-[14px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
           Los mejores<br/>ingredientes de<br/>proximidad
         </h3>
-        <p class="font-sans text-[10px] text-[#424842] mt-1 leading-snug">
-          San Marzano D.O.P. y mozzarella fresca.
+        <p class="font-sans text-[9.5px] text-[#424842] mt-0.5 leading-snug">
+          Tomate San Marzano D.O.P. y mozzarella fresca.
         </p>
       </div>
-      <!-- Flecha 2: Arco que apunta directo a los ingredientes y al centro de la pizza -->
-      <img 
-        src="/assets/arrow2.svg" 
-        alt="Flecha ingredientes" 
-        class="absolute top-[130px] right-[66px] w-[138px] h-auto pointer-events-none z-10"
-      />
 
-      <!-- 4. Callout 3 (Bottom-Left): Preparación Tradicional -->
-      <div class="absolute top-[375px] left-3 max-w-[165px] text-left z-10">
-        <div class="flex items-center gap-1.5 mb-0.5">
-          <h3 class="font-sans text-[15px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
+      <!-- 4. Callout 3 (Abajo a la Izquierda): Preparación Tradicional -->
+      <div class="absolute top-[315px] left-3 max-w-[150px] text-left z-10">
+        <!-- Flecha: Nace sobre el texto y asciende hacia la base de la pizza -->
+        <img 
+          src="/assets/arrow3.svg" 
+          alt="Flecha preparación" 
+          class="w-[92px] h-auto mb-1 ml-6 pointer-events-none" 
+        />
+        <div class="flex items-center gap-1 mb-0.5">
+          <h3 class="font-sans text-[14px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
             Preparación<br/>Tradicional
           </h3>
           <img 
             src="/assets/flash.svg" 
             alt="Destellos preparación artesanal" 
-            class="w-5 h-auto mb-2 pointer-events-none" 
+            class="w-4 h-auto mb-2 pointer-events-none" 
           />
         </div>
-        <p class="font-sans text-[10px] text-[#424842] mt-0.5 leading-snug">
+        <p class="font-sans text-[9.5px] text-[#424842] mt-0.5 leading-snug">
           Amasado manual y leña viva a 450°C.
         </p>
       </div>
-      <!-- Flecha 3: Nace bajo el texto y sube hacia la base crujiente de la pizza -->
-      <img 
-        src="/assets/arrow3.svg" 
-        alt="Flecha preparación" 
-        class="absolute top-[418px] left-[45px] w-[122px] h-auto pointer-events-none z-10"
-      />
 
     </div>
 
