@@ -1,52 +1,55 @@
 # Resumen de Sesión — Buon Appetito
 
-**Fecha:** 24 de Octubre de 2026  
+**Fecha:** 25 de Octubre de 2026  
+**Rama:** `dev` → `main`  
 **Proyecto:** Web Oficial Buon Appetito (Port d'Andratx, Mallorca)  
 
 ---
 
 ### ¿Qué se ha hecho hoy?
-1. **Reorganización y limpieza del espacio de trabajo:**
-   - Referencias previas organizadas en [`01_fase1_referencias/`](../01_fase1_referencias/).
-   - Boceto interactivo v2 aprobado en [`boceto_aprobado_v2/`](../boceto_aprobado_v2/).
-2. **Creación del proyecto en Astro + Tailwind CSS v4:**
-   - Proyecto estructurado en [`web/`](../web/) con diseño premium, tokens de color (marfil `#FBF9F5`, verde oliva `#183321`, terracota `#9E4221`) y tipografías *Playfair Display* / *Plus Jakarta Sans*.
-3. **Modularización en Astro:**
-   - [`Header.astro`](../web/src/components/Header.astro), [`MobileMenu.astro`](../web/src/components/MobileMenu.astro), [`Hero.astro`](../web/src/components/Hero.astro), [`About.astro`](../web/src/components/About.astro), [`LaNostraPizza.astro`](../web/src/components/LaNostraPizza.astro), [`Menu.astro`](../web/src/components/Menu.astro), [`Reviews.astro`](../web/src/components/Reviews.astro), [`LocationReservations.astro`](../web/src/components/LocationReservations.astro) y [`Footer.astro`](../web/src/components/Footer.astro).
-4. **Pulido Mobile UX y ajustes solicitados por el usuario:**
-   - **Menú Móvil Editorial & Bloqueo de Fondo:** Rediseñado con degradado en verde oliva oscuro, números editoriales `01`–`04`, botón terracota "RESERVAR MESA" y bloqueo estricto del scroll de fondo (`overflow: hidden` en `html` y `body`, `touch-action: none`) mientras el menú está abierto.
-   - **La Nostra Pizza (Experiencia idéntica a la referencia):** Eliminadas las tarjetas planas. Implementado el escenario infográfico móvil con la pizza artesanal y las flechas vectoriales SVG dibujadas a mano (`arrow1.svg`, `arrow2.svg`, `arrow3.svg`, `flash.svg`) y textos integrados.
-   - **Menú y Reseñas más limpios:** Eliminados los textos indicadores redundantes (*"Desliza hacia los lados..."*), manteniendo el deslizamiento táctil horizontal fluido con el dedo.
-   - **Mapa de Google Maps Simplificado:** Eliminada la barra superior redundante sobre el mapa; añadido el botón flotante directo `"CÓMO LLEGAR"` integrado dentro del mapa interactivo de Google Maps. Formulario de reserva con Fecha y Hora en 2 columnas lado a lado.
-5. **Subida exitosa al repositorio remoto de GitHub:**
-   - Repositorio [musa3101/W-baa](https://github.com/musa3101/W-baa) vinculado y sincronizado en la rama `main`.
-   - Estructura limpia con `package.json` en la raíz del repositorio, listo para conectar directamente a **Cloudflare Pages**.
-6. **Validación técnica:**
-   - Compilación estática completada con éxito (`npx astro build`, 0 errores).
+1. **Configuración del Setup Musa MYNEXT:**
+   - Integradas las reglas `AGENTS.md`, `.prettierrc` y utilidades del repositorio `setup-musa-mynext`.
+2. **Rediseño editorial del Hero (Estilo Arko):**
+   - Eliminado el badge superior innecesario en móvil.
+   - Tipografía refinada en 2 líneas equilibradas.
+   - Botones estilo cristal translúcido esmerilado Apple (*"Reservar mesa"* y *"Nuestra carta"*).
+   - Cabecera con viñeta verde oliva flotante y transición suave a barra compacta de cristal al hacer scroll.
+3. **Galería 3D Circular WebGL con OGL en "Sobre Nosotros":**
+   - Integrado el componente `CircularGallery` con shaders de ondulación 3D y bordes curvados con SDF antialiasing.
+   - Optimizado para móvil con tarjetas proporcionadas (48% de pantalla) y sin textos molestos debajo de las fotos.
+   - Autoplay ultra lento y sedoso (velocidad 0.05).
+   - Deslizamiento táctil con el dedo y botones discretos `<` y `>` abajo.
+   - Modo visor Lightbox: al tocar cualquier foto se abre en grande en pantalla completa y el carrusel se detiene automáticamente.
+4. **Integración de fotos reales de Buon Appetito:**
+   - Convertidas las fotos originales de iPhone de la carpeta `fotos de sobre nosotros` (`.HEIC` a JPEG optimizado).
+   - Orientación 100% vertical y derecha (mesa con vistas al puerto, fachada con olivo y carta física).
+5. **Solución definitiva al zoom en iPhone al escribir en reservas:**
+   - Corregido el tamaño de fuente de todos los inputs a 16px en móvil y regla CSS global de protección para evitar el auto-zoom forzado de Safari.
+6. **Auditoría completa responsive en Desktop y Móvil:**
+   - Verificado con herramientas de navegador: 0 errores de consola, 60fps constantes y navegación fluida.
 
 ---
 
 ### Archivos modificados
-* [`web/src/components/Header.astro`](../web/src/components/Header.astro): Header móvil ultra limpio (logo + hamburguesa).
-* [`web/src/components/MobileMenu.astro`](../web/src/components/MobileMenu.astro): Drawer editorial con bloqueo total del scroll del body.
-* [`web/src/components/LaNostraPizza.astro`](../web/src/components/LaNostraPizza.astro): Infografía móvil con pizza central y flechas SVG de referencia.
-* [`web/src/components/Menu.astro`](../web/src/components/Menu.astro): Carrusel limpio sin textos redundantes.
-* [`web/src/components/Reviews.astro`](../web/src/components/Reviews.astro): Carrusel limpio sin textos redundantes.
-* [`web/src/components/LocationReservations.astro`](../web/src/components/LocationReservations.astro): Mapa simplificado con botón flotante `"CÓMO LLEGAR"` y formulario compacto.
-* [`web/README.md`](../web/README.md): Documentación del restaurante, comandos y guía de despliegue en Cloudflare Pages.
-* [`docs/SESSION_LATEST_ES.md`](SESSION_LATEST_ES.md): Este informe de sesión.
-* [`docs/ROADMAP.md`](ROADMAP.md): Hoja de ruta actualizada.
+- [`src/components/About.astro`](../src/components/About.astro): Integración de la galería 3D y nuevos textos editoriales.
+- [`src/components/ui/circular-gallery-2.tsx`](../src/components/ui/circular-gallery-2.tsx): Motor WebGL OGL, escala móvil, tap-to-enlarge y autoplay suave.
+- [`src/components/ui/circular-gallery-demo.tsx`](../src/components/ui/circular-gallery-demo.tsx): Carrusel de 10 fotos con visor Lightbox y controles.
+- [`src/components/LocationReservations.astro`](../src/components/LocationReservations.astro): Inputs a 16px para evitar auto-zoom en iPhone.
+- [`src/components/Hero.astro`](../src/components/Hero.astro): Titular editorial y botones translúcidos.
+- [`src/components/Header.astro`](../src/components/Header.astro): Viñeta flotante y transición compacta.
+- [`src/styles/global.css`](../src/styles/global.css): Regla CSS global anti-zoom para móviles.
+- [`astro.config.mjs`](../astro.config.mjs) y [`tsconfig.json`](../tsconfig.json): Integración de React y alias `@/*`.
 
 ---
 
 ### Problemas solucionados
-* **Scroll de fondo en menú móvil:** Ahora el fondo queda 100% congelado al abrir el menú móvil.
-* **Diseño soso de la pizza en móvil:** Sustituidas las tarjetas genéricas por la infografía con las flechas artesanales originales de la referencia.
-* **Elementos redundantes en móvil:** Banners de texto innecesarios eliminados y barra duplicada sobre el mapa sustituida por un botón directo integrado en el mapa.
-* **Repositorio desvinculado:** Repositorio remoto `musa3101/W-baa` configurado y sincronizado con éxito.
+- **Auto-zoom de Safari en móvil:** Al pulsar en "Nombre" o "Teléfono", la pantalla hacía zoom y se descuadraba. Solucionado fijando la escala a 16px.
+- **Fotos torcidas / apaisadas:** Las fotos de la terraza estaban rotadas 90°. Se corrigió su orientación a totalmente verticales ("paradas") y se evitó la caché de Safari.
+- **Sobrecarga visual en la galería:** Eliminados textos redundantes en la cabecera y pie de las fotos para dejar una estética limpia y de alta gama.
 
 ---
 
 ### ¿Qué queda pendiente?
-* Conectar el repositorio `musa3101/W-baa` en el panel de Cloudflare Pages (o mediante Wrangler/Cloudflare MCP) para desplegar a producción.
-* Enlazar los archivos PDF reales de las cartas de comida y vinos.
+- Reemplazar imágenes provisionales restantes en "La Nostra Pizza" y "Menú" por fotografías definitivas editadas.
+- Enlazar los PDFs descargables reales de la carta cuando estén listos.
+- Conectar y verificar el despliegue automático en Cloudflare Pages.
