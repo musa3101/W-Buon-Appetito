@@ -2,33 +2,33 @@
 ---
 
 <!-- ======================================================== -->
-<!-- 1. HEADER ESTILO ARKO (Transparente en Hero -> Sólido en Scroll) -->
+<!-- HEADER ESTILO ARKO (Vignette Oliva en Hero -> Frosted Oliva en Scroll) -->
 <!-- ======================================================== -->
 <header 
   id="main-header" 
-  class="fixed top-0 inset-x-0 z-50 w-full bg-gradient-to-b from-black/70 via-black/30 to-transparent transition-all duration-500 ease-out"
+  class="fixed top-0 inset-x-0 z-50 w-full header-hero transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]"
 >
-  <div class="max-w-7xl mx-auto px-4 sm:px-10 lg:px-12 flex items-center justify-between py-4 sm:py-6 transition-all duration-300" id="header-inner">
+  <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 flex items-center justify-between py-5 sm:py-6 transition-all duration-300" id="header-inner">
     
     <!-- Brand Logo Oficial -->
     <a href="#inicio" class="flex items-center gap-2 group" aria-label="Buon Appetito - Volver al inicio">
       <img 
         src="/assets/logos/logo-buon-appetito-white.png" 
         alt="Buon Appetito Port d'Andratx" 
-        class="h-8 sm:h-10 md:h-11 w-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+        class="h-7 sm:h-9 md:h-10 w-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
       />
     </a>
 
     <!-- Desktop Navigation Links: Clean 4 sections -->
     <nav class="hidden md:flex items-center space-x-9" aria-label="Navegación principal">
-      <a href="#inicio" class="text-white/90 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-wider transition-colors drop-shadow-sm">Inicio</a>
-      <a href="#sobre-nosotros" class="text-white/80 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-wider transition-colors drop-shadow-sm">Sobre nosotros</a>
-      <a href="#menu" class="text-white/80 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-wider transition-colors drop-shadow-sm">Menú</a>
-      <a href="#donde-estamos" class="text-white/80 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-wider transition-colors drop-shadow-sm">Dónde estamos</a>
+      <a href="#inicio" class="text-white/80 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-sm">Inicio</a>
+      <a href="#sobre-nosotros" class="text-white/70 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-sm">Sobre nosotros</a>
+      <a href="#menu" class="text-white/70 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-sm">Menú</a>
+      <a href="#donde-estamos" class="text-white/70 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-sm">Dónde estamos</a>
     </nav>
 
-    <!-- Right Actions: Language Selector ONLY -->
-    <div class="flex items-center gap-2.5 sm:gap-4">
+    <!-- Right Actions: Language Selector ONLY + Minimal Hamburger -->
+    <div class="flex items-center gap-3 sm:gap-4">
       <!-- Language Switcher Pill (Desktop Only; en móvil se encuentra dentro del menú drawer) -->
       <div class="hidden md:inline-flex items-center space-x-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs text-white/90">
         <button class="text-white font-bold hover:text-white transition-colors cursor-pointer" title="Español">ES</button>
@@ -38,35 +38,59 @@
         <button class="hover:text-white transition-colors cursor-pointer" title="Deutsch">DE</button>
       </div>
 
-      <!-- Mobile Menu Toggle Button -->
-      <button type="button" aria-label="Abrir menú" class="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer active:scale-95" id="menu-toggle-btn">
-        <span class="material-symbols-outlined text-2xl">menu</span>
+      <!-- Minimal Hamburger Button Estilo Arko (Sin círculos pesados, 3 líneas limpias y elegantes) -->
+      <button 
+        type="button" 
+        id="menu-toggle-btn" 
+        class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 focus:outline-none cursor-pointer group p-2" 
+        aria-label="Abrir menú"
+        aria-expanded="false"
+      >
+        <span class="w-6 h-[1.5px] bg-white/90 rounded-full transition-all duration-300 group-hover:bg-white group-active:scale-95"></span>
+        <span class="w-6 h-[1.5px] bg-white/90 rounded-full transition-all duration-300 group-hover:bg-white group-active:scale-95"></span>
+        <span class="w-6 h-[1.5px] bg-white/90 rounded-full transition-all duration-300 group-hover:bg-white group-active:scale-95"></span>
       </button>
     </div>
 
   </div>
 </header>
 
+<style>
+  /* Estado inicial en Hero: degradado transparente verde oliva oscuro */
+  .header-hero {
+    background: linear-gradient(to bottom, rgba(14, 30, 20, 0.65) 0%, rgba(14, 30, 20, 0.25) 60%, transparent 100%);
+    border-bottom: 1px solid transparent;
+  }
+
+  /* Estado al hacer scroll: barra compacta verde oliva con glassmorphism */
+  .header-scrolled {
+    background: rgba(24, 51, 33, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.35);
+  }
+</style>
+
 <script>
-  // Header Estilo Arko (Transparente durante todo el Hero -> Sólido verde oliva al salir del Hero)
+  // Control de scroll idéntico a Arko: cambia suavemente al bajar > 50px
   const header = document.getElementById('main-header');
   const headerInner = document.getElementById('header-inner');
-  const heroSection = document.getElementById('inicio');
 
   function updateHeaderOnScroll() {
-    const heroThreshold = heroSection ? (heroSection.offsetHeight - 90) : (window.innerHeight - 90);
-    if (header && headerInner) {
-      if (window.scrollY >= heroThreshold) {
-        header.classList.remove('bg-gradient-to-b', 'from-black/70', 'via-black/30', 'to-transparent');
-        header.classList.add('bg-[#183321]/95', 'backdrop-blur-xl', 'border-b', 'border-white/10', 'shadow-xl');
-        headerInner.classList.remove('py-6');
-        headerInner.classList.add('py-3.5');
-      } else {
-        header.classList.add('bg-gradient-to-b', 'from-black/70', 'via-black/30', 'to-transparent');
-        header.classList.remove('bg-[#183321]/95', 'backdrop-blur-xl', 'border-b', 'border-white/10', 'shadow-xl');
-        headerInner.classList.remove('py-3.5');
-        headerInner.classList.add('py-6');
-      }
+    if (!header || !headerInner) return;
+    const isScrolled = window.scrollY > 50;
+
+    if (isScrolled) {
+      header.classList.remove('header-hero');
+      header.classList.add('header-scrolled');
+      headerInner.classList.remove('py-5', 'sm:py-6');
+      headerInner.classList.add('py-3', 'sm:py-3.5');
+    } else {
+      header.classList.remove('header-scrolled');
+      header.classList.add('header-hero');
+      headerInner.classList.remove('py-3', 'sm:py-3.5');
+      headerInner.classList.add('py-5', 'sm:py-6');
     }
   }
 
