@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Política de Cookies | Buon Appetito • Port d'Andratx";
+const description = "Información sobre el uso de cookies y tecnologías de almacenamiento en el sitio web de Buon Appetito.";
+---
+
+<Layout title={title} description={description}>
+  <!-- Top Minimalist Header for Legal Pages -->
+  <header class="bg-[#183321] text-[#FBF9F5] py-4 px-5 sm:px-10 border-b border-white/10 sticky top-0 z-40 backdrop-blur-md bg-opacity-95">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/#inicio" class="flex items-center gap-2 group" aria-label="Volver a Buon Appetito">
+        <img 
+          src="/assets/logos/logo-buon-appetito-white.png" 
+          alt="Buon Appetito Port d'Andratx" 
+          class="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
+        />
+      </a>
+      
+      <div class="flex items-center gap-3 sm:gap-6">
+        <button 
+          type="button" 
+          onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href = '/#inicio'; }"
+          class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-white/90 hover:text-white transition-all bg-white/10 hover:bg-white/20 active:scale-95 px-3.5 sm:px-4 py-1.5 rounded-full cursor-pointer border border-white/10"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span>Volver atrás</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Document Body -->
+  <main class="max-w-4xl mx-auto px-5 sm:px-8 py-12 sm:py-20 text-[#1B1C1A]">
+    
+    <!-- Title & Date Header -->
+    <div class="border-b border-[#D9D4CC]/60 pb-8 mb-10">
+      <span class="text-xs font-semibold text-[#9E4221] uppercase tracking-[0.2em] block mb-2">
+        Transparencia y Navegación
+      </span>
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl text-[#183321] font-semibold tracking-tight">
+        Política de Cookies
+      </h1>
+      <p class="text-xs sm:text-sm text-[#424842] mt-3">
+        Última actualización: <strong>Octubre 2026</strong> · De conformidad con el artículo 22.2 de la Ley 34/2002 (LSSI-CE) y las directrices de la Agencia Española de Protección de Datos (AEPD).
+      </p>
+    </div>
+
+    <!-- Legal Sections -->
+    <div class="space-y-10 text-sm sm:text-base leading-relaxed text-[#2C302D]">
+
+      <!-- Section 1: Qué son las cookies -->
+      <section class="space-y-3">
+        <h2 class="font-serif text-xl sm:text-2xl text-[#183321] font-semibold">
+          1. ¿Qué son las cookies?
+        </h2>
+        <p>
+          Una <strong>cookie</strong> es un pequeño fichero de texto que un sitio web descarga y almacena en su ordenador, teléfono móvil o dispositivo al visitarlo. Las cookies permiten que el sitio web recuerde información sobre su visita (como su idioma preferido o las opciones de visualización), lo que facilita su próxima visita y hace que el sitio sea más útil y fluido.
+        </p>
+      </section>
+
+      <!-- Section 2: Tipos de cookies utilizadas -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-xl sm:text-2xl text-[#183321] font-semibold">
+          2. ¿Qué tipos de cookies se utilizan en este sitio web?
+        </h2>
+        <p>
+          En <strong>Buon Appetito</strong> priorizamos la privacidad del usuario. Este sitio web <strong>no utiliza cookies de perfilado comercial ni redes de publicidad intrusiva de terceros</strong>.
+        </p>
+        <p>
+          Las tecnologías utilizadas en este sitio web se clasifican en:
+        </p>
+
+        <div class="space-y-3">
+          <div class="bg-[#FBF9F5] border border-[#D9D4CC]/70 p-4 sm:p-5 rounded-xl">
+            <h3 class="font-semibold text-[#183321] text-base mb-1">A) Cookies técnicas y estrictamente necesarias</h3>
+            <p class="text-sm text-[#424842]">
+              Son aquellas indispensables para permitir al usuario la navegación a través del sitio web y la utilización de las diferentes opciones o servicios (control del tráfico, identificación de la sesión, navegación responsiva y seguridad frente a ataques). Al ser esenciales para el funcionamiento técnico, no requieren consentimiento previo.
+            </p>
+          </div>
+
+          <div class="bg-[#FBF9F5] border border-[#D9D4CC]/70 p-4 sm:p-5 rounded-xl">
+            <h3 class="font-semibold text-[#183321] text-base mb-1">B) Servicios de terceros integrados (Google Maps)</h3>
+            <p class="text-sm text-[#424842]">
+              En la sección de localización se integra un mapa interactivo de <strong>Google Maps</strong> provisto por Google LLC para facilitar la llegada física al restaurante en Port d'Andratx. Google puede almacenar cookies técnicas y de preferencias asociadas a sus servicios de mapas conforme a su <a href="https://policies.google.com/privacy?hl=es" target="_blank" rel="noopener noreferrer" class="text-[#9E4221] hover:underline font-medium">política de privacidad de Google</a>.
+            </p>
+          </div>
+
+          <div class="bg-[#FBF9F5] border border-[#D9D4CC]/70 p-4 sm:p-5 rounded-xl">
+            <h3 class="font-semibold text-[#183321] text-base mb-1">C) Fuentes tipográficas externas (Google Fonts)</h3>
+            <p class="text-sm text-[#424842]">
+              Para garantizar la estética visual y la correcta lectura en todas las pantallas, el sitio web carga familias tipográficas desde los servidores de Google Fonts, sin rastreo de datos personales del usuario.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Gestión y desactivación -->
+      <section class="space-y-3">
+        <h2 class="font-serif text-xl sm:text-2xl text-[#183321] font-semibold">
+          3. Cómo gestionar o deshabilitar las cookies en su navegador
+        </h2>
+        <p>
+          Usted puede en cualquier momento permitir, bloquear o eliminar las cookies instaladas en su dispositivo mediante la configuración de las opciones de su navegador de internet:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-sm sm:text-base">
+          <li>
+            <strong>Google Chrome:</strong> Configuración &gt; Privacidad y seguridad &gt; Cookies y otros datos de sitios.
+          </li>
+          <li>
+            <strong>Apple Safari (macOS e iOS):</strong> Ajustes &gt; Safari &gt; Avanzado &gt; Privacidad y bloqueo de cookies.
+          </li>
+          <li>
+            <strong>Mozilla Firefox:</strong> Opciones &gt; Privacidad y seguridad &gt; Cookies y datos del sitio.
+          </li>
+          <li>
+            <strong>Microsoft Edge:</strong> Configuración &gt; Permisos del sitio &gt; Cookies y datos de sitios.
+          </li>
+        </ul>
+        <p class="pt-2 text-sm text-[#424842]">
+          Tenga en cuenta que si desactiva o bloquea determinadas cookies técnicas, algunas funcionalidades del sitio web podrían verse afectadas o no operar con total fluidez.
+        </p>
+      </section>
+
+      <!-- Section 4: Actualizaciones -->
+      <section class="space-y-3">
+        <h2 class="font-serif text-xl sm:text-2xl text-[#183321] font-semibold">
+          4. Actualizaciones y modificaciones
+        </h2>
+        <p>
+          Buon Appetito puede modificar la presente Política de Cookies en función de exigencias legislativas, reglamentarias o con la finalidad de adaptar dicha política a las instrucciones dictadas por la Agencia Española de Protección de Datos. Se aconseja al usuario visitarla periódicamente.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

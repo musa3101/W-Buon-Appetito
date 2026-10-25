@@ -1,48 +1,121 @@
 ---
+// web/src/components/Footer.astro
+// Footer Oficial Buon Appetito (Port d'Andratx)
+// Diseño Verde Salvia Suave (Sage Mist) con logotipo original a todo color y créditos MYNEXT
 ---
 
 <!-- ======================================================== -->
-<!-- FOOTER (3 Balanced Columns)                              -->
+<!-- FOOTER OFICIAL BUON APPETITO                             -->
 <!-- ======================================================== -->
-<footer class="bg-surface-container-low border-t border-outline-variant/30">
-  <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 py-12 sm:py-20">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 items-center text-center md:text-left">
+<footer class="bg-gradient-to-b from-[#E2EAE3] via-[#D8E3DA] to-[#CDDCD0] border-t border-[#B8CEBC] text-[#183321] relative">
+  <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 py-10 sm:py-14">
+    
+    <!-- Top Identity / Logo Section con Logo Original a Todo Color -->
+    <div class="text-center max-w-md mx-auto mb-8 sm:mb-10">
+      <a href="/#inicio" class="inline-block group" aria-label="Buon Appetito - Volver al inicio">
+        <img 
+          src="/assets/logos/logo-buon-appetito.png" 
+          alt="Buon Appetito - Port d'Andratx" 
+          class="h-14 sm:h-16 w-auto object-contain mx-auto drop-shadow-xs group-hover:scale-105 transition-transform duration-300"
+        />
+      </a>
+      <p class="font-sans text-xs sm:text-sm text-[#2C4132] mt-3.5 leading-relaxed">
+        Cocina mediterránea tradicional, pastas artesanales y pizzería en horno de leña en primera línea de Port d'Andratx.
+      </p>
+    </div>
+
+    <!-- Navigation Columns Grid: Enlaces Rápidos & Avisos Legales -->
+    <div class="max-w-xl mx-auto grid grid-cols-2 gap-8 sm:gap-14 pt-8 border-t border-[#B8CEBC]/70 text-left">
       
-      <!-- Left: Avisos legales -->
-      <div class="space-y-3">
-        <p class="font-semibold text-primary text-xs uppercase tracking-[0.2em]">Avisos Legales</p>
-        <ul class="space-y-2 text-sm text-on-surface-variant font-sans">
-          <li><a href="#" class="hover:text-primary transition-colors">Términos del servicio</a></li>
-          <li><a href="#" class="hover:text-primary transition-colors">Política de privacidad</a></li>
-          <li><a href="#" class="hover:text-primary transition-colors">Aviso legal y cookies</a></li>
+      <!-- Columna 1: Enlaces Rápidos -->
+      <div class="space-y-3.5">
+        <div>
+          <h3 class="font-serif text-sm sm:text-base font-bold text-[#183321] tracking-tight">
+            Enlaces Rápidos
+          </h3>
+          <span class="w-7 h-0.5 bg-[#9E4221] rounded-full block mt-1.5"></span>
+        </div>
+        <ul class="space-y-2 text-xs sm:text-sm text-[#2D4534] font-sans">
+          <li>
+            <a href="/#inicio" class="hover:text-[#183321] hover:translate-x-1 inline-block transition-all duration-200">
+              Inicio
+            </a>
+          </li>
+          <li>
+            <a href="/#sobre-nosotros" class="hover:text-[#183321] hover:translate-x-1 inline-block transition-all duration-200">
+              Sobre nosotros
+            </a>
+          </li>
+          <li>
+            <a href="/#menu" class="hover:text-[#183321] hover:translate-x-1 inline-block transition-all duration-200">
+              Nuestra Carta
+            </a>
+          </li>
+          <li>
+            <a href="/#donde-estamos" class="hover:text-[#183321] hover:translate-x-1 inline-block transition-all duration-200">
+              Dónde estamos
+            </a>
+          </li>
+          <li class="pt-0.5">
+            <a 
+              href="/reservar" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center gap-1.5 text-[#9E4221] hover:text-[#7A2F14] font-semibold transition-colors"
+            >
+              <span>Reservar mesa</span>
+              <span class="text-xs">&rarr;</span>
+            </a>
+          </li>
         </ul>
       </div>
 
-      <!-- Center: Logo Oficial Buon Appetito & Copyright -->
-      <div class="flex flex-col items-center justify-center space-y-4 text-center">
-        <a href="#inicio" class="inline-block group" aria-label="Buon Appetito inicio">
-          <img 
-            src="/assets/logos/logo-buon-appetito.png" 
-            alt="Buon Appetito - Port d'Andratx" 
-            class="h-16 sm:h-20 w-auto object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
-          />
-        </a>
-        <p class="text-xs text-on-surface-variant/80 font-sans">
-          &copy; 2026 Buon Appetito &bull; Port d'Andratx, Mallorca.
-        </p>
-      </div>
-
-      <!-- Right: Enlaces rápidos -->
-      <div class="space-y-3 md:text-right">
-        <p class="font-semibold text-primary text-xs uppercase tracking-[0.2em]">Enlaces Rápidos</p>
-        <ul class="space-y-2 text-sm text-on-surface-variant font-sans">
-          <li><a href="#inicio" class="hover:text-primary transition-colors">Inicio</a></li>
-          <li><a href="#sobre-nosotros" class="hover:text-primary transition-colors">Sobre nosotros</a></li>
-          <li><a href="#menu" class="hover:text-primary transition-colors">Menú</a></li>
-          <li><a href="#donde-estamos" class="hover:text-primary transition-colors">Dónde estamos</a></li>
+      <!-- Columna 2: Avisos Legales -->
+      <div class="space-y-3.5">
+        <div>
+          <h3 class="font-serif text-sm sm:text-base font-bold text-[#183321] tracking-tight">
+            Avisos Legales
+          </h3>
+          <span class="w-7 h-0.5 bg-[#183321]/60 rounded-full block mt-1.5"></span>
+        </div>
+        <ul class="space-y-2 text-xs sm:text-sm text-[#2D4534] font-sans">
+          <li>
+            <a href="/aviso-legal" class="hover:text-[#183321] hover:translate-x-1 inline-block transition-all duration-200">
+              Aviso legal
+            </a>
+          </li>
+          <li>
+            <a href="/privacidad" class="hover:text-[#183321] hover:translate-x-1 inline-block transition-all duration-200">
+              Política de privacidad
+            </a>
+          </li>
+          <li>
+            <a href="/cookies" class="hover:text-[#183321] hover:translate-x-1 inline-block transition-all duration-200">
+              Política de cookies
+            </a>
+          </li>
         </ul>
       </div>
 
     </div>
+
+    <!-- Bottom Copyright & Credits Bar -->
+    <div class="mt-10 pt-6 border-t border-[#B8CEBC]/70 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#3F5545] font-sans text-center sm:text-left">
+      <p>
+        &copy; 2026 Buon Appetito &bull; Port d'Andratx, Mallorca. Todos los derechos reservados.
+      </p>
+      <p class="text-xs text-[#3F5545] flex items-center justify-center gap-1">
+        <span>Hecho con</span>
+        <a 
+          href="https://mynextbymusa.com" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="font-semibold text-[#183321] hover:text-[#9E4221] underline underline-offset-4 decoration-[#9E4221]/70 hover:decoration-[#9E4221] transition-all tracking-wide"
+        >
+          MYNEXT
+        </a>
+      </p>
+    </div>
+
   </div>
 </footer>

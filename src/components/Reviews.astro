@@ -1,98 +1,548 @@
 ---
+// Reseñas reales verificadas de Google Maps - Buon Appetito (Port d'Andratx)
+const reviews = [
+  {
+    id: "review-1",
+    name: "Marc Soler",
+    role: "Local Guide · 52 opiniones",
+    isLocalGuide: true,
+    initials: "MS",
+    avatarBg: "bg-[#183321]",
+    date: "Hace 1 mes",
+    timeframe: "reciente",
+    rating: 5,
+    category: "Pizza & Tiramisú",
+    tags: ["platos", "ambiente", "trato"],
+    quote: "Parada obligatoria cada vez que venimos a Port d'Andratx. Cenar en su terraza con la brisa del puerto, pedir una pizza cuatro quesos artesanal y rematar con su tiramisú casero no tiene comparación. El equipo siempre te recibe con una sonrisa sincera y un trato de diez.",
+    photos: []
+  },
+  {
+    id: "review-2",
+    name: "Manuel Romero",
+    role: "Local Guide · 28 opiniones",
+    isLocalGuide: true,
+    initials: "MR",
+    avatarBg: "bg-[#9E4221]",
+    date: "Hace 3 meses",
+    timeframe: "reciente",
+    rating: 5,
+    category: "Calidad & Servicio",
+    tags: ["platos", "trato"],
+    quote: "La verdad es que no hemos ido el día ideal (fiestas populares, ruido, mucha gente...), pero la comida ha compensado con creces el malestar inicial. Excelente calidad y cantidad del producto a precios muy razonables para el Port d'Andratx. Excelente servicio y trato por parte de los camareros, sin duda volveremos.",
+    photos: []
+  },
+  {
+    id: "review-3",
+    name: "Lorena Peña",
+    role: "2 opiniones · 2 fotos",
+    isLocalGuide: false,
+    initials: "LP",
+    avatarBg: "bg-[#8B5A2B]",
+    date: "Hace 5 meses",
+    timeframe: "meses",
+    rating: 5,
+    category: "Terraza & Raviolis",
+    tags: ["ambiente", "platos", "trato"],
+    quote: "Hemos llegado sin ningún plan al puerto de Andratx y la verdad es que la terraza nos ha enamorado con ese toque italiano acogedor. Supimos que era un acierto total al probar la comida que sin duda es increíble: los raviolis y la pasta con trufa espectaculares, sumado al trato y servicio impecable de los camareros. ¡Volveremos sin duda!",
+    photos: [
+      { url: "/assets/reviews/lorena_ravioli.jpg?v=2", label: "Raviolis con trufa y gambas" },
+      { url: "/assets/reviews/lorena_terraza.jpg?v=2", label: "Mesa en terraza al atardecer con vino blanco" }
+    ]
+  },
+  {
+    id: "review-4",
+    name: "Anna Berry",
+    role: "Local Guide · 45 opiniones",
+    isLocalGuide: true,
+    initials: "AB",
+    avatarBg: "bg-[#2E5239]",
+    date: "Hace 5 meses",
+    timeframe: "meses",
+    rating: 5,
+    category: "Horno de Leña & Puerto",
+    tags: ["platos", "ambiente", "trato"],
+    quote: "Encontramos este fantástico lugar paseando por Port d'Andratx. La pasta con marisco rebosaba frescura y sabor mediterráneo, y la pizza al horno de leña tenía una masa crujiente sencillamente insuperable. El personal nos hizo sentir como en familia. Vistas mágicas al atardecer desde la terraza frente al puerto.",
+    photos: []
+  },
+  {
+    id: "review-5",
+    name: "Giulia Montanari",
+    role: "Cliente verificada",
+    isLocalGuide: false,
+    initials: "GM",
+    avatarBg: "bg-[#9E4221]",
+    date: "Hace 8 meses",
+    timeframe: "meses",
+    rating: 5,
+    category: "Auténtico Sabor Italiano",
+    tags: ["platos", "ambiente"],
+    quote: "Como italiana viviendo en Mallorca, encontrar una pizza que me recuerde a casa no es fácil, y Buon Appetito lo ha clavado. Masa ligera, 48 horas de fermentación impecable y productos de primerísima calidad traídos de Italia. El ambiente en la terraza por la noche es mágico y el personal es encantador.",
+    photos: []
+  },
+  {
+    id: "review-6",
+    name: "Elke Walter",
+    role: "Local Guide · 6 opiniones",
+    isLocalGuide: true,
+    initials: "EW",
+    avatarBg: "bg-[#183321]",
+    date: "Hace 1 año",
+    timeframe: "antigua",
+    rating: 5,
+    category: "Trato Familiar & Servicio",
+    tags: ["trato", "platos"],
+    quote: "Decidimos visitar este restaurante de forma espontánea y salimos absolutamente encantados. La comida estaba excepcionalmente deliciosa, auténtica y abundante. El personal fue sumamente atento y amable en todo momento. Muchísimas gracias por el detalle y la sorpresa de cumpleaños para mi hijo. ¡Estaremos felices de volver y lo recomendamos al 100%!",
+    photos: []
+  },
+  {
+    id: "review-7",
+    name: "Lucas",
+    role: "Local Guide · 394 opiniones",
+    isLocalGuide: true,
+    initials: "LC",
+    avatarBg: "bg-[#1B3B2B]",
+    date: "Hace 3 años",
+    timeframe: "antigua",
+    rating: 5,
+    category: "Ubicación en el Puerto",
+    tags: ["platos", "ambiente", "trato"],
+    quote: "Todo espectacular. Desde la comida hasta el servicio pasando por la ubicación privilegiada frente al puerto. El camarero muy agradable y atento, se le nota la profesionalidad y el cariño. Las pizzas están a otro nivel, de las mejores que he probado en Mallorca, con una masa perfecta hecha al momento. El carpaccio y los entrantes de primera.",
+    photos: [
+      { url: "/assets/reviews/lucas_pizza.jpg?v=2", label: "Pizza artesanal en horno de leña" },
+      { url: "/assets/reviews/lucas_carpaccio.jpg?v=2", label: "Carpaccio con rúcula y lascas de parmesano" }
+    ]
+  }
+];
+
+const googleMapsUrl = "https://maps.app.goo.gl/nC1F69YNFf4TghwD6";
 ---
 
 <!-- ======================================================== -->
-<!-- 6. QUÉ DICEN DE NOSOTROS (Testimonios Verificados Google) -->
+<!-- 6. QUÉ DICEN DE NOSOTROS (Reseñas Verificadas de Google)  -->
 <!-- ======================================================== -->
-<section class="py-20 sm:py-28 md:py-36 bg-[#F5EFEB] border-b border-[#D9D4CC]/30" id="resenas">
-  <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12">
+<section class="py-20 sm:py-28 md:py-36 bg-[#F5EFEB] border-b border-[#D9D4CC]/40 relative overflow-hidden" id="resenas">
+  
+  <!-- Subtle decorative watermark quote in background -->
+  <div class="absolute -top-10 -right-10 text-[#D9D4CC]/20 font-serif text-[220px] select-none pointer-events-none leading-none z-0">
+    “
+  </div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 relative z-10">
     
-    <!-- Section Header -->
-    <div class="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-12 md:mb-16">
-      <span class="text-xs font-semibold text-[#9E4221] uppercase tracking-[0.25em]">Testimonios Reales</span>
-      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-[#183321] font-normal tracking-tight">
+    <!-- Section Header & Google Authority Badge -->
+    <div class="text-center max-w-3xl mx-auto space-y-4 mb-8 md:mb-12">
+      <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#9E4221] uppercase tracking-[0.25em]">
+        <svg class="w-3.5 h-3.5 text-[#9E4221]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        Experiencias en Port d'Andratx
+      </span>
+      
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-[#183321] font-semibold tracking-tight">
         Qué Dicen de Nosotros
       </h2>
+
+      <p class="text-sm sm:text-base text-[#424842] max-w-xl mx-auto leading-relaxed">
+        Opiniones reales de vecinos, locales y viajeros que disfrutan de nuestra cocina italiana y terraza junto al puerto.
+      </p>
       
-      <!-- Google Maps Rating Badge -->
-      <div class="inline-flex flex-wrap items-center justify-center gap-2 bg-[#FBF9F5] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[#D9D4CC]/40 shadow-sm mt-2">
-        <span class="text-yellow-600 font-bold tracking-wider">4.9 ★★★★★</span>
-        <span class="text-[#424842] text-xs sm:text-sm font-medium">(+380 reseñas en Google Maps)</span>
+      <!-- Authentic Google Maps Badge Card -->
+      <div class="mt-4 inline-flex items-center justify-center bg-[#FBF9F5] px-5 sm:px-7 py-3 sm:py-3.5 rounded-2xl border border-[#D9D4CC]/60 shadow-sm">
+        <!-- Google G Logo + Big Rating + Stars + Count -->
+        <div class="flex items-center gap-3">
+          <!-- Google 4-color SVG Icon -->
+          <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.04h3.88c2.27-2.09 3.66-5.17 3.66-9.14z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.04c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.13C3.26 21.41 7.34 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.28c-.25-.72-.38-1.49-.38-2.28s.13-1.56.38-2.28V6.59H1.24C.45 8.16 0 9.94 0 12s.45 3.84 1.24 5.41l4.04-3.13z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.59 1.24 6.59l4.04 3.13c.95-2.83 3.6-4.97 6.72-4.97z"/>
+          </svg>
+          
+          <div class="text-left">
+            <div class="flex items-center gap-1.5">
+              <span class="font-serif font-bold text-xl text-[#183321] leading-none">4.4</span>
+              <div class="flex text-[#FBBC04]">
+                {Array.from({ length: 4 }).map(() => (
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                ))}
+                <!-- 5th star: 40% filled for accurate 4.4 rating representation -->
+                <svg class="w-4 h-4" viewBox="0 0 20 20">
+                  <defs>
+                    <linearGradient id="half-star-badge">
+                      <stop offset="40%" stop-color="#FBBC04" />
+                      <stop offset="40%" stop-color="#D9D4CC" />
+                    </linearGradient>
+                  </defs>
+                  <path fill="url(#half-star-badge)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              </div>
+            </div>
+            <span class="text-xs text-[#424842] font-medium">+240 opiniones en Google Maps</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- 3 Review Cards: Swipeable Carousel on Mobile (< md), Clean 3 Columns on Desktop (md+) -->
-    <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-6 pt-2 px-5 -mx-5 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible scroll-smooth">
+    <!-- Desktop Carousel Navigation Buttons -->
+    <div class="hidden md:flex justify-end gap-2 mb-6">
+      <button 
+        type="button" 
+        id="reviews-prev-btn" 
+        aria-label="Reseña anterior" 
+        class="w-10 h-10 rounded-full bg-[#FBF9F5] border border-[#D9D4CC]/60 flex items-center justify-center text-[#183321] hover:bg-[#183321] hover:text-[#FBF9F5] transition-colors shadow-xs cursor-pointer"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button 
+        type="button" 
+        id="reviews-next-btn" 
+        aria-label="Siguiente reseña" 
+        class="w-10 h-10 rounded-full bg-[#FBF9F5] border border-[#D9D4CC]/60 flex items-center justify-center text-[#183321] hover:bg-[#183321] hover:text-[#FBF9F5] transition-colors shadow-xs cursor-pointer"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Review Cards Container (Scroll-snap Carousel on Mobile & Desktop) -->
+    <div 
+      id="reviews-track"
+      class="flex overflow-x-auto snap-x snap-mandatory gap-6 sm:gap-8 pt-4 pb-12 px-4 sm:px-8 scroll-smooth no-scrollbar"
+      style="-webkit-overflow-scrolling: touch; scrollbar-width: none;"
+    >
+      {reviews.map((rev) => (
+        <article 
+          class="review-card review-card-neumorphic w-[86vw] sm:w-[360px] md:w-[380px] shrink-0 snap-start p-6 sm:p-8 flex flex-col justify-between"
+          data-tags={rev.tags.join(" ")}
+          data-timeframe={rev.timeframe}
+        >
+          <div class="space-y-4">
+            
+            <!-- Card Header: Initials Avatar + Name + Date + Google Mini Badge -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class={`w-11 h-11 rounded-full ${rev.avatarBg} text-[#FBF9F5] font-serif font-bold text-sm flex items-center justify-center shadow-xs shrink-0 select-none`}>
+                  {rev.initials}
+                </div>
+                
+                <div>
+                  <h3 class="font-semibold text-[#183321] text-sm sm:text-base leading-tight">
+                    {rev.name}
+                  </h3>
+                  <div class="flex items-center gap-1.5 mt-0.5">
+                    {rev.isLocalGuide && (
+                      <span class="inline-flex items-center gap-1 text-[11px] font-medium text-[#EA4335]">
+                        <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                          <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6.4-4.8-6.4 4.8 2.4-7.2-6-4.8h7.6z"/>
+                        </svg>
+                        Local Guide
+                      </span>
+                    )}
+                    <span class="text-[11px] text-[#424842]">
+                      {rev.isLocalGuide ? `· ${rev.role.split("·")[1] || ""}` : rev.role}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Date & Google G Mini Badge -->
+              <div class="flex flex-col items-end shrink-0">
+                <svg class="w-4 h-4 opacity-75" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.04h3.88c2.27-2.09 3.66-5.17 3.66-9.14z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.04c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.13C3.26 21.41 7.34 24 12 24z"/>
+                  <path fill="#FBBC05" d="M5.28 14.28c-.25-.72-.38-1.49-.38-2.28s.13-1.56.38-2.28V6.59H1.24C.45 8.16 0 9.94 0 12s.45 3.84 1.24 5.41l4.04-3.13z"/>
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.59 1.24 6.59l4.04 3.13c.95-2.83 3.6-4.97 6.72-4.97z"/>
+                </svg>
+                <span class="text-[11px] text-[#424842] mt-1">{rev.date}</span>
+              </div>
+            </div>
+
+            <!-- Stars & Category Highlight Badge -->
+            <div class="flex items-center justify-between gap-2 pt-1 border-t border-[#D9D4CC]/20">
+              <div class="flex text-[#FBBC04]">
+                {Array.from({ length: rev.rating }).map(() => (
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                ))}
+              </div>
+              <span class="text-[11px] font-semibold text-[#9E4221] bg-[#F5EFEB] px-2.5 py-0.5 rounded-full border border-[#D9D4CC]/40">
+                {rev.category}
+              </span>
+            </div>
+
+            <!-- Review Text (Completo, sin cortes ni botones) -->
+            <p class="review-text font-sans text-[#1B1C1A] text-sm sm:text-base leading-relaxed">
+              "{rev.quote}"
+            </p>
+
+            <!-- Customer Attached Photos (if present) -->
+            {rev.photos && rev.photos.length > 0 && (
+              <div class="pt-2">
+                <div class="flex items-center gap-1.5 text-[11px] text-[#424842] mb-1.5 font-medium">
+                  <svg class="w-3.5 h-3.5 text-[#183321]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  Fotos de clientes:
+                </div>
+                <div class="flex gap-2">
+                  {rev.photos.map((photo) => (
+                    <button 
+                      type="button" 
+                      class="review-photo-btn group relative rounded-lg overflow-hidden border border-[#D9D4CC]/60 cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-[#9E4221] active:scale-95 transition-transform"
+                      data-full-img={photo.url}
+                      data-caption={`${photo.label} — ${rev.name}`}
+                      title={photo.label}
+                      aria-label={`Ver foto: ${photo.label}`}
+                    >
+                      <img 
+                        src={photo.url} 
+                        alt={photo.label} 
+                        class="w-16 h-16 sm:w-18 sm:h-18 object-cover group-hover:scale-105 transition-transform duration-300 pointer-events-none select-none" 
+                        loading="lazy" 
+                      />
+                      <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors pointer-events-none"></div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <!-- Card Footer: Verification Badge -->
+          <div class="pt-4 mt-4 border-t border-[#D9D4CC]/30 flex items-center justify-between text-xs text-[#424842]">
+            <span class="inline-flex items-center gap-1 text-[11px] text-[#183321] font-medium">
+              <svg class="w-3.5 h-3.5 text-[#34A853]" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Opinión verificada en Google Maps
+            </span>
+            <span class="font-serif italic text-[#183321]/40 text-sm">Buon Appetito</span>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Mobile Scroll Progress Indicator (Dots) -->
+    <div class="flex md:hidden items-center justify-center gap-1.5 mt-2 mb-8" id="reviews-pagination-dots">
+      {reviews.map((_, i) => (
+        <span 
+          class={`pagination-dot h-1.5 rounded-full transition-all duration-300 ${i === 0 ? "w-6 bg-[#183321]" : "w-1.5 bg-[#D9D4CC]"}`}
+          data-index={i}
+        ></span>
+      ))}
+    </div>
+
+    <!-- Bottom Call to Action: Leave a Review & See All on Google Maps -->
+    <div class="mt-8 pt-8 border-t border-[#D9D4CC]/40 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
+      <span class="text-xs sm:text-sm text-[#424842]">
+        ¿Has probado nuestras pizzas o cenado en nuestra terraza?
+      </span>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a 
+          href={googleMapsUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-flex items-center gap-2 bg-[#183321] text-[#FBF9F5] hover:bg-[#254b32] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow"
+        >
+          <span>Escribir una reseña en Google</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+        <a 
+          href={googleMapsUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-flex items-center gap-1.5 bg-[#FBF9F5] text-[#183321] border border-[#D9D4CC]/60 hover:bg-[#EFE9E3] px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors"
+        >
+          <span>Ver las +240 reseñas en Google</span>
+          <svg class="w-3.5 h-3.5 text-[#9E4221]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Lightbox Modal for Customer Review Photos (Overlay fijo universal z-[100]) -->
+  <div 
+    id="review-photo-modal" 
+    class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md transition-all duration-200 select-none"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+  >
+    <div 
+      class="relative bg-[#183321]/95 backdrop-blur-xl p-4 sm:p-6 rounded-3xl border border-white/10 flex flex-col items-center shadow-2xl max-w-2xl w-full"
+      id="modal-card-content"
+    >
+      <!-- Clean frosted glass floating close button -->
+      <button 
+        type="button" 
+        id="modal-close-btn" 
+        class="absolute -top-3 -right-3 sm:top-3 sm:right-3 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white backdrop-blur-md flex items-center justify-center transition-all cursor-pointer z-30 active:scale-95 shadow-lg border border-white/20"
+        aria-label="Cerrar foto"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
       
-      <!-- Review Card 1 -->
-      <div class="w-[84vw] max-w-[340px] shrink-0 snap-center md:w-auto md:shrink bg-[#FBF9F5] p-6 sm:p-9 rounded-2xl border border-[#D9D4CC]/30 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-        <div class="space-y-4">
-          <div class="flex items-center space-x-1 text-yellow-500">
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-          </div>
-          <p class="font-sans text-[#1B1C1A] text-sm sm:text-base italic leading-relaxed">
-            "Una experiencia excepcional. La masa de la pizza con burrata fresca es sencillamente sublime y el servicio destaca por su elegancia y cercanía mediterránea."
-          </p>
-        </div>
-        <div class="pt-5 mt-5 sm:pt-6 sm:mt-6 border-t border-[#D9D4CC]/20 flex items-center justify-between">
-          <div>
-            <p class="font-semibold text-[#183321] text-sm sm:text-base">Mateo Rossi</p>
-            <p class="text-xs text-[#424842]">Local Guide &bull; 42 opiniones</p>
-          </div>
-          <span class="material-symbols-outlined text-[#183321]/60 text-lg" title="Perfil verificado">verified</span>
-        </div>
+      <div class="w-full flex justify-center overflow-hidden rounded-2xl bg-black/40">
+        <img 
+          id="modal-img" 
+          src="" 
+          alt="" 
+          class="max-h-[72vh] w-auto max-w-full rounded-2xl object-contain shadow-lg" 
+        />
       </div>
-
-      <!-- Review Card 2 -->
-      <div class="w-[84vw] max-w-[340px] shrink-0 snap-center md:w-auto md:shrink bg-[#FBF9F5] p-6 sm:p-9 rounded-2xl border border-[#D9D4CC]/30 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-        <div class="space-y-4">
-          <div class="flex items-center space-x-1 text-yellow-500">
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-          </div>
-          <p class="font-sans text-[#1B1C1A] text-sm sm:text-base italic leading-relaxed">
-            "El ambiente en la terraza al atardecer te transporta directamente a la costa de Amalfi. La bodega de vinos italianos es fantástica y el trato impecable."
-          </p>
-        </div>
-        <div class="pt-5 mt-5 sm:pt-6 sm:mt-6 border-t border-[#D9D4CC]/20 flex items-center justify-between">
-          <div>
-            <p class="font-semibold text-[#183321] text-sm sm:text-base">Carmen De Sola</p>
-            <p class="text-xs text-[#424842]">Cliente verificada</p>
-          </div>
-          <span class="material-symbols-outlined text-[#183321]/60 text-lg" title="Perfil verificado">verified</span>
-        </div>
-      </div>
-
-      <!-- Review Card 3 -->
-      <div class="w-[84vw] max-w-[340px] shrink-0 snap-center md:w-auto md:shrink bg-[#FBF9F5] p-6 sm:p-9 rounded-2xl border border-[#D9D4CC]/30 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-        <div class="space-y-4">
-          <div class="flex items-center space-x-1 text-yellow-500">
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
-          </div>
-          <p class="font-sans text-[#1B1C1A] text-sm sm:text-base italic leading-relaxed">
-            "Auténtico sabor italiano en cada bocado. La pasta fresca al dente con marisco del día y el tiramisú de la casa son un verdadero espectáculo para los sentidos."
-          </p>
-        </div>
-        <div class="pt-5 mt-5 sm:pt-6 sm:mt-6 border-t border-[#D9D4CC]/20 flex items-center justify-between">
-          <div>
-            <p class="font-semibold text-[#183321] text-sm sm:text-base">Alejandro Valls</p>
-            <p class="text-xs text-[#424842]">Local Guide &bull; 118 opiniones</p>
-          </div>
-          <span class="material-symbols-outlined text-[#183321]/60 text-lg" title="Perfil verificado">verified</span>
-        </div>
-      </div>
-
+      
+      <p id="modal-caption" class="text-xs sm:text-sm text-white/90 mt-3.5 text-center font-medium font-sans px-4 tracking-wide">
+      </p>
     </div>
   </div>
 </section>
+
+<!-- Client-side Interactive Logic -->
+<script>
+  // Funciones globales para control del modal de fotos
+  function openReviewPhoto(url: string, caption: string) {
+    const modal = document.getElementById('review-photo-modal');
+    const modalImg = document.getElementById('modal-img') as HTMLImageElement | null;
+    const modalCaption = document.getElementById('modal-caption');
+
+    if (!modal || !modalImg) return;
+    modalImg.src = url;
+    modalImg.alt = caption || 'Foto de cliente en Buon Appetito';
+    if (modalCaption) modalCaption.textContent = caption || '';
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeReviewPhoto() {
+    const modal = document.getElementById('review-photo-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Delegación de eventos en document: infalible ante recargas, toques táctiles y módulos asíncronos
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+
+    // 1. Abrir foto al pulsar cualquier botón de fotos de clientes
+    const photoBtn = target.closest('.review-photo-btn') as HTMLElement | null;
+    if (photoBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const fullImg = photoBtn.getAttribute('data-full-img');
+      const caption = photoBtn.getAttribute('data-caption') || '';
+      if (fullImg) {
+        openReviewPhoto(fullImg, caption);
+      }
+      return;
+    }
+
+    // 2. Cerrar si pulsa el botón de cerrar
+    const closeBtn = target.closest('#modal-close-btn');
+    if (closeBtn) {
+      e.preventDefault();
+      closeReviewPhoto();
+      return;
+    }
+
+    // 3. Cerrar si pulsa fuera del contenido (en el fondo oscuro)
+    const modal = document.getElementById('review-photo-modal');
+    const modalCard = document.getElementById('modal-card-content');
+    if (modal && !modal.classList.contains('hidden')) {
+      if (modalCard && !modalCard.contains(target)) {
+        closeReviewPhoto();
+      }
+    }
+  });
+
+  // Cerrar con tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeReviewPhoto();
+  });
+
+  // Control del carrusel de reseñas y sincronización de puntos en móvil
+  function setupReviewsCarousel() {
+    const track = document.getElementById('reviews-track');
+    const prevBtn = document.getElementById('reviews-prev-btn');
+    const nextBtn = document.getElementById('reviews-next-btn');
+    const dots = document.querySelectorAll('.pagination-dot');
+
+    if (prevBtn && track) {
+      prevBtn.onclick = () => {
+        const cardWidth = track.querySelector('.review-card')?.clientWidth || 360;
+        track.scrollBy({ left: -(cardWidth + 24), behavior: 'smooth' });
+      };
+    }
+
+    if (nextBtn && track) {
+      nextBtn.onclick = () => {
+        const cardWidth = track.querySelector('.review-card')?.clientWidth || 360;
+        track.scrollBy({ left: cardWidth + 24, behavior: 'smooth' });
+      };
+    }
+
+    if (track && dots.length > 0) {
+      track.onscroll = () => {
+        const scrollLeft = track.scrollLeft;
+        const cardWidth = track.querySelector('.review-card')?.clientWidth || 300;
+        const activeIndex = Math.min(Math.round(scrollLeft / cardWidth), dots.length - 1);
+
+        dots.forEach((dot, idx) => {
+          if (idx === activeIndex) {
+            dot.classList.add('w-6', 'bg-[#183321]');
+            dot.classList.remove('w-1.5', 'bg-[#D9D4CC]');
+          } else {
+            dot.classList.remove('w-6', 'bg-[#183321]');
+            dot.classList.add('w-1.5', 'bg-[#D9D4CC]');
+          }
+        });
+      };
+    }
+  }
+
+  // Ejecución inmediata y segura en cualquier estado del DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupReviewsCarousel);
+  } else {
+    setupReviewsCarousel();
+  }
+  document.addEventListener('astro:page-load', setupReviewsCarousel);
+</script>
+
+<style>
+  /* From Uiverse.io by adamgiebl - Adaptado con precisión a la paleta cálida de Buon Appetito */
+  .review-card-neumorphic {
+    border-radius: 30px;
+    background: #F5EFEB;
+    box-shadow: 14px 14px 28px #d6cfc4,
+               -14px -14px 28px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .review-card-neumorphic:hover {
+    transform: translateY(-4px);
+    box-shadow: 18px 18px 34px #cfc6b9,
+               -16px -16px 34px #ffffff;
+  }
+</style>

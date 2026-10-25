@@ -1,346 +1,175 @@
 ---
+// web/src/components/LocationReservations.astro
+// Sección Dónde Estamos: Panel de Información y Contacto (arriba con botón Reservar) + Mapa Panorámico (abajo)
 ---
 
 <!-- ======================================================== -->
-<!-- DÓNDE ESTAMOS & RESERVAS (2 Columns)                     -->
-<!-- Left: Form with WhatsApp CTA / Right: Map & Hours        -->
+<!-- DÓNDE ESTAMOS & INFORMACIÓN DEL LOCAL                    -->
+<!-- Top: Info & Contact Panel with "Reservar Mesa" CTA        -->
+<!-- Bottom: Panoramic Google Map Embed                        -->
 <!-- ======================================================== -->
-<section class="py-20 sm:py-28 md:py-36 bg-surface border-b border-outline-variant/30" id="donde-estamos">
-  <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12">
+<section class="py-16 sm:py-24 md:py-32 bg-surface border-b border-outline-variant/30" id="donde-estamos">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 space-y-10 sm:space-y-14">
     
     <!-- Section Header -->
-    <div class="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-12 md:mb-16">
-      <span class="text-xs font-semibold text-secondary uppercase tracking-[0.25em]">Visítanos &bull; Reserva Tu Mesa</span>
-      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-primary font-normal tracking-tight">
-        Dónde Estamos
+    <div class="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4">
+      <span class="text-xs font-semibold text-secondary uppercase tracking-[0.25em]">Visítanos &bull; Port d'Andratx</span>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-primary font-semibold tracking-tight">
+        Dónde Encontrarnos
       </h2>
       <p class="font-sans text-on-surface-variant text-sm sm:text-base leading-relaxed">
-        Reserve con antelación para garantizar su mesa en el salón interior o en nuestra terraza ajardinada.
+        Frente al puerto deportivo de Port d'Andratx. Terraza exterior con vistas al mar y acogedor salón interior climatizado.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+    <!-- 1. PANEL DE INFORMACIÓN & CONTACTO (ARRIBA) -->
+    <div class="bg-surface-container-low p-6 sm:p-9 lg:p-11 rounded-3xl border border-outline-variant/30 shadow-sm space-y-8">
       
-      <!-- Column 1: Table Reservation Form (Compact & Thumb-Friendly for Mobile) -->
-      <div class="lg:col-span-6 bg-surface-container-low p-4 sm:p-7 lg:p-9 rounded-2xl sm:rounded-3xl border border-outline-variant/30 shadow-sm space-y-4 sm:space-y-5">
-        <div class="flex items-center justify-between border-b border-outline-variant/20 pb-3 sm:pb-4">
+      <!-- Encabezado del Panel -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-outline-variant/20 pb-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#183321]/10 flex items-center justify-center text-primary shrink-0">
+            <span class="material-symbols-outlined text-2xl">storefront</span>
+          </div>
           <div>
-            <span class="text-[10px] sm:text-[11px] font-semibold text-secondary uppercase tracking-[0.2em]">Servicio Restaurante</span>
-            <h3 class="font-serif text-xl sm:text-3xl text-primary font-normal mt-0.5">Reserva tu Mesa</h3>
+            <span class="text-[10px] sm:text-[11px] font-semibold text-secondary uppercase tracking-[0.2em]">Buon Appetito</span>
+            <h3 class="font-serif text-2xl sm:text-3xl text-primary font-semibold mt-0.5">Información &amp; Contacto</h3>
           </div>
-          <span class="inline-flex items-center gap-1.5 bg-[#183321]/10 text-primary text-[10px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-1 rounded-full uppercase tracking-wider">
-            <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-            Confirmación Inmediata
-          </span>
         </div>
-
-        <form class="space-y-3.5 sm:space-y-4.5" id="reservation-form">
-          
-          <!-- 1. Comensales: Chips compactos estilo Resto -->
-          <div class="space-y-1.5">
-            <div class="flex justify-between items-center">
-              <label class="font-sans text-[11px] sm:text-xs font-semibold text-on-surface uppercase tracking-wider">Número de personas</label>
-              <span class="text-xs text-secondary font-medium" id="guest-count-label">2 Comensales</span>
-            </div>
-            <input type="hidden" id="res-guests" value="2 personas" />
-            <div class="grid grid-cols-6 gap-1.5 sm:gap-2" id="guest-buttons-container">
-              <button type="button" data-val="1 persona" class="guest-btn py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl border border-outline-variant/40 bg-surface text-on-surface text-xs sm:text-sm font-semibold hover:border-primary transition-all cursor-pointer">1</button>
-              <button type="button" data-val="2 personas" class="guest-btn active py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl bg-primary text-white text-xs sm:text-sm font-semibold border border-primary transition-all cursor-pointer">2</button>
-              <button type="button" data-val="3 personas" class="guest-btn py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl border border-outline-variant/40 bg-surface text-on-surface text-xs sm:text-sm font-semibold hover:border-primary transition-all cursor-pointer">3</button>
-              <button type="button" data-val="4 personas" class="guest-btn py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl border border-outline-variant/40 bg-surface text-on-surface text-xs sm:text-sm font-semibold hover:border-primary transition-all cursor-pointer">4</button>
-              <button type="button" data-val="5 personas" class="guest-btn py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl border border-outline-variant/40 bg-surface text-on-surface text-xs sm:text-sm font-semibold hover:border-primary transition-all cursor-pointer">5</button>
-              <button type="button" data-val="6+ personas (Grupo)" class="guest-btn py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl border border-outline-variant/40 bg-surface text-on-surface text-xs sm:text-sm font-semibold hover:border-primary transition-all cursor-pointer">6+</button>
-            </div>
-          </div>
-
-          <!-- 2. Fecha & Turno de Hora (Lado a lado en móvil para ganar espacio) -->
-          <div class="grid grid-cols-2 gap-2.5 sm:gap-4">
-            <div class="space-y-1">
-              <label for="res-date" class="font-sans text-[11px] sm:text-xs font-semibold text-on-surface uppercase tracking-wider">Fecha</label>
-              <input 
-                id="res-date"
-                type="date" 
-                required
-                class="w-full bg-surface border border-outline-variant/40 rounded-lg sm:rounded-xl px-2.5 sm:px-4 py-2 sm:py-2.5 text-on-surface text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              />
-            </div>
-            <div class="space-y-1">
-              <label for="res-time" class="font-sans text-[11px] sm:text-xs font-semibold text-on-surface uppercase tracking-wider">Hora</label>
-              <select 
-                id="res-time"
-                class="w-full bg-surface border border-outline-variant/40 rounded-lg sm:rounded-xl px-2.5 sm:px-4 py-2 sm:py-2.5 text-on-surface text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              >
-                <optgroup label="Almuerzo / Mediodía">
-                  <option value="12:30">12:30</option>
-                  <option value="13:00">13:00</option>
-                  <option value="13:30" selected>13:30</option>
-                  <option value="14:00">14:00</option>
-                  <option value="14:30">14:30</option>
-                  <option value="15:15">15:15</option>
-                </optgroup>
-                <optgroup label="Cena / Noche">
-                  <option value="19:30">19:30</option>
-                  <option value="20:00">20:00</option>
-                  <option value="20:30">20:30</option>
-                  <option value="21:00">21:00</option>
-                  <option value="21:30">21:30</option>
-                  <option value="22:15">22:15</option>
-                </optgroup>
-              </select>
-            </div>
-          </div>
-
-          <!-- 3. Preferencia de Zona -->
-          <div class="space-y-1">
-            <label class="font-sans text-[11px] sm:text-xs font-semibold text-on-surface uppercase tracking-wider">Preferencia de espacio</label>
-            <input type="hidden" id="res-zone" value="Terraza frente al mar" />
-            <div class="grid grid-cols-2 gap-2 sm:gap-3" id="zone-buttons-container">
-              <button type="button" data-zone="Terraza frente al mar" class="zone-btn active py-2 sm:py-2.5 px-2 sm:px-3 rounded-lg sm:rounded-xl bg-primary text-white text-[11px] sm:text-xs font-medium border border-primary flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer">
-                <span class="material-symbols-outlined text-sm">deck</span>
-                <span>Terraza Puerto</span>
-              </button>
-              <button type="button" data-zone="Salón Interior Climatizado" class="zone-btn py-2 sm:py-2.5 px-2 sm:px-3 rounded-lg sm:rounded-xl bg-surface text-on-surface text-[11px] sm:text-xs font-medium border border-outline-variant/40 hover:border-primary flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer">
-                <span class="material-symbols-outlined text-sm">storefront</span>
-                <span>Salón Interior</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- 4. Datos del comensal -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4">
-            <div class="space-y-1">
-              <label for="res-name" class="font-sans text-[11px] sm:text-xs font-semibold text-on-surface uppercase tracking-wider">Nombre completo</label>
-              <input 
-                id="res-name"
-                type="text" 
-                required
-                placeholder="Ej. Carmen Navarro" 
-                class="w-full bg-surface border border-outline-variant/40 rounded-lg sm:rounded-xl px-3 py-2 sm:py-2.5 text-on-surface text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              />
-            </div>
-            <div class="space-y-1">
-              <label for="res-phone" class="font-sans text-[11px] sm:text-xs font-semibold text-on-surface uppercase tracking-wider">Teléfono de contacto</label>
-              <input 
-                id="res-phone"
-                type="tel" 
-                placeholder="Ej. +34 600 000 000" 
-                class="w-full bg-surface border border-outline-variant/40 rounded-lg sm:rounded-xl px-3 py-2 sm:py-2.5 text-on-surface text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              />
-            </div>
-          </div>
-
-          <!-- 5. Ocasión Especial & Alergias -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4">
-            <div class="space-y-1">
-              <label for="res-occasion" class="font-sans text-[11px] sm:text-xs font-semibold text-on-surface uppercase tracking-wider">Ocasión (Opcional)</label>
-              <select 
-                id="res-occasion"
-                class="w-full bg-surface border border-outline-variant/40 rounded-lg sm:rounded-xl px-2.5 sm:px-3 py-2 sm:py-2.5 text-on-surface text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              >
-                <option value="Comida / Cena habitual">Comida / Cena habitual</option>
-                <option value="🎂 Cumpleaños">🎂 Cumpleaños</option>
-                <option value="🥂 Aniversario">🥂 Aniversario</option>
-                <option value="❤️ Cita especial">❤️ Cita especial</option>
-                <option value="💼 Comida de trabajo">💼 Comida de trabajo</option>
-                <option value="🎉 Celebración familiar">🎉 Celebración familiar</option>
-              </select>
-            </div>
-            <div class="space-y-1">
-              <label for="res-notes" class="font-sans text-[11px] sm:text-xs font-semibold text-on-surface uppercase tracking-wider">Alergias o notas (Opcional)</label>
-              <input 
-                id="res-notes"
-                type="text" 
-                placeholder="Ej. Celíaco, trona..." 
-                class="w-full bg-surface border border-outline-variant/40 rounded-lg sm:rounded-xl px-3 py-2 sm:py-2.5 text-on-surface text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              />
-            </div>
-          </div>
-
-          <!-- 6. Botón de Acción Principal -->
-          <div class="space-y-2 pt-1 sm:pt-2">
-            <button 
-              type="submit"
-              class="w-full bg-primary hover:bg-primary-container text-white py-3 sm:py-4 rounded-xl font-semibold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md hover:shadow-xl flex items-center justify-center gap-2 active:scale-98 cursor-pointer"
-            >
-              <span class="material-symbols-outlined text-base sm:text-lg">calendar_month</span>
-              <span>RESERVAR MESA</span>
-            </button>
-
-            <p class="text-[10px] sm:text-[11px] text-center text-on-surface-variant font-sans">
-              Sin intermediarios: confirmación directa de tu mesa con nuestro restaurante.
-            </p>
-          </div>
-        </form>
+        <span class="inline-flex items-center gap-1.5 bg-[#183321]/10 text-primary text-[11px] font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+          Abierto Hoy &bull; Cocina Continuada
+        </span>
       </div>
 
-      <!-- Column 2: Stylized Map Preview & Información / Contacto -->
-      <div class="lg:col-span-6 space-y-6 flex flex-col justify-between">
+      <!-- Cuadrícula 2x2 de Detalles del Restaurante -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 font-sans text-sm">
         
-        <!-- Google Map Interactive Visual Card (Simplificado sin barra superior) -->
-        <div class="bg-surface-container-low p-2.5 sm:p-3.5 rounded-3xl border border-outline-variant/30 shadow-sm overflow-hidden relative">
-          <!-- Real Interactive Google Map Embed -->
-          <div class="w-full h-72 sm:h-84 rounded-2xl overflow-hidden border border-outline-variant/20 shadow-inner relative">
-            <!-- Botón flotante 'CÓMO LLEGAR' integrado en el mapa -->
+        <!-- Tarjeta 1: Dirección Física -->
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface/80 border border-outline-variant/20 shadow-xs hover:border-primary/40 transition-colors">
+          <div class="w-11 h-11 rounded-xl bg-[#183321]/10 flex items-center justify-center text-secondary shrink-0">
+            <span class="material-symbols-outlined text-2xl">location_on</span>
+          </div>
+          <div class="space-y-1">
+            <p class="font-semibold text-secondary text-xs uppercase tracking-wider">Dirección Física</p>
             <a 
-              href="https://maps.google.com/?q=Buon+Appetito,+Avenida+Mateo+Bosch+24,+07157+Port+d'Andratx,+Mallorca" 
+              href="https://maps.app.goo.gl/nC1F69YNFf4TghwD6"
               target="_blank" 
-              rel="noopener noreferrer" 
-              class="absolute top-3.5 left-3.5 z-20 inline-flex items-center gap-1.5 bg-[#183321] hover:bg-[#2E4A36] text-white px-4 py-2 rounded-full font-semibold text-xs uppercase tracking-wider shadow-lg hover:scale-105 active:scale-95 transition-all backdrop-blur-md cursor-pointer border border-white/20"
+              rel="noopener noreferrer"
+              class="text-primary hover:text-secondary font-semibold text-base transition-colors inline-flex items-center gap-1.5"
+              title="Abrir en Google Maps"
             >
-              <span class="material-symbols-outlined text-sm">directions</span>
-              <span>CÓMO LLEGAR</span>
+              <span>Avenida Mateo Bosch, 24</span>
+              <span class="material-symbols-outlined text-sm opacity-60">open_in_new</span>
             </a>
-
-            <iframe
-              title="Ubicación de Buon Appetito en Google Maps"
-              src="https://maps.google.com/maps?q=Buon+Appetito,+Avenida+Mateo+Bosch+24,+07157+Port+d'Andratx,+Mallorca&t=&z=16&ie=UTF8&iwloc=&output=embed"
-              class="w-full h-full border-0"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              allowfullscreen
-            ></iframe>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              07157 Port d'Andratx, Mallorca &bull; Frente al puerto deportivo
+            </p>
           </div>
         </div>
 
-        <!-- Información del Local & Contacto -->
-        <div class="bg-surface-container-low p-6 sm:p-8 rounded-3xl border border-outline-variant/30 shadow-sm space-y-6">
-          
-          <div class="flex items-center justify-between border-b border-outline-variant/20 pb-4">
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-secondary text-2xl">storefront</span>
-              <h4 class="font-serif text-2xl text-primary font-normal">Información &amp; Contacto</h4>
-            </div>
-            <span class="inline-flex items-center gap-1.5 bg-[#183321]/10 text-primary text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-              Abierto Hoy
-            </span>
+        <!-- Tarjeta 2: Horario Continuado -->
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface/80 border border-outline-variant/20 shadow-xs hover:border-primary/40 transition-colors">
+          <div class="w-11 h-11 rounded-xl bg-[#183321]/10 flex items-center justify-center text-secondary shrink-0">
+            <span class="material-symbols-outlined text-2xl">schedule</span>
           </div>
-
-          <div class="space-y-4 font-sans text-sm">
-            <!-- Dirección física en Port d'Andratx -->
-            <div class="flex items-start gap-3.5 pb-4 border-b border-outline-variant/20">
-              <div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-secondary shrink-0 shadow-xs">
-                <span class="material-symbols-outlined text-xl">location_on</span>
-              </div>
-              <div class="space-y-0.5">
-                <p class="font-semibold text-primary text-xs uppercase tracking-wider">Dirección Física</p>
-                <p class="text-on-surface font-semibold text-base">Avenida Mateo Bosch, 24</p>
-                <p class="text-xs text-on-surface-variant">07157 Port d'Andratx, Mallorca &bull; Frente al puerto deportivo</p>
-              </div>
-            </div>
-
-            <!-- Horario Simplificado -->
-            <div class="flex items-start gap-3.5 pb-4 border-b border-outline-variant/20">
-              <div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-secondary shrink-0 shadow-xs">
-                <span class="material-symbols-outlined text-xl">schedule</span>
-              </div>
-              <div class="space-y-0.5">
-                <p class="font-semibold text-primary text-xs uppercase tracking-wider">Horario Continuado</p>
-                <p class="text-on-surface font-semibold text-base">De Lunes a Domingo: 11:30 – 23:30</p>
-                <p class="text-xs text-on-surface-variant">Cocina abierta todos los días sin interrupción</p>
-              </div>
-            </div>
-
-            <!-- Teléfono de Contacto & Reservas -->
-            <div class="flex items-start gap-3.5 pb-4 border-b border-outline-variant/20">
-              <div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-secondary shrink-0 shadow-xs">
-                <span class="material-symbols-outlined text-xl">call</span>
-              </div>
-              <div class="space-y-0.5">
-                <p class="font-semibold text-primary text-xs uppercase tracking-wider">Teléfono &amp; Reservas</p>
-                <a href="tel:+34632446064" class="text-primary hover:text-secondary font-bold text-lg transition-colors inline-block">
-                  +34 632 44 60 64
-                </a>
-                <p class="text-xs text-on-surface-variant">Atención directa para reservas y consultas</p>
-              </div>
-            </div>
-
-            <!-- Email de Contacto -->
-            <div class="flex items-start gap-3.5">
-              <div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-secondary shrink-0 shadow-xs">
-                <span class="material-symbols-outlined text-xl">mail</span>
-              </div>
-              <div class="space-y-0.5">
-                <p class="font-semibold text-primary text-xs uppercase tracking-wider">Correo Electrónico</p>
-                <a href="mailto:buonappetitoandratx@gmail.com" class="text-primary hover:text-secondary font-medium text-sm transition-colors break-all block">
-                  buonappetitoandratx@gmail.com
-                </a>
-                <p class="text-xs text-on-surface-variant">Consultas, reservas de grupo y eventos</p>
-              </div>
-            </div>
+          <div class="space-y-1">
+            <p class="font-semibold text-secondary text-xs uppercase tracking-wider">Horario Continuado</p>
+            <p class="text-primary font-semibold text-base">De Lunes a Domingo: 11:30 – 23:30</p>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Cocina abierta todos los días sin interrupción
+            </p>
           </div>
-
         </div>
 
+        <!-- Tarjeta 3: Teléfono Directo & Reservas -->
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface/80 border border-outline-variant/20 shadow-xs hover:border-primary/40 transition-colors">
+          <div class="w-11 h-11 rounded-xl bg-[#183321]/10 flex items-center justify-center text-secondary shrink-0">
+            <span class="material-symbols-outlined text-2xl">call</span>
+          </div>
+          <div class="space-y-1">
+            <p class="font-semibold text-secondary text-xs uppercase tracking-wider">Teléfono de Sala</p>
+            <a 
+              href="tel:+34632446064" 
+              class="text-primary hover:text-secondary font-bold text-lg tracking-wide transition-colors inline-block"
+            >
+              +34 632 44 60 64
+            </a>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Atención directa para consultas y dudas
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Correo Electrónico -->
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface/80 border border-outline-variant/20 shadow-xs hover:border-primary/40 transition-colors">
+          <div class="w-11 h-11 rounded-xl bg-[#183321]/10 flex items-center justify-center text-secondary shrink-0">
+            <span class="material-symbols-outlined text-2xl">mail</span>
+          </div>
+          <div class="space-y-1">
+            <p class="font-semibold text-secondary text-xs uppercase tracking-wider">Correo Electrónico</p>
+            <a 
+              href="mailto:buonappetitoandratx@gmail.com" 
+              class="text-primary hover:text-secondary font-medium text-sm transition-colors break-all block"
+            >
+              buonappetitoandratx@gmail.com
+            </a>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Reservas de grupo y eventos privados
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BOTÓN DESTACADO "RESERVAR MESA" DENTRO DE INFORMACIÓN -->
+      <div class="pt-6 border-t border-outline-variant/20 flex flex-col sm:flex-row items-center justify-between gap-5 bg-surface/50 -mx-6 -mb-6 sm:-mx-9 sm:-mb-9 lg:-mx-11 lg:-mb-11 p-6 sm:p-8 rounded-b-3xl">
+        <div class="text-center sm:text-left space-y-1">
+          <h4 class="font-serif text-lg sm:text-xl text-primary font-normal">¿Deseas asegurar tu mesa en Buon Appetito?</h4>
+          <p class="text-xs sm:text-sm text-on-surface-variant font-sans">
+            Selecciona fecha, comensales y turno en nuestra aplicación de reservas en un instante.
+          </p>
+        </div>
+        <a 
+          href="/reservar" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#9E4221] to-[#C45E3B] hover:brightness-110 text-white px-8 py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-widest shadow-lg hover:shadow-xl hover:scale-102 active:scale-95 transition-all duration-300 cursor-pointer w-full sm:w-auto shrink-0"
+        >
+          <span class="material-symbols-outlined text-lg">calendar_month</span>
+          <span>RESERVAR MESA</span>
+        </a>
       </div>
 
     </div>
+
+    <!-- 2. MAPA DE GOOGLE MAPS PANORÁMICO (ABAJO) -->
+    <div class="bg-surface-container-low p-2.5 sm:p-4 rounded-3xl border border-outline-variant/30 shadow-sm overflow-hidden">
+      <div class="w-full h-[380px] sm:h-[460px] md:h-[500px] rounded-2xl overflow-hidden border border-outline-variant/20 shadow-inner relative">
+        
+        <!-- Botón flotante para abrir en Google Maps app -->
+        <a 
+          href="https://maps.app.goo.gl/nC1F69YNFf4TghwD6" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="absolute top-4 left-4 z-20 inline-flex items-center gap-2 bg-[#FBF9F5]/95 hover:bg-white text-[#183321] px-4 py-2 rounded-full font-semibold text-xs tracking-wide shadow-md hover:shadow-lg hover:scale-102 active:scale-95 transition-all backdrop-blur-md border border-[#D9D4CC] cursor-pointer"
+          title="Abrir ubicación en la app de Google Maps"
+        >
+          <span class="material-symbols-outlined text-[#9E4221] text-base">near_me</span>
+          <span>Abrir en Google Maps</span>
+        </a>
+
+        <!-- Iframe interactivo de Google Maps -->
+        <iframe
+          title="Ubicación de Buon Appetito en Google Maps"
+          src="https://maps.google.com/maps?q=39.5443444,2.3882905&hl=es&z=17&output=embed"
+          class="w-full h-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
   </div>
 </section>
-
-<script>
-  // Inicialización de fecha por defecto (hoy)
-  const dateInput = document.getElementById('res-date') as HTMLInputElement;
-  if (dateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.min = today;
-    dateInput.value = today;
-  }
-
-  // Selección de comensales
-  const guestBtns = document.querySelectorAll<HTMLButtonElement>('.guest-btn');
-  const guestsInput = document.getElementById('res-guests') as HTMLInputElement;
-  const guestLabel = document.getElementById('guest-count-label');
-
-  guestBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const val = btn.getAttribute('data-val') || '2 personas';
-      if (guestsInput) guestsInput.value = val;
-      if (guestLabel) guestLabel.innerText = val;
-      guestBtns.forEach((b) => {
-        b.classList.remove('bg-primary', 'text-white', 'border-primary', 'active');
-        b.classList.add('bg-surface', 'text-on-surface', 'border-outline-variant/40');
-      });
-      btn.classList.add('bg-primary', 'text-white', 'border-primary', 'active');
-      btn.classList.remove('bg-surface', 'text-on-surface', 'border-outline-variant/40');
-    });
-  });
-
-  // Selección de zona
-  const zoneBtns = document.querySelectorAll<HTMLButtonElement>('.zone-btn');
-  const zoneInput = document.getElementById('res-zone') as HTMLInputElement;
-
-  zoneBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const val = btn.getAttribute('data-zone') || 'Terraza frente al mar';
-      if (zoneInput) zoneInput.value = val;
-      zoneBtns.forEach((b) => {
-        b.classList.remove('bg-primary', 'text-white', 'border-primary', 'active');
-        b.classList.add('bg-surface', 'text-on-surface', 'border-outline-variant/40');
-      });
-      btn.classList.add('bg-primary', 'text-white', 'border-primary', 'active');
-      btn.classList.remove('bg-surface', 'text-on-surface', 'border-outline-variant/40');
-    });
-  });
-
-  // Envío del formulario a WhatsApp
-  const form = document.getElementById('reservation-form');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = (document.getElementById('res-name') as HTMLInputElement)?.value || '';
-      const phone = (document.getElementById('res-phone') as HTMLInputElement)?.value || 'No indicado';
-      const date = (document.getElementById('res-date') as HTMLInputElement)?.value || '';
-      const time = (document.getElementById('res-time') as HTMLSelectElement)?.value || '';
-      const guests = guestsInput?.value || '2 personas';
-      const zone = zoneInput?.value || 'Terraza frente al mar';
-      const occasion = (document.getElementById('res-occasion') as HTMLSelectElement)?.value || 'Comida / Cena habitual';
-      const notes = (document.getElementById('res-notes') as HTMLInputElement)?.value || 'Ninguna';
-
-      const message = `Hola Buon Appetito, deseo solicitar una reserva de mesa:\n\n👤 Nombre: ${name}\n📞 Teléfono: ${phone}\n📅 Fecha: ${date}\n⏰ Hora: ${time}\n👥 Comensales: ${guests}\n📍 Preferencia: ${zone}\n✨ Ocasión: ${occasion}\n⚠️ Alergias / Peticiones: ${notes}`;
-
-      const url = `https://wa.me/34632446064?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    });
-  }
-</script>

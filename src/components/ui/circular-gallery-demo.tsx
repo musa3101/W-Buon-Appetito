@@ -10,7 +10,7 @@ import {
 // Curated 10 gallery items featuring user's authentic photos & gastronomy craft
 export const authenticGalleryItems: GalleryItem[] = [
   {
-    image: "/assets/sobre-nosotros/sobre_nosotros_terraza_puerto.jpg?v=2",
+    image: "/assets/sobre-nosotros/sobre_nosotros_terraza_puerto.jpg?v=3",
     text: "Mesa con vistas al puerto",
   },
   {
@@ -18,7 +18,7 @@ export const authenticGalleryItems: GalleryItem[] = [
     text: "Pizza Margherita Artigianale",
   },
   {
-    image: "/assets/sobre-nosotros/sobre_nosotros_fachada_olivo.jpg?v=2",
+    image: "/assets/sobre-nosotros/sobre_nosotros_fachada_olivo.jpg?v=3",
     text: "Nuestra terraza en Port d'Andratx",
   },
   {
@@ -26,7 +26,7 @@ export const authenticGalleryItems: GalleryItem[] = [
     text: "Forno a Legna a 500°C",
   },
   {
-    image: "/assets/sobre-nosotros/sobre_nosotros_carta_menu.jpg?v=2",
+    image: "/assets/sobre-nosotros/sobre_nosotros_carta_menu.jpg?v=3",
     text: "Buon Appetito Carta & Vinos",
   },
   {
@@ -113,7 +113,7 @@ export default function CircularGalleryDemo() {
           borderRadius={0.065}
           scrollEase={0.045}
           autoplay={activeModalIndex === null} // Pauses autoplay when modal is open
-          autoplaySpeed={0.05} // Ultra-slow serene drift
+          autoplaySpeed={0.015} // Velocidad pausada, elegante y relajada (aprox. 3 veces más lenta)
           pauseOnHover={true}
           onItemClick={handleOpenPhoto}
         />

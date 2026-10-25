@@ -1,29 +1,46 @@
 # Roadmap del Proyecto — Buon Appetito
 
-## 1. Tareas Completadas ✅
-* [x] **Setup & Reglas Musa MYNEXT:** Repositorio base integrado con estándares de calidad y convenciones del proyecto.
-* [x] **Hero Editorial Arko:** Titular refinado, botones de cristal esmerilado Apple y header con viñeta verde oliva flotante y transición fluida.
-* [x] **Textos de "Sobre Nosotros":** Nuevos párrafos editoriales (*"El placer de compartir una buena mesa"*) y 3 pilares clave (*48h*, *100%*, *500°C*).
-* [x] **Galería 3D Circular WebGL:** Componente OGL integrado en shadcn/UI, optimizado para móvil con tarjetas de gran impacto (48% de ancho), sin títulos molestos abajo.
-* [x] **Autoplay Suave & Controles:** Movimiento continuo y sereno (velocidad 0.05), soporte táctil con el dedo y botones `<` y `>` abajo.
-* [x] **Visor Lightbox Integrado:** Toca cualquier foto para verla en grande a pantalla completa; el autoplay se detiene mientras está abierta.
-* [x] **Fotografías Reales Integradas:** Fotos de la carpeta `fotos de sobre nosotros` convertidas y orientadas 100% verticales ("paradas") sin deformaciones.
-* [x] **Fix Auto-Zoom en iPhone:** Inputs de reserva configurados a 16px para eliminar definitivamente el zoom involuntario de iOS Safari.
-* [x] **Infografía "La Nostra Pizza":** Pizza central con flechas artesanales SVG de dirección precisa y textos legibles.
-* [x] **Menú & Reseñas Móviles:** Carruseles táctiles limpios y responsive sin indicadores redundantes.
-* [x] **Auditoría Técnica Completa:** Verificación en móvil (390px) y escritorio (1280px) con 0 errores de consola y 60fps.
+## 1. Tareas Completadas
+
+* [x] **Arquitectura y Proyecto Base:**
+  * Proyecto web desarrollado en Astro con Tailwind CSS v4 y React integrado en `web/`.
+  * Tokens de diseño editorial: verde oliva (`#183321`), terracota cálido (`#9E4221`) y marfil claro (`#FBF9F5`).
+  * Tipografías de alta gama (*Playfair Display* y *Plus Jakarta Sans*).
+
+* [x] **Componentes Modulares de la Web:**
+  * `Header.astro`: Barra flotante translúcida con transición suave al hacer scroll.
+  * `MobileMenu.astro`: Menú lateral editorial para móviles con bloqueo estricto del scroll de fondo.
+  * `Hero.astro`: Titular en 2 líneas y botones estilo cristal esmerilado (*"Reservar mesa"* y *"Nuestra carta"*).
+  * `About.astro`: Historia del restaurante y galería circular 3D interactiva en WebGL con shaders OGL y visor Lightbox.
+  * `LaNostraPizza.astro`: Infografía artesanal con pizza central y flechas vectoriales SVG hechas a mano.
+  * `Reviews.astro`: Carrusel interactivo estilo polaroid con fotos reales y sello oficial de Google Maps 4.9 estrellas.
+  * `LocationReservations.astro`: Formulario de reservas directo por WhatsApp (con protección anti-zoom para iPhone) y mapa de Google Maps con botón "CÓMO LLEGAR".
+  * `Footer.astro`: Pie de página oscuro elegante con sello *BA Est. 1998* y créditos MYNEXT vinculados.
+
+* [x] **Páginas Independientes:**
+  * Páginas legales conforme al RGPD: Aviso Legal (`/aviso-legal`), Cookies (`/cookies`) y Privacidad (`/privacidad`).
+  * Página dedicada para reservas (`/reservar`).
+
+* [x] **Auditoría Forense y Carta Digital (Menú 105 ítems):**
+  * Validación del 100% de las correcciones de Google Gemini y auditoría independiente frente al PDF original.
+  * Extracción y generación del dataset maestro oficial `CORREGUIDO MENU.docx` (105 platos en Español, Inglés y Alemán).
+  * Aplicación interactiva de la carta digital en `menu carta:estudio/carta-digital/` con diseño de carta editorial (sin cajas cuadradas ni píldoras pesadas).
+
+* [x] **Validación y Repositorio en GitHub:**
+  * Compilación estática completada con 0 errores (`npm run build`).
+  * Repositorio remoto `musa3101/W-baa` sincronizado en GitHub con las ramas `dev` y `main`.
 
 ---
 
-## 2. Tareas en Progreso ⏳
-* [ ] Conectar y verificar el despliegue en Cloudflare Pages leyendo la rama `main`.
-* [ ] Recibir y cargar las 10-11 fotografías finales editadas del restaurante.
-* [ ] Enlazar los archivos PDF descargables de la carta de comida y vinos.
+## 2. Tareas en Progreso
+
+* [ ] Verificación de despliegue automático en el panel de Cloudflare Pages a través del repositorio de GitHub.
 
 ---
 
-## 3. Próximas Mejoras Prioritarias 🚀
-1. **Fotografía definitiva del restaurante:** Sustituir imágenes provisionales restantes en "La Nostra Pizza" y "Menú" por las fotos editadas finales.
-2. **Sistema Multiidioma (i18n):** Selector activo de idiomas (Español, Inglés, Alemán).
-3. **SEO Local & Schema.org:** Marcado estructurado para Google Search (tipo `Restaurant`, horarios y geolocalización en Port d'Andratx).
-4. **Dominio personalizado:** Vincular el dominio oficial del restaurante en Cloudflare.
+## 3. Próximas Mejoras Prioritarias
+
+1. **Integración de la Carta Digital:** Incorporar la sección de la carta digital interactiva en la web principal (para la próxima sesión).
+2. **Fotografía Gastronómica Definitiva:** Sustituir imágenes provisionales restantes por fotos de alta resolución de las pizzas y platos del restaurante.
+3. **Cartas en PDF:** Enlazar los archivos PDF descargables finales cuando estén maquetados.
+4. **Dominio Personalizado:** Configurar el dominio oficial en Cloudflare Pages con certificado SSL activo.

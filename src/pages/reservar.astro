@@ -1,0 +1,1646 @@
+---
+// web/src/pages/reservar.astro
+// Motor de Reservas Oficial — Estilo Restoo (Tahini Puerto Portals)
+// Especialmente diseñado para Buon Appetito (Port d'Andratx)
+const title = "Reserva de Mesa | Buon Appetito • Port d'Andratx";
+const description = "Reserva tu mesa en Buon Appetito, Port d'Andratx. Terraza con vistas al puerto y salón climatizado.";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Google Fonts: Outfit & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Material Symbols Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <style is:global>
+    :root {
+      --color-brand-black: #0B0F0D;
+      --color-primary-green: #6E9555;
+      --color-primary-green-hover: #5D8245;
+      --color-primary-dark: #183321;
+      --color-terracotta: #9E4221;
+      --color-bg-page: #F3F4F6;
+      --color-bg-card: #FFFFFF;
+      --color-text-main: #111827;
+      --color-text-secondary: #4B5563;
+      --color-text-muted: #6B7280;
+      --color-border-light: #E5E7EB;
+      --color-border-medium: #D1D5DB;
+      --color-border-focus: #6E9555;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      font-family: var(--font-sans);
+      background-color: var(--color-bg-page);
+      color: var(--color-text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .booking-wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0;
+    }
+
+    @media (min-width: 600px) {
+      .booking-wrapper {
+        padding: 32px 16px;
+      }
+    }
+
+    .booking-container {
+      width: 100%;
+      max-width: 460px;
+      background-color: var(--color-bg-card);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 600px) {
+      .booking-container {
+        min-height: auto;
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-card);
+        border: 1px solid var(--color-border-light);
+      }
+    }
+
+    .top-bar {
+      background-color: var(--color-brand-black);
+      color: #FFFFFF;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .restaurant-name {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-title {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-divider {
+      color: #9CA3AF;
+      font-weight: 300;
+    }
+
+    .brand-location {
+      color: #E5E7EB;
+      font-size: 13px;
+    }
+
+    .language-dropdown-wrapper {
+      position: relative;
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #FFFFFF;
+      color: var(--color-text-main);
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+      border: 1px solid var(--color-border-light);
+      padding: 6px;
+      min-width: 140px;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .lang-menu.hidden {
+      display: none;
+    }
+
+    .lang-option {
+      background: transparent;
+      border: none;
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-main);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .lang-option:hover, .lang-option.active {
+      background: #F3F4F6;
+      font-weight: 600;
+    }
+
+    .step-view {
+      display: none;
+      flex-direction: column;
+      padding: 24px 20px 48px 20px;
+      flex: 1;
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+
+    .step-view.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .booking-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .booking-header.compact {
+      margin-bottom: 18px;
+    }
+
+    .main-title {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--color-text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .main-title.text-xl {
+      font-size: 19px;
+    }
+
+    .main-address {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-top: 5px;
+    }
+
+    .step-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      margin-bottom: 8px;
+      width: 100%;
+    }
+
+    .icon-label {
+      font-size: 18px;
+      color: var(--color-text-muted);
+    }
+
+    .stepper-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 320px;
+      height: 48px;
+      border: 1px solid var(--color-border-medium);
+      border-radius: var(--radius-md);
+      background-color: #FFFFFF;
+      overflow: hidden;
+    }
+
+    .stepper-btn {
+      flex: 1;
+      height: 100%;
+      background-color: #F9FAFB;
+      border: none;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      user-select: none;
+    }
+
+    .stepper-btn:hover {
+      background-color: #E5E7EB;
+      color: var(--color-text-main);
+    }
+
+    .stepper-btn:active {
+      background-color: #D1D5DB;
+    }
+
+    .stepper-value {
+      flex: 1.4;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--color-text-main);
+      border-left: 1px solid var(--color-border-light);
+      border-right: 1px solid var(--color-border-light);
+      background-color: #FFFFFF;
+    }
+
+    .date-card-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .native-date-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    .date-card {
+      width: 100%;
+      height: 48px;
+      border: 1px solid var(--color-border-medium);
+      border-radius: var(--radius-md);
+      background-color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-text-main);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .date-card:hover {
+      border-color: var(--color-primary-green);
+    }
+
+    .date-icon {
+      font-size: 19px;
+      color: var(--color-text-muted);
+    }
+
+    .shift-selector {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .shift-btn {
+      flex: 1;
+      padding: 10px 8px;
+      border: 1px solid var(--color-border-medium);
+      border-radius: var(--radius-md);
+      background-color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .shift-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--color-text-main);
+    }
+
+    .shift-hours {
+      font-size: 11px;
+      color: var(--color-text-muted);
+    }
+
+    .shift-btn.active {
+      background-color: #1A1F1B;
+      border-color: #1A1F1B;
+      color: #FFFFFF;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .shift-btn.active .shift-name {
+      color: #FFFFFF;
+    }
+
+    .shift-btn.active .shift-hours {
+      color: #9CA3AF;
+    }
+
+    .time-slots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .time-slot-chip {
+      padding: 8px 2px;
+      border: 1px solid var(--color-border-medium);
+      border-radius: var(--radius-sm);
+      background-color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .time-slot-chip:hover {
+      border-color: var(--color-primary-green);
+      color: var(--color-text-main);
+    }
+
+    .time-slot-chip.active {
+      background-color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      color: #FFFFFF;
+      font-weight: 700;
+      transform: scale(1.02);
+    }
+
+    .action-group {
+      width: 100%;
+      max-width: 320px;
+      margin: 10px auto 0 auto;
+    }
+
+    .btn-primary {
+      width: 100%;
+      height: 50px;
+      background-color: var(--color-primary-green);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 12px rgba(110, 149, 85, 0.25);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-green-hover);
+      box-shadow: 0 6px 16px rgba(110, 149, 85, 0.35);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .secondary-action {
+      width: 100%;
+      max-width: 320px;
+      margin: 6px auto 0 auto;
+      text-align: center;
+    }
+
+    .btn-outline-pill {
+      width: 100%;
+      padding: 10px 14px;
+      background-color: transparent;
+      border: 1px solid var(--color-border-medium);
+      border-radius: var(--radius-md);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-outline-pill:hover {
+      background-color: #F9FAFB;
+      border-color: var(--color-text-muted);
+      color: var(--color-text-main);
+    }
+
+    .booking-footer {
+      margin-top: auto;
+      padding-top: 30px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .help-text {
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+
+    .phone-link {
+      color: var(--color-primary-green);
+      text-decoration: underline;
+      font-weight: 600;
+      margin-left: 3px;
+    }
+
+    .change-lang-link {
+      background: none;
+      border: none;
+      color: var(--color-text-muted);
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .change-lang-link:hover {
+      color: var(--color-text-main);
+      text-decoration: underline;
+    }
+
+    /* Paso 2 */
+    .step-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: var(--radius-sm);
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .back-btn:hover {
+      color: var(--color-text-main);
+      background-color: #F3F4F6;
+    }
+
+    .step-indicator {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .reservation-summary-card {
+      background-color: #F9FAFB;
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .summary-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+    }
+
+    .summary-item span:first-child {
+      font-size: 15px;
+      color: var(--color-primary-green);
+    }
+
+    .edit-summary-btn {
+      background: none;
+      border: 1px solid var(--color-border-medium);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .edit-summary-btn:hover {
+      background: #FFFFFF;
+      border-color: var(--color-text-main);
+      color: var(--color-text-main);
+    }
+
+    .form-control {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .control-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-secondary);
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      font-size: 18px;
+      color: var(--color-text-muted);
+      pointer-events: none;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 46px;
+      padding: 0 14px 0 40px;
+      border: 1px solid var(--color-border-medium);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-family: var(--font-sans);
+      color: var(--color-text-main);
+      background-color: #FFFFFF;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--color-primary-green);
+      box-shadow: 0 0 0 3px rgba(110, 149, 85, 0.18);
+    }
+
+    .select-input {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .textarea-wrapper {
+      align-items: flex-start;
+    }
+
+    .textarea-wrapper .input-icon {
+      top: 12px;
+    }
+
+    .form-textarea {
+      height: auto;
+      min-height: 64px;
+      padding: 10px 14px 10px 40px;
+      resize: vertical;
+    }
+
+    .error-msg {
+      font-size: 11px;
+      color: #DC2626;
+      font-weight: 500;
+    }
+
+    .error-msg.hidden {
+      display: none;
+    }
+
+    .zone-pills-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .zone-pill {
+      padding: 10px 6px;
+      border: 1px solid var(--color-border-medium);
+      border-radius: var(--radius-md);
+      background-color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+
+    .zone-pill span.material-symbols-outlined {
+      font-size: 18px;
+    }
+
+    .zone-pill:hover {
+      border-color: var(--color-primary-green);
+    }
+
+    .zone-pill.active {
+      background-color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      color: #FFFFFF;
+    }
+
+    .trust-notice {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .trust-notice span {
+      color: var(--color-primary-green);
+    }
+
+    .btn-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #FFFFFF;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    .btn-spinner.hidden {
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+
+    .modal-backdrop.hidden {
+      display: none;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-icon-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: rgba(110, 149, 85, 0.15);
+      color: var(--color-primary-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px auto;
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--color-text-main);
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .modal-call-btn {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="booking-wrapper">
+    <div class="booking-container">
+
+      <!-- TOP BRANDING BAR (Estilo Restoo: Fondo negro/oscuro + Nombre + Idioma) -->
+      <header class="top-bar">
+        <div class="restaurant-name">
+          <span class="brand-title">Buon Appetito</span>
+          <span class="brand-divider">|</span>
+          <span class="brand-location">Port d'Andratx</span>
+        </div>
+        <div class="language-dropdown-wrapper">
+          <button type="button" class="lang-btn" id="lang-toggle" aria-label="Cambiar idioma">
+            <span class="material-symbols-outlined text-sm">language</span>
+            <span id="current-lang-text">ES</span>
+          </button>
+          <div class="lang-menu hidden" id="lang-menu">
+            <button type="button" class="lang-option active" data-lang="es">🇪🇸 Español</button>
+            <button type="button" class="lang-option" data-lang="en">🇬🇧 English</button>
+            <button type="button" class="lang-option" data-lang="de">🇩🇪 Deutsch</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- PASO 1: SELECCIÓN DE MESA Y HORARIO (ESTRUCTURA EXACTA RESTOO) -->
+      <main class="step-view active" id="step-1">
+        
+        <!-- ENCABEZADO LOCAL -->
+        <div class="booking-header">
+          <h1 class="main-title" data-i18n="bookingTitle">Reserva en Buon Appetito | Port d'Andratx.</h1>
+          <p class="main-address" data-i18n="bookingAddress">Avenida Mateo Bosch, 24. Port d'Andratx</p>
+        </div>
+
+        <form id="step-1-form" class="step-form">
+
+          <!-- 1. STEPPER ADULTOS -->
+          <div class="field-group">
+            <label class="field-label">
+              <span class="material-symbols-outlined icon-label">person</span>
+              <span data-i18n="adultsLabel">Adultos</span>
+            </label>
+            <div class="stepper-box">
+              <button type="button" class="stepper-btn" id="btn-adults-minus" aria-label="Restar adultos">-</button>
+              <div class="stepper-value" id="val-adults">2</div>
+              <button type="button" class="stepper-btn" id="btn-adults-plus" aria-label="Sumar adultos">+</button>
+            </div>
+          </div>
+
+          <!-- 2. STEPPER NIÑOS -->
+          <div class="field-group">
+            <label class="field-label">
+              <span class="material-symbols-outlined icon-label">child_care</span>
+              <span data-i18n="childrenLabel">Niños</span>
+            </label>
+            <div class="stepper-box">
+              <button type="button" class="stepper-btn" id="btn-children-minus" aria-label="Restar niños">-</button>
+              <div class="stepper-value" id="val-children">0</div>
+              <button type="button" class="stepper-btn" id="btn-children-plus" aria-label="Sumar niños">+</button>
+            </div>
+          </div>
+
+          <!-- 3. SELECTOR DE FECHA (TARJETA CENTRADA CON ICONO) -->
+          <div class="field-group">
+            <label class="field-label">
+              <span class="material-symbols-outlined icon-label">calendar_today</span>
+              <span data-i18n="dateLabel">Fecha</span>
+            </label>
+            <div class="date-card-wrapper">
+              <input type="date" id="native-date-input" class="native-date-input" required />
+              <div class="date-card" id="date-card-display">
+                <span class="material-symbols-outlined date-icon">calendar_month</span>
+                <span id="date-formatted-text">26 Octubre, 2026</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. RESERVATION FOR / TURNO (ALMUERZO vs CENA) -->
+          <div class="field-group">
+            <label class="field-label">
+              <span class="material-symbols-outlined icon-label">schedule</span>
+              <span data-i18n="reservationForLabel">Turno de Reserva</span>
+            </label>
+            <div class="shift-selector">
+              <button type="button" class="shift-btn active" data-shift="lunch" id="shift-lunch">
+                <span class="shift-name" data-i18n="lunchName">ALMUERZO</span>
+                <span class="shift-hours">11:30 - 16:30</span>
+              </button>
+              <button type="button" class="shift-btn" data-shift="dinner" id="shift-dinner">
+                <span class="shift-name" data-i18n="dinnerName">CENA</span>
+                <span class="shift-hours">19:30 - 23:30</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. HORA EXACTA (CHIPS INTERACTIVOS DE HORAS) -->
+          <div class="field-group">
+            <label class="field-label">
+              <span class="material-symbols-outlined icon-label">alarm</span>
+              <span data-i18n="exactTimeLabel">Hora exacta</span>
+            </label>
+            <div class="time-slots-grid" id="time-slots-container">
+              <!-- Se generan dinámicamente según el turno seleccionado -->
+            </div>
+            <input type="hidden" id="selected-time-value" value="13:30" />
+          </div>
+
+          <!-- 6. BOTÓN CONTINUAR (ESTILO RESTOO: VERDE OLIVA / ELEGANTE) -->
+          <div class="action-group">
+            <button type="button" class="btn-primary" id="btn-step1-continue">
+              <span data-i18n="continueBtn">CONTINUAR</span>
+            </button>
+          </div>
+
+          <!-- 7. BOTÓN SECUNDARIO (BONO / GRUPOS) -->
+          <div class="secondary-action">
+            <button type="button" class="btn-outline-pill" id="btn-group-info">
+              <span data-i18n="groupOrGiftCard">RESERVA PARA GRUPOS (>8) O EVENTO</span>
+            </button>
+          </div>
+
+        </form>
+
+        <!-- FOOTER DE AYUDA Y TELÉFONO -->
+        <footer class="booking-footer">
+          <p class="help-text">
+            <span data-i18n="callHelp">¿Tienes alguna pregunta? Llámanos al</span>
+            <a href="tel:+34632446064" class="phone-link">+34 632 44 60 64</a>
+          </p>
+          <button type="button" class="change-lang-link" id="change-lang-footer">
+            <span class="material-symbols-outlined text-sm">language</span>
+            <span data-i18n="changeLanguage">Cambiar idioma</span>
+          </button>
+        </footer>
+
+      </main>
+
+      <!-- PASO 2: DATOS DEL COMENSAL (TRANSICIÓN SUAVE) -->
+      <main class="step-view" id="step-2">
+
+        <!-- BOTÓN DE VOLVER Y RESUMEN ELEGANTE -->
+        <div class="step-nav-bar">
+          <button type="button" class="back-btn" id="btn-back-to-step1" aria-label="Volver">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <span data-i18n="backBtn">Volver</span>
+          </button>
+          <span class="step-indicator" data-i18n="step2Indicator">Paso 2 de 2</span>
+        </div>
+
+        <!-- RESUMEN COMPACTO DEL PASO 1 -->
+        <div class="reservation-summary-card">
+          <div class="summary-details">
+            <div class="summary-item">
+              <span class="material-symbols-outlined">group</span>
+              <span id="summary-guests">2 Comensales</span>
+            </div>
+            <div class="summary-item">
+              <span class="material-symbols-outlined">calendar_today</span>
+              <span id="summary-date">26 Oct, 2026</span>
+            </div>
+            <div class="summary-item">
+              <span class="material-symbols-outlined">schedule</span>
+              <span id="summary-time">13:30 (Almuerzo)</span>
+            </div>
+          </div>
+          <button type="button" class="edit-summary-btn" id="btn-edit-summary" data-i18n="editBtn">Modificar</button>
+        </div>
+
+        <!-- TÍTULO DEL PASO 2 -->
+        <div class="booking-header compact">
+          <h2 class="main-title text-xl" data-i18n="guestDetailsTitle">Tus Datos de Contacto</h2>
+          <p class="main-address" data-i18n="guestDetailsSub">Por favor completa tus datos para preparar tu mesa.</p>
+        </div>
+
+        <form id="step-2-form" class="step-form">
+
+          <!-- NOMBRE COMPLETO -->
+          <div class="form-control">
+            <label for="guest-name" class="control-label" data-i18n="nameLabel">Nombre y Apellidos *</label>
+            <div class="input-wrapper">
+              <span class="material-symbols-outlined input-icon">person</span>
+              <input type="text" id="guest-name" class="form-input" placeholder="Ej. Carmen Navarro" required />
+            </div>
+            <span class="error-msg hidden" id="err-name" data-i18n="errName">Por favor introduce tu nombre y apellidos.</span>
+          </div>
+
+          <!-- TELÉFONO DE CONTACTO -->
+          <div class="form-control">
+            <label for="guest-phone" class="control-label" data-i18n="phoneLabel">Teléfono de contacto *</label>
+            <div class="input-wrapper">
+              <span class="material-symbols-outlined input-icon">call</span>
+              <input type="tel" id="guest-phone" class="form-input" placeholder="Ej. +34 600 000 000" required />
+            </div>
+            <span class="error-msg hidden" id="err-phone" data-i18n="errPhone">Por favor introduce un teléfono móvil de contacto.</span>
+          </div>
+
+          <!-- PREFERENCIA DE MESA / ZONA -->
+          <div class="form-control">
+            <label class="control-label" data-i18n="zoneLabel">Preferencia de espacio</label>
+            <div class="zone-pills-group">
+              <button type="button" class="zone-pill active" data-zone="Terraza frente al mar">
+                <span class="material-symbols-outlined">deck</span>
+                <span data-i18n="terraceZone">Terraza Puerto</span>
+              </button>
+              <button type="button" class="zone-pill" data-zone="Salón Interior Climatizado">
+                <span class="material-symbols-outlined">storefront</span>
+                <span data-i18n="interiorZone">Salón Interior</span>
+              </button>
+              <button type="button" class="zone-pill" data-zone="Primera mesa disponible">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span data-i18n="anyZone">Indiferente</span>
+              </button>
+            </div>
+            <input type="hidden" id="selected-zone-value" value="Terraza frente al mar" />
+          </div>
+
+          <!-- OCASIÓN ESPECIAL (OPCIONAL) -->
+          <div class="form-control">
+            <label for="guest-occasion" class="control-label" data-i18n="occasionLabel">Ocasión especial (Opcional)</label>
+            <div class="input-wrapper">
+              <span class="material-symbols-outlined input-icon">celebration</span>
+              <select id="guest-occasion" class="form-input select-input">
+                <option value="Comida o cena habitual" data-i18n="occRegular">Comida o cena habitual</option>
+                <option value="Cumpleaños" data-i18n="occBirthday">Cumpleaños</option>
+                <option value="Aniversario" data-i18n="occAnniversary">Aniversario</option>
+                <option value="Cita especial" data-i18n="occDate">Cita especial</option>
+                <option value="Comida de empresa" data-i18n="occBusiness">Comida o cena de empresa</option>
+                <option value="Celebración familiar" data-i18n="occFamily">Celebración familiar</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- ALERGIAS, INTOLERANCIAS O NOTAS -->
+          <div class="form-control">
+            <label for="guest-notes" class="control-label" data-i18n="notesLabel">Alergias o peticiones especiales (Opcional)</label>
+            <div class="input-wrapper textarea-wrapper">
+              <span class="material-symbols-outlined input-icon">restaurant</span>
+              <textarea id="guest-notes" class="form-input form-textarea" rows="2" placeholder="Ej. 1 celíaco, necesitamos trona para bebé, etc."></textarea>
+            </div>
+          </div>
+
+          <!-- BOTÓN PRINCIPAL DE ACCIÓN: CONFIRMAR RESERVA (SIN MENCIÓN A WHATSAPP) -->
+          <div class="action-group">
+            <button type="button" class="btn-primary" id="btn-confirm-booking">
+              <span class="btn-text" data-i18n="confirmBtn">CONFIRMAR RESERVA</span>
+              <span class="btn-spinner hidden" id="confirm-spinner"></span>
+            </button>
+          </div>
+
+          <!-- AVISO DE CONFIRMACIÓN DIRECTA -->
+          <p class="trust-notice">
+            <span class="material-symbols-outlined text-xs">verified</span>
+            <span data-i18n="directBookingNotice">Sin intermediarios ni comisiones • Confirmación inmediata con el restaurante</span>
+          </p>
+
+        </form>
+
+        <!-- FOOTER DE AYUDA Y TELÉFONO -->
+        <footer class="booking-footer">
+          <p class="help-text">
+            <span data-i18n="callHelp">¿Tienes alguna pregunta? Llámanos al</span>
+            <a href="tel:+34632446064" class="phone-link">+34 632 44 60 64</a>
+          </p>
+        </footer>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- MODAL DE AYUDA PARA GRUPOS -->
+  <div class="modal-backdrop hidden" id="modal-groups">
+    <div class="modal-card">
+      <div class="modal-icon-circle">
+        <span class="material-symbols-outlined">groups</span>
+      </div>
+      <h3 class="modal-title" data-i18n="groupModalTitle">Reservas para Grupos y Eventos</h3>
+      <p class="modal-desc" data-i18n="groupModalDesc">
+        Para reservas de más de 8 personas, menús cerrados o eventos privados, por favor contacta directamente con nuestro equipo de sala para garantizar el mejor servicio y disponibilidad.
+      </p>
+      <div class="modal-actions">
+        <a href="tel:+34632446064" class="btn-primary modal-call-btn">
+          <span class="material-symbols-outlined">call</span>
+          <span>Llamar al +34 632 44 60 64</span>
+        </a>
+        <button type="button" class="btn-outline-pill" id="btn-close-modal">
+          <span data-i18n="closeBtn">Cerrar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // 1. DICCIONARIO MULTIIDIOMA
+      const translations = {
+        es: {
+          bookingTitle: "Reserva en Buon Appetito | Port d'Andratx.",
+          bookingAddress: "Avenida Mateo Bosch, 24. Port d'Andratx",
+          adultsLabel: "Adultos",
+          childrenLabel: "Niños",
+          dateLabel: "Fecha",
+          reservationForLabel: "Turno de Reserva",
+          lunchName: "ALMUERZO",
+          dinnerName: "CENA",
+          exactTimeLabel: "Hora exacta",
+          continueBtn: "CONTINUAR",
+          groupOrGiftCard: "RESERVA PARA GRUPOS (>8) O EVENTO",
+          callHelp: "¿Tienes alguna pregunta? Llámanos al",
+          changeLanguage: "Cambiar idioma",
+          backBtn: "Volver",
+          step2Indicator: "Paso 2 de 2",
+          editBtn: "Modificar",
+          guestDetailsTitle: "Tus Datos de Contacto",
+          guestDetailsSub: "Por favor completa tus datos para preparar tu mesa.",
+          nameLabel: "Nombre y Apellidos *",
+          phoneLabel: "Teléfono de contacto *",
+          zoneLabel: "Preferencia de espacio",
+          terraceZone: "Terraza Puerto",
+          interiorZone: "Salón Interior",
+          anyZone: "Indiferente",
+          occasionLabel: "Ocasión especial (Opcional)",
+          occRegular: "Comida o cena habitual",
+          occBirthday: "Cumpleaños",
+          occAnniversary: "Aniversario",
+          occDate: "Cita especial",
+          occBusiness: "Comida o cena de empresa",
+          occFamily: "Celebración familiar",
+          notesLabel: "Alergias o peticiones especiales (Opcional)",
+          confirmBtn: "CONFIRMAR RESERVA",
+          directBookingNotice: "Sin intermediarios ni comisiones • Confirmación inmediata con el restaurante",
+          errName: "Por favor introduce tu nombre y apellidos.",
+          errPhone: "Por favor introduce un teléfono móvil de contacto.",
+          groupModalTitle: "Reservas para Grupos y Eventos",
+          groupModalDesc: "Para reservas de más de 8 personas, menús cerrados o eventos privados, por favor contacta directamente con nuestro equipo de sala para garantizar el mejor servicio y disponibilidad.",
+          closeBtn: "Cerrar",
+          guestsText: "Comensales",
+          months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+        },
+        en: {
+          bookingTitle: "Booking at Buon Appetito | Port d'Andratx.",
+          bookingAddress: "Avenida Mateo Bosch, 24. Port d'Andratx",
+          adultsLabel: "Adults",
+          childrenLabel: "Children",
+          dateLabel: "Date",
+          reservationForLabel: "Reservation for",
+          lunchName: "LUNCH",
+          dinnerName: "DINNER",
+          exactTimeLabel: "Exact Time",
+          continueBtn: "CONTINUE",
+          groupOrGiftCard: "GROUP BOOKING (>8) OR EVENT",
+          callHelp: "Call us if you have any questions at",
+          changeLanguage: "Change language",
+          backBtn: "Back",
+          step2Indicator: "Step 2 of 2",
+          editBtn: "Edit",
+          guestDetailsTitle: "Your Contact Details",
+          guestDetailsSub: "Please fill in your details to prepare your table.",
+          nameLabel: "Full Name *",
+          phoneLabel: "Contact Phone *",
+          zoneLabel: "Seating Preference",
+          terraceZone: "Harbour Terrace",
+          interiorZone: "Indoor Dining",
+          anyZone: "First Available",
+          occasionLabel: "Special Occasion (Optional)",
+          occRegular: "Casual lunch / dinner",
+          occBirthday: "Birthday celebration",
+          occAnniversary: "Anniversary",
+          occDate: "Romantic date",
+          occBusiness: "Business meal",
+          occFamily: "Family gathering",
+          notesLabel: "Allergies or special requests (Optional)",
+          confirmBtn: "CONFIRM RESERVATION",
+          directBookingNotice: "No commission, direct booking • Immediate confirmation with restaurant",
+          errName: "Please enter your full name.",
+          errPhone: "Please enter a valid contact phone number.",
+          groupModalTitle: "Group & Event Bookings",
+          groupModalDesc: "For parties of more than 8 guests, customized menus or private dining, please contact our team directly for availability.",
+          closeBtn: "Close",
+          guestsText: "Guests",
+          months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        },
+        de: {
+          bookingTitle: "Reservierung im Buon Appetito | Port d'Andratx.",
+          bookingAddress: "Avenida Mateo Bosch, 24. Port d'Andratx",
+          adultsLabel: "Erwachsene",
+          childrenLabel: "Kinder",
+          dateLabel: "Datum",
+          reservationForLabel: "Schicht / Service",
+          lunchName: "MITTAGESSEN",
+          dinnerName: "ABENDESSEN",
+          exactTimeLabel: "Uhrzeit",
+          continueBtn: "WEITER",
+          groupOrGiftCard: "GRUPPENRESERVIERUNG (>8) ODER EVENT",
+          callHelp: "Haben Sie Fragen? Rufen Sie uns an unter",
+          changeLanguage: "Sprache ändern",
+          backBtn: "Zurück",
+          step2Indicator: "Schritt 2 von 2",
+          editBtn: "Ändern",
+          guestDetailsTitle: "Ihre Kontaktdaten",
+          guestDetailsSub: "Bitte geben Sie Ihre Kontaktdaten ein, um Ihren Tisch vorzubereiten.",
+          nameLabel: "Vor- und Nachname *",
+          phoneLabel: "Telefonnummer *",
+          zoneLabel: "Sitzplatzpräferenz",
+          terraceZone: "Hafenterrasse",
+          interiorZone: "Innenbereich",
+          anyZone: "Keine Präferenz",
+          occasionLabel: "Besonderer Anlass (Optional)",
+          occRegular: "Regulärer Besuch",
+          occBirthday: "Geburtstag",
+          occAnniversary: "Jubiläum",
+          occDate: "Romantisches Date",
+          occBusiness: "Geschäftsessen",
+          occFamily: "Familienfeier",
+          notesLabel: "Allergien oder Sonderwünsche (Optional)",
+          confirmBtn: "RESERVIERUNG BESTÄTIGEN",
+          directBookingNotice: "Direktbuchung ohne Gebühren • Sofortige Bestätigung durch das Restaurant",
+          errName: "Bitte geben Sie Ihren Namen ein.",
+          errPhone: "Bitte geben Sie eine gültige Telefonnummer ein.",
+          groupModalTitle: "Gruppen- und Eventreservierungen",
+          groupModalDesc: "Für Reservierungen ab 8 Personen oder exklusive Events kontaktieren Sie bitte direkt unser Serviceteam.",
+          closeBtn: "Schließen",
+          guestsText: "Gäste",
+          months: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
+        }
+      };
+
+      let currentLang = 'es';
+      const RESTAURANT_WHATSAPP = "34632446064";
+
+      const TIME_SLOTS = {
+        lunch: ["11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00"],
+        dinner: ["19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30"]
+      };
+
+      const state = {
+        adults: 2,
+        children: 0,
+        date: new Date().toISOString().split('T')[0],
+        shift: 'lunch',
+        time: '13:30',
+        zone: 'Terraza frente al mar',
+        name: '',
+        phone: '',
+        occasion: 'Comida o cena habitual',
+        notes: ''
+      };
+
+      const valAdultsEl = document.getElementById('val-adults');
+      const btnAdultsMinus = document.getElementById('btn-adults-minus');
+      const btnAdultsPlus = document.getElementById('btn-adults-plus');
+
+      const valChildrenEl = document.getElementById('val-children');
+      const btnChildrenMinus = document.getElementById('btn-children-minus');
+      const btnChildrenPlus = document.getElementById('btn-children-plus');
+
+      const nativeDateInput = document.getElementById('native-date-input');
+      const dateFormattedText = document.getElementById('date-formatted-text');
+
+      const shiftLunchBtn = document.getElementById('shift-lunch');
+      const shiftDinnerBtn = document.getElementById('shift-dinner');
+      const timeSlotsContainer = document.getElementById('time-slots-container');
+      const selectedTimeInput = document.getElementById('selected-time-value');
+
+      const btnStep1Continue = document.getElementById('btn-step1-continue');
+      const step1View = document.getElementById('step-1');
+      const step2View = document.getElementById('step-2');
+      const btnBackToStep1 = document.getElementById('btn-back-to-step1');
+      const btnEditSummary = document.getElementById('btn-edit-summary');
+
+      const summaryGuestsEl = document.getElementById('summary-guests');
+      const summaryDateEl = document.getElementById('summary-date');
+      const summaryTimeEl = document.getElementById('summary-time');
+
+      const inputName = document.getElementById('guest-name');
+      const inputPhone = document.getElementById('guest-phone');
+      const selectOccasion = document.getElementById('guest-occasion');
+      const textareaNotes = document.getElementById('guest-notes');
+      const errName = document.getElementById('err-name');
+      const errPhone = document.getElementById('err-phone');
+      const zonePills = document.querySelectorAll('.zone-pill');
+      const selectedZoneInput = document.getElementById('selected-zone-value');
+      const btnConfirmBooking = document.getElementById('btn-confirm-booking');
+      const confirmSpinner = document.getElementById('confirm-spinner');
+
+      const btnGroupInfo = document.getElementById('btn-group-info');
+      const modalGroups = document.getElementById('modal-groups');
+      const btnCloseModal = document.getElementById('btn-close-modal');
+
+      const langToggle = document.getElementById('lang-toggle');
+      const langMenu = document.getElementById('lang-menu');
+      const currentLangText = document.getElementById('current-lang-text');
+      const changeLangFooter = document.getElementById('change-lang-footer');
+
+      // Fecha
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      const todayIso = `${yyyy}-${mm}-${dd}`;
+
+      nativeDateInput.min = todayIso;
+      nativeDateInput.value = todayIso;
+      state.date = todayIso;
+
+      function updateFormattedDate() {
+        const [year, month, day] = state.date.split('-');
+        const mIndex = parseInt(month, 10) - 1;
+        const monthName = translations[currentLang].months[mIndex] || month;
+        dateFormattedText.textContent = `${parseInt(day, 10)} ${monthName}, ${year}`;
+      }
+      updateFormattedDate();
+
+      nativeDateInput.addEventListener('change', (e) => {
+        if (e.target.value) {
+          state.date = e.target.value;
+          updateFormattedDate();
+        }
+      });
+
+      const dateCardDisplay = document.getElementById('date-card-display');
+      if (dateCardDisplay) {
+        dateCardDisplay.addEventListener('click', () => {
+          if (typeof nativeDateInput.showPicker === 'function') {
+            try {
+              nativeDateInput.showPicker();
+            } catch (err) {
+              nativeDateInput.focus();
+            }
+          }
+        });
+      }
+
+      // Steppers
+      btnAdultsMinus.addEventListener('click', () => {
+        if (state.adults > 1) {
+          state.adults--;
+          valAdultsEl.textContent = state.adults;
+        }
+      });
+
+      btnAdultsPlus.addEventListener('click', () => {
+        if (state.adults < 20) {
+          state.adults++;
+          valAdultsEl.textContent = state.adults;
+        }
+      });
+
+      btnChildrenMinus.addEventListener('click', () => {
+        if (state.children > 0) {
+          state.children--;
+          valChildrenEl.textContent = state.children;
+        }
+      });
+
+      btnChildrenPlus.addEventListener('click', () => {
+        if (state.children < 15) {
+          state.children++;
+          valChildrenEl.textContent = state.children;
+        }
+      });
+
+      // Slots
+      function renderTimeSlots() {
+        timeSlotsContainer.innerHTML = '';
+        const slots = TIME_SLOTS[state.shift] || [];
+
+        if (!slots.includes(state.time)) {
+          state.time = slots[1] || slots[0];
+          selectedTimeInput.value = state.time;
+        }
+
+        slots.forEach((timeStr) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = `time-slot-chip ${timeStr === state.time ? 'active' : ''}`;
+          chip.textContent = timeStr;
+          chip.setAttribute('data-time', timeStr);
+
+          chip.addEventListener('click', () => {
+            state.time = timeStr;
+            selectedTimeInput.value = timeStr;
+            document.querySelectorAll('.time-slot-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+          });
+
+          timeSlotsContainer.appendChild(chip);
+        });
+      }
+
+      shiftLunchBtn.addEventListener('click', () => {
+        state.shift = 'lunch';
+        shiftLunchBtn.classList.add('active');
+        shiftDinnerBtn.classList.remove('active');
+        renderTimeSlots();
+      });
+
+      shiftDinnerBtn.addEventListener('click', () => {
+        state.shift = 'dinner';
+        shiftDinnerBtn.classList.add('active');
+        shiftLunchBtn.classList.remove('active');
+        renderTimeSlots();
+      });
+
+      renderTimeSlots();
+
+      // Paso 1 -> Paso 2
+      btnStep1Continue.addEventListener('click', () => {
+        const totalGuests = state.adults + state.children;
+        const t = translations[currentLang];
+        
+        let guestSummaryStr = `${totalGuests} ${t.guestsText}`;
+        if (state.children > 0) {
+          guestSummaryStr = `${state.adults} Ad. + ${state.children} Niñ. (${totalGuests} total)`;
+        }
+        summaryGuestsEl.textContent = guestSummaryStr;
+
+        const [year, month, day] = state.date.split('-');
+        const mIndex = parseInt(month, 10) - 1;
+        const monthShort = (t.months[mIndex] || month).slice(0, 3);
+        summaryDateEl.textContent = `${parseInt(day, 10)} ${monthShort}, ${year}`;
+
+        const shiftName = state.shift === 'lunch' ? t.lunchName : t.dinnerName;
+        summaryTimeEl.textContent = `${state.time} (${shiftName})`;
+
+        step1View.classList.remove('active');
+        step2View.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      function goToStep1() {
+        step2View.classList.remove('active');
+        step1View.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      btnBackToStep1.addEventListener('click', goToStep1);
+      btnEditSummary.addEventListener('click', goToStep1);
+
+      // Zona
+      zonePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          zonePills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          const val = pill.getAttribute('data-zone') || 'Terraza frente al mar';
+          state.zone = val;
+          selectedZoneInput.value = val;
+        });
+      });
+
+      // Confirmar Reserva
+      btnConfirmBooking.addEventListener('click', () => {
+        const nameVal = inputName.value.trim();
+        const phoneVal = inputPhone.value.trim();
+        let hasError = false;
+
+        if (!nameVal) {
+          errName.classList.remove('hidden');
+          inputName.focus();
+          hasError = true;
+        } else {
+          errName.classList.add('hidden');
+        }
+
+        if (!phoneVal) {
+          errPhone.classList.remove('hidden');
+          if (!hasError) inputPhone.focus();
+          hasError = true;
+        } else {
+          errPhone.classList.add('hidden');
+        }
+
+        if (hasError) return;
+
+        state.name = nameVal;
+        state.phone = phoneVal;
+        state.occasion = selectOccasion.value || 'Comida o cena habitual';
+        state.notes = textareaNotes.value.trim() || 'Ninguna especificada';
+
+        btnConfirmBooking.disabled = true;
+        btnConfirmBooking.style.opacity = '0.85';
+        confirmSpinner.classList.remove('hidden');
+
+        const totalComensales = state.adults + state.children;
+        const shiftLabel = state.shift === 'lunch' ? 'Almuerzo' : 'Cena';
+
+        const [year, month, day] = state.date.split('-');
+        const mIndex = parseInt(month, 10) - 1;
+        const monthName = translations[currentLang]?.months[mIndex] || month;
+        const formattedDateForMsg = `${parseInt(day, 10)} ${monthName}, ${year}`;
+
+        const message = 
+`*NUEVA RESERVA — Buon Appetito*
+
+📅 *Fecha:* ${formattedDateForMsg}
+⏰ *Hora:* ${state.time} (${shiftLabel})
+• *Comensales:* ${state.adults} Adultos${state.children > 0 ? `, ${state.children} Niños` : ''} (Total: ${totalComensales})
+• *Nombre:* ${state.name}
+• *Teléfono:* ${state.phone}
+• *Zona:* ${state.zone}
+• *Ocasión:* ${state.occasion}
+• *Notas / Alergias:* ${state.notes}
+
+_Tecnología MYNEXT_`;
+
+        const waUrl = `https://wa.me/${RESTAURANT_WHATSAPP}?text=${encodeURIComponent(message)}`;
+
+        setTimeout(() => {
+          btnConfirmBooking.disabled = false;
+          btnConfirmBooking.style.opacity = '1';
+          confirmSpinner.classList.add('hidden');
+
+          window.open(waUrl, '_blank');
+        }, 400);
+      });
+
+      inputName.addEventListener('input', () => {
+        if (inputName.value.trim()) errName.classList.add('hidden');
+      });
+      inputPhone.addEventListener('input', () => {
+        if (inputPhone.value.trim()) errPhone.classList.add('hidden');
+      });
+
+      // Modal
+      btnGroupInfo.addEventListener('click', () => {
+        modalGroups.classList.remove('hidden');
+      });
+
+      btnCloseModal.addEventListener('click', () => {
+        modalGroups.classList.add('hidden');
+      });
+
+      modalGroups.addEventListener('click', (e) => {
+        if (e.target === modalGroups) {
+          modalGroups.classList.add('hidden');
+        }
+      });
+
+      // Idiomas
+      function applyLanguage(lang) {
+        if (!translations[lang]) return;
+        currentLang = lang;
+        currentLangText.textContent = lang.toUpperCase();
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+          }
+        });
+
+        document.querySelectorAll('.lang-option').forEach(opt => {
+          opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+        });
+
+        updateFormattedDate();
+        renderTimeSlots();
+      }
+
+      langToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        langMenu.classList.toggle('hidden');
+      });
+
+      changeLangFooter.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const nextLang = currentLang === 'es' ? 'en' : (currentLang === 'en' ? 'de' : 'es');
+        applyLanguage(nextLang);
+      });
+
+      document.querySelectorAll('.lang-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          applyLanguage(lang);
+          langMenu.classList.add('hidden');
+        });
+      });
+
+      document.addEventListener('click', () => {
+        if (!langMenu.classList.contains('hidden')) {
+          langMenu.classList.add('hidden');
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
