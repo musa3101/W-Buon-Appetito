@@ -163,7 +163,7 @@ export default function CircularGalleryDemo() {
           role="dialog"
           aria-modal="true"
           onClick={handleCloseModal}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/85 backdrop-blur-md transition-opacity duration-300"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 bg-black/85 backdrop-blur-md transition-opacity duration-300"
         >
           {/* Close button */}
           <button
