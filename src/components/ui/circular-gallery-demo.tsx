@@ -7,47 +7,39 @@ import {
   type GalleryItem,
 } from "@/components/ui/circular-gallery-2";
 
-// Curated 10 gallery items featuring user's authentic photos & gastronomy craft
+// 8 authentic gallery items featuring Buon Appetito's real terrace, façade and atmosphere
 export const authenticGalleryItems: GalleryItem[] = [
   {
-    image: "/assets/sobre-nosotros/sobre_nosotros_terraza_puerto.jpg?v=3",
-    text: "Mesa con vistas al puerto",
+    image: "/assets/sobre-nosotros/galeria_01.webp",
+    text: "Nuestra Carta & Bienvenida",
   },
   {
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=85",
-    text: "Pizza Margherita Artigianale",
+    image: "/assets/sobre-nosotros/galeria_02.webp",
+    text: "Pizzería & Restaurante",
   },
   {
-    image: "/assets/sobre-nosotros/sobre_nosotros_fachada_olivo.jpg?v=3",
-    text: "Nuestra terraza en Port d'Andratx",
+    image: "/assets/sobre-nosotros/galeria_03.webp",
+    text: "Vistas al Puerto Deportivo",
   },
   {
-    image: "https://images.unsplash.com/photo-1579684947550-22e945225d9a?auto=format&fit=crop&w=1200&q=85",
-    text: "Forno a Legna a 500°C",
+    image: "/assets/sobre-nosotros/galeria_04.webp",
+    text: "Mesa Preparada",
   },
   {
-    image: "/assets/sobre-nosotros/sobre_nosotros_carta_menu.jpg?v=3",
-    text: "Buon Appetito Carta & Vinos",
+    image: "/assets/sobre-nosotros/galeria_05.webp",
+    text: "Nuestra Terraza Climatizada",
   },
   {
-    image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85",
-    text: "Pasta Fresca Fatta in Casa",
+    image: "/assets/sobre-nosotros/galeria_06.webp",
+    text: "Noches en Buon Appetito",
   },
   {
-    image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1200&q=85",
-    text: "Burrata Pugliese & Pomodoro",
+    image: "/assets/sobre-nosotros/galeria_07.webp",
+    text: "Punto de Encuentro",
   },
   {
-    image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=85",
-    text: "Vini & Tramonto Mediterráneo",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=85",
-    text: "Fermentación Lenta 48h",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=1200&q=85",
-    text: "Terrazza al Mare",
+    image: "/assets/sobre-nosotros/galeria_08.webp",
+    text: "Atardecer Mediterráneo",
   },
 ];
 
