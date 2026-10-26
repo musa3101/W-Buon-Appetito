@@ -218,7 +218,7 @@ const googleWriteReviewUrl = "https://search.google.com/local/writereview?placei
     >
       {reviews.map((rev) => (
         <article 
-          class="review-card review-card-neumorphic w-[86vw] sm:w-[360px] md:w-[380px] shrink-0 snap-start p-6 sm:p-8 flex flex-col justify-between"
+          class="review-card review-card-capsule w-[86vw] sm:w-[360px] md:w-[380px] shrink-0 snap-start p-6 sm:p-8 flex flex-col justify-between"
           data-tags={rev.tags.join(" ")}
           data-timeframe={rev.timeframe}
         >
@@ -272,7 +272,7 @@ const googleWriteReviewUrl = "https://search.google.com/local/writereview?placei
                   </svg>
                 ))}
               </div>
-              <span class="text-[11px] font-semibold text-[#9E4221] bg-[#F5EFEB] px-2.5 py-0.5 rounded-full border border-[#D9D4CC]/40">
+              <span class="text-[11px] font-semibold text-[#9E4221] bg-[#9E4221]/10 px-2.5 py-0.5 rounded-full border border-[#9E4221]/20">
                 {rev.category}
               </span>
             </div>
@@ -531,19 +531,18 @@ const googleWriteReviewUrl = "https://search.google.com/local/writereview?placei
 </script>
 
 <style>
-  /* From Uiverse.io by adamgiebl - Adaptado con precisión a la paleta cálida de Buon Appetito */
-  .review-card-neumorphic {
-    border-radius: 30px;
-    background: #F5EFEB;
-    box-shadow: 14px 14px 28px #d6cfc4,
-               -14px -14px 28px #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  /* Cápsula editorial limpia, refinada y con contraste óptimo frente al fondo crema #F5EFEB */
+  .review-card-capsule {
+    border-radius: 28px;
+    background: #FFFFFF;
+    border: 1px solid rgba(217, 212, 204, 0.7);
+    box-shadow: 0 10px 28px -6px rgba(24, 51, 33, 0.08), 0 4px 10px -2px rgba(24, 51, 33, 0.03);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
   }
 
-  .review-card-neumorphic:hover {
+  .review-card-capsule:hover {
     transform: translateY(-4px);
-    box-shadow: 18px 18px 34px #cfc6b9,
-               -16px -16px 34px #ffffff;
+    border-color: rgba(158, 66, 33, 0.35);
+    box-shadow: 0 18px 36px -8px rgba(24, 51, 33, 0.12), 0 6px 14px -2px rgba(24, 51, 33, 0.05);
   }
 </style>
