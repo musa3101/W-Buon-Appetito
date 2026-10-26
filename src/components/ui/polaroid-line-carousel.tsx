@@ -4,19 +4,18 @@ import * as React from "react";
 
 /*
  * Polaroid Line Carousel — infinite loop with continuous gentle drift & physics swing.
- * Instant photos pegged to a sagging string that glide seamlessly without end.
+ * Clean vertical 3:4 photos with bold dish titles and smooth continuous movement.
  */
 
 export type Slide = {
-  image?: string;
-  title?: string;
-  price?: string;
+  image: string;
+  title: string;
   alt?: string;
 };
 
 export type PolaroidLineCarouselProps = {
   slides?: Slide[];
-  /** Height of the carousel stage. Default clamp(440px, 56vh, 520px). */
+  /** Height of the carousel stage. Default clamp(490px, 62vh, 560px). */
   height?: number | string;
   /** Width of a print in px. */
   cardWidth?: number;
@@ -24,7 +23,7 @@ export type PolaroidLineCarouselProps = {
   sag?: number;
   /** How much the prints swing; 0 holds them still. */
   swing?: number;
-  /** Continuous slow glide speed (px per frame). Default 0.38 (~22px/s). 0 disables drift. */
+  /** Continuous slow glide speed (px per frame). Default 0.36 (~21px/s). 0 disables drift. */
   autoplaySpeed?: number;
   /** Colour of the string. */
   string?: string;
@@ -37,40 +36,79 @@ export type PolaroidLineCarouselProps = {
 
 export const buonAppetitoDishes: Slide[] = [
   {
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBsa40SUOipkdJNmPE0f465HyZdDKS0awrb6DTLNkUV6knIECIMkT8LHSTOIuFKTtGdBRmOTTzYWFjbSoVtz5jbyguYQuLAzYQEfWCViOZsxhPK85xvK6B5EfIiGocEEdxJiHdAVgfrNR8oectYrX543xe2vYGOKTQSX__uojYc74S_NI6lPHDcnU55PDWFAJGbLVMMfvyRxJ7Cej__AXRjLtoSuMyo_5Aaa2rmHvZ-y8huZzS7Bd3D4uBjOW9z0UlyEx8rb0Wtrw",
-    title: "Pizza Burrata & Tartufo",
-    price: "18,50 €",
-    alt: "Pizza Burrata y Trufa en horno de leña",
+    image: "/assets/menu/menu_01.webp",
+    title: "Ensalada Thai",
+    alt: "Ensalada Thai",
   },
   {
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCQfcvZyWuIyDHlqDlP1al_rCPPd36sMiQqTq95C8t8u-rlUW9rDJGNhMDoV5-pB5teBd1gCSskpRnVtiyPOefPw62YZs1hczW838eCEAjCwXs_zn0tG4iK196MKuHlgRPFhaWv4hQGx87mbZosSfm0lMVYQvL--iuS5f0XLXCFMumCVKhnJWqyiHLHs7FBcJExQw-7YCoHIogeuGktgShccYGDD7n0hr6v_Pg8EUkQX8sd-Lhx0lrOCMeFY2pWQwEDJI5OO5G29A",
-    title: "Linguine allo Scoglio",
-    price: "22,00 €",
-    alt: "Linguine con marisco fresco del puerto",
+    image: "/assets/menu/menu_02.webp",
+    title: "Ensalada Caprese",
+    alt: "Ensalada Caprese",
   },
   {
-    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=85",
-    title: "Pesca del Día de Lonja",
-    price: "24,50 €",
-    alt: "Pescado fresco del puerto de Andratx",
+    image: "/assets/menu/menu_03.webp",
+    title: "Bruschetta & Padrón",
+    alt: "Bruschetta al Pomodoro y Pimientos de Padrón",
   },
   {
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC69E0dlzLgjkYZzgpE2iqME2voyY1ihzE61WlHoK-pPvpnN7X9GFZNejm5eDp3euAzNB-qbnSXPpK22Bp7BhFIsxaidxMfjGRPe-H0HdvQhEP9RVWf173qRMdSKj3MWxWOuxp73DQx__znBiD8kYWM3_2Yxo4MzvCavRYVppXVqjnm8gNL4z7WnGJ0dbxImOhBL5xo8hWXrUKmgSL4wIFMNsPE0HI37dcgPqwYo-_1g1fjDhpQdzWkSP9BFD_Iog6zkPHaQQRHBg",
-    title: "Tagliatelle al Ragù Toscano",
-    price: "21,00 €",
-    alt: "Tagliatelle al ragú estofado",
+    image: "/assets/menu/menu_04.webp",
+    title: "Ensalada Pomodoro",
+    alt: "Ensalada Pomodoro",
   },
   {
-    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=85",
-    title: "Burrata Pugliese con Ramellet",
-    price: "16,00 €",
-    alt: "Burrata fresca de Puglia con tomates de rama",
+    image: "/assets/menu/menu_05.webp",
+    title: "Tagliatelle con Trufa Fresca",
+    alt: "Tagliatelle con Trufa Fresca",
   },
   {
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDhn7u965wyptoBtEgGjhNSq8WPKAJd7HYt302Oa_DSq09PnU3kJpWZNZdDbOus6azX98pyKg2C6Pq8gCIu833A3-F7v22-dxFUSebuvaKVVltpr_lal2yDhoG5X2UT6ERyAyLcXYjG9-bYrNr8UOt0PqBT-Pk0jUWvjefWI7HZcMZTcdNfaL0Lm3un_fAum7FJ7MmQy9sW8mLqrnW5CVQmL8B-YRDFpsQqqPqtZ9HdDzmpEKfc7w7SV5XHvCHS2TJC73eGDg4jeg",
-    title: "Tiramisú Tradizionale",
-    price: "8,50 €",
-    alt: "Tiramisú tradicional al café",
+    image: "/assets/menu/menu_06.webp",
+    title: "Linguine ai Frutti di Mare",
+    alt: "Linguine ai Frutti di Mare",
+  },
+  {
+    image: "/assets/menu/menu_07.webp",
+    title: "Spaghetti Aglio e Olio",
+    alt: "Spaghetti Aglio e Olio",
+  },
+  {
+    image: "/assets/menu/menu_08.webp",
+    title: "Pizza Frutti di Mare",
+    alt: "Pizza Frutti di Mare",
+  },
+  {
+    image: "/assets/menu/menu_09.webp",
+    title: "Pizza Stella",
+    alt: "Pizza Stella",
+  },
+  {
+    image: "/assets/menu/menu_10.webp",
+    title: "Solomillo de Ternera",
+    alt: "Solomillo de Ternera",
+  },
+  {
+    image: "/assets/menu/menu_11.webp",
+    title: "Tagliata de Solomillo",
+    alt: "Tagliata de Solomillo",
+  },
+  {
+    image: "/assets/menu/menu_12.webp",
+    title: "Calamar a la Plancha",
+    alt: "Calamar a la Plancha",
+  },
+  {
+    image: "/assets/menu/menu_13.webp",
+    title: "Brownie Casero & Tiramisú",
+    alt: "Brownie Casero y Tiramisú",
+  },
+  {
+    image: "/assets/menu/menu_14.webp",
+    title: "Crema Catalana Caramelizada",
+    alt: "Crema Catalana Caramelizada",
+  },
+  {
+    image: "/assets/menu/menu_15.webp",
+    title: "Dolce Buon Appetito",
+    alt: "Dolce Buon Appetito",
   },
 ];
 
@@ -94,41 +132,39 @@ export function swingStep(a: number, w: number, lineVel: number, dt: number, gai
   return [clamp(a + nw * dt, -0.55, 0.55), nw];
 }
 
-export function pad2(n: number): string {
-  return n < 10 ? "0" + n : String(n);
-}
-
 const PL_CSS = `
-.pl-root{position:relative;width:100%;overflow:hidden;background:transparent;color:var(--pl-ink);user-select:none;-webkit-user-select:none;touch-action:pan-y;outline:none;cursor:grab}
+.pl-root{position:relative;z-index:10;width:100%;overflow:hidden;background:transparent;color:var(--pl-ink);user-select:none;-webkit-user-select:none;touch-action:pan-y;outline:none;cursor:grab}
 .pl-root[data-drag='1']{cursor:grabbing}
 .pl-string{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
 .pl-card{position:absolute;left:0;top:0;width:var(--pl-cw);transform-origin:50% 0;will-change:transform;cursor:pointer}
-.pl-print{margin-top:10px;background:#fbfaf7;padding:10px 10px 0;border-radius:4px;box-shadow:0 2px 8px rgba(24,51,33,.08),0 18px 32px -16px rgba(24,51,33,.20);transition:transform .4s cubic-bezier(.2,.7,.2,1),filter .4s ease}
-.pl-card[data-on='0'] .pl-print{transform:scale(.92);filter:saturate(.78) brightness(.96)}
-.pl-card[data-on='1'] .pl-print{transform:scale(1.02);filter:none;box-shadow:0 4px 14px rgba(24,51,33,.12),0 24px 44px -14px rgba(24,51,33,.28)}
-.pl-shot{position:relative;aspect-ratio:1;overflow:hidden;background:#ebe6de;border-radius:2px}
-.pl-shot img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;display:block;pointer-events:none}
-.pl-note{height:44px;display:flex;align-items:center;justify-content:center;padding:0 8px;font:italic 400 15px/1.1 ui-serif,Georgia,'Times New Roman',serif;color:#2c3a2f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-print{margin-top:10px;background:#ffffff;padding:10px 10px 0;border-radius:4px;border:1px solid rgba(217,212,204,0.45);box-shadow:0 3px 10px rgba(24,51,33,.08),0 20px 36px -16px rgba(24,51,33,.22);transition:transform .4s cubic-bezier(.2,.7,.2,1),filter .4s ease,box-shadow .4s ease}
+.pl-card[data-on='0'] .pl-print{transform:scale(.92);filter:saturate(.85) brightness(.96)}
+.pl-card[data-on='1'] .pl-print{transform:scale(1.02);filter:none;box-shadow:0 6px 20px rgba(24,51,33,.14),0 28px 48px -14px rgba(24,51,33,.30)}
+.pl-shot{position:relative;aspect-ratio:3/4;overflow:hidden;background:#ebe6de;border-radius:2px}
+.pl-shot img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;display:block;pointer-events:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.pl-card:hover .pl-shot img{transform:scale(1.04)}
+.pl-note{height:46px;display:flex;align-items:center;justify-content:center;padding:0 8px;text-align:center}
+.pl-title{font-family:ui-serif,Georgia,'Times New Roman',serif;font-size:15px;font-weight:700;color:#183321;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .pl-peg{position:absolute;left:50%;top:0;width:11px;height:26px;margin-left:-5.5px;border-radius:2px;background:linear-gradient(90deg,#c9a67a,#e3c9a1 45%,#b8915f);box-shadow:0 2px 4px rgba(0,0,0,.25)}
 .pl-peg::after{content:'';position:absolute;left:4.5px;top:8px;width:2px;height:7px;background:rgba(80,60,30,.45);border-radius:1px}
-.pl-controls{position:absolute;left:0;right:0;bottom:18px;display:flex;align-items:center;justify-content:center;gap:20px;cursor:default}
-.pl-btn{appearance:none;width:38px;height:38px;border-radius:50%;border:1px solid rgba(24,51,33,0.18);background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);color:#183321;display:grid;place-items:center;cursor:pointer;transition:all .2s ease;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+.pl-controls{position:absolute;left:0;right:0;bottom:14px;display:flex;align-items:center;justify-content:center;gap:20px;cursor:default}
+.pl-btn{appearance:none;width:38px;height:38px;border-radius:50%;border:1px solid rgba(24,51,33,0.18);background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);color:#183321;display:grid;place-items:center;cursor:pointer;transition:all .2s ease;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,0.06)}
 .pl-btn:hover{background:#183321;color:#ffffff;border-color:#183321;transform:scale(1.05)}
 .pl-btn:active{transform:scale(0.92)}
 `;
 
 export default function PolaroidLineCarousel({
   slides = buonAppetitoDishes,
-  height = "clamp(460px, 58vh, 520px)",
-  cardWidth = 270,
-  sag = 30,
+  height = "clamp(490px, 62vh, 560px)",
+  cardWidth = 245,
+  sag = 28,
   swing = 1,
-  autoplaySpeed = 0.38, // Continuous slow drift (~22px/sec)
+  autoplaySpeed = 0.36, // Continuous slow drift (~21px/sec)
   string = "#7d7468",
   ink = "#183321",
   className,
   style,
-  ariaLabel = "Carrusel de platos destacados",
+  ariaLabel = "Carrusel de platos de la carta",
 }: PolaroidLineCarouselProps) {
   const origCount = slides.length;
   // Triplicate slides to create a completely seamless infinite wrapping line
@@ -136,7 +172,7 @@ export default function PolaroidLineCarousel({
   const totalCount = allSlides.length;
 
   const [dragging, setDragging] = React.useState(false);
-  const [size, setSize] = React.useState({ w: 1200, h: 480, cw: cardWidth });
+  const [size, setSize] = React.useState({ w: 1200, h: 500, cw: cardWidth });
 
   const rootRef = React.useRef<HTMLDivElement | null>(null);
   const pathRef = React.useRef<SVGPathElement | null>(null);
@@ -165,7 +201,7 @@ export default function PolaroidLineCarousel({
   const opts = React.useRef({ sag, swing, autoplaySpeed });
   opts.current = { sag, swing, autoplaySpeed };
 
-  const spacing = size.cw * 1.08;
+  const spacing = size.cw * 1.12;
   const totalLineLength = totalCount * spacing;
 
   // Responsive stage sizing
@@ -175,8 +211,8 @@ export default function PolaroidLineCarousel({
     const ro = new ResizeObserver(() => {
       const r = root.getBoundingClientRect();
       const isMobile = r.width < 640;
-      const maxRatio = isMobile ? 0.63 : 0.38;
-      const cw = Math.round(Math.max(180, Math.min(cardWidth, r.width * maxRatio, r.height * 0.49)));
+      const maxRatio = isMobile ? 0.65 : 0.34;
+      const cw = Math.round(Math.max(190, Math.min(cardWidth, r.width * maxRatio, r.height * 0.44)));
       setSize({ w: r.width, h: r.height, cw });
     });
     ro.observe(root);
@@ -200,11 +236,11 @@ export default function PolaroidLineCarousel({
       prev = now;
       const { w, h, cw } = size;
       const isMobile = w < 640;
-      const y0 = isMobile ? 18 : 26;
+      const y0 = isMobile ? 16 : 24;
       const d = drag.current;
       const o = opts.current;
 
-      // Continuous gentle drift (like Sobre Nosotros circular gallery)
+      // Continuous gentle drift
       if (
         o.autoplaySpeed > 0 &&
         !d &&
@@ -232,7 +268,6 @@ export default function PolaroidLineCarousel({
 
       const g = reduce ? 0 : o.swing;
       let minDistance = Infinity;
-      let closestCardIndex = 0;
 
       for (let i = 0; i < totalCount; i++) {
         const el = cards.current[i];
@@ -248,7 +283,6 @@ export default function PolaroidLineCarousel({
         const dist = Math.abs(relX);
         if (dist < minDistance) {
           minDistance = dist;
-          closestCardIndex = i % origCount;
         }
 
         // Hide cards that are far offscreen
@@ -269,7 +303,7 @@ export default function PolaroidLineCarousel({
         el.style.transform = `translate(${(screenX - cw / 2).toFixed(1)}px, ${y.toFixed(1)}px) rotate(${a.toFixed(4)}rad)`;
         const isCenter = dist < cw * 0.55;
         el.setAttribute("data-on", isCenter ? "1" : "0");
-        el.style.zIndex = String(Math.round(100 - dist / 8));
+        el.style.zIndex = String(Math.max(1, Math.round(20 - dist / 8)));
       }
 
       pathRef.current?.setAttribute("d", `M0 ${y0} Q${w / 2} ${y0 + 2 * o.sag} ${w} ${y0}`);
@@ -352,7 +386,7 @@ export default function PolaroidLineCarousel({
       return;
     }
 
-    // Tap on card to bring to center
+    // Tap on card: center card smoothly
     const card = (e.target as HTMLElement).closest("[data-i]");
     if (card) {
       const cardIdx = Number(card.getAttribute("data-i"));
@@ -405,7 +439,9 @@ export default function PolaroidLineCarousel({
             <div className="pl-shot">
               <img src={sl.image} alt={sl.alt || sl.title || ""} draggable={false} loading="lazy" />
             </div>
-            <div className="pl-note">{sl.title || ""}</div>
+            <div className="pl-note">
+              <span className="pl-title">{sl.title}</span>
+            </div>
           </div>
           <div className="pl-peg" />
         </div>
@@ -438,3 +474,5 @@ export default function PolaroidLineCarousel({
     </div>
   );
 }
+
+

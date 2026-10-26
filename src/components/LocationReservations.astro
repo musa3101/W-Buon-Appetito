@@ -22,123 +22,93 @@
       </p>
     </div>
 
-    <!-- 1. PANEL DE INFORMACIÓN & CONTACTO (ARRIBA) -->
-    <div class="bg-surface-container-low p-6 sm:p-9 lg:p-11 rounded-3xl border border-outline-variant/30 shadow-sm space-y-8">
+    <!-- 1. PANEL DE INFORMACIÓN & CONTACTO (Compacto, elegante y editorial) -->
+    <div class="bg-surface-container-low p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-outline-variant/30 shadow-sm space-y-6">
       
-      <!-- Encabezado del Panel -->
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-outline-variant/20 pb-5">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-[#183321]/10 flex items-center justify-center text-primary shrink-0">
-            <span class="material-symbols-outlined text-2xl">storefront</span>
-          </div>
-          <div>
-            <span class="text-[10px] sm:text-[11px] font-semibold text-secondary uppercase tracking-[0.2em]">Buon Appetito</span>
-            <h3 class="font-serif text-2xl sm:text-3xl text-primary font-semibold mt-0.5">Información &amp; Contacto</h3>
-          </div>
+      <!-- Encabezado del Panel con CTA directo -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-outline-variant/20 pb-5">
+        <div>
+          <span class="text-[10px] sm:text-[11px] font-semibold text-secondary uppercase tracking-[0.2em]">Buon Appetito</span>
+          <h3 class="font-serif text-2xl sm:text-3xl text-primary font-semibold mt-0.5">Información &amp; Contacto</h3>
         </div>
-        <span class="inline-flex items-center gap-1.5 bg-[#183321]/10 text-primary text-[11px] font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-          <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-          Abierto Hoy &bull; Cocina Continuada
-        </span>
-      </div>
-
-      <!-- Cuadrícula 2x2 de Detalles del Restaurante -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 font-sans text-sm">
         
-        <!-- Tarjeta 1: Dirección Física -->
-        <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface/80 border border-outline-variant/20 shadow-xs hover:border-primary/40 transition-colors">
-          <div class="w-11 h-11 rounded-xl bg-[#183321]/10 flex items-center justify-center text-secondary shrink-0">
-            <span class="material-symbols-outlined text-2xl">location_on</span>
-          </div>
-          <div class="space-y-1">
-            <p class="font-semibold text-secondary text-xs uppercase tracking-wider">Dirección Física</p>
-            <a 
-              href="https://maps.app.goo.gl/nC1F69YNFf4TghwD6"
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="text-primary hover:text-secondary font-semibold text-base transition-colors inline-flex items-center gap-1.5"
-              title="Abrir en Google Maps"
-            >
-              <span>Avenida Mateo Bosch, 24</span>
-              <span class="material-symbols-outlined text-sm opacity-60">open_in_new</span>
-            </a>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
-              07157 Port d'Andratx, Mallorca &bull; Frente al puerto deportivo
-            </p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 2: Horario Continuado -->
-        <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface/80 border border-outline-variant/20 shadow-xs hover:border-primary/40 transition-colors">
-          <div class="w-11 h-11 rounded-xl bg-[#183321]/10 flex items-center justify-center text-secondary shrink-0">
-            <span class="material-symbols-outlined text-2xl">schedule</span>
-          </div>
-          <div class="space-y-1">
-            <p class="font-semibold text-secondary text-xs uppercase tracking-wider">Horario Continuado</p>
-            <p class="text-primary font-semibold text-base">De Lunes a Domingo: 11:30 – 23:30</p>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
-              Cocina abierta todos los días sin interrupción
-            </p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 3: Teléfono Directo & Reservas -->
-        <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface/80 border border-outline-variant/20 shadow-xs hover:border-primary/40 transition-colors">
-          <div class="w-11 h-11 rounded-xl bg-[#183321]/10 flex items-center justify-center text-secondary shrink-0">
-            <span class="material-symbols-outlined text-2xl">call</span>
-          </div>
-          <div class="space-y-1">
-            <p class="font-semibold text-secondary text-xs uppercase tracking-wider">Teléfono de Sala</p>
-            <a 
-              href="tel:+34632446064" 
-              class="text-primary hover:text-secondary font-bold text-lg tracking-wide transition-colors inline-block"
-            >
-              +34 632 44 60 64
-            </a>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
-              Atención directa para consultas y dudas
-            </p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 4: Correo Electrónico -->
-        <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface/80 border border-outline-variant/20 shadow-xs hover:border-primary/40 transition-colors">
-          <div class="w-11 h-11 rounded-xl bg-[#183321]/10 flex items-center justify-center text-secondary shrink-0">
-            <span class="material-symbols-outlined text-2xl">mail</span>
-          </div>
-          <div class="space-y-1">
-            <p class="font-semibold text-secondary text-xs uppercase tracking-wider">Correo Electrónico</p>
-            <a 
-              href="mailto:buonappetitoandratx@gmail.com" 
-              class="text-primary hover:text-secondary font-medium text-sm transition-colors break-all block"
-            >
-              buonappetitoandratx@gmail.com
-            </a>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
-              Reservas de grupo y eventos privados
-            </p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- BOTÓN DESTACADO "RESERVAR MESA" DENTRO DE INFORMACIÓN -->
-      <div class="pt-6 border-t border-outline-variant/20 flex flex-col sm:flex-row items-center justify-between gap-5 bg-surface/50 -mx-6 -mb-6 sm:-mx-9 sm:-mb-9 lg:-mx-11 lg:-mb-11 p-6 sm:p-8 rounded-b-3xl">
-        <div class="text-center sm:text-left space-y-1">
-          <h4 class="font-serif text-lg sm:text-xl text-primary font-normal">¿Deseas asegurar tu mesa en Buon Appetito?</h4>
-          <p class="text-xs sm:text-sm text-on-surface-variant font-sans">
-            Selecciona fecha, comensales y turno en nuestra aplicación de reservas en un instante.
-          </p>
-        </div>
         <a 
           href="/reservar" 
           target="_blank" 
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#9E4221] to-[#C45E3B] hover:brightness-110 text-white px-8 py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-widest shadow-lg hover:shadow-xl hover:scale-102 active:scale-95 transition-all duration-300 cursor-pointer w-full sm:w-auto shrink-0"
+          class="inline-flex items-center justify-center gap-2 bg-[#9E4221] hover:bg-[#C45E3B] text-white px-6 py-2.5 rounded-full font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 cursor-pointer w-full sm:w-auto shrink-0"
         >
-          <span class="material-symbols-outlined text-lg">calendar_month</span>
+          <span class="material-symbols-outlined text-base">calendar_month</span>
           <span>RESERVAR MESA</span>
         </a>
+      </div>
+
+      <!-- Cuadrícula limpia y editorial de 4 columnas (sin cajas pesadas ni fondos feos) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-0 font-sans">
+        
+        <!-- Columna 1: Dirección -->
+        <div class="lg:pr-6 lg:border-r border-outline-variant/20 flex flex-col justify-between space-y-1">
+          <span class="text-[10.5px] font-semibold text-secondary uppercase tracking-[0.18em]">Dirección</span>
+          <div>
+            <a 
+              href="https://maps.app.goo.gl/nC1F69YNFf4TghwD6"
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="text-primary hover:text-secondary font-semibold text-[15px] sm:text-base transition-colors inline-flex items-center gap-1.5"
+              title="Abrir en Google Maps"
+            >
+              <span>Av. Mateo Bosch, 24</span>
+              <span class="material-symbols-outlined text-sm opacity-60">open_in_new</span>
+            </a>
+            <p class="text-xs text-on-surface-variant mt-0.5">
+              07157 Port d'Andratx &bull; Frente al puerto
+            </p>
+          </div>
+        </div>
+
+        <!-- Columna 2: Horario -->
+        <div class="lg:px-6 lg:border-r border-outline-variant/20 flex flex-col justify-between space-y-1">
+          <span class="text-[10.5px] font-semibold text-secondary uppercase tracking-[0.18em]">Horario</span>
+          <div>
+            <p class="text-primary font-semibold text-[15px] sm:text-base">11:30 – 23:30 h</p>
+            <p class="text-xs text-on-surface-variant mt-0.5">
+              Lunes a Domingo sin interrupción
+            </p>
+          </div>
+        </div>
+
+        <!-- Columna 3: Teléfono -->
+        <div class="lg:px-6 lg:border-r border-outline-variant/20 flex flex-col justify-between space-y-1">
+          <span class="text-[10.5px] font-semibold text-secondary uppercase tracking-[0.18em]">Teléfono de Sala</span>
+          <div>
+            <a 
+              href="tel:+34632446064" 
+              class="text-primary hover:text-secondary font-bold text-[15px] sm:text-base tracking-wide transition-colors inline-block"
+            >
+              +34 632 44 60 64
+            </a>
+            <p class="text-xs text-on-surface-variant mt-0.5">
+              Atención directa para dudas y sala
+            </p>
+          </div>
+        </div>
+
+        <!-- Columna 4: Email -->
+        <div class="lg:pl-6 flex flex-col justify-between space-y-1">
+          <span class="text-[10.5px] font-semibold text-secondary uppercase tracking-[0.18em]">Correo Electrónico</span>
+          <div>
+            <a 
+              href="mailto:buonappetitoandratx@gmail.com" 
+              class="text-primary hover:text-secondary font-semibold text-[13px] sm:text-[13.5px] transition-colors break-all inline-block"
+            >
+              buonappetitoandratx@gmail.com
+            </a>
+            <p class="text-xs text-on-surface-variant mt-0.5">
+              Eventos privados y grupos
+            </p>
+          </div>
+        </div>
+
       </div>
 
     </div>

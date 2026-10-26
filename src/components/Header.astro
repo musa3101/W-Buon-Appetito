@@ -6,7 +6,7 @@
 <!-- ======================================================== -->
 <header 
   id="main-header" 
-  class="fixed top-0 inset-x-0 z-50 w-full header-hero transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]"
+  class="fixed top-0 inset-x-0 z-[80] w-full header-hero transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]"
 >
   <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 flex items-center justify-between py-5 sm:py-6 transition-all duration-300" id="header-inner">
     
@@ -56,19 +56,20 @@
 </header>
 
 <style>
-  /* Estado inicial en Hero: degradado transparente verde oliva oscuro */
+  /* Estado inicial en Hero: completamente transparente y limpio, sin líneas ni cortes */
   .header-hero {
-    background: linear-gradient(to bottom, rgba(14, 30, 20, 0.65) 0%, rgba(14, 30, 20, 0.25) 60%, transparent 100%);
-    border-bottom: 1px solid transparent;
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
   }
 
-  /* Estado al hacer scroll: barra compacta verde oliva con glassmorphism */
+  /* Estado al hacer scroll: barra compacta verde oliva con glassmorphism y sombra elegante (sin líneas duras) */
   .header-scrolled {
-    background: rgba(24, 51, 33, 0.94);
+    background: rgba(24, 51, 33, 0.95);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
   }
 </style>
 
