@@ -23,12 +23,20 @@
       
       <!-- Center: Authentic Calzone Artesanal -->
       <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <img 
-          src="/assets/our-pizza.webp" 
-          alt="La Nostra Calzone Artesanal" 
-          class="w-[490px] lg:w-[540px] h-auto object-contain drop-shadow-[0_25px_40px_rgba(24,51,33,0.18)] transition-transform duration-700 ease-out hover:scale-105 pointer-events-auto cursor-pointer"
-          loading="lazy"
-        />
+        <div class="relative pointer-events-auto -translate-x-8 lg:-translate-x-12">
+          <img 
+            src="/assets/our-pizza.webp" 
+            alt="La Nostra Calzone Artesanal" 
+            class="w-[410px] md:w-[430px] lg:w-[460px] h-auto object-contain drop-shadow-[0_25px_40px_rgba(24,51,33,0.18)] transition-transform duration-700 ease-out hover:scale-105 cursor-pointer"
+            loading="lazy"
+          />
+          <!-- Destellos decorativos (flash) directamente sobre la punta derecha del calzone -->
+          <img 
+            src="/assets/flash.svg" 
+            alt="Detalle artesanal" 
+            class="absolute -top-6 lg:-top-7 left-[87.8%] -translate-x-1/2 w-9 lg:w-10 h-auto pointer-events-none transition-transform duration-500 hover:scale-110" 
+          />
+        </div>
       </div>
 
       <!-- Callout 1 (Top-Left): Masa Larga Fermentación -->
@@ -47,13 +55,13 @@
       </div>
 
       <!-- Callout 2 (Top-Right): Ingredientes de Proximidad -->
-      <div class="absolute top-10 right-4 lg:right-8 max-w-[300px] text-left">
+      <div class="absolute top-2 lg:top-4 right-0 lg:right-4 max-w-[245px] lg:max-w-[270px] text-left">
         <img 
           src="/assets/arrow2.svg" 
           alt="Flecha señalando los ingredientes" 
-          class="w-52 lg:w-60 h-auto mb-2 -ml-24 lg:-ml-28 pointer-events-none" 
+          class="w-44 lg:w-52 h-auto mb-1.5 -ml-16 lg:-ml-20 pointer-events-none" 
         />
-        <h3 class="font-sans text-2xl lg:text-[28px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
+        <h3 class="font-sans text-xl lg:text-2xl xl:text-[28px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
           Los mejores<br/>ingredientes de<br/>proximidad
         </h3>
         <p class="font-sans text-xs text-[#424842] mt-2 leading-relaxed">
@@ -63,16 +71,9 @@
 
       <!-- Callout 3 (Bottom-Left): Preparación Tradicional -->
       <div class="absolute bottom-4 left-8 lg:left-14 max-w-[290px] text-left">
-        <div class="flex items-center gap-2 mb-1">
-          <h3 class="font-sans text-2xl lg:text-[28px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
-            Preparación<br/>Tradicional
-          </h3>
-          <img 
-            src="/assets/flash.svg" 
-            alt="Destellos preparación artesanal" 
-            class="w-10 h-auto mb-4 pointer-events-none" 
-          />
-        </div>
+        <h3 class="font-sans text-2xl lg:text-[28px] font-bold text-[#1B1C1A] leading-tight tracking-tight mb-1">
+          Preparación<br/>Tradicional
+        </h3>
         <p class="font-sans text-xs text-[#424842] mt-1 leading-relaxed">
           Amasado manual a la napolitana y horneado en piedra viva con leña pura a 450°C.
         </p>
@@ -93,12 +94,20 @@
         <div class="absolute inset-0 flex items-center justify-center">
           <div class="w-48 h-32 bg-[#9E4221]/10 rounded-full blur-2xl"></div>
         </div>
-        <img 
-          src="/assets/our-pizza.webp" 
-          alt="La Nostra Calzone Artesanal" 
-          class="w-[250px] h-auto object-contain drop-shadow-[0_15px_30px_rgba(24,51,33,0.22)] pointer-events-auto"
-          loading="lazy"
-        />
+        <div class="relative pointer-events-auto">
+          <img 
+            src="/assets/our-pizza.webp" 
+            alt="La Nostra Calzone Artesanal" 
+            class="w-[250px] h-auto object-contain drop-shadow-[0_15px_30px_rgba(24,51,33,0.22)]"
+            loading="lazy"
+          />
+          <!-- Destellos decorativos sobre la punta derecha del calzone -->
+          <img 
+            src="/assets/flash.svg" 
+            alt="Detalle artesanal" 
+            class="absolute -top-5 left-[87.8%] -translate-x-1/2 w-6 sm:w-7 h-auto pointer-events-none" 
+          />
+        </div>
       </div>
 
       <!-- 2. Callout 1 (Arriba-Izquierda): Masa Larga Fermentación -->
@@ -141,16 +150,9 @@
           alt="Flecha preparación" 
           class="w-[92px] h-auto mb-1 ml-6 pointer-events-none" 
         />
-        <div class="flex items-center gap-1 mb-0.5">
-          <h3 class="font-sans text-[14px] font-bold text-[#1B1C1A] leading-tight tracking-tight">
-            Preparación<br/>Tradicional
-          </h3>
-          <img 
-            src="/assets/flash.svg" 
-            alt="Destellos preparación artesanal" 
-            class="w-4 h-auto mb-2 pointer-events-none" 
-          />
-        </div>
+        <h3 class="font-sans text-[14px] font-bold text-[#1B1C1A] leading-tight tracking-tight mb-0.5">
+          Preparación<br/>Tradicional
+        </h3>
         <p class="font-sans text-[9.5px] text-[#424842] mt-0.5 leading-snug">
           Amasado manual y leña viva a 450°C.
         </p>
