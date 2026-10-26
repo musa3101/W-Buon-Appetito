@@ -11,8 +11,8 @@ import {
 export const authenticGalleryItems: GalleryItem[] = [
   {
     image: "/assets/sobre-nosotros/galeria_laporte.webp",
-    text: "El dueño junto a Aymeric Laporte",
-    subtitle: "Visita del futbolista internacional, campeón de la Eurocopa con la Selección Española",
+    text: "Visita de Aymeric Laporte",
+    subtitle: "El dueño del restaurante junto al futbolista internacional, campeón de la Eurocopa con la Selección Española",
   },
   {
     image: "/assets/sobre-nosotros/galeria_01.webp",
