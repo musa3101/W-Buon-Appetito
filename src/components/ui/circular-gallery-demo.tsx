@@ -7,8 +7,13 @@ import {
   type GalleryItem,
 } from "@/components/ui/circular-gallery-2";
 
-// 8 authentic gallery items featuring Buon Appetito's real terrace, façade and atmosphere
+// 9 authentic gallery items featuring owner with Aymeric Laporte, terrace, façade and atmosphere
 export const authenticGalleryItems: GalleryItem[] = [
+  {
+    image: "/assets/sobre-nosotros/galeria_laporte.webp",
+    text: "El dueño junto a Aymeric Laporte",
+    subtitle: "Visita del futbolista internacional, campeón de la Eurocopa con la Selección Española",
+  },
   {
     image: "/assets/sobre-nosotros/galeria_01.webp",
     text: "Nuestra Carta & Bienvenida",
@@ -193,11 +198,18 @@ export default function CircularGalleryDemo() {
             </div>
 
             {/* Caption & Counter */}
-            <div className="mt-4 flex items-center justify-between w-full px-2 text-white/90">
-              <span className="font-serif text-base sm:text-lg font-light tracking-wide">
-                {activeItem.text}
-              </span>
-              <span className="text-xs text-white/60 font-mono">
+            <div className="mt-4 flex items-start justify-between w-full px-2 text-white/90 gap-4">
+              <div className="flex flex-col text-left">
+                <span className="font-serif text-base sm:text-lg font-medium tracking-wide">
+                  {activeItem.text}
+                </span>
+                {activeItem.subtitle && (
+                  <span className="text-xs sm:text-sm text-white/75 font-sans mt-0.5 font-light">
+                    {activeItem.subtitle}
+                  </span>
+                )}
+              </div>
+              <span className="text-xs text-white/60 font-mono shrink-0 pt-0.5">
                 {activeModalIndex + 1} / {authenticGalleryItems.length}
               </span>
             </div>

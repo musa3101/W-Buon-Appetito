@@ -24,6 +24,7 @@ import { cn } from "@/lib/utils";
 export interface GalleryItem {
   image: string;
   text?: string;
+  subtitle?: string;
 }
 
 export interface CircularGalleryRef {
