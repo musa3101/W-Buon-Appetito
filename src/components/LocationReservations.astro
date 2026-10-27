@@ -1,6 +1,7 @@
 ---
 // web/src/components/LocationReservations.astro
 // Sección Dónde Estamos: Panel de Información y Contacto (arriba con botón Reservar) + Mapa Panorámico (abajo)
+import { ShimmerButton } from './ui/shimmer-button';
 ---
 
 <!-- ======================================================== -->
@@ -22,85 +23,100 @@
       </p>
     </div>
 
-    <!-- 1. PANEL DE INFORMACIÓN & CONTACTO (Verde Salvia Suave · Tipografía Pura · 3 Columnas) -->
-    <div class="bg-gradient-to-b from-[#E5ECE6] to-[#DBE5DD] p-6 sm:p-10 md:p-12 rounded-3xl border border-[#BED0C1] shadow-[0_14px_45px_rgba(24,51,33,0.06)] relative">
+    <!-- 1. PANEL DE INFORMACIÓN & CONTACTO (Verde Salvia Suave · Compacto en Móvil · Tipografía Fontshare) -->
+    <div class="bg-gradient-to-b from-[#E5ECE6] to-[#DBE5DD] p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border border-[#BED0C1] shadow-[0_12px_36px_rgba(24,51,33,0.06)] relative">
       
       <!-- Encabezado del Panel con CTA tipográfico directo -->
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6 pb-7 sm:pb-8 border-b border-[#BED0C1]">
-        <div class="space-y-1">
-          <span class="font-satoshi text-[10px] sm:text-[11px] font-semibold text-[#9E4221] uppercase tracking-[0.28em] block">Buon Appetito &bull; Port d'Andratx</span>
-          <h3 class="font-boska text-3xl sm:text-4xl md:text-[42px] font-normal text-[#183321] tracking-[-0.01em] leading-tight">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 pb-5 sm:pb-7 border-b border-[#BED0C1]">
+        <div class="space-y-0.5 sm:space-y-1">
+          <h3 class="font-boska text-2xl sm:text-3xl md:text-4xl font-normal text-[#183321] tracking-[-0.01em] leading-tight">
             Información <span class="italic font-normal text-[#9E4221]">&amp;</span> Contacto
           </h3>
           <p class="font-satoshi text-xs sm:text-[13px] text-[#3D5243] font-normal leading-relaxed">
-            Atención personalizada de sala, reservas y ubicación en primera línea del puerto.
+            Atención personalizada de sala, reservas y ubicación frente al puerto.
           </p>
         </div>
         
-        <a 
+        <!-- Botón Reservar Mesa (Estilo ShimmerButton de Menú y Carta) -->
+        <ShimmerButton 
+          client:load
           href="/reservar" 
           target="_blank" 
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center font-satoshi text-[11px] sm:text-xs font-semibold tracking-[0.24em] uppercase text-white bg-[#183321] hover:bg-[#9E4221] px-8 py-3.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 cursor-pointer w-full sm:w-auto shrink-0 text-center"
+          background="#183321"
+          shimmerColor="#FFFFFF"
+          shimmerDuration="3s"
+          borderRadius="100px"
+          className="shadow-xl shadow-[#183321]/20 w-full sm:w-auto shrink-0"
+          title="Reservar mesa oficial en Buon Appetito"
         >
-          RESERVAR MESA
-        </a>
+          <svg class="w-4 h-4 text-white/95 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>Reservar Mesa</span>
+          <svg class="w-3.5 h-3.5 text-white/80 shrink-0 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </ShimmerButton>
       </div>
 
-      <!-- Cuadrícula editorial de 3 columnas (Sin Dirección repetida, jerarquía tipográfica pura) -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-0 pt-7 sm:pt-8 divide-y divide-[#BED0C1] sm:divide-y-0">
+      <!-- Cuadrícula inteligente: 2 columnas en móvil (-50% altura y sin scroll innecesario) y 3 columnas en desktop -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-4 pt-5 sm:pt-7">
         
-        <!-- Columna 1: Horario -->
-        <div class="lg:pr-8 lg:border-r border-[#BED0C1] flex flex-col justify-between pt-5 first:pt-0 sm:pt-0">
-          <span class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.24em] block mb-2">
+        <!-- Columna 1: Horario (Cabinet Grotesk / Fontshare - moderno, nítido y compacto) -->
+        <div class="space-y-1 sm:pr-6 sm:border-r border-[#BED0C1]">
+          <span class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.22em] block">
             Horario
           </span>
-          <div class="space-y-1">
-            <p class="font-boska text-2xl sm:text-[25px] font-medium text-[#183321] tracking-[-0.01em] leading-snug">
+          <div>
+            <p class="font-cabinet font-bold text-base xs:text-lg sm:text-2xl text-[#183321] tracking-tight leading-snug">
               11:30 – 23:30 h
             </p>
-            <p class="font-satoshi text-xs text-[#4A5D4F] font-normal leading-relaxed mt-1">
-              Lunes a Domingo sin interrupción
+            <p class="font-satoshi text-[11px] sm:text-xs text-[#4A5D4F] font-normal leading-relaxed mt-0.5">
+              Lunes a Domingo
             </p>
           </div>
         </div>
 
-        <!-- Columna 2: Teléfono -->
-        <div class="lg:px-8 lg:border-r border-[#BED0C1] flex flex-col justify-between pt-5 sm:pt-0">
-          <span class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.24em] block mb-2">
+        <!-- Columna 2: Teléfono (Cabinet Grotesk / Fontshare - dígitos arquitectónicos limpios) -->
+        <div class="space-y-1 sm:px-6 sm:border-r border-[#BED0C1]">
+          <span class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.22em] block">
             Teléfono de Sala
           </span>
-          <div class="space-y-1">
+          <div>
             <a 
               href="tel:+34632446064" 
               class="group block"
               title="Llamar a sala"
             >
-              <p class="font-boska text-2xl sm:text-[25px] font-medium text-[#183321] group-hover:text-[#9E4221] tracking-[0.01em] transition-colors leading-snug">
+              <p class="font-cabinet font-bold text-base xs:text-lg sm:text-2xl text-[#183321] group-hover:text-[#9E4221] tracking-tight transition-colors leading-snug">
                 +34 632 44 60 64
               </p>
-              <p class="font-satoshi text-xs text-[#4A5D4F] font-normal leading-relaxed mt-1">
-                Atención directa para dudas y sala
+              <p class="font-satoshi text-[11px] sm:text-xs text-[#4A5D4F] font-normal leading-relaxed mt-0.5">
+                Atención directa
               </p>
             </a>
           </div>
         </div>
 
-        <!-- Columna 3: Email -->
-        <div class="lg:pl-8 flex flex-col justify-between pt-5 sm:pt-0">
-          <span class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.24em] block mb-2">
+        <!-- Columna 3: Email (General Sans / Fontshare) -->
+        <div class="col-span-2 sm:col-span-1 pt-3 sm:pt-0 border-t border-[#BED0C1]/60 sm:border-t-0 space-y-1 sm:pl-6">
+          <span class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.22em] block">
             Correo Electrónico
           </span>
-          <div class="space-y-1">
+          <div>
             <a 
               href="mailto:buonappetitoandratx@gmail.com" 
               class="group block"
               title="Enviar correo electrónico"
             >
-              <p class="font-satoshi text-[14px] sm:text-[15px] font-medium text-[#183321] group-hover:text-[#9E4221] transition-colors leading-snug break-all sm:break-normal">
+              <p class="font-general font-medium text-[13px] sm:text-[15px] text-[#183321] group-hover:text-[#9E4221] transition-colors leading-snug break-all sm:break-normal">
                 buonappetitoandratx@gmail.com
               </p>
-              <p class="font-satoshi text-xs text-[#4A5D4F] font-normal leading-relaxed mt-1">
+              <p class="font-satoshi text-[11px] sm:text-xs text-[#4A5D4F] font-normal leading-relaxed mt-0.5">
                 Eventos privados y grupos
               </p>
             </a>

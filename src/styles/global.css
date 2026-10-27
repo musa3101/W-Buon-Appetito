@@ -19,6 +19,9 @@
   --font-jakarta: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-boska: "Boska", "Cormorant Garamond", Georgia, serif;
   --font-satoshi: "Satoshi", "Outfit", system-ui, -apple-system, sans-serif;
+  --font-general: "General Sans", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-cabinet: "Cabinet Grotesk", system-ui, -apple-system, sans-serif;
+  --font-clash: "Clash Display", system-ui, -apple-system, sans-serif;
 }
 
 /* Shimmer Button Animations (21st.dev) */

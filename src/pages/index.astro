@@ -9,6 +9,7 @@ import Menu from '../components/Menu.astro';
 import Reviews from '../components/Reviews.astro';
 import LocationReservations from '../components/LocationReservations.astro';
 import Footer from '../components/Footer.astro';
+import SectionDivider from '../components/ui/SectionDivider.astro';
 ---
 
 <Layout>
@@ -19,23 +20,38 @@ import Footer from '../components/Footer.astro';
   <MobileMenu />
 
   <main>
-    <!-- 1. Hero Principal -->
+    <!-- 1. Hero Principal (Sin separador: conecta directamente con Sobre Nosotros) -->
     <Hero />
 
     <!-- 2. Sobre Nosotros & Horno de Leña -->
     <About />
 
+    <!-- Separador 1: Entre Sobre Nosotros y La Nostra Pizza -->
+    <SectionDivider bg="bg-[#FBF9F5]" />
+
     <!-- 3. La Nostra Pizza (Infografía Artesanal con flechas SVG) -->
     <LaNostraPizza />
+
+    <!-- Separador 2: Entre La Nostra Pizza y Menú -->
+    <SectionDivider bg="bg-[#F5EFEB]" />
 
     <!-- 4. Menú & Carta Seleccionada -->
     <Menu />
 
+    <!-- Separador 3: Entre Menú y Reseñas -->
+    <SectionDivider bg="bg-[#FBF9F5]" />
+
     <!-- 5. Qué dicen de nosotros (Reseñas Google Maps 4.9★) -->
     <Reviews />
 
+    <!-- Separador 4: Entre Reseñas y Dónde Estamos -->
+    <SectionDivider bg="bg-[#F5EFEB]" />
+
     <!-- 6. Dónde Estamos & Reservas (WhatsApp directo y mapa) -->
     <LocationReservations />
+
+    <!-- Separador 5: Entre Dónde Estamos y el Footer -->
+    <SectionDivider bg="bg-[#FBF9F5]" />
   </main>
 
   <!-- Pie de página -->
