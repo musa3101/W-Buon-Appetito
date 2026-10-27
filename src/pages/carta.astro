@@ -1,0 +1,1200 @@
+---
+// Carta & Menú Digital Oficial · Buon Appetito (Port d'Andratx)
+import PizzaMenuLoader from '../components/PizzaMenuLoader.astro';
+const title = "Carta & Menú Digital | Buon Appetito • Port d'Andratx";
+const description = "Carta digital interactiva de Buon Appetito en Port d'Andratx. Cocina mediterránea tradicional italiana, pastas artesanales, pizzas en horno de leña y pescados frescos de Mallorca.";
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth overflow-x-hidden">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body class="menu-body">
+
+  <!-- Loader Oficial con Pizza Artesanal en Horno de Leña -->
+  <PizzaMenuLoader />
+
+  <!-- ======================================================== -->
+  <!-- 1. TOP HEADER: VERDE CIPRÉS + LOGO COLORIDO               -->
+  <!--    SELECTOR LATERAL DE IDIOMA + VOLVER GORDITO ROJITO    -->
+  <!-- ======================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      
+      <!-- Logotipo Oficial con letras blancas, bandera italiana y tomates a color -->
+      <a href="/" class="brand-logo-link" title="Buon Appetito Port d'Andratx">
+        <img 
+          src="/assets/logos/logo-buon-appetito-color-dark.png" 
+          alt="Buon Appetito Port d'Andratx" 
+          class="brand-logo"
+        />
+      </a>
+
+      <!-- Acciones de Cabecera: Selector Lateral Horizontal + Volver Terracota -->
+      <div class="header-actions">
+        
+        <!-- Contenedor de Idioma: Selector Lateral Horizontal dentro del verde del header -->
+        <div class="lang-nav-container" id="lang-nav-container">
+          
+          <!-- Botón disparador compacto -->
+          <button 
+            type="button" 
+            class="lang-pill-btn" 
+            id="lang-pill-btn" 
+            aria-expanded="false" 
+            aria-label="Cambiar idioma"
+            title="Cambiar idioma"
+          >
+            <span id="lang-current-label">ES</span>
+            <svg class="lang-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+
+          <!-- Menú Lateral Horizontal Desplegable (Ocupa el verde del header hacia la izquierda) -->
+          <div class="lang-lateral-menu" id="lang-lateral-menu" role="menu" aria-label="Seleccionar idioma">
+            <button type="button" class="lang-opt-btn active" data-lang="es" role="menuitem">ES</button>
+            <span class="lang-opt-sep" aria-hidden="true">·</span>
+            <button type="button" class="lang-opt-btn" data-lang="en" role="menuitem">EN</button>
+            <span class="lang-opt-sep" aria-hidden="true">·</span>
+            <button type="button" class="lang-opt-btn" data-lang="de" role="menuitem">DE</button>
+            <button type="button" class="lang-opt-close" id="lang-opt-close" aria-label="Cerrar selector de idioma">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Botón Volver Atrás: Más gordito, en terracota/rojito a la extrema derecha -->
+        <button type="button" id="btn-back" class="btn-back" aria-label="Volver a la página principal">
+          <svg class="back-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span id="txt-back">Volver</span>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- 2. HERO EDITORIAL: "Nuestra Carta" en Serif +             -->
+  <!--    "GASTRONOMÍA ITALIANA · PORT D'ANDRATX" DEBAJO         -->
+  <!-- ======================================================== -->
+  <section class="menu-hero" id="inicio">
+    <div class="container hero-container">
+      <h1 class="hero-title" id="hero-title">Nuestra Carta</h1>
+      <span class="hero-subtitle">GASTRONOMÍA ITALIANA · PORT D'ANDRATX</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 3. BARRA DE CATEGORÍAS NAVBAR PLANA CON SUBRAYADO ACTIVO -->
+  <!-- ======================================================== -->
+  <div class="category-nav-bar">
+    <div class="container nav-container">
+      <nav class="category-nav-track" id="category-nav" aria-label="Categorías de la carta">
+        <!-- Inyectado dinámicamente con iconos terracota y pestañas planas -->
+      </nav>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 4. LISTADO EDITORIAL LIMPIO DE PLATOS (SIN NÚMEROS)      -->
+  <!-- ======================================================== -->
+  <main class="container main-content">
+    <div id="menu-content" class="menu-content-area">
+      <!-- Se inyecta dinámicamente vía script -->
+    </div>
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- 5. FOOTER SAGE MIST (VERDE SALVIA REFINADO)              -->
+  <!-- ======================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-card">
+        
+        <!-- Precios e Información Dietética y de Alérgenos -->
+        <p id="tax-note" class="tax-note">
+          Precios con IVA incluido (10%).
+        </p>
+        <p id="allergen-note" class="allergen-note">
+          Disponemos de opciones sin gluten (pastas y pizzas artesanales). Si tiene alguna alergia o intolerancia alimentaria, por favor comuníqueselo a nuestro equipo antes de realizar su comanda.
+        </p>
+
+        <!-- Dirección física del Restaurante -->
+        <div class="footer-address">
+          <svg class="location-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Av. de Mateo Bosch, 24 · Port d'Andratx, Mallorca</span>
+        </div>
+
+        <!-- Redes Sociales Oficiales: Instagram & TripAdvisor -->
+        <div class="footer-social-row">
+          <!-- Instagram -->
+          <a 
+            href="https://www.instagram.com/buonappetitomallorca/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="social-btn instagram-btn" 
+            aria-label="Instagram Buon Appetito"
+            title="Síguenos en Instagram"
+          >
+            <svg class="social-svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+
+          <!-- TripAdvisor -->
+          <a 
+            href="https://www.tripadvisor.es/Restaurant_Review-g616239-d24183908-Reviews-Grand_Pasta-Port_d_Andratx_Majorca_Balearic_Islands.html" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="social-btn tripadvisor-btn" 
+            aria-label="TripAdvisor Buon Appetito"
+            title="Ver opiniones en TripAdvisor"
+          >
+            <svg class="social-svg" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Enlaces Legales Oficiales en Verde Muted -->
+        <nav class="footer-legal-nav" aria-label="Enlaces legales">
+          <a href="/aviso-legal" class="legal-link" id="legal-aviso">Aviso Legal</a>
+          <span class="legal-divider">·</span>
+          <a href="/privacidad" class="legal-link" id="legal-privacidad">Privacidad</a>
+          <span class="legal-divider">·</span>
+          <a href="/cookies" class="legal-link" id="legal-cookies">Cookies</a>
+        </nav>
+
+        <p class="footer-copyright">
+          &copy; 2026 Buon Appetito · Port d'Andratx, Mallorca.
+        </p>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts oficiales sincronizados -->
+  <script is:inline src="/data/menu-data.js"></script>
+
+  <script is:inline>
+    const UI_TEXT = {
+      es: {
+        heroTitle: "Nuestra Carta",
+        btnBack: "Volver",
+        taxIncluded: "Precios con IVA incluido (10%).",
+        allergensNote: "Disponemos de opciones sin gluten (pastas y pizzas artesanales). Si tiene alguna alergia o intolerancia alimentaria, por favor comuníqueselo a nuestro equipo antes de realizar su comanda.",
+        legalAviso: "Aviso Legal",
+        legalPrivacidad: "Privacidad",
+        legalCookies: "Cookies"
+      },
+      en: {
+        heroTitle: "Our Menu",
+        btnBack: "Back",
+        taxIncluded: "All prices include 10% VAT.",
+        allergensNote: "Gluten-free options available (artisanal pasta and pizzas). If you have any food allergy or intolerance, please inform our team before ordering.",
+        legalAviso: "Legal Notice",
+        legalPrivacidad: "Privacy Policy",
+        legalCookies: "Cookies"
+      },
+      de: {
+        heroTitle: "Unsere Speisekarte",
+        btnBack: "Zurück",
+        taxIncluded: "Alle Preise inklusive 10% MwSt.",
+        allergensNote: "Glutenfreie Optionen verfügbar (hausgemachte Pasta und Pizzen). Bitte informieren Sie unser Team vor Ihrer Bestellung über eventuelle Allergien oder Unverträglichkeiten.",
+        legalAviso: "Impressum",
+        legalPrivacidad: "Datenschutz",
+        legalCookies: "Cookies"
+      }
+    };
+
+    const CATEGORY_SVGS = {
+      entrantes: `<svg class="cat-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>`,
+      ensaladas: `<svg class="cat-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
+      pescados: `<svg class="cat-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.46-3.44 6-7 6s-7.56-2.54-8.5-6Z"/><path d="M18 12v.5"/><path d="M16 17.93a12.6 12.6 0 0 1-5.3-5.93 12.6 12.6 0 0 1 5.3-5.93"/><path d="M6.5 12 2 7.5v9L6.5 12Z"/></svg>`,
+      carnes: `<svg class="cat-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 14 1.5 1.5a3.54 3.54 0 0 0 5-5L19 9"/><path d="M16 16c-3.3 3.3-8.5 3-11.8-.3-3.3-3.3-3.6-8.5-.3-11.8 2.5-2.5 6.6-2.8 9.5-.7l-3.2 3.2a2 2 0 1 0 2.8 2.8L16.2 6c2.1 2.9 1.8 7-.2 9.5l0 .5Z"/><circle cx="12" cy="12" r="1.5"/></svg>`,
+      arroces: `<svg class="cat-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="13" rx="8" ry="4"/><path d="M4 13v2a8 4 0 0 0 16 0v-2"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M8 8c.5-1.5 2-2 4-2s3.5.5 4 2"/></svg>`,
+      pastas: `<svg class="cat-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"/><path d="M8 2v8a4 4 0 0 0 8 0V2"/><path d="M7 14c2.5 1 7.5 1 10 0"/><path d="M6 18c3 1 9 1 12 0"/></svg>`,
+      pizzas: `<svg class="cat-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2-9.5 17.5a15 15 0 0 0 19 0L12 2Z"/><path d="M5.5 16.5a12 12 0 0 0 13 0"/><circle cx="12" cy="9" r="1"/><circle cx="10" cy="13" r="1"/><circle cx="14" cy="13" r="1"/></svg>`,
+      bebidas: `<svg class="cat-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 22h8"/><path d="M12 15v7"/><path d="M5 3h14l-5 7.5v4.5h-4V10.5L5 3Z"/><path d="M6.5 6h11"/></svg>`
+    };
+
+    let currentLang = 'es';
+    let menuData = null;
+    let scrollObserver = null;
+
+    async function initMenu() {
+      if (window.MENU_DATA) {
+        menuData = window.MENU_DATA;
+      } else {
+        try {
+          const res = await fetch('/data/menu.json');
+          if (res.ok) menuData = await res.json();
+        } catch (e) {
+          console.warn('Error loading menu.json', e);
+        }
+      }
+
+      setupEventListeners();
+      updateUILanguage();
+      renderMenu();
+    }
+
+    function setupEventListeners() {
+      const btnBack = document.getElementById('btn-back');
+      if (btnBack) {
+        btnBack.addEventListener('click', () => {
+          if (window.history.length > 1) {
+            window.history.back();
+          } else {
+            window.location.href = '/';
+          }
+        });
+      }
+
+      const langContainer = document.getElementById('lang-nav-container');
+      const langPillBtn = document.getElementById('lang-pill-btn');
+      const langCloseBtn = document.getElementById('lang-opt-close');
+      const langLabel = document.getElementById('lang-current-label');
+
+      if (langPillBtn && langContainer) {
+        langPillBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          langContainer.classList.add('open');
+          langPillBtn.setAttribute('aria-expanded', 'true');
+        });
+
+        if (langCloseBtn) {
+          langCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langContainer.classList.remove('open');
+            langPillBtn.setAttribute('aria-expanded', 'false');
+          });
+        }
+
+        document.addEventListener('click', (e) => {
+          if (langContainer && !langContainer.contains(e.target)) {
+            langContainer.classList.remove('open');
+            langPillBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        window.addEventListener('scroll', () => {
+          if (langContainer.classList.contains('open')) {
+            langContainer.classList.remove('open');
+            langPillBtn.setAttribute('aria-expanded', 'false');
+          }
+        }, { passive: true });
+
+        document.querySelectorAll('.lang-opt-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const selected = btn.getAttribute('data-lang');
+            if (selected && selected !== currentLang) {
+              const langMessages = {
+                es: 'ACTUALIZANDO CARTA...',
+                en: 'UPDATING MENU...',
+                de: 'SPEISEKARTE WIRD GELADEN...'
+              };
+              if (typeof window.showPizzaMenuLoader === 'function') {
+                window.showPizzaMenuLoader(langMessages[selected] || 'ACTUALIZANDO CARTA...', 750);
+              }
+
+              currentLang = selected;
+              if (langLabel) langLabel.textContent = selected.toUpperCase();
+              document.querySelectorAll('.lang-opt-btn').forEach(el => {
+                el.classList.toggle('active', el.getAttribute('data-lang') === selected);
+              });
+              langContainer.classList.remove('open');
+              langPillBtn.setAttribute('aria-expanded', 'false');
+              updateUILanguage();
+              renderMenu();
+            } else {
+              langContainer.classList.remove('open');
+              langPillBtn.setAttribute('aria-expanded', 'false');
+            }
+          });
+        });
+      }
+    }
+
+    function updateUILanguage() {
+      const t = UI_TEXT[currentLang];
+      if (!t) return;
+
+      const titleEl = document.getElementById('hero-title');
+      const txtBackEl = document.getElementById('txt-back');
+      const taxNoteEl = document.getElementById('tax-note');
+      const allergenNoteEl = document.getElementById('allergen-note');
+      const legalAvisoEl = document.getElementById('legal-aviso');
+      const legalPrivacidadEl = document.getElementById('legal-privacidad');
+      const legalCookiesEl = document.getElementById('legal-cookies');
+
+      if (titleEl) titleEl.textContent = t.heroTitle;
+      if (txtBackEl) txtBackEl.textContent = t.btnBack;
+      if (taxNoteEl) taxNoteEl.textContent = t.taxIncluded;
+      if (allergenNoteEl) allergenNoteEl.textContent = t.allergensNote;
+      if (legalAvisoEl) legalAvisoEl.textContent = t.legalAviso;
+      if (legalPrivacidadEl) legalPrivacidadEl.textContent = t.legalPrivacidad;
+      if (legalCookiesEl) legalCookiesEl.textContent = t.legalCookies;
+
+      if (menuData && menuData.categories) {
+        const nav = document.getElementById('category-nav');
+        if (nav) {
+          nav.innerHTML = menuData.categories.map((cat, idx) => `
+            <button type="button" class="cat-nav-link ${idx === 0 ? 'active' : ''}" data-cat="${cat.id}">
+              <span class="cat-svg-box">${CATEGORY_SVGS[cat.id] || ''}</span>
+              <span class="cat-text">${cat[currentLang] || cat.es}</span>
+            </button>
+          `).join('');
+
+          nav.querySelectorAll('.cat-nav-link').forEach(btn => {
+            btn.addEventListener('click', () => {
+              nav.querySelectorAll('.cat-nav-link').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+              const catId = btn.getAttribute('data-cat');
+              const target = document.getElementById(`cat-${catId}`);
+              if (target) {
+                const headerOffset = 120;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            });
+          });
+        }
+      }
+    }
+
+    function renderMenu() {
+      if (!menuData || !menuData.items) return;
+
+      const contentArea = document.getElementById('menu-content');
+      if (!contentArea) return;
+
+      const items = menuData.items;
+      const categories = menuData.categories;
+
+      let html = '';
+      categories.forEach(cat => {
+        const catItems = items.filter(i => i.category === cat.id);
+        if (catItems.length === 0) return;
+
+        const catTitle = cat[currentLang] || cat.es;
+
+        html += `
+          <section class="menu-category-section" id="cat-${cat.id}">
+            <div class="menu-category-header">
+              <h2 class="category-heading">${catTitle}</h2>
+            </div>
+
+            <div class="menu-editorial-list">
+              ${catItems.map(item => {
+                const trans = item[currentLang] || item.es;
+                const hasDesc = Boolean(trans.description && trans.description.trim().length > 0);
+
+                return `
+                  <article class="menu-item-row" id="item-${item.id}">
+                    <div class="menu-item-top">
+                      <div class="menu-item-title-group">
+                        <h3 class="menu-item-title">${trans.title}</h3>
+                      </div>
+                      <span class="menu-item-dots" aria-hidden="true"></span>
+                      <span class="menu-item-price">${item.price.toFixed(2)} €</span>
+                    </div>
+                    ${hasDesc ? `<p class="menu-item-desc">${trans.description}</p>` : ''}
+                  </article>
+                `;
+              }).join('')}
+            </div>
+          </section>
+        `;
+      });
+
+      contentArea.innerHTML = html;
+      setupScrollSpy();
+    }
+
+    function setupScrollSpy() {
+      if (scrollObserver) {
+        scrollObserver.disconnect();
+      }
+
+      const sections = document.querySelectorAll('.menu-category-section');
+      const navBtns = document.querySelectorAll('.cat-nav-link');
+      if (sections.length === 0 || navBtns.length === 0) return;
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '-130px 0px -65% 0px',
+        threshold: 0
+      };
+
+      scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id.replace('cat-', '');
+            navBtns.forEach(btn => {
+              if (btn.getAttribute('data-cat') === id) {
+                btn.classList.add('active');
+                btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+              } else {
+                btn.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(sec => scrollObserver.observe(sec));
+    }
+
+    document.addEventListener('DOMContentLoaded', initMenu);
+  </script>
+
+</body>
+</html>
+
+<style is:global>
+/* ========================================================
+   ESTILOS DE CARTA DIGITAL · BUON APPETITO (PORT D'ANDRATX)
+   ======================================================== */
+:root {
+  --bg-page: #FAF9F6;
+  --bg-surface: #FFFFFF;
+  --bg-surface-subtle: #F3F5F1;
+
+  --color-primary: #183321;
+  --color-primary-light: #2A4F36;
+  --color-accent: #9E4221;
+  --color-accent-hover: #833519;
+
+  --color-text: #191C19;
+  --color-text-muted: #5A655C;
+  --color-text-faint: #8F998F;
+
+  --color-border: #E8ECE6;
+  --color-border-subtle: #F1F4EE;
+  --color-dots: #B0B7AC;
+
+  --footer-bg: linear-gradient(180deg, #E2EAE3 0%, #D8E3DA 50%, #CDDCD0 100%);
+  --footer-border: #B8CEBC;
+  --footer-text: #183321;
+  --footer-muted: #2C4132;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --max-width: 1120px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-pill: 9999px;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
+  -webkit-text-size-adjust: 100%;
+}
+
+.menu-body {
+  background-color: var(--bg-page);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+  position: relative;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  background: rgba(24, 51, 33, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand-logo-link {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Selector Lateral Horizontal */
+.lang-nav-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lang-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.lang-chevron {
+  stroke: rgba(255, 255, 255, 0.8);
+  transition: transform 0.2s ease;
+}
+
+.lang-lateral-menu {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  transform-origin: right center;
+  opacity: 0;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(16, 36, 22, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-pill);
+  padding: 3px 6px 3px 8px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  z-index: 15;
+  transition: opacity 0.2s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.lang-nav-container.open .lang-lateral-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+.lang-nav-container.open .lang-pill-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lang-opt-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 7px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.lang-opt-btn:hover {
+  color: #FFFFFF;
+}
+
+.lang-opt-btn.active {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(158, 66, 33, 0.4);
+}
+
+.lang-opt-sep {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.7rem;
+  user-select: none;
+}
+
+.lang-opt-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.lang-opt-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+/* Botón Volver Atrás */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--color-accent);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  box-shadow: 0 3px 10px rgba(158, 66, 33, 0.45);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-back:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 5px 14px rgba(158, 66, 33, 0.55);
+  transform: translateY(-1px);
+}
+
+.back-icon {
+  stroke: #FFFFFF;
+  transition: transform 0.2s ease;
+}
+
+.btn-back:hover .back-icon {
+  transform: translateX(-2px);
+}
+
+/* Hero */
+.menu-hero {
+  padding: 38px 0 24px;
+  text-align: center;
+  background: transparent;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.35rem, 6vw, 3.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  margin: 0;
+}
+
+.hero-subtitle {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-top: 9px;
+}
+
+/* Category Nav */
+.category-nav-bar {
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  background: rgba(250, 249, 246, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.nav-container {
+  padding: 0 12px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.category-nav-track {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+  scroll-behavior: smooth;
+  touch-action: pan-x pan-y;
+}
+
+.category-nav-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-nav-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  border-radius: 0;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+
+.cat-svg-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  transition: transform 0.2s ease;
+}
+
+.cat-nav-link:hover {
+  color: var(--color-text);
+}
+
+.cat-nav-link:hover .cat-svg-box {
+  transform: translateY(-1px);
+}
+
+.cat-nav-link.active {
+  color: var(--color-text);
+  font-weight: 700;
+  border-bottom-color: var(--color-accent);
+}
+
+.cat-nav-link.active .cat-svg-box {
+  transform: scale(1.08);
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding-top: 28px;
+  padding-bottom: 56px;
+}
+
+.menu-category-section {
+  margin-bottom: 44px;
+  scroll-margin-top: 125px;
+}
+
+.menu-category-header {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.menu-category-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 40px;
+  height: 2.5px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.category-heading {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.menu-editorial-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2px;
+}
+
+@media (min-width: 860px) {
+  .menu-editorial-list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 44px;
+  }
+}
+
+.menu-item-row {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+  transition: background-color 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.menu-item-row:hover {
+  background-color: rgba(158, 66, 33, 0.025);
+}
+
+.menu-item-top {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.menu-item-title-group {
+  display: inline-flex;
+  align-items: baseline;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: calc(100% - 85px);
+}
+
+.menu-item-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.menu-item-dots {
+  flex: 1 1 12px;
+  min-width: 8px;
+  margin: 0 8px;
+  height: 12px;
+  background-image: radial-gradient(circle, var(--color-dots) 1.2px, transparent 1.2px);
+  background-size: 8px 3px;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  align-self: baseline;
+  opacity: 0.85;
+}
+
+.menu-item-price {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+  margin-left: auto;
+}
+
+.menu-item-desc {
+  font-size: 0.85rem;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  margin: 4px 0 0 0;
+  max-width: 92%;
+  overflow-wrap: break-word;
+}
+
+/* Footer */
+.site-footer {
+  background: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
+  color: var(--footer-text);
+  padding: 38px 0 30px;
+  margin-top: auto;
+}
+
+.footer-card {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.tax-note {
+  font-weight: 700;
+  color: var(--footer-text);
+  font-size: 0.92rem;
+  margin-bottom: 8px;
+}
+
+.allergen-note {
+  font-size: 0.84rem;
+  font-weight: 400;
+  color: var(--footer-muted);
+  line-height: 1.55;
+  margin-bottom: 22px;
+  padding: 0 10px;
+}
+
+.footer-address {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 0.86rem;
+  color: var(--footer-text);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.location-icon {
+  stroke: var(--color-accent);
+}
+
+.footer-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--footer-border);
+  background: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(24, 51, 33, 0.08);
+  transition: all 0.22s ease;
+}
+
+.social-btn.instagram-btn {
+  color: #E1306C;
+}
+
+.social-btn.instagram-btn:hover {
+  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+  color: #FFFFFF;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 39, 67, 0.28);
+}
+
+.social-btn.tripadvisor-btn {
+  color: #00AA6C;
+}
+
+.social-btn.tripadvisor-btn:hover {
+  background: #00AA6C;
+  color: #FFFFFF;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 170, 108, 0.28);
+}
+
+.footer-legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  margin-bottom: 14px;
+}
+
+.legal-link {
+  color: var(--footer-muted);
+  font-weight: 500;
+  transition: color 0.15s ease;
+  text-decoration: none;
+}
+
+.legal-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.legal-divider {
+  color: #7A9180;
+  font-size: 0.75rem;
+}
+
+.footer-copyright {
+  font-size: 0.78rem;
+  color: #4B6352;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .header-container {
+    height: 58px;
+    padding: 0 8px;
+  }
+
+  .brand-logo {
+    height: 33px;
+  }
+
+  .header-actions {
+    gap: 7px;
+  }
+
+  .lang-pill-btn {
+    padding: 4px 8px;
+    font-size: 0.74rem;
+  }
+
+  .btn-back {
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    gap: 4px;
+  }
+
+  .category-nav-bar {
+    top: 58px;
+  }
+
+  .cat-nav-link {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+
+  .hero-title {
+    font-size: 2.15rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .category-heading {
+    font-size: 1.3rem;
+  }
+
+  .menu-item-row {
+    padding: 9px 4px;
+  }
+
+  .menu-item-title-group {
+    max-width: calc(100% - 75px);
+  }
+
+  .menu-item-title {
+    font-size: 0.96rem;
+  }
+
+  .menu-item-dots {
+    margin: 0 6px;
+    min-width: 6px;
+  }
+
+  .menu-item-price {
+    font-size: 0.98rem;
+  }
+
+  .menu-item-desc {
+    font-size: 0.82rem;
+    max-width: 98%;
+  }
+
+  .footer-address {
+    font-size: 0.82rem;
+  }
+}
+</style>

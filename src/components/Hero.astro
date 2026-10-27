@@ -1,66 +1,58 @@
 ---
+import HeroActions from './ui/HeroActions';
 ---
 
 <!-- ======================================================== -->
 <!-- 2. FULL-BLEED HERO SECTION (Inspirado fielmente en Arko) -->
 <!-- ======================================================== -->
-<section id="inicio" class="relative h-svh min-h-[560px] w-full flex flex-col justify-end items-center pb-8 sm:pb-14 overflow-hidden">
+<section id="inicio" class="relative h-svh min-h-[600px] w-full flex flex-col justify-end items-center pb-14 sm:pb-20 md:pb-24 overflow-hidden">
   
-  <!-- Edge-to-edge Photography Background (Listo para video de alta definición) -->
-  <img 
-    src="https://lh3.googleusercontent.com/aida/AEtjO1V9Gtc5wtktuFgluQSqMDbV1FLpQaIhYdUzvqpvq79Z0xkc8x0he0Gdhy6vd280tY70VPjLURQaN540HsJ2C0RJAOATdOLFCuVRIXpj7SNVO2n-YKlkgqWC3sEJ0E31qI4fC__lpGMoCuS95zWnXoU9m-kh87cF5XYh3y3exyg7_PFOJIm1hkJEO6OVdnu6VOBmx86pLqW7Y5SRR-LuBo_WXxUbAhT1huAc4QPz7l3IFChCk_-1AisWhg" 
-    alt="Buon Appetito Port d'Andratx" 
-    class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out"
-  />
+  <!-- Background Video en Bucle Continuo (Autoplay, Muted, Loop) -->
+  <video
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="auto"
+    poster="https://lh3.googleusercontent.com/aida/AEtjO1V9Gtc5wtktuFgluQSqMDbV1FLpQaIhYdUzvqpvq79Z0xkc8x0he0Gdhy6vd280tY70VPjLURQaN540HsJ2C0RJAOATdOLFCuVRIXpj7SNVO2n-YKlkgqWC3sEJ0E31qI4fC__lpGMoCuS95zWnXoU9m-kh87cF5XYh3y3exyg7_PFOJIm1hkJEO6OVdnu6VOBmx86pLqW7Y5SRR-LuBo_WXxUbAhT1huAc4QPz7l3IFChCk_-1AisWhg"
+    class="absolute inset-0 w-full h-full object-cover object-center"
+  >
+    <source src="/assets/hero/Hero_Andratx_V3_A_Web.mp4" type="video/mp4" />
+    <!-- Imagen de respaldo por si el navegador o dispositivo restringe vídeo -->
+    <img 
+      src="https://lh3.googleusercontent.com/aida/AEtjO1V9Gtc5wtktuFgluQSqMDbV1FLpQaIhYdUzvqpvq79Z0xkc8x0he0Gdhy6vd280tY70VPjLURQaN540HsJ2C0RJAOATdOLFCuVRIXpj7SNVO2n-YKlkgqWC3sEJ0E31qI4fC__lpGMoCuS95zWnXoU9m-kh87cF5XYh3y3exyg7_PFOJIm1hkJEO6OVdnu6VOBmx86pLqW7Y5SRR-LuBo_WXxUbAhT1huAc4QPz7l3IFChCk_-1AisWhg" 
+      alt="Buon Appetito Port d'Andratx" 
+      class="absolute inset-0 w-full h-full object-cover object-center"
+    />
+  </video>
 
-  <!-- Cinematic Gradients estilo Arko para máxima legibilidad sin tapar el centro -->
+  <!-- Cinematic Gradients estilo Arko para máxima legibilidad sin tapar el vídeo -->
+  <div aria-hidden="true" class="absolute inset-0 bg-black/15 pointer-events-none"></div>
   <div aria-hidden="true" class="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none"></div>
-  <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none"></div>
+  <!-- Efecto ambiental verde oliva #183321 sutil a ras de suelo en el pie del Hero (no sube hacia los botones) -->
+  <div 
+    aria-hidden="true" 
+    class="absolute inset-x-0 bottom-0 h-10 sm:h-14 pointer-events-none" 
+    style="background: linear-gradient(to top, #183321 0%, rgba(24, 51, 33, 0.75) 30%, transparent 100%);"
+  ></div>
 
-  <!-- Hero Content Center-Bottom: Minimalista y Despejado -->
-  <div class="relative z-10 max-w-3xl mx-auto px-4 text-center space-y-4 sm:space-y-5">
+  <!-- Hero Content Center-Bottom: Minimalista y Despejado con respiración amplia -->
+  <div class="relative z-10 max-w-3xl mx-auto px-4 text-center space-y-4 sm:space-y-6">
     
-    <!-- Main Editorial Headline: Playfair Display con jerarquía H1 sólida y proporcionada -->
-    <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-center leading-[1.18] max-w-xs sm:max-w-2xl mx-auto">
-      <span class="block bg-gradient-to-r from-[#FBF9F5] via-[#EFE8DD] to-[#DDD4C4] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
-        Cocina mediterránea
-      </span>
-      <span class="block bg-gradient-to-r from-[#FBF9F5] via-[#EFE8DD] to-[#DDD4C4] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
-        con alma italiana
-      </span>
+    <!-- Eyebrow: Ubicación exacta como en Arko (letras sutiles que ceden todo el protagonismo al vídeo) -->
+    <p class="font-['Questrial',sans-serif] text-[9.5px] sm:text-[11px] md:text-xs tracking-[0.28em] uppercase text-[#EFE8DD]/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+      AV. MATEO BOSCH 24 · PORT D'ANDRATX
+    </p>
+
+    <!-- Main Editorial Headline: Cormorant Garamond Light (más esbelta y delicada como en Arko) -->
+    <h1 class="font-['Cormorant_Garamond',Georgia,serif] text-2xl sm:text-4xl md:text-[42px] font-light tracking-[0.015em] text-center leading-[1.18] max-w-xs sm:max-w-xl mx-auto text-[#FBF9F5] drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]">
+      Cocina mediterránea<br />con alma italiana
     </h1>
 
-    <!-- 2 Rounded Pill CTAs (Estilo Apple Glass Translúcido, finos y compactos) -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3.5 w-full max-w-[270px] sm:max-w-md mx-auto pt-2 sm:pt-3">
-      
-      <!-- Button 1: Reservar Mesa (Abre el motor de reservas en pestaña nueva) -->
-      <a 
-        href="/reservar" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="w-full sm:w-auto inline-flex items-center justify-center h-11 px-7 rounded-full bg-[#FBF9F5]/80 hover:bg-[#FBF9F5]/95 text-[#183321] backdrop-blur-xl border border-white/50 shadow-[0_8px_30px_rgba(0,0,0,0.2)] text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 active:scale-95 cursor-pointer"
-      >
-        RESERVAR MESA
-      </a>
-
-      <!-- Button 2: Ver Menú (Translucent Frosted Dark Glass) -->
-      <a 
-        href="#menu" 
-        class="w-full sm:w-auto inline-flex items-center justify-center h-11 px-7 rounded-full bg-black/25 hover:bg-black/40 text-white backdrop-blur-xl border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.2)] text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase transition-all duration-300 active:scale-95 cursor-pointer"
-      >
-        VER MENÚ
-      </a>
-      
+    <!-- 2 Rounded Pill CTAs con efecto Liquid Glass (21st.dev) con holgura para respirar -->
+    <div class="pt-2 sm:pt-4">
+      <HeroActions client:load />
     </div>
 
   </div>
-
-  <!-- Sutil Flecha de desplazamiento (discreta al fondo) -->
-  <a 
-    href="#sobre-nosotros" 
-    class="relative z-10 text-white/50 hover:text-white transition-colors pt-3 animate-bounce-slow" 
-    aria-label="Ir a Sobre Nosotros"
-  >
-    <span class="material-symbols-outlined text-xl">arrow_downward</span>
-  </a>
 </section>

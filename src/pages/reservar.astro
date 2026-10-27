@@ -2,6 +2,7 @@
 // web/src/pages/reservar.astro
 // Motor de Reservas Oficial — Estilo Restoo (Tahini Puerto Portals)
 // Especialmente diseñado para Buon Appetito (Port d'Andratx)
+import Preloader from '../components/Preloader.astro';
 const title = "Reserva de Mesa | Buon Appetito • Port d'Andratx";
 const description = "Reserva tu mesa en Buon Appetito, Port d'Andratx. Terraza con vistas al puerto y salón climatizado.";
 ---
@@ -856,6 +857,7 @@ const description = "Reserva tu mesa en Buon Appetito, Port d'Andratx. Terraza c
   </style>
 </head>
 <body>
+  <Preloader />
   
   <div class="booking-wrapper">
     <div class="booking-container">

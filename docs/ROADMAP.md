@@ -2,45 +2,48 @@
 
 ## 1. Tareas Completadas
 
-* [x] **Arquitectura y Proyecto Base:**
-  * Proyecto web desarrollado en Astro con Tailwind CSS v4 y React integrado en `web/`.
-  * Tokens de diseño editorial: verde oliva (`#183321`), terracota cálido (`#9E4221`) y marfil claro (`#FBF9F5`).
-  * Tipografías de alta gama (*Playfair Display* y *Plus Jakarta Sans*).
+* [x] **Hero Cinemático & Atmósfera Arko:**
+  * Metraje de vídeo en bucle continuo (`Hero_Andratx_V3_A_Web.mp4`) con `autoplay`, `loop`, `muted` y `playsinline` *(versión provisional para validar estilo visual y encuadre)*.
+  * Tipografía editorial *Cormorant Garamond Light* para el titular y *Questrial* para la ubicación en Port d'Andratx.
+  * Botones de cristal líquido 100% transparentes (*Reservar mesa* hacia `/reservar` y *Ver menú* hacia `/carta`).
+  * Espaciado amplio y aireado para máxima amplitud del vídeo en móvil y escritorio.
+  * Icono de menú hamburguesa animado con 4 líneas escalonadas (*AlignRightIcon*).
 
-* [x] **Componentes Modulares de la Web:**
-  * `Header.astro`: Barra flotante translúcida con transición suave al hacer scroll.
-  * `MobileMenu.astro`: Menú lateral editorial para móviles con bloqueo estricto del scroll de fondo.
-  * `Hero.astro`: Titular en 2 líneas y botones estilo cristal esmerilado (*"Reservar mesa"* y *"Nuestra carta"*).
-  * `About.astro`: Historia del restaurante y galería circular 3D interactiva en WebGL con shaders OGL y visor Lightbox.
-  * `LaNostraPizza.astro`: Infografía artesanal con pizza central y flechas vectoriales SVG hechas a mano.
-  * `Reviews.astro`: Carrusel interactivo estilo polaroid con fotos reales y sello oficial de Google Maps 4.9 estrellas.
-  * `LocationReservations.astro`: Formulario de reservas directo por WhatsApp (con protección anti-zoom para iPhone) y mapa de Google Maps con botón "CÓMO LLEGAR".
-  * `Footer.astro`: Pie de página oscuro elegante con sello *BA Est. 1998* y créditos MYNEXT vinculados.
+* [x] **Transición Verde Oliva & Cabecera «Sobre Nosotros»:**
+  * Degradado verde oliva corporativo (`#183321`) sutil a ras de suelo en el pie del Hero, por debajo de los botones.
+  * Cabecera editorial sólida verde oliva en `About.astro` empalmando a 0px con el Hero.
+  * Titular *«Nuestra Esencia / El placer de compartir una buena mesa»* en marfil y terracota, con paso limpio a la sección crema.
+  * Galería circular 3D interactiva en WebGL con la foto destacada de Aymeric Laporte.
 
-* [x] **Páginas Independientes:**
-  * Páginas legales conforme al RGPD: Aviso Legal (`/aviso-legal`), Cookies (`/cookies`) y Privacidad (`/privacidad`).
-  * Página dedicada para reservas (`/reservar`).
+* [x] **Header y Navegación Adaptativa:**
+  * Fondo ambiental difuminado en reposo que pasa a barra compacta de vidrio esmerilado al hacer scroll.
+  * Eliminación de bordes subpixel para suprimir cualquier línea horizontal no deseada.
+  * Breakpoint responsive en tablets (`lg:` a 1024px) para evitar aglomeración de enlaces en iPad vertical.
 
-* [x] **Auditoría Forense y Carta Digital (Menú 105 ítems):**
-  * Validación del 100% de las correcciones de Google Gemini y auditoría independiente frente al PDF original.
-  * Extracción y generación del dataset maestro oficial `CORREGUIDO MENU.docx` (105 platos en Español, Inglés y Alemán).
-  * Aplicación interactiva de la carta digital en `menu carta:estudio/carta-digital/` con diseño de carta editorial (sin cajas cuadradas ni píldoras pesadas).
+* [x] **Carta Digital & Loaders:**
+  * Página completa de Carta Gastronómica (`/carta`) con categorías, alérgenos, fotos y precios.
+  * Animación de precarga con temática de pizza artesanal en horno de leña (`PizzaMenuLoader.astro`).
 
-* [x] **Validación y Repositorio en GitHub:**
-  * Compilación estática completada con 0 errores (`npm run build`).
-  * Repositorio remoto `musa3101/W-baa` sincronizado en GitHub con las ramas `dev` y `main`.
+* [x] **Páginas Legales y Fiscales Oficiales:**
+  * Datos fiscales reales incorporados: Titular *Buon Apeetito av.24 SL.*, CIF *B26841494*.
+  * Páginas de Aviso Legal (`/aviso-legal`), Cookies (`/cookies`), Privacidad (`/privacidad`) y Reservas (`/reservar`).
+
+* [x] **Auditoría Multi-dispositivo Integral:**
+  * Auditoría satisfactoria en Móvil (390×844), iPad (768×1024) y Ordenador (1280×900 / 1440×900).
+  * 0 errores de consola, sin desbordamiento horizontal y compilación de producción en 540 ms.
 
 ---
 
-## 2. Tareas en Progreso
+## 2. Tareas en Progreso / Próxima Sesión
 
-* [ ] Verificación de despliegue automático en el panel de Cloudflare Pages a través del repositorio de GitHub.
+* [ ] Sustitución del vídeo del Hero por el metraje definitivo en alta definición de Port d'Andratx *(el actual es provisional)*.
+* [ ] Actualización de precios pendientes en la carta digital gastronómica.
+* [ ] Incorporación de la nueva carta completa de vinos y bodega.
 
 ---
 
 ## 3. Próximas Mejoras Prioritarias
 
-1. **Integración de la Carta Digital:** Incorporar la sección de la carta digital interactiva en la web principal (para la próxima sesión).
-2. **Fotografía Gastronómica Definitiva:** Sustituir imágenes provisionales restantes por fotos de alta resolución de las pizzas y platos del restaurante.
-3. **Cartas en PDF:** Enlazar los archivos PDF descargables finales cuando estén maquetados.
-4. **Dominio Personalizado:** Configurar el dominio oficial en Cloudflare Pages con certificado SSL activo.
+1. **Cartas en PDF:** Enlazar los archivos PDF descargables finales cuando estén maquetados.
+2. **Dominio Personalizado:** Conectar el dominio oficial definitivo en Cloudflare Pages.
+3. **Métricas de «Sobre Nosotros»:** Evaluar sustitución de las métricas (`Km 0`, `1ª`, `100%`) por una cita o dedicatoria de la familia Buon Appetito.

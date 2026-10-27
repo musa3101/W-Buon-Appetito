@@ -2,35 +2,39 @@
 ---
 
 <!-- ======================================================== -->
-<!-- HEADER ESTILO ARKO (Vignette Oliva en Hero -> Frosted Oliva en Scroll) -->
+<!-- HEADER ESTILO ARKO (Ambient Gradient en Hero -> Frosted Oliva en Scroll) -->
 <!-- ======================================================== -->
 <header 
   id="main-header" 
-  class="fixed top-0 inset-x-0 z-[80] w-full header-hero transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]"
+  class="fixed top-0 inset-x-0 z-[80] w-full header-hero"
 >
-  <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 flex items-center justify-between py-5 sm:py-6 transition-all duration-300" id="header-inner">
+  <div 
+    class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 flex items-center justify-between transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] py-5 sm:py-6" 
+    id="header-inner"
+  >
     
-    <!-- Brand Logo Oficial -->
+    <!-- Brand Logo Oficial (Brillando sobre el fondo del Hero) -->
     <a href="/#inicio" class="flex items-center gap-2 group" aria-label="Buon Appetito - Volver al inicio">
       <img 
         src="/assets/logos/logo-buon-appetito-white.png" 
         alt="Buon Appetito Port d'Andratx" 
-        class="h-7 sm:h-9 md:h-10 w-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+        id="header-logo"
+        class="h-8 sm:h-9 md:h-10 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-all duration-300"
       />
     </a>
 
     <!-- Desktop Navigation Links: Clean 4 sections -->
-    <nav class="hidden md:flex items-center space-x-9" aria-label="Navegación principal">
-      <a href="/#inicio" class="text-white/80 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-sm">Inicio</a>
-      <a href="/#sobre-nosotros" class="text-white/70 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-sm">Sobre nosotros</a>
-      <a href="/#menu" class="text-white/70 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-sm">Menú</a>
-      <a href="/#donde-estamos" class="text-white/70 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-sm">Dónde estamos</a>
+    <nav class="hidden lg:flex items-center space-x-8 xl:space-x-10" aria-label="Navegación principal">
+      <a href="/#inicio" class="text-white/85 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Inicio</a>
+      <a href="/#sobre-nosotros" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Sobre nosotros</a>
+      <a href="/carta" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Menú</a>
+      <a href="/#donde-estamos" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Dónde estamos</a>
     </nav>
 
-    <!-- Right Actions: Language Selector ONLY + Minimal Hamburger -->
+    <!-- Right Actions: Language Selector ONLY + Animated AlignRightIcon -->
     <div class="flex items-center gap-3 sm:gap-4">
-      <!-- Language Switcher Pill (Desktop Only; en móvil se encuentra dentro del menú drawer) -->
-      <div class="hidden md:inline-flex items-center space-x-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs text-white/90">
+      <!-- Language Switcher Pill (Desktop Only; en móvil y tablet se encuentra dentro del menú drawer) -->
+      <div class="hidden lg:inline-flex items-center space-x-1.5 bg-black/25 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs text-white/90 shadow-sm">
         <button class="text-white font-bold hover:text-white transition-colors cursor-pointer" title="Español">ES</button>
         <span class="text-white/40">·</span>
         <button class="hover:text-white transition-colors cursor-pointer" title="English">EN</button>
@@ -38,17 +42,41 @@
         <button class="hover:text-white transition-colors cursor-pointer" title="Deutsch">DE</button>
       </div>
 
-      <!-- Minimal Hamburger Button Estilo Arko (Sin círculos pesados, 3 líneas limpias y elegantes) -->
+      <!-- Botón Menú Móvil Animado (Para móvil y tablets < 1024px) -->
       <button 
         type="button" 
         id="menu-toggle-btn" 
-        class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 focus:outline-none cursor-pointer group p-2" 
+        class="lg:hidden flex items-center justify-center w-11 h-11 text-white/95 hover:text-white focus:outline-none cursor-pointer group active:scale-90 transition-all p-2 rounded-full hover:bg-white/10" 
         aria-label="Abrir menú"
         aria-expanded="false"
       >
-        <span class="w-6 h-[1.5px] bg-white/90 rounded-full transition-all duration-300 group-hover:bg-white group-active:scale-95"></span>
-        <span class="w-6 h-[1.5px] bg-white/90 rounded-full transition-all duration-300 group-hover:bg-white group-active:scale-95"></span>
-        <span class="w-6 h-[1.5px] bg-white/90 rounded-full transition-all duration-300 group-hover:bg-white group-active:scale-95"></span>
+        <svg 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          stroke-width="2" 
+          class="w-6 h-6 transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+          aria-hidden="true"
+        >
+          <g>
+            <path stroke-dasharray="16" d="M20 5h-13">
+              <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="16;0" />
+            </path>
+            <path stroke-dasharray="12" stroke-dashoffset="12" d="M20 10h-10">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.3s" dur="0.2s" to="0" />
+            </path>
+            <path stroke-dasharray="18" stroke-dashoffset="18" d="M20 15h-16">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.3s" to="0" />
+            </path>
+            <path stroke-dasharray="16" stroke-dashoffset="16" d="M20 20h-13">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.3s" to="0" />
+            </path>
+          </g>
+        </svg>
       </button>
     </div>
 
@@ -56,42 +84,62 @@
 </header>
 
 <style>
-  /* Estado inicial en Hero: completamente transparente y limpio, sin líneas ni cortes */
+  #main-header {
+    transition: background 400ms cubic-bezier(0.32, 0.72, 0, 1),
+                backdrop-filter 400ms cubic-bezier(0.32, 0.72, 0, 1),
+                -webkit-backdrop-filter 400ms cubic-bezier(0.32, 0.72, 0, 1),
+                box-shadow 400ms ease;
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  /* Estado inicial en Hero: Degradado ambiente verde oliva estilo Arko que se funde con el vídeo (sin líneas) */
   .header-hero {
-    background: transparent;
-    border-bottom: none;
+    background: linear-gradient(to bottom, rgba(24, 51, 33, 0.65) 0%, rgba(24, 51, 33, 0.20) 65%, transparent 100%);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none !important;
+    border-bottom: none !important;
     box-shadow: none;
   }
 
-  /* Estado al hacer scroll: barra compacta verde oliva con glassmorphism y sombra elegante (sin líneas duras) */
+  /* Estado al hacer scroll: barra sólida y refinada verde oliva con micro-sombra suave sin líneas */
   .header-scrolled {
-    background: rgba(24, 51, 33, 0.95);
+    background: rgba(24, 51, 33, 0.96);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: none;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45);
   }
 </style>
 
 <script>
-  // Control de scroll idéntico a Arko: cambia suavemente al bajar > 50px
+  // Control de scroll idéntico a Arko: cambia suavemente al bajar > 60px
   const header = document.getElementById('main-header');
   const headerInner = document.getElementById('header-inner');
+  const headerLogo = document.getElementById('header-logo');
 
   function updateHeaderOnScroll() {
     if (!header || !headerInner) return;
-    const isScrolled = window.scrollY > 50;
+    const isScrolled = window.scrollY > 60;
 
     if (isScrolled) {
-      header.classList.remove('header-hero');
-      header.classList.add('header-scrolled');
-      headerInner.classList.remove('py-5', 'sm:py-6');
-      headerInner.classList.add('py-3', 'sm:py-3.5');
+      if (!header.classList.contains('header-scrolled')) {
+        header.classList.remove('header-hero');
+        header.classList.add('header-scrolled');
+        headerInner.classList.remove('py-5', 'sm:py-6');
+        headerInner.classList.add('py-3', 'sm:py-3.5');
+        headerLogo?.classList.add('scale-95');
+      }
     } else {
-      header.classList.remove('header-scrolled');
-      header.classList.add('header-hero');
-      headerInner.classList.remove('py-3', 'sm:py-3.5');
-      headerInner.classList.add('py-5', 'sm:py-6');
+      if (!header.classList.contains('header-hero')) {
+        header.classList.remove('header-scrolled');
+        header.classList.add('header-hero');
+        headerInner.classList.remove('py-3', 'sm:py-3.5');
+        headerInner.classList.add('py-5', 'sm:py-6');
+        headerLogo?.classList.remove('scale-95');
+      }
     }
   }
 

@@ -1,0 +1,302 @@
+---
+// Preloader Oficial Buon Appetito con Animación Lottie de Restaurante
+---
+
+<!-- Chequeo ultrarrápido síncrono para suprimir flash en visitas repetidas -->
+<script is:inline>
+  try {
+    if (sessionStorage.getItem('ba_preloader_seen_v1') === 'true' && !sessionStorage.getItem('ba_nav_to_reservar')) {
+      document.documentElement.classList.add('preloader-already-seen');
+    }
+  } catch (e) {}
+</script>
+
+<div id="site-preloader" class="site-preloader" aria-hidden="true">
+  <div class="preloader-backdrop"></div>
+  <div class="preloader-center-content">
+    
+    <!-- Contenedor del Lottie SVG (Cuchara, tenedor y plato artesanal girando) -->
+    <div id="lottie-preloader-box" class="lottie-preloader-box"></div>
+
+    <!-- Identidad y Subtítulo de Marca -->
+    <div class="preloader-text-group">
+      <span class="preloader-brand-title">Buon Appetito</span>
+      <span id="preloader-brand-sub" class="preloader-brand-sub">PORT D'ANDRATX · MALLORCA</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- Lottie Web Light (Auto-alojado localmente en public/assets/lottie, sin dependencias externas) -->
+<script is:inline src="/assets/lottie/lottie_light.min.js"></script>
+
+<script is:inline>
+  (function initBuonAppetitoPreloader() {
+    const preloader = document.getElementById('site-preloader');
+    const lottieBox = document.getElementById('lottie-preloader-box');
+    const brandSub = document.getElementById('preloader-brand-sub');
+    if (!preloader || !lottieBox) return;
+
+    const SESSION_SEEN_KEY = 'ba_preloader_seen_v1';
+    const FROM_RESERVAR_KEY = 'ba_nav_to_reservar';
+
+    let hasSeenFirstVisit = false;
+    let isNavigatingToReservar = false;
+
+    try {
+      hasSeenFirstVisit = sessionStorage.getItem(SESSION_SEEN_KEY) === 'true';
+      isNavigatingToReservar = sessionStorage.getItem(FROM_RESERVAR_KEY) === 'true';
+    } catch (e) {}
+
+    let lottieAnim = null;
+
+    // Asegurar carga de Lottie
+    function playLottie() {
+      if (lottieAnim) {
+        lottieAnim.play();
+        return;
+      }
+
+      function initAnimation() {
+        if (typeof window.lottie !== 'undefined' && lottieBox) {
+          try {
+            lottieAnim = window.lottie.loadAnimation({
+              container: lottieBox,
+              renderer: 'svg',
+              loop: true,
+              autoplay: true,
+              path: '/assets/lottie/restaurant-preloader.json'
+            });
+          } catch (e) {
+            console.warn('Preloader Lottie error:', e);
+          }
+        }
+      }
+
+      if (typeof window.lottie !== 'undefined') {
+        initAnimation();
+      } else {
+        const interval = setInterval(() => {
+          if (typeof window.lottie !== 'undefined') {
+            clearInterval(interval);
+            initAnimation();
+          }
+        }, 25);
+        setTimeout(() => clearInterval(interval), 2000);
+      }
+    }
+
+    // Ocultar preloader con suave desvanecimiento
+    function hidePreloader(instant = false) {
+      if (instant) {
+        preloader.classList.add('preloader-hidden-instant');
+        preloader.classList.add('preloader-hidden');
+      } else {
+        preloader.classList.remove('preloader-hidden-instant');
+        preloader.classList.add('preloader-hidden');
+      }
+      setTimeout(() => {
+        if (lottieAnim && preloader.classList.contains('preloader-hidden')) {
+          lottieAnim.pause();
+        }
+      }, 550);
+    }
+
+    // Mostrar preloader con texto personalizado
+    function showPreloader(customSub) {
+      if (customSub && brandSub) {
+        brandSub.textContent = customSub;
+      }
+      document.documentElement.classList.remove('preloader-already-seen');
+      preloader.classList.remove('preloader-hidden-instant');
+      preloader.classList.remove('preloader-hidden');
+      playLottie();
+    }
+
+    // 1. Si venimos navegando hacia Reservar Mesa
+    if (isNavigatingToReservar) {
+      try { sessionStorage.removeItem(FROM_RESERVAR_KEY); } catch (e) {}
+      if (brandSub) brandSub.textContent = 'PREPARANDO SU MESA...';
+      playLottie();
+      setTimeout(() => {
+        hidePreloader(false);
+      }, 1350);
+    } 
+    // 2. Si es la primera visita de la sesión en la web: mostrar 1.35s (intervalo 1.2 a 1.5s)
+    else if (!hasSeenFirstVisit) {
+      playLottie();
+      setTimeout(() => {
+        hidePreloader(false);
+        try { sessionStorage.setItem(SESSION_SEEN_KEY, 'true'); } catch (e) {}
+      }, 1350);
+    } 
+    // 3. Si ya se vio en esta sesión (recargas posteriores): ocultar de inmediato
+    else {
+      hidePreloader(true);
+    }
+
+    // Interceptar clics en botones de "Reservar Mesa" (pero NUNCA en la Carta/Menú)
+    function bindReservarButtons() {
+      const reservarLinks = document.querySelectorAll('a[href*="/reservar"], button[data-action="reservar"]');
+      
+      reservarLinks.forEach(link => {
+        if (link.hasAttribute('data-preloader-bound')) return;
+        link.setAttribute('data-preloader-bound', 'true');
+
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href') || '/reservar';
+          const target = link.getAttribute('target');
+
+          showPreloader('PREPARANDO SU MESA...');
+          try { sessionStorage.setItem(FROM_RESERVAR_KEY, 'true'); } catch (e) {}
+
+          if (target === '_blank') {
+            // Pestaña nueva: no interrumpimos navegación nativa, y el loading se desvanece tras 1.4s
+            setTimeout(() => {
+              hidePreloader(false);
+            }, 1400);
+          } else {
+            // Misma ventana: transición suave
+            e.preventDefault();
+            setTimeout(() => {
+              window.location.href = href;
+            }, 700);
+          }
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bindReservarButtons);
+    } else {
+      bindReservarButtons();
+    }
+
+    const observer = new MutationObserver(() => {
+      bindReservarButtons();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  })();
+</script>
+
+<style is:global>
+  /* ========================================================
+     PRELOADER RESTAURANTE · BUON APPETITO (PORT D'ANDRATX)
+     Fondo Rosáceo / Porcelana Cálida Acorde a la Web
+     ======================================================== */
+  html.preloader-already-seen #site-preloader {
+    display: none !important;
+  }
+
+  .site-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    /* Fondo rosáceo porcelana cálido sutil acorde a la web */
+    background: radial-gradient(circle at 50% 45%, #FFFFFF 0%, #FDF7F4 52%, #F7ECE6 100%);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Ocultación suave con fade-out */
+  .site-preloader.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Ocultación instantánea para recargas de sesión sin parpadeos */
+  .site-preloader.preloader-hidden-instant {
+    transition: none !important;
+    display: none !important;
+  }
+
+  .preloader-center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    animation: preloaderContentPop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes preloaderContentPop {
+    0% {
+      opacity: 0;
+      transform: scale(0.92) translateY(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Caja del Lottie */
+  .lottie-preloader-box {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 6px 18px rgba(158, 66, 33, 0.14));
+  }
+
+  .lottie-preloader-box svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+
+  /* Identidad y Tipografía */
+  .preloader-text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .preloader-brand-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #183321;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+
+  .preloader-brand-sub {
+    font-family: "Plus Jakarta Sans", "Outfit", -apple-system, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #9E4221;
+    opacity: 0.95;
+  }
+
+  @media (max-width: 640px) {
+    .lottie-preloader-box {
+      width: 125px;
+      height: 125px;
+    }
+
+    .preloader-brand-title {
+      font-size: 1.45rem;
+    }
+
+    .preloader-brand-sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+    }
+  }
+</style>

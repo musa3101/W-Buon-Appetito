@@ -1,0 +1,2280 @@
+// Datos oficiales de la carta - Buon Appetito
+window.MENU_DATA = {
+  "restaurant": "Buon Appetito",
+  "location": "Port d'Andratx, Mallorca",
+  "source": "CORREGUIDO MENU.docx",
+  "total_items": 105,
+  "categories": [
+    {
+      "id": "entrantes",
+      "order": 1,
+      "es": "Entrantes",
+      "en": "Starters",
+      "de": "Vorspeisen",
+      "icon": "restaurant"
+    },
+    {
+      "id": "ensaladas",
+      "order": 2,
+      "es": "Ensaladas",
+      "en": "Salads",
+      "de": "Salate",
+      "icon": "eco"
+    },
+    {
+      "id": "pescados",
+      "order": 3,
+      "es": "Pescados",
+      "en": "Fish Dishes",
+      "de": "Fischgerichte",
+      "icon": "set_meal"
+    },
+    {
+      "id": "carnes",
+      "order": 4,
+      "es": "Carnes",
+      "en": "Meat Dishes",
+      "de": "Fleischgerichte",
+      "icon": "kebab_dining"
+    },
+    {
+      "id": "arroces",
+      "order": 5,
+      "es": "Arroces",
+      "en": "Rice Dishes",
+      "de": "Reisgerichte",
+      "icon": "rice_bowl"
+    },
+    {
+      "id": "pastas",
+      "order": 6,
+      "es": "Pastas",
+      "en": "Pasta",
+      "de": "Pasta",
+      "icon": "dinner_dining"
+    },
+    {
+      "id": "pizzas",
+      "order": 7,
+      "es": "Pizzas",
+      "en": "Pizzas",
+      "de": "Pizzen",
+      "icon": "local_pizza"
+    },
+    {
+      "id": "bebidas",
+      "order": 8,
+      "es": "Bebidas",
+      "en": "Drinks",
+      "de": "Getränke",
+      "icon": "local_bar"
+    }
+  ],
+  "items": [
+    {
+      "id": "entrantes-01",
+      "num": 1,
+      "category": "entrantes",
+      "price": 7.5,
+      "es": {
+        "title": "Bruschetta de Pan Tostado",
+        "description": "Con tomate y albahaca",
+        "raw": "BRUSCHETTA DE PAN TOSTADO CON TOMATE Y ALBAHACA"
+      },
+      "en": {
+        "title": "Toasted Bruschetta",
+        "description": "With tomatoes and basil",
+        "raw": "TOASTED BRUSCHETTA WITH TOMATOES AND BASIL"
+      },
+      "de": {
+        "title": "Geröstete Bruschetta",
+        "description": "Mit Tomaten und Basilikum",
+        "raw": "GERÖSTETE BRUSCHETTA MIT TOMATEN UND BASILIKUM"
+      }
+    },
+    {
+      "id": "entrantes-02",
+      "num": 2,
+      "category": "entrantes",
+      "price": 8.9,
+      "es": {
+        "title": "Sopa de Tomate",
+        "description": "",
+        "raw": "SOPA DE TOMATE"
+      },
+      "en": {
+        "title": "Tomato Soup",
+        "description": "",
+        "raw": "TOMATO SOUP"
+      },
+      "de": {
+        "title": "Tomatensuppe",
+        "description": "",
+        "raw": "TOMATENSUPPE"
+      }
+    },
+    {
+      "id": "entrantes-03",
+      "num": 3,
+      "category": "entrantes",
+      "price": 11.9,
+      "es": {
+        "title": "Pimientos de Padrón",
+        "description": "",
+        "raw": "PIMIENTOS DE PADRÓN"
+      },
+      "en": {
+        "title": "Padrón Peppers",
+        "description": "",
+        "raw": "PADRÓN PEPPERS"
+      },
+      "de": {
+        "title": "Padrón-Bratpeperoni",
+        "description": "",
+        "raw": "PADRÓN-BRATPEPERONI"
+      }
+    },
+    {
+      "id": "entrantes-04",
+      "num": 4,
+      "category": "entrantes",
+      "price": 15.9,
+      "es": {
+        "title": "Vitello Tonnato",
+        "description": "De ternera blanca",
+        "raw": "VITELLO TONNATO DE TERNERA BLANCA"
+      },
+      "en": {
+        "title": "Vitello Tonnato",
+        "description": "Tender veal with tuna-caper sauce",
+        "raw": "VEAL VITELLO TONNATO"
+      },
+      "de": {
+        "title": "Vitello Tonnato",
+        "description": "Vom Kalb",
+        "raw": "VITELLO TONNATO VOM KALB"
+      }
+    },
+    {
+      "id": "entrantes-05",
+      "num": 5,
+      "category": "entrantes",
+      "price": 14.9,
+      "es": {
+        "title": "Chipirones Fritos",
+        "description": "Con salsa de Yuzu",
+        "raw": "CHIPIRONES FRITOS CON SALSA DE YUZU"
+      },
+      "en": {
+        "title": "Fried Baby Squid",
+        "description": "With Yuzu sauce",
+        "raw": "FRIED BABY SQUID WITH YUZU SAUCE"
+      },
+      "de": {
+        "title": "Kleine Frittierte Tintenfische",
+        "description": "Mit Yuzu-Sauce",
+        "raw": "KLEINE FRITTIERTE TINTENFISCHE MIT YUZU-SAUCE"
+      }
+    },
+    {
+      "id": "entrantes-06",
+      "num": 6,
+      "category": "entrantes",
+      "price": 15.9,
+      "es": {
+        "title": "Sopa de Pescado",
+        "description": "",
+        "raw": "SOPA DE PESCADO"
+      },
+      "en": {
+        "title": "Fish Soup",
+        "description": "",
+        "raw": "FISH SOUP"
+      },
+      "de": {
+        "title": "Fischsuppe",
+        "description": "",
+        "raw": "FISCHSUPPE"
+      }
+    },
+    {
+      "id": "entrantes-07",
+      "num": 7,
+      "category": "entrantes",
+      "price": 16.9,
+      "es": {
+        "title": "Gambas en Tempura",
+        "description": "Con Wasabi y jengibre rosa",
+        "raw": "GAMBAS EN TEMPURA CON WASABI Y JENGIBRE ROSA"
+      },
+      "en": {
+        "title": "Tempura Prawns",
+        "description": "With Wasabi and pink ginger",
+        "raw": "TEMPURA PRAWNS WITH WASABI AND PINK GINGER"
+      },
+      "de": {
+        "title": "Tempura-Garnelen",
+        "description": "Mit Wasabi und Rosa Ingwer",
+        "raw": "TEMPURA-GARNELEN MIT WASABI UND ROSA INGWER"
+      }
+    },
+    {
+      "id": "entrantes-08",
+      "num": 8,
+      "category": "entrantes",
+      "price": 16.9,
+      "es": {
+        "title": "Gambas al Ajillo",
+        "description": "",
+        "raw": "GAMBAS AL AJILLO"
+      },
+      "en": {
+        "title": "Garlic Prawns",
+        "description": "",
+        "raw": "GARLIC PRAWNS"
+      },
+      "de": {
+        "title": "Knoblauchgarnelen",
+        "description": "",
+        "raw": "KNOBLAUCHGARNELEN"
+      }
+    },
+    {
+      "id": "entrantes-09",
+      "num": 9,
+      "category": "entrantes",
+      "price": 15.9,
+      "es": {
+        "title": "Mejillones a la Marinera",
+        "description": "",
+        "raw": "MEJILLONES A LA MARINERA"
+      },
+      "en": {
+        "title": "Mussels in Marinara Sauce",
+        "description": "",
+        "raw": "MUSSELS IN MARINARA SAUCE"
+      },
+      "de": {
+        "title": "Muscheln nach Seemannsart in Tomatensauce",
+        "description": "",
+        "raw": "MUSCHELN NACH SEEMANNSART IN TOMATENSAUCE"
+      }
+    },
+    {
+      "id": "entrantes-10",
+      "num": 10,
+      "category": "entrantes",
+      "price": 16.9,
+      "es": {
+        "title": "Carpaccio de Ternera",
+        "description": "Con rúcula y parmesano",
+        "raw": "CARPACCIO DE TERNERA CON RÚCULA Y PARMESANO"
+      },
+      "en": {
+        "title": "Beef Carpaccio",
+        "description": "With rocket and parmesan",
+        "raw": "BEEF CARPACCIO WITH ROCKET AND PARMESAN"
+      },
+      "de": {
+        "title": "Rindercarpaccio",
+        "description": "Mit Rucola und Parmesan",
+        "raw": "RINDERCARPACCIO MIT RUCOLA UND PARMESAN"
+      }
+    },
+    {
+      "id": "entrantes-11",
+      "num": 11,
+      "category": "entrantes",
+      "price": 21.9,
+      "es": {
+        "title": "Tataki de Atún Rojo",
+        "description": "Con salsa de soja",
+        "raw": "TATAKI DE ATÚN ROJO CON SALSA DE SOJA"
+      },
+      "en": {
+        "title": "Red Tuna Tataki",
+        "description": "With soy sauce",
+        "raw": "RED TUNA TATAKI WITH SOY SAUCE"
+      },
+      "de": {
+        "title": "Roter Thunfisch-Tataki",
+        "description": "Mit Sojasauce",
+        "raw": "ROTER THUNFISCH-TATAKI MIT SOJASAUCE"
+      }
+    },
+    {
+      "id": "entrantes-12",
+      "num": 12,
+      "category": "entrantes",
+      "price": 26.9,
+      "es": {
+        "title": "Antipasto Mixto",
+        "description": "Con vitello, carpaccio, Caprese y verduras",
+        "raw": "ANTIPASTO MIXTO CON VITELLO, CARPACCIO, CAPRESE Y VERDURAS"
+      },
+      "en": {
+        "title": "Mixed Antipasto",
+        "description": "With vitello, carpaccio, Caprese and vegetables",
+        "raw": "MIXED ANTIPASTO WITH VITELLO, CARPACCIO, CAPRESE AND VEGETABLES"
+      },
+      "de": {
+        "title": "Gemischte Antipasti",
+        "description": "Mit Vitello, Carpaccio, Caprese und Gemüse",
+        "raw": "GEMISCHTE ANTIPASTI MIT VITELLO, CARPACCIO, CAPRESE UND GEMÜSE"
+      }
+    },
+    {
+      "id": "ensaladas-13",
+      "num": 13,
+      "category": "ensaladas",
+      "price": 8.9,
+      "es": {
+        "title": "Ensalada Pomodoro",
+        "description": "De tomate, cebolla y balsámico",
+        "raw": "ENSALADA POMODORO DE TOMATE, CEBOLLA Y BALSÁMICO"
+      },
+      "en": {
+        "title": "Pomodoro Salad",
+        "description": "With tomato, red onion and balsamic glaze",
+        "raw": "POMODORO SALAD WITH TOMATO, RED ONION AND BALSAMIC GLAZE"
+      },
+      "de": {
+        "title": "Pomodoro-Salat",
+        "description": "Mit Tomaten, Roten Zwiebeln und Balsamico",
+        "raw": "POMODORO-SALAT MIT TOMATEN, ROTEN ZWIEBELN UND BALSAMICO"
+      }
+    },
+    {
+      "id": "ensaladas-14",
+      "num": 14,
+      "category": "ensaladas",
+      "price": 10.9,
+      "es": {
+        "title": "Ensalada Mixta",
+        "description": "",
+        "raw": "ENSALADA MIXTA"
+      },
+      "en": {
+        "title": "Mixed Salad",
+        "description": "",
+        "raw": "MIXED SALAD"
+      },
+      "de": {
+        "title": "Gemischter Salat",
+        "description": "",
+        "raw": "GEMISCHTER SALAT"
+      }
+    },
+    {
+      "id": "ensaladas-15",
+      "num": 15,
+      "category": "ensaladas",
+      "price": 13.9,
+      "es": {
+        "title": "Ensalada Mixta",
+        "description": "Con atún",
+        "raw": "ENSALADA MIXTA CON ATÚN"
+      },
+      "en": {
+        "title": "Mixed Salad",
+        "description": "With tuna fish",
+        "raw": "MIXED SALAD WITH TUNA FISH"
+      },
+      "de": {
+        "title": "Gemischter Salat",
+        "description": "Mit Thunfisch",
+        "raw": "GEMISCHTER SALAT MIT THUNFISCH"
+      }
+    },
+    {
+      "id": "ensaladas-16",
+      "num": 16,
+      "category": "ensaladas",
+      "price": 13.9,
+      "es": {
+        "title": "Ensalada Caprese",
+        "description": "De tomate, mozzarella di bufala y albahaca",
+        "raw": "ENSALADA CAPRESE DE TOMATE, MOZZARELLA DI BUFALA Y ALBAHACA"
+      },
+      "en": {
+        "title": "Caprese Salad",
+        "description": "With tomato, buffalo mozzarella and basil",
+        "raw": "CAPRESE SALAD WITH TOMATO, BUFFALO MOZZARELLA AND BASIL"
+      },
+      "de": {
+        "title": "Caprese-Salat",
+        "description": "Mit Tomaten, Büffelmozzarella und Basilikum",
+        "raw": "CAPRESE-SALAT MIT TOMATEN, BÜFFELMOZZARELLA UND BASILIKUM"
+      }
+    },
+    {
+      "id": "ensaladas-17",
+      "num": 17,
+      "category": "ensaladas",
+      "price": 16.9,
+      "es": {
+        "title": "Ensalada de Queso de Cabra",
+        "description": "Con beicon, miel y nueces",
+        "raw": "ENSALADA DE QUESO DE CABRA CON BEICON, MIEL Y NUECES"
+      },
+      "en": {
+        "title": "Goat Cheese Salad",
+        "description": "With bacon, honey and walnuts",
+        "raw": "GOAT CHEESE SALAD WITH BACON, HONEY AND WALNUTS"
+      },
+      "de": {
+        "title": "Ziegenkäsesalat",
+        "description": "Mit Speck, Honig und Walnüssen",
+        "raw": "ZIEGENKÄSESALAT MIT SPECK, HONIG UND WALNÜSSEN"
+      }
+    },
+    {
+      "id": "ensaladas-18",
+      "num": 18,
+      "category": "ensaladas",
+      "price": 16.9,
+      "es": {
+        "title": "Ensalada Exótica",
+        "description": "Con pollo, mango y papaya",
+        "raw": "ENSALADA EXÓTICA CON POLLO, MANGO Y PAPAYA"
+      },
+      "en": {
+        "title": "Exotic Salad",
+        "description": "With chicken, mango and papaya",
+        "raw": "EXOTIC SALAD WITH CHICKEN, MANGO AND PAPAYA"
+      },
+      "de": {
+        "title": "Exotischer Salat",
+        "description": "Mit Hähnchen, Mango und Papaya",
+        "raw": "EXOTISCHER SALAT MIT HÄHNCHEN, MANGO UND PAPAYA"
+      }
+    },
+    {
+      "id": "ensaladas-19",
+      "num": 19,
+      "category": "ensaladas",
+      "price": 17.9,
+      "es": {
+        "title": "Ensalada Thai",
+        "description": "Con gambas, piña y aguacate",
+        "raw": "ENSALADA THAI CON GAMBAS, PIÑA Y AGUACATE"
+      },
+      "en": {
+        "title": "Thai Salad",
+        "description": "With prawns, pineapple and avocado",
+        "raw": "THAI SALAD WITH PRAWNS, PINEAPPLE AND AVOCADO"
+      },
+      "de": {
+        "title": "Thai-Salat",
+        "description": "Mit Garnelen, Ananas und Avocado",
+        "raw": "THAI-SALAT MIT GARNELEN, ANANAS UND AVOCADO"
+      }
+    },
+    {
+      "id": "pescados-20",
+      "num": 20,
+      "category": "pescados",
+      "price": 24.9,
+      "es": {
+        "title": "Lubina a la Plancha",
+        "description": "Con verduras salteadas",
+        "raw": "LUBINA A LA PLANCHA CON VERDURAS SALTEADAS"
+      },
+      "en": {
+        "title": "Grilled Seabass",
+        "description": "With vegetables",
+        "raw": "GRILLED SEABASS WITH VEGETABLES"
+      },
+      "de": {
+        "title": "Gegrillter Wolfsbarsch",
+        "description": "Mit Gemüse",
+        "raw": "GEGRILLTER WOLFSBARSCH MIT GEMÜSE"
+      }
+    },
+    {
+      "id": "pescados-21",
+      "num": 21,
+      "category": "pescados",
+      "price": 23.9,
+      "es": {
+        "title": "Calamar a la Plancha",
+        "description": "Con verduras",
+        "raw": "CALAMAR A LA PLANCHA CON VERDURAS"
+      },
+      "en": {
+        "title": "Grilled Squid",
+        "description": "With vegetables",
+        "raw": "GRILLED SQUID WITH VEGETABLES"
+      },
+      "de": {
+        "title": "Gegrillter Tintenfisch",
+        "description": "Mit Gemüse",
+        "raw": "GEGRILLTER TINTENFISCH MIT GEMÜSE"
+      }
+    },
+    {
+      "id": "pescados-22",
+      "num": 22,
+      "category": "pescados",
+      "price": 35.5,
+      "es": {
+        "title": "Lenguado a la Plancha",
+        "description": "Con salsa meunière y verduras",
+        "raw": "LENGUADO A LA PLANCHA CON SALSA MEUNIÈRE Y VERDURAS"
+      },
+      "en": {
+        "title": "Grilled Sole",
+        "description": "With meunière sauce and vegetables",
+        "raw": "GRILLED SOLE WITH MEUNIÈRE SAUCE AND VEGETABLES"
+      },
+      "de": {
+        "title": "Gegrillte Seezunge",
+        "description": "Mit Meunière-Sauce und Gemüse",
+        "raw": "GEGRILLTE SEEZUNGE MIT MEUNIÈRE-SAUCE UND GEMÜSE"
+      }
+    },
+    {
+      "id": "pescados-23",
+      "num": 23,
+      "category": "pescados",
+      "price": 26.9,
+      "es": {
+        "title": "Lubina a la Plancha",
+        "description": "Con Spaghetti aglio e olio",
+        "raw": "LUBINA A LA PLANCHA CON SPAGHETTI AGLIO E OLIO"
+      },
+      "en": {
+        "title": "Grilled Seabass",
+        "description": "With spaghetti, garlic and olive oil",
+        "raw": "GRILLED SEABASS WITH SPAGHETTI, GARLIC AND OLIVE OIL"
+      },
+      "de": {
+        "title": "Gegrillter Wolfsbarsch",
+        "description": "Mit Spaghetti Aglio E Olio",
+        "raw": "GEGRILLTER WOLFSBARSCH MIT SPAGHETTI AGLIO E OLIO"
+      }
+    },
+    {
+      "id": "pescados-24",
+      "num": 24,
+      "category": "pescados",
+      "price": 23.9,
+      "es": {
+        "title": "Calamar a la Romana",
+        "description": "Con patatas fritas",
+        "raw": "CALAMAR A LA ROMANA CON PATATAS FRITAS"
+      },
+      "en": {
+        "title": "Fried Squid",
+        "description": "With french fries",
+        "raw": "FRIED SQUID WITH FRENCH FRIES"
+      },
+      "de": {
+        "title": "Frittierter Tintenfisch",
+        "description": "Mit Pommes Frites",
+        "raw": "FRITTIERTER TINTENFISCH MIT POMMES FRITES"
+      }
+    },
+    {
+      "id": "pescados-25",
+      "num": 25,
+      "category": "pescados",
+      "price": 34.5,
+      "es": {
+        "title": "Rodaballo a la Plancha",
+        "description": "Con verduras",
+        "raw": "RODABALLO A LA PLANCHA CON VERDURAS"
+      },
+      "en": {
+        "title": "Grilled Turbot",
+        "description": "With mixed vegetables",
+        "raw": "GRILLED TURBOT WITH MIXED VEGETABLES"
+      },
+      "de": {
+        "title": "Gegrillter Steinbutt",
+        "description": "Mit Gemüse",
+        "raw": "GEGRILLTER STEINBUTT MIT GEMÜSE"
+      }
+    },
+    {
+      "id": "carnes-26",
+      "num": 26,
+      "category": "carnes",
+      "price": 17.9,
+      "es": {
+        "title": "Hamburguesa de Ternera",
+        "description": "Con patatas fritas",
+        "raw": "HAMBURGUESA DE TERNERA CON PATATAS FRITAS"
+      },
+      "en": {
+        "title": "Beef Burger",
+        "description": "With french fries",
+        "raw": "BEEF BURGER WITH FRENCH FRIES"
+      },
+      "de": {
+        "title": "Rinderburger",
+        "description": "Mit Pommes Frites",
+        "raw": "RINDERBURGER MIT POMMES FRITES"
+      }
+    },
+    {
+      "id": "carnes-27",
+      "num": 27,
+      "category": "carnes",
+      "price": 25.9,
+      "es": {
+        "title": "Saltimbocca Alla Romana de Ternera",
+        "description": "Con jamón de parma, verduras y patatas al romero",
+        "raw": "SALTIMBOCCA ALLA ROMANA DE TERNERA CON JAMÓN DE PARMA, VERDURAS Y PATATAS AL ROMERO"
+      },
+      "en": {
+        "title": "Veal Saltimbocca Alla Romana",
+        "description": "With Parma ham, vegetables and rosemary potatoes",
+        "raw": "VEAL SALTIMBOCCA ALLA ROMANA WITH PARMA HAM, VEGETABLES AND ROSEMARY POTATOES"
+      },
+      "de": {
+        "title": "Kalbs-Saltimbocca Alla Romana",
+        "description": "Mit Parmaschinken, Gemüse und Rosmarinkartoffeln",
+        "raw": "KALBS-SALTIMBOCCA ALLA ROMANA MIT PARMASCHINKEN, GEMÜSE UND ROSMARINKARTOFFELN"
+      }
+    },
+    {
+      "id": "carnes-28",
+      "num": 28,
+      "category": "carnes",
+      "price": 26.9,
+      "es": {
+        "title": "Tagliata de Solomillo de Ternera",
+        "description": "Con rúcula, parmesano y tomate",
+        "raw": "TAGLIATA DE SOLOMILLO DE TERNERA CON RÚCULA, PARMESANO Y TOMATE"
+      },
+      "en": {
+        "title": "Beef Sirloin Tagliata",
+        "description": "With arugula, parmesan and tomatoes",
+        "raw": "BEEF SIRLOIN TAGLIATA WITH ARUGULA, PARMESAN AND TOMATOES"
+      },
+      "de": {
+        "title": "Rinderlenden-Tagliata",
+        "description": "Mit Rucola, Parmesan und Tomaten",
+        "raw": "RINDERLENDEN-TAGLIATA MIT RUCOLA, PARMESAN UND TOMATEN"
+      }
+    },
+    {
+      "id": "carnes-29",
+      "num": 29,
+      "category": "carnes",
+      "price": 31.5,
+      "es": {
+        "title": "Solomillo de Ternera",
+        "description": "Con salsa teriyaki, verduras y patatas",
+        "raw": "SOLOMILLO DE TERNERA CON SALSA TERIYAKI, VERDURAS Y PATATAS"
+      },
+      "en": {
+        "title": "Beef Sirloin",
+        "description": "With teriyaki sauce, vegetables and potatoes",
+        "raw": "BEEF SIRLOIN WITH TERIYAKI SAUCE, VEGETABLES AND POTATOES"
+      },
+      "de": {
+        "title": "Rinderlende",
+        "description": "Mit Teriyaki-Sauce, Gemüse und Kartoffeln",
+        "raw": "RINDERLENDE MIT TERIYAKI-SAUCE, GEMÜSE UND KARTOFFELN"
+      }
+    },
+    {
+      "id": "carnes-30",
+      "num": 30,
+      "category": "carnes",
+      "price": 19.9,
+      "es": {
+        "title": "Escalope de Pollo",
+        "description": "Con patatas fritas",
+        "raw": "ESCALOPE DE POLLO CON PATATAS FRITAS"
+      },
+      "en": {
+        "title": "Chicken Escalope",
+        "description": "With french fries",
+        "raw": "CHICKEN ESCALOPE WITH FRENCH FRIES"
+      },
+      "de": {
+        "title": "Hähnchenschnitzel",
+        "description": "Mit Pommes Frites",
+        "raw": "HÄHNCHENSCHNITZEL MIT POMMES FRITES"
+      }
+    },
+    {
+      "id": "carnes-31",
+      "num": 31,
+      "category": "carnes",
+      "price": 22.9,
+      "es": {
+        "title": "Escalope de Pollo",
+        "description": "Con verduras y patatas al romero",
+        "raw": "ESCALOPE DE POLLO CON VERDURAS Y PATATAS AL ROMERO"
+      },
+      "en": {
+        "title": "Chicken Escalope",
+        "description": "With vegetables and rosemary potatoes",
+        "raw": "CHICKEN ESCALOPE WITH VEGETABLES AND ROSEMARY POTATOES"
+      },
+      "de": {
+        "title": "Hähnchenschnitzel",
+        "description": "Mit Gemischtem Gemüse und Rosmarinkartoffeln",
+        "raw": "HÄHNCHENSCHNITZEL MIT GEMISCHTEM GEMÜSE UND ROSMARINKARTOFFELN"
+      }
+    },
+    {
+      "id": "arroces-32",
+      "num": 32,
+      "category": "arroces",
+      "price": 19.9,
+      "es": {
+        "title": "Paella Vegetariana",
+        "description": "",
+        "raw": "PAELLA VEGETARIANA"
+      },
+      "en": {
+        "title": "Vegetarian Paella",
+        "description": "",
+        "raw": "VEGETARIAN PAELLA"
+      },
+      "de": {
+        "title": "Vegetarische Paella",
+        "description": "",
+        "raw": "VEGETARISCHE PAELLA"
+      }
+    },
+    {
+      "id": "arroces-33",
+      "num": 33,
+      "category": "arroces",
+      "price": 22.5,
+      "es": {
+        "title": "Paella de Marisco",
+        "description": "",
+        "raw": "PAELLA DE MARISCO"
+      },
+      "en": {
+        "title": "Seafood Paella",
+        "description": "",
+        "raw": "SEAFOOD PAELLA"
+      },
+      "de": {
+        "title": "Meeresfrüchte-Paella",
+        "description": "",
+        "raw": "MEERESFRÜCHTE-PAELLA"
+      }
+    },
+    {
+      "id": "arroces-34",
+      "num": 34,
+      "category": "arroces",
+      "price": 19.9,
+      "es": {
+        "title": "Risotto de Verduras",
+        "description": "",
+        "raw": "RISOTTO DE VERDURAS"
+      },
+      "en": {
+        "title": "Creamy Risotto",
+        "description": "With vegetables",
+        "raw": "CREAMY RISOTTO WITH VEGETABLES"
+      },
+      "de": {
+        "title": "Cremiges Gemüserisotto",
+        "description": "",
+        "raw": "CREMIGES GEMÜSERISOTTO"
+      }
+    },
+    {
+      "id": "arroces-35",
+      "num": 35,
+      "category": "arroces",
+      "price": 24.5,
+      "es": {
+        "title": "Risotto Cremoso",
+        "description": "Con gambas, espárragos y trufa",
+        "raw": "RISOTTO CREMOSO CON GAMBAS, ESPÁRRAGOS Y TRUFA"
+      },
+      "en": {
+        "title": "Creamy Risotto",
+        "description": "With prawns, asparagus and fresh truffle",
+        "raw": "CREAMY RISOTTO WITH PRAWNS, ASPARAGUS AND FRESH TRUFFLE"
+      },
+      "de": {
+        "title": "Cremiges Risotto",
+        "description": "Mit Garnelen, Spargel und Frischem Trüffel",
+        "raw": "CREMIGES RISOTTO MIT GARNELEN, SPARGEL UND FRISCHEM TRÜFFEL"
+      }
+    },
+    {
+      "id": "pastas-36",
+      "num": 36,
+      "category": "pastas",
+      "price": 12.9,
+      "es": {
+        "title": "Spaghetti Pomodoro",
+        "description": "Con salsa casera de tomate fresco y albahaca",
+        "raw": "SPAGHETTI POMODORO"
+      },
+      "en": {
+        "title": "Spaghetti al Pomodoro",
+        "description": "With homemade tomato and fresh basil sauce",
+        "raw": "SPAGHETTI WITH TOMATO SAUCE"
+      },
+      "de": {
+        "title": "Spaghetti al Pomodoro",
+        "description": "Mit hausgemachter Tomaten-Basilikum-Sauce",
+        "raw": "SPAGHETTI MIT TOMATENSAUCE"
+      }
+    },
+    {
+      "id": "pastas-37",
+      "num": 37,
+      "category": "pastas",
+      "price": 14.9,
+      "es": {
+        "title": "Penne All'Arrabbiata",
+        "description": "Con salsa de tomate, ajo y peperoncino",
+        "raw": "PENNE ALL'ARRABBIATA CON SALSA DE TOMATE, AJO Y PEPERONCINO"
+      },
+      "en": {
+        "title": "Penne All'Arrabbiata",
+        "description": "With tomato sauce, garlic and spicy peppers",
+        "raw": "PENNE ALL'ARRABBIATA WITH TOMATO SAUCE, GARLIC AND SPICY PEPPERS"
+      },
+      "de": {
+        "title": "Penne All'Arrabbiata",
+        "description": "Mit Tomatensauce, Knoblauch und Chili",
+        "raw": "PENNE ALL'ARRABBIATA MIT TOMATENSAUCE, KNOBLAUCH UND CHILI"
+      }
+    },
+    {
+      "id": "pastas-38",
+      "num": 38,
+      "category": "pastas",
+      "price": 15.9,
+      "es": {
+        "title": "Spaghetti a la Boloñesa",
+        "description": "",
+        "raw": "SPAGHETTI A LA BOLOÑESA"
+      },
+      "en": {
+        "title": "Spaghetti Bolognese",
+        "description": "",
+        "raw": "SPAGHETTI BOLOGNESE"
+      },
+      "de": {
+        "title": "Spaghetti Bolognese",
+        "description": "",
+        "raw": "SPAGHETTI BOLOGNESE"
+      }
+    },
+    {
+      "id": "pastas-39",
+      "num": 39,
+      "category": "pastas",
+      "price": 15.9,
+      "es": {
+        "title": "Spaghetti Carbonara",
+        "description": "",
+        "raw": "SPAGHETTI CARBONARA"
+      },
+      "en": {
+        "title": "Spaghetti Carbonara",
+        "description": "",
+        "raw": "SPAGHETTI CARBONARA"
+      },
+      "de": {
+        "title": "Spaghetti Carbonara",
+        "description": "",
+        "raw": "SPAGHETTI CARBONARA"
+      }
+    },
+    {
+      "id": "pastas-40",
+      "num": 40,
+      "category": "pastas",
+      "price": 13.9,
+      "es": {
+        "title": "Spaghetti Aglio e Olio",
+        "description": "Con ajo laminado, guindilla y aceite de oliva virgen extra",
+        "raw": "SPAGHETTI AGLIO E OLIO"
+      },
+      "en": {
+        "title": "Spaghetti Aglio e Olio",
+        "description": "With sliced garlic, chili and extra virgin olive oil",
+        "raw": "SPAGHETTI WITH GARLIC, CHILI AND OLIVE OIL"
+      },
+      "de": {
+        "title": "Spaghetti Aglio e Olio",
+        "description": "Mit Knoblauch, Peperoncino und nativem Olivenöl",
+        "raw": "SPAGHETTI MIT KNOBLAUCH UND ÖL"
+      }
+    },
+    {
+      "id": "pastas-41",
+      "num": 41,
+      "category": "pastas",
+      "price": 17.9,
+      "es": {
+        "title": "Spaghetti Aglio e Olio con Gambas",
+        "description": "Con gambas salteadas, ajo y guindilla",
+        "raw": "SPAGHETTI AGLIO E OLIO CON GAMBAS"
+      },
+      "en": {
+        "title": "Spaghetti Aglio e Olio with Prawns",
+        "description": "With sautéed prawns, garlic and chili",
+        "raw": "SPAGHETTI WITH PRAWNS, GARLIC AND OLIVE OIL"
+      },
+      "de": {
+        "title": "Spaghetti Aglio e Olio mit Garnelen",
+        "description": "Mit gebratenen Garnelen, Knoblauch und Peperoncino",
+        "raw": "SPAGHETTI MIT GARNELEN, KNOBLAUCH UND OLIVENÖL"
+      }
+    },
+    {
+      "id": "pastas-42",
+      "num": 42,
+      "category": "pastas",
+      "price": 17.9,
+      "es": {
+        "title": "Spaghetti Gamberetti",
+        "description": "Con gambas, salsa de tomate cherry y ajo fresco",
+        "raw": "SPAGHETTI GAMBERETTI CON GAMBAS, SALSA DE TOMATE CHERRY Y AJO"
+      },
+      "en": {
+        "title": "Spaghetti Gamberetti",
+        "description": "With prawns, cherry tomato sauce and garlic",
+        "raw": "SPAGHETTI WITH PRAWNS, CHERRY TOMATO SAUCE AND FRESH GARLIC"
+      },
+      "de": {
+        "title": "Spaghetti Gamberetti",
+        "description": "Mit Garnelen, Kirschtomaten-Sauce und Knoblauch",
+        "raw": "SPAGHETTI MIT GARNELEN, KNOBLAUCH UND KIRSCHTOMATEN"
+      }
+    },
+    {
+      "id": "pastas-43",
+      "num": 43,
+      "category": "pastas",
+      "price": 16.9,
+      "es": {
+        "title": "Pappardelle Emiliane",
+        "description": "Con carne picada de ternera, setas, tomate y nata",
+        "raw": "PAPPARDELLE EMILIANE CON CARNE PICADA DE TERNERA, SETAS, TOMATE Y NATA"
+      },
+      "en": {
+        "title": "Pappardelle Emiliane",
+        "description": "With minced beef, mushrooms, tomato and cream",
+        "raw": "PAPPARDELLE EMILIANE WITH MINCED BEEF, MUSHROOMS, TOMATO AND CREAM"
+      },
+      "de": {
+        "title": "Pappardelle Emiliane",
+        "description": "Mit Rinderhackfleisch, Pilzen, Tomaten und Sahne",
+        "raw": "PAPPARDELLE EMILIANE MIT RINDERHACKFLEISCH, PILZEN, TOMATEN UND SAHNE"
+      }
+    },
+    {
+      "id": "pastas-44",
+      "num": 44,
+      "category": "pastas",
+      "price": 15.9,
+      "es": {
+        "title": "Tagliatelle Primavera",
+        "description": "Con verduras frescas de temporada",
+        "raw": "TAGLIATELLE CON VERDURAS DE TEMPORADA"
+      },
+      "en": {
+        "title": "Tagliatelle Primavera",
+        "description": "With fresh seasonal vegetables",
+        "raw": "TAGLIATELLE WITH SEASONAL VEGETABLES"
+      },
+      "de": {
+        "title": "Tagliatelle Primavera",
+        "description": "Mit frischem Saisongemüse",
+        "raw": "TAGLIATELLE MIT GEMÜSE"
+      }
+    },
+    {
+      "id": "pastas-45",
+      "num": 45,
+      "category": "pastas",
+      "price": 17.9,
+      "es": {
+        "title": "Tagliatelle Cremosos",
+        "description": "Con pollo y champiñones",
+        "raw": "TAGLIATELLE CREMOSOS CON POLLO Y CHAMPIÑONES"
+      },
+      "en": {
+        "title": "Creamy Tagliatelle",
+        "description": "With chicken and mushrooms",
+        "raw": "CREAMY TAGLIATELLE WITH CHICKEN AND MUSHROOMS"
+      },
+      "de": {
+        "title": "Cremige Tagliatelle",
+        "description": "Mit Hähnchen und Pilzen",
+        "raw": "CREMIGE TAGLIATELLE MIT HÄHNCHEN UND PILZEN"
+      }
+    },
+    {
+      "id": "pastas-46",
+      "num": 46,
+      "category": "pastas",
+      "price": 17.9,
+      "es": {
+        "title": "Linguine Alle Vongole",
+        "description": "Con almejas, ajo, vino blanco y chile",
+        "raw": "LINGUINE ALLE VONGOLE CON ALMEJAS, AJO, VINO BLANCO Y CHILE"
+      },
+      "en": {
+        "title": "Linguine Alle Vongole",
+        "description": "With clams, garlic, white wine and chili",
+        "raw": "LINGUINE ALLE VONGOLE WITH CLAMS, GARLIC, WHITE WINE AND CHILI"
+      },
+      "de": {
+        "title": "Linguine Alle Vongole",
+        "description": "Mit Venusmuscheln, Knoblauch, Weisswein und Chili",
+        "raw": "LINGUINE ALLE VONGOLE MIT VENUSMUSCHELN, KNOBLAUCH, WEISSWEIN UND CHILI"
+      }
+    },
+    {
+      "id": "pastas-47",
+      "num": 47,
+      "category": "pastas",
+      "price": 18.5,
+      "es": {
+        "title": "Penne Alla Vodka",
+        "description": "Con gambas, salsa de tomate y nata",
+        "raw": "PENNE ALLA VODKA CON GAMBAS, SALSA DE TOMATE Y NATA"
+      },
+      "en": {
+        "title": "Penne Alla Vodka",
+        "description": "With prawns, tomato sauce and cream",
+        "raw": "PENNE ALLA VODKA WITH PRAWNS, TOMATO SAUCE AND CREAM"
+      },
+      "de": {
+        "title": "Penne Alla Vodka",
+        "description": "Mit Garnelen, Tomatensauce und Sahne",
+        "raw": "PENNE ALLA VODKA MIT GARNELEN, TOMATENSAUCE UND SAHNE"
+      }
+    },
+    {
+      "id": "pastas-48",
+      "num": 48,
+      "category": "pastas",
+      "price": 21.9,
+      "es": {
+        "title": "Tagliatelle al Tartufo",
+        "description": "Con trufa negra fresca y salsa suave",
+        "raw": "TAGLIATELLE CON TRUFA FRESCA"
+      },
+      "en": {
+        "title": "Tagliatelle al Tartufo",
+        "description": "With fresh black truffle in a light cream sauce",
+        "raw": "TAGLIATELLE WITH FRESH TRUFFLE"
+      },
+      "de": {
+        "title": "Tagliatelle al Tartufo",
+        "description": "Mit frischem Trüffel in feiner Sauce",
+        "raw": "TAGLIATELLE MIT FRISCHEM TRÜFFEL"
+      }
+    },
+    {
+      "id": "pastas-49",
+      "num": 49,
+      "category": "pastas",
+      "price": 21.9,
+      "es": {
+        "title": "Linguine Ai Frutti Di Mare",
+        "description": "Con gambas, mejillones, almejas, calamar y chile",
+        "raw": "LINGUINE AI FRUTTI DI MARE CON GAMBAS, MEJILLONES, ALMEJAS, CALAMAR Y CHILE"
+      },
+      "en": {
+        "title": "Linguine Ai Frutti Di Mare",
+        "description": "With prawns, mussels, clams, squid and chili",
+        "raw": "LINGUINE AI FRUTTI DI MARE WITH PRAWNS, MUSSELS, CLAMS, SQUID AND CHILI"
+      },
+      "de": {
+        "title": "Linguine Ai Frutti Di Mare",
+        "description": "Mit Garnelen, Muscheln, Tintenfisch und Chili",
+        "raw": "LINGUINE AI FRUTTI DI MARE MIT GARNELEN, MUSCHELN, TINTENFISCH UND CHILI"
+      }
+    },
+    {
+      "id": "pastas-50",
+      "num": 50,
+      "category": "pastas",
+      "price": 19.5,
+      "es": {
+        "title": "Tagliatelle al Nero Di Seppia",
+        "description": "Con calamar, gambas y espárragos",
+        "raw": "TAGLIATELLE AL NERO DI SEPPIA CON CALAMAR, GAMBAS Y ESPÁRRAGOS"
+      },
+      "en": {
+        "title": "Squid Ink Tagliatelle",
+        "description": "With squid, prawns and asparagus",
+        "raw": "SQUID INK TAGLIATELLE WITH SQUID, PRAWNS AND ASPARAGUS"
+      },
+      "de": {
+        "title": "Tagliatelle Al Nero Di Seppia",
+        "description": "Mit Tintenfisch, Garnelen und Spargel",
+        "raw": "TAGLIATELLE AL NERO DI SEPPIA MIT TINTENFISCH, GARNELEN UND SPARGEL"
+      }
+    },
+    {
+      "id": "pastas-51",
+      "num": 51,
+      "category": "pastas",
+      "price": 19.5,
+      "es": {
+        "title": "Ravioli de Espinacas y Ricotta",
+        "description": "Con suave salsa cremosa de queso",
+        "raw": "RAVIOLI RELLENOS DE ESPINACAS, RICOTTA Y SALSA DE NATA Y QUESO"
+      },
+      "en": {
+        "title": "Spinach & Ricotta Ravioli",
+        "description": "With a delicate cheese cream sauce",
+        "raw": "RAVIOLI FILLED WITH SPINACH, RICOTTA AND CREAM SAUCE"
+      },
+      "de": {
+        "title": "Spinat-Ricotta-Ravioli",
+        "description": "Mit feiner Käse-Sahne-Sauce",
+        "raw": "RAVIOLI GEFÜLLT MIT SPINAT, RICOTTA UND SAHNE-KÄSE-SAUCE"
+      }
+    },
+    {
+      "id": "pastas-52",
+      "num": 52,
+      "category": "pastas",
+      "price": 22.9,
+      "es": {
+        "title": "Ravioli de Gambas y Trufa",
+        "description": "Rellenos de ricotta, gambas y aroma de trufa",
+        "raw": "RAVIOLI RELLENOS DE RICOTTA, GAMBAS Y TRUFA"
+      },
+      "en": {
+        "title": "Truffle & Prawn Ravioli",
+        "description": "Filled with ricotta, prawns and truffle aroma",
+        "raw": "RAVIOLI FILLED WITH RICOTTA, PRAWNS AND TRUFFLE"
+      },
+      "de": {
+        "title": "Trüffel-Garnelen-Ravioli",
+        "description": "Gefüllt mit Ricotta, Garnelen und Trüffel",
+        "raw": "RAVIOLI GEFÜLLT MIT RICOTTA, GARNELEN UND TRÜFFEL"
+      }
+    },
+    {
+      "id": "pastas-53",
+      "num": 53,
+      "category": "pastas",
+      "price": 20.5,
+      "es": {
+        "title": "Casarecce",
+        "description": "Con tiras de solomillo, pimientos asados y salsa de tomate",
+        "raw": "CASARECCE CON TIRAS DE SOLOMILLO, PIMIENTOS ASADOS Y SALSA DE TOMATE"
+      },
+      "en": {
+        "title": "Casarecce",
+        "description": "With sirloin strips, tomato sauce and roasted peppers",
+        "raw": "CASARECCE WITH SIRLOIN STRIPS, TOMATO SAUCE AND ROASTED PEPPERS"
+      },
+      "de": {
+        "title": "Casarecce",
+        "description": "Mit Rinderlendenstreifen, Tomatensauce und Gerösteter Paprika",
+        "raw": "CASARECCE MIT RINDERLENDENSTREIFEN, TOMATENSAUCE UND GERÖSTETER PAPRIKA"
+      }
+    },
+    {
+      "id": "pizzas-54",
+      "num": 54,
+      "category": "pizzas",
+      "price": 11.9,
+      "es": {
+        "title": "Pizza Margarita",
+        "description": "",
+        "raw": "PIZZA MARGARITA"
+      },
+      "en": {
+        "title": "Pizza Margherita",
+        "description": "",
+        "raw": "PIZZA MARGHERITA"
+      },
+      "de": {
+        "title": "Pizza Margherita",
+        "description": "",
+        "raw": "PIZZA MARGHERITA"
+      }
+    },
+    {
+      "id": "pizzas-55",
+      "num": 55,
+      "category": "pizzas",
+      "price": 13.9,
+      "es": {
+        "title": "Pizza Salami",
+        "description": "",
+        "raw": "PIZZA SALAMI"
+      },
+      "en": {
+        "title": "Pizza Salami",
+        "description": "",
+        "raw": "PIZZA SALAMI"
+      },
+      "de": {
+        "title": "Pizza Salami",
+        "description": "",
+        "raw": "PIZZA SALAMI"
+      }
+    },
+    {
+      "id": "pizzas-56",
+      "num": 56,
+      "category": "pizzas",
+      "price": 13.9,
+      "es": {
+        "title": "Pizza Prosciutto",
+        "description": "Con tomate, mozzarella y jamón cocido",
+        "raw": "PIZZA PROSCIUTTO"
+      },
+      "en": {
+        "title": "Pizza Prosciutto",
+        "description": "With tomato, mozzarella and cooked ham",
+        "raw": "PIZZA WITH HAM"
+      },
+      "de": {
+        "title": "Pizza Prosciutto",
+        "description": "Mit Tomatensauce, Mozzarella und Schinken",
+        "raw": "PIZZA MIT SCHINKEN"
+      }
+    },
+    {
+      "id": "pizzas-57",
+      "num": 57,
+      "category": "pizzas",
+      "price": 13.9,
+      "es": {
+        "title": "Pizza Di Bufala",
+        "description": "Con tomate y mozzarella di bufala",
+        "raw": "PIZZA DI BUFALA CON TOMATE Y MOZZARELLA DI BUFALA"
+      },
+      "en": {
+        "title": "Pizza Di Bufala",
+        "description": "With tomato and buffalo mozzarella",
+        "raw": "PIZZA DI BUFALA WITH TOMATO AND BUFFALO MOZZARELLA"
+      },
+      "de": {
+        "title": "Pizza Di Bufala",
+        "description": "Mit Tomaten und Büffelmozzarella",
+        "raw": "PIZZA DI BUFALA MIT TOMATEN UND BÜFFELMOZZARELLA"
+      }
+    },
+    {
+      "id": "pizzas-58",
+      "num": 58,
+      "category": "pizzas",
+      "price": 14.9,
+      "es": {
+        "title": "Pizza Prosciutto e Funghi",
+        "description": "Con jamón cocido y champiñones frescos",
+        "raw": "PIZZA PROSCIUTTO FUNGHI"
+      },
+      "en": {
+        "title": "Pizza Prosciutto e Funghi",
+        "description": "With cooked ham and fresh mushrooms",
+        "raw": "PIZZA WITH HAM AND MUSHROOMS"
+      },
+      "de": {
+        "title": "Pizza Prosciutto e Funghi",
+        "description": "Mit Schinken und frischen Champignons",
+        "raw": "PIZZA MIT SCHINKEN UND PILZEN"
+      }
+    },
+    {
+      "id": "pizzas-59",
+      "num": 59,
+      "category": "pizzas",
+      "price": 14.9,
+      "es": {
+        "title": "Pizza Tonno e Cipolla",
+        "description": "Con atún selecto y cebolla roja",
+        "raw": "PIZZA DE ATÚN Y CEBOLLA"
+      },
+      "en": {
+        "title": "Pizza Tonno e Cipolla",
+        "description": "With tuna and sliced red onions",
+        "raw": "PIZZA WITH TUNA AND RED ONIONS"
+      },
+      "de": {
+        "title": "Pizza Tonno e Cipolla",
+        "description": "Mit Thunfisch und roten Zwiebeln",
+        "raw": "PIZZA MIT THUNFISCH UND ROTEN ZWIEBELN"
+      }
+    },
+    {
+      "id": "pizzas-60",
+      "num": 60,
+      "category": "pizzas",
+      "price": 15.9,
+      "es": {
+        "title": "Pizza Quattro Stagioni",
+        "description": "Con jamón, salami, alcachofas y champiñones",
+        "raw": "PIZZA QUATTRO STAGIONI CON JAMÓN, SALAMI, ALCACHOFAS Y CHAMPIÑONES"
+      },
+      "en": {
+        "title": "Pizza Quattro Stagioni",
+        "description": "With ham, salami, artichokes and mushrooms",
+        "raw": "PIZZA QUATTRO STAGIONI WITH HAM, SALAMI, ARTICHOKES AND MUSHROOMS"
+      },
+      "de": {
+        "title": "Pizza Quattro Stagioni",
+        "description": "Mit Schinken, Salami, Artischocken und Pilzen",
+        "raw": "PIZZA QUATTRO STAGIONI MIT SCHINKEN, SALAMI, ARTISCHOCKEN UND PILZEN"
+      }
+    },
+    {
+      "id": "pizzas-61",
+      "num": 61,
+      "category": "pizzas",
+      "price": 15.9,
+      "es": {
+        "title": "Pizza Capricciosa",
+        "description": "Con jamón, maíz, champiñones y cebolla",
+        "raw": "PIZZA CAPRICCIOSA CON JAMÓN, MAÍZ, CHAMPIÑONES Y CEBOLLA"
+      },
+      "en": {
+        "title": "Pizza Capricciosa",
+        "description": "With ham, corn, mushrooms and red onions",
+        "raw": "PIZZA CAPRICCIOSA WITH HAM, CORN, MUSHROOMS AND RED ONIONS"
+      },
+      "de": {
+        "title": "Pizza Capricciosa",
+        "description": "Mit Schinken, Mais, Pilzen und Zwiebeln",
+        "raw": "PIZZA CAPRICCIOSA MIT SCHINKEN, MAIS, PILZEN UND ZWIEBELN"
+      }
+    },
+    {
+      "id": "pizzas-62",
+      "num": 62,
+      "category": "pizzas",
+      "price": 14.9,
+      "es": {
+        "title": "Pizza Napolitana",
+        "description": "Con anchoas, alcaparras y olivas negras",
+        "raw": "PIZZA NAPOLITANA CON ANCHOAS, ALCAPARRAS Y OLIVAS NEGRAS"
+      },
+      "en": {
+        "title": "Pizza Napoletana",
+        "description": "With anchovies, capers and black olives",
+        "raw": "PIZZA NAPOLETANA WITH ANCHOVIES, CAPERS AND BLACK OLIVES"
+      },
+      "de": {
+        "title": "Pizza Napoletana",
+        "description": "Mit Sardellen, Kapern und Schwarzen Oliven",
+        "raw": "PIZZA NAPOLETANA MIT SARDELLEN, KAPERN UND SCHWARZEN OLIVEN"
+      }
+    },
+    {
+      "id": "pizzas-63",
+      "num": 63,
+      "category": "pizzas",
+      "price": 16.9,
+      "es": {
+        "title": "Pizza Campesina",
+        "description": "Con pollo, maíz, cebolla roja y ajo fresco",
+        "raw": "PIZZA CAMPESINA CON POLLO, MAÍZ, CEBOLLA ROJA Y AJO FRESCO"
+      },
+      "en": {
+        "title": "Farmhouse Pizza",
+        "description": "With chicken, corn, red onion and garlic",
+        "raw": "FARMHOUSE PIZZA WITH CHICKEN, CORN, RED ONION AND GARLIC"
+      },
+      "de": {
+        "title": "Ländliche Pizza",
+        "description": "Mit Hähnchen, Mais, Zwiebeln und Knoblauch",
+        "raw": "LÄNDLICHE PIZZA MIT HÄHNCHEN, MAIS, ZWIEBELN UND KNOBLAUCH"
+      }
+    },
+    {
+      "id": "pizzas-64",
+      "num": 64,
+      "category": "pizzas",
+      "price": 15.9,
+      "es": {
+        "title": "Pizza Vegetariana",
+        "description": "Con variedad de verduras frescas asadas",
+        "raw": "PIZZA VEGETARIANA CON VERDURAS MIXTAS"
+      },
+      "en": {
+        "title": "Pizza Vegetariana",
+        "description": "With roasted seasonal vegetables",
+        "raw": "PIZZA WITH MIXED VEGETABLES"
+      },
+      "de": {
+        "title": "Pizza Vegetariana",
+        "description": "Mit gegrilltem buntem Gemüse",
+        "raw": "PIZZA MIT GEMISCHTEM GEMÜSE"
+      }
+    },
+    {
+      "id": "pizzas-65",
+      "num": 65,
+      "category": "pizzas",
+      "price": 15.9,
+      "es": {
+        "title": "Pizza Quattro Formaggi",
+        "description": "",
+        "raw": "PIZZA QUATTRO FORMAGGI"
+      },
+      "en": {
+        "title": "Pizza Quattro Formaggi",
+        "description": "",
+        "raw": "PIZZA QUATTRO FORMAGGI"
+      },
+      "de": {
+        "title": "Pizza Quattro Formaggi",
+        "description": "",
+        "raw": "PIZZA QUATTRO FORMAGGI"
+      }
+    },
+    {
+      "id": "pizzas-66",
+      "num": 66,
+      "category": "pizzas",
+      "price": 14.9,
+      "es": {
+        "title": "Pizza Hawaiana",
+        "description": "Con jamón y piña",
+        "raw": "PIZZA HAWAIANA CON JAMÓN Y PIÑA"
+      },
+      "en": {
+        "title": "Pizza Hawaii",
+        "description": "With ham and pineapple",
+        "raw": "PIZZA HAWAII WITH HAM AND PINEAPPLE"
+      },
+      "de": {
+        "title": "Pizza Hawaii",
+        "description": "Mit Schinken und Ananas",
+        "raw": "PIZZA HAWAII MIT SCHINKEN UND ANANAS"
+      }
+    },
+    {
+      "id": "pizzas-67",
+      "num": 67,
+      "category": "pizzas",
+      "price": 16.9,
+      "es": {
+        "title": "Pizza Stella",
+        "description": "Con jamón parma, rúcula, parmesano, aceitunas negras",
+        "raw": "PIZZA STELLA CON JAMÓN PARMA, RÚCULA, PARMESANO, ACEITUNAS NEGRAS"
+      },
+      "en": {
+        "title": "Pizza Stella",
+        "description": "With ham, rocket, parmesan and black olives",
+        "raw": "PIZZA STELLA WITH HAM, ROCKET, PARMESAN AND BLACK OLIVES"
+      },
+      "de": {
+        "title": "Pizza Stella",
+        "description": "Mit Schinken, Rucola, Parmesan und Oliven",
+        "raw": "PIZZA STELLA MIT SCHINKEN, RUCOLA, PARMESAN UND OLIVEN"
+      }
+    },
+    {
+      "id": "pizzas-68",
+      "num": 68,
+      "category": "pizzas",
+      "price": 18.5,
+      "es": {
+        "title": "Pizza Frutti di Mare",
+        "description": "Con marisco seleccionado y ajo fresco",
+        "raw": "PIZZA FRUTTI DI MARE"
+      },
+      "en": {
+        "title": "Pizza Frutti di Mare",
+        "description": "With seafood selection and fresh garlic",
+        "raw": "SEAFOOD PIZZA"
+      },
+      "de": {
+        "title": "Pizza Frutti di Mare",
+        "description": "Mit Meeresfrüchten und Knoblauch",
+        "raw": "PIZZA MIT MEERESFRÜCHTEN"
+      }
+    },
+    {
+      "id": "pizzas-69",
+      "num": 69,
+      "category": "pizzas",
+      "price": 19.5,
+      "es": {
+        "title": "Pizza al Tartufo",
+        "description": "Con mozzarella y láminas de trufa fresca",
+        "raw": "PIZZA CON TRUFA FRESCA"
+      },
+      "en": {
+        "title": "Pizza al Tartufo",
+        "description": "With mozzarella and fresh black truffle shavings",
+        "raw": "PIZZA WITH FRESH TRUFFLE"
+      },
+      "de": {
+        "title": "Pizza al Tartufo",
+        "description": "Mit Mozzarella und frischem Trüffel",
+        "raw": "PIZZA MIT FRISCHEM TRÜFFEL"
+      }
+    },
+    {
+      "id": "pizzas-70",
+      "num": 70,
+      "category": "pizzas",
+      "price": 17.9,
+      "es": {
+        "title": "Pizza Calzone",
+        "description": "Con jamón, salami, champiñones y rúcula",
+        "raw": "PIZZA CALZONE CON JAMÓN, SALAMI, CHAMPIÑONES Y RÚCULA"
+      },
+      "en": {
+        "title": "Calzone Pizza",
+        "description": "With ham, salami, mushrooms and rocket",
+        "raw": "CALZONE PIZZA WITH HAM, SALAMI, MUSHROOMS AND ROCKET"
+      },
+      "de": {
+        "title": "Calzone",
+        "description": "Mit Schinken, Salami, Pilzen und Rucola",
+        "raw": "CALZONE MIT SCHINKEN, SALAMI, PILZEN UND RUCOLA"
+      }
+    },
+    {
+      "id": "pizzas-71",
+      "num": 71,
+      "category": "pizzas",
+      "price": 16.9,
+      "es": {
+        "title": "Pizza Gamberetti",
+        "description": "Con gambas, ajo y rúcula",
+        "raw": "PIZZA GAMBERETTI CON GAMBAS, AJO Y RÚCULA"
+      },
+      "en": {
+        "title": "Pizza Gamberetti",
+        "description": "With prawns, garlic and rocket",
+        "raw": "PIZZA GAMBERETTI WITH PRAWNS, GARLIC AND ROCKET"
+      },
+      "de": {
+        "title": "Pizza Gamberetti",
+        "description": "Mit Garnelen, Knoblauch und Rucola",
+        "raw": "PIZZA GAMBERETTI MIT GARNELEN, KNOBLAUCH UND RUCOLA"
+      }
+    },
+    {
+      "id": "bebidas-72",
+      "num": 72,
+      "category": "bebidas",
+      "price": 10.5,
+      "es": {
+        "title": "Wild Berry Spritz",
+        "description": "",
+        "raw": "WILD BERRY SPRITZ"
+      },
+      "en": {
+        "title": "Wild Berry Spritz",
+        "description": "",
+        "raw": "WILD BERRY SPRITZ"
+      },
+      "de": {
+        "title": "Wild Berry Spritz",
+        "description": "",
+        "raw": "WILD BERRY SPRITZ"
+      }
+    },
+    {
+      "id": "bebidas-73",
+      "num": 73,
+      "category": "bebidas",
+      "price": 10.5,
+      "es": {
+        "title": "Lime & Hibiscus Spritz",
+        "description": "",
+        "raw": "LIME & HIBISCUS SPRITZ"
+      },
+      "en": {
+        "title": "Lime & Hibiscus Spritz",
+        "description": "",
+        "raw": "LIME & HIBISCUS SPRITZ"
+      },
+      "de": {
+        "title": "Lime & Hibiscus Spritz",
+        "description": "",
+        "raw": "LIME & HIBISCUS SPRITZ"
+      }
+    },
+    {
+      "id": "bebidas-74",
+      "num": 74,
+      "category": "bebidas",
+      "price": 10.5,
+      "es": {
+        "title": "Orange Spritz",
+        "description": "",
+        "raw": "ORANGE SPRITZ"
+      },
+      "en": {
+        "title": "Orange Spritz",
+        "description": "",
+        "raw": "ORANGE SPRITZ"
+      },
+      "de": {
+        "title": "Orange Spritz",
+        "description": "",
+        "raw": "ORANGE SPRITZ"
+      }
+    },
+    {
+      "id": "bebidas-75",
+      "num": 75,
+      "category": "bebidas",
+      "price": 10.5,
+      "es": {
+        "title": "Lemon Spritz",
+        "description": "",
+        "raw": "LEMON SPRITZ"
+      },
+      "en": {
+        "title": "Lemon Spritz",
+        "description": "",
+        "raw": "LEMON SPRITZ"
+      },
+      "de": {
+        "title": "Lemon Spritz",
+        "description": "",
+        "raw": "LEMON SPRITZ"
+      }
+    },
+    {
+      "id": "bebidas-76",
+      "num": 76,
+      "category": "bebidas",
+      "price": 9.0,
+      "es": {
+        "title": "Sangría",
+        "description": "",
+        "raw": "SANGRÍA"
+      },
+      "en": {
+        "title": "Sangria",
+        "description": "",
+        "raw": "SANGRIA"
+      },
+      "de": {
+        "title": "Sangria",
+        "description": "",
+        "raw": "SANGRIA"
+      }
+    },
+    {
+      "id": "bebidas-77",
+      "num": 77,
+      "category": "bebidas",
+      "price": 9.0,
+      "es": {
+        "title": "Hugo",
+        "description": "",
+        "raw": "HUGO"
+      },
+      "en": {
+        "title": "Hugo",
+        "description": "",
+        "raw": "HUGO"
+      },
+      "de": {
+        "title": "Hugo",
+        "description": "",
+        "raw": "HUGO"
+      }
+    },
+    {
+      "id": "bebidas-78",
+      "num": 78,
+      "category": "bebidas",
+      "price": 9.0,
+      "es": {
+        "title": "Caipirinha",
+        "description": "",
+        "raw": "CAIPIRINHA"
+      },
+      "en": {
+        "title": "Caipirinha",
+        "description": "",
+        "raw": "CAIPIRINHA"
+      },
+      "de": {
+        "title": "Caipirinha",
+        "description": "",
+        "raw": "CAIPIRINHA"
+      }
+    },
+    {
+      "id": "bebidas-79",
+      "num": 79,
+      "category": "bebidas",
+      "price": 9.0,
+      "es": {
+        "title": "Mojito",
+        "description": "",
+        "raw": "MOJITO"
+      },
+      "en": {
+        "title": "Mojito",
+        "description": "",
+        "raw": "MOJITO"
+      },
+      "de": {
+        "title": "Mojito",
+        "description": "",
+        "raw": "MOJITO"
+      }
+    },
+    {
+      "id": "bebidas-80",
+      "num": 80,
+      "category": "bebidas",
+      "price": 10.0,
+      "es": {
+        "title": "Moscow Mule",
+        "description": "",
+        "raw": "MOSCOW MULE"
+      },
+      "en": {
+        "title": "Moscow Mule",
+        "description": "",
+        "raw": "MOSCOW MULE"
+      },
+      "de": {
+        "title": "Moscow Mule",
+        "description": "",
+        "raw": "MOSCOW MULE"
+      }
+    },
+    {
+      "id": "bebidas-81",
+      "num": 81,
+      "category": "bebidas",
+      "price": 10.0,
+      "es": {
+        "title": "Espresso Martini",
+        "description": "",
+        "raw": "ESPRESSO MARTINI"
+      },
+      "en": {
+        "title": "Espresso Martini",
+        "description": "",
+        "raw": "ESPRESSO MARTINI"
+      },
+      "de": {
+        "title": "Espresso Martini",
+        "description": "",
+        "raw": "ESPRESSO MARTINI"
+      }
+    },
+    {
+      "id": "bebidas-82",
+      "num": 82,
+      "category": "bebidas",
+      "price": 10.0,
+      "es": {
+        "title": "San Francisco",
+        "description": "",
+        "raw": "SAN FRANCISCO"
+      },
+      "en": {
+        "title": "San Francisco",
+        "description": "",
+        "raw": "SAN FRANCISCO"
+      },
+      "de": {
+        "title": "San Francisco",
+        "description": "",
+        "raw": "SAN FRANCISCO"
+      }
+    },
+    {
+      "id": "bebidas-83",
+      "num": 83,
+      "category": "bebidas",
+      "price": 9.0,
+      "es": {
+        "title": "Aperol Spritz",
+        "description": "",
+        "raw": "APEROL SPRITZ"
+      },
+      "en": {
+        "title": "Aperol Spritz",
+        "description": "",
+        "raw": "APEROL SPRITZ"
+      },
+      "de": {
+        "title": "Aperol Spritz",
+        "description": "",
+        "raw": "APEROL SPRITZ"
+      }
+    },
+    {
+      "id": "bebidas-84",
+      "num": 84,
+      "category": "bebidas",
+      "price": 9.0,
+      "es": {
+        "title": "Campari Orange",
+        "description": "",
+        "raw": "CAMPARI ORANGE"
+      },
+      "en": {
+        "title": "Campari Orange",
+        "description": "",
+        "raw": "CAMPARI ORANGE"
+      },
+      "de": {
+        "title": "Campari Orange",
+        "description": "",
+        "raw": "CAMPARI ORANGE"
+      }
+    },
+    {
+      "id": "bebidas-85",
+      "num": 85,
+      "category": "bebidas",
+      "price": 3.8,
+      "es": {
+        "title": "Caña 0,3 L",
+        "description": "",
+        "raw": "CAÑA 0,3 L"
+      },
+      "en": {
+        "title": "Draft Beer 0.3 L",
+        "description": "",
+        "raw": "DRAFT BEER 0.3 L"
+      },
+      "de": {
+        "title": "Gezapftes Bier 0,3 L",
+        "description": "",
+        "raw": "GEZAPFTES BIER 0,3 L"
+      }
+    },
+    {
+      "id": "bebidas-86",
+      "num": 86,
+      "category": "bebidas",
+      "price": 6.2,
+      "es": {
+        "title": "Jarra de Cerveza 0,5 L",
+        "description": "",
+        "raw": "JARRA DE CERVEZA 0,5 L"
+      },
+      "en": {
+        "title": "Beer Mug 0.5 L",
+        "description": "",
+        "raw": "BEER MUG 0.5 L"
+      },
+      "de": {
+        "title": "Bierkrug 0,5 L",
+        "description": "",
+        "raw": "BIERKRUG 0,5 L"
+      }
+    },
+    {
+      "id": "bebidas-87",
+      "num": 87,
+      "category": "bebidas",
+      "price": 4.5,
+      "es": {
+        "title": "Cerveza 0.0 Sin Alcohol",
+        "description": "",
+        "raw": "CERVEZA 0.0 SIN ALCOHOL"
+      },
+      "en": {
+        "title": "Alcohol-Free Beer 0.0",
+        "description": "",
+        "raw": "ALCOHOL-FREE BEER 0.0"
+      },
+      "de": {
+        "title": "Alkoholfreies Bier 0.0",
+        "description": "",
+        "raw": "ALKOHOLFREIES BIER 0.0"
+      }
+    },
+    {
+      "id": "bebidas-88",
+      "num": 88,
+      "category": "bebidas",
+      "price": 6.5,
+      "es": {
+        "title": "Erdinger Weissbier",
+        "description": "Cerveza de trigo tradicional alemana",
+        "raw": "ERDINGER WEISBIER"
+      },
+      "en": {
+        "title": "Erdinger Weissbier",
+        "description": "Traditional German wheat beer",
+        "raw": "ERDINGER WEISSBIER"
+      },
+      "de": {
+        "title": "Erdinger Weissbier",
+        "description": "Traditionelles deutsches Weizenbier",
+        "raw": "ERDINGER WEISSBIER"
+      }
+    },
+    {
+      "id": "bebidas-89",
+      "num": 89,
+      "category": "bebidas",
+      "price": 6.5,
+      "es": {
+        "title": "Erdinger 0.0 Sin Alcohol",
+        "description": "",
+        "raw": "ERDINGER 0.0 SIN ALCOHOL"
+      },
+      "en": {
+        "title": "Erdinger 0.0 Alcohol-Free",
+        "description": "",
+        "raw": "ERDINGER 0.0 ALCOHOL-FREE"
+      },
+      "de": {
+        "title": "Erdinger 0,0 Alkoholfrei",
+        "description": "",
+        "raw": "ERDINGER 0,0 ALKOHOLFREI"
+      }
+    },
+    {
+      "id": "bebidas-90",
+      "num": 90,
+      "category": "bebidas",
+      "price": 3.8,
+      "es": {
+        "title": "Clara / Shandy 0,3 L",
+        "description": "",
+        "raw": "CLARA / SHANDY 0,3 L"
+      },
+      "en": {
+        "title": "Shandy 0.3 L",
+        "description": "",
+        "raw": "SHANDY 0.3 L"
+      },
+      "de": {
+        "title": "Radler / Shandy 0,3 L",
+        "description": "",
+        "raw": "RADLER / SHANDY 0,3 L"
+      }
+    },
+    {
+      "id": "bebidas-91",
+      "num": 91,
+      "category": "bebidas",
+      "price": 6.2,
+      "es": {
+        "title": "Clara / Shandy Jarra 0,5 L",
+        "description": "",
+        "raw": "CLARA / SHANDY JARRA 0,5 L"
+      },
+      "en": {
+        "title": "Shandy Mug 0.5 L",
+        "description": "",
+        "raw": "SHANDY MUG 0.5 L"
+      },
+      "de": {
+        "title": "Radler / Shandy Krug 0,5 L",
+        "description": "",
+        "raw": "RADLER / SHANDY KRUG 0,5 L"
+      }
+    },
+    {
+      "id": "bebidas-92",
+      "num": 92,
+      "category": "bebidas",
+      "price": 3.8,
+      "es": {
+        "title": "Coca-Cola",
+        "description": "",
+        "raw": "COCA-COLA"
+      },
+      "en": {
+        "title": "Coca-Cola",
+        "description": "",
+        "raw": "COCA-COLA"
+      },
+      "de": {
+        "title": "Coca-Cola",
+        "description": "",
+        "raw": "COCA-COLA"
+      }
+    },
+    {
+      "id": "bebidas-93",
+      "num": 93,
+      "category": "bebidas",
+      "price": 3.8,
+      "es": {
+        "title": "Coca-Cola Zero",
+        "description": "",
+        "raw": "COCA-COLA ZERO"
+      },
+      "en": {
+        "title": "Coca-Cola Zero",
+        "description": "",
+        "raw": "COCA-COLA ZERO"
+      },
+      "de": {
+        "title": "Coca-Cola Zero",
+        "description": "",
+        "raw": "COCA-COLA ZERO"
+      }
+    },
+    {
+      "id": "bebidas-94",
+      "num": 94,
+      "category": "bebidas",
+      "price": 3.8,
+      "es": {
+        "title": "Fanta Naranja / Limón",
+        "description": "",
+        "raw": "FANTA NARANJA / LIMÓN"
+      },
+      "en": {
+        "title": "Fanta Orange / Lemon",
+        "description": "",
+        "raw": "FANTA ORANGE / LEMON"
+      },
+      "de": {
+        "title": "Fanta Orange / Zitrone",
+        "description": "",
+        "raw": "FANTA ORANGE / ZITRONE"
+      }
+    },
+    {
+      "id": "bebidas-95",
+      "num": 95,
+      "category": "bebidas",
+      "price": 3.8,
+      "es": {
+        "title": "Sprite",
+        "description": "",
+        "raw": "SPRITE"
+      },
+      "en": {
+        "title": "Sprite",
+        "description": "",
+        "raw": "SPRITE"
+      },
+      "de": {
+        "title": "Sprite",
+        "description": "",
+        "raw": "SPRITE"
+      }
+    },
+    {
+      "id": "bebidas-96",
+      "num": 96,
+      "category": "bebidas",
+      "price": 4.2,
+      "es": {
+        "title": "Nestea / Té Helado",
+        "description": "",
+        "raw": "NESTEA / TÉ HELADO"
+      },
+      "en": {
+        "title": "Nestea / Ice Tea",
+        "description": "",
+        "raw": "NESTEA / ICE TEA"
+      },
+      "de": {
+        "title": "Nestea / Eistee",
+        "description": "",
+        "raw": "NESTEA / EISTEE"
+      }
+    },
+    {
+      "id": "bebidas-97",
+      "num": 97,
+      "category": "bebidas",
+      "price": 4.2,
+      "es": {
+        "title": "Tónica",
+        "description": "",
+        "raw": "TÓNICA"
+      },
+      "en": {
+        "title": "Tonic Water",
+        "description": "",
+        "raw": "TONIC WATER"
+      },
+      "de": {
+        "title": "Tonic Water",
+        "description": "",
+        "raw": "TONIC WATER"
+      }
+    },
+    {
+      "id": "bebidas-98",
+      "num": 98,
+      "category": "bebidas",
+      "price": 3.8,
+      "es": {
+        "title": "Zumo de Naranja",
+        "description": "",
+        "raw": "ZUMO DE NARANJA"
+      },
+      "en": {
+        "title": "Orange Juice",
+        "description": "",
+        "raw": "ORANGE JUICE"
+      },
+      "de": {
+        "title": "Orangensaft",
+        "description": "",
+        "raw": "ORANGENSAFT"
+      }
+    },
+    {
+      "id": "bebidas-99",
+      "num": 99,
+      "category": "bebidas",
+      "price": 3.8,
+      "es": {
+        "title": "Zumo de Manzana",
+        "description": "",
+        "raw": "ZUMO DE MANZANA"
+      },
+      "en": {
+        "title": "Apple Juice",
+        "description": "",
+        "raw": "APPLE JUICE"
+      },
+      "de": {
+        "title": "Apfelsaft",
+        "description": "",
+        "raw": "APFELSAFT"
+      }
+    },
+    {
+      "id": "bebidas-100",
+      "num": 100,
+      "category": "bebidas",
+      "price": 3.8,
+      "es": {
+        "title": "Zumo de Piña",
+        "description": "",
+        "raw": "ZUMO DE PIÑA"
+      },
+      "en": {
+        "title": "Pineapple Juice",
+        "description": "",
+        "raw": "PINEAPPLE JUICE"
+      },
+      "de": {
+        "title": "Ananassaft",
+        "description": "",
+        "raw": "ANANASSAFT"
+      }
+    },
+    {
+      "id": "bebidas-101",
+      "num": 101,
+      "category": "bebidas",
+      "price": 4.9,
+      "es": {
+        "title": "Apfelschorle",
+        "description": "Zumo de manzana espumoso alemán",
+        "raw": "APFELSCHORLE"
+      },
+      "en": {
+        "title": "Apfelschorle",
+        "description": "Sparkling apple spritzer",
+        "raw": "APPLE SPRITZER (APFELSCHORLE)"
+      },
+      "de": {
+        "title": "Apfelschorle",
+        "description": "Apfelsaftschorle spritzig",
+        "raw": "APFELSCHORLE"
+      }
+    },
+    {
+      "id": "bebidas-102",
+      "num": 102,
+      "category": "bebidas",
+      "price": 9.5,
+      "es": {
+        "title": "Gin Tonic",
+        "description": "",
+        "raw": "GIN TONIC"
+      },
+      "en": {
+        "title": "Gin Tonic",
+        "description": "",
+        "raw": "GIN TONIC"
+      },
+      "de": {
+        "title": "Gin Tonic",
+        "description": "",
+        "raw": "GIN TONIC"
+      }
+    },
+    {
+      "id": "bebidas-103",
+      "num": 103,
+      "category": "bebidas",
+      "price": 9.5,
+      "es": {
+        "title": "Vodka Naranja",
+        "description": "",
+        "raw": "VODKA NARANJA"
+      },
+      "en": {
+        "title": "Vodka Orange",
+        "description": "",
+        "raw": "VODKA ORANGE"
+      },
+      "de": {
+        "title": "Vodka Orange",
+        "description": "",
+        "raw": "VODKA ORANGE"
+      }
+    },
+    {
+      "id": "bebidas-104",
+      "num": 104,
+      "category": "bebidas",
+      "price": 9.5,
+      "es": {
+        "title": "Ron con Cola",
+        "description": "Ron añejo servido con refresco de cola y lima",
+        "raw": "RON CON COLA"
+      },
+      "en": {
+        "title": "Rum and Coke",
+        "description": "Aged rum served with cola and lime",
+        "raw": "RUM AND COKE"
+      },
+      "de": {
+        "title": "Rum Cola",
+        "description": "Brauner Rum mit Cola und Limette",
+        "raw": "RUM COLA"
+      }
+    },
+    {
+      "id": "bebidas-105",
+      "num": 105,
+      "category": "bebidas",
+      "price": 13.5,
+      "es": {
+        "title": "Whisky Jack Daniel's con Cola",
+        "description": "Whiskey bourbon Jack Daniel's con cola",
+        "raw": "WHISKY JACK DANIEL'S CON COLA"
+      },
+      "en": {
+        "title": "Jack Daniel's & Cola",
+        "description": "Jack Daniel's whiskey with cola",
+        "raw": "JACK DANIEL'S WHISKEY COLA"
+      },
+      "de": {
+        "title": "Jack Daniel's Cola",
+        "description": "Jack Daniel's Whiskey mit Cola",
+        "raw": "JACK DANIEL'S WHISKEY COLA"
+      }
+    }
+  ]
+};
