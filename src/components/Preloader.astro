@@ -7,6 +7,9 @@
   try {
     if (sessionStorage.getItem('ba_preloader_seen_v1') === 'true' && !sessionStorage.getItem('ba_nav_to_reservar')) {
       document.documentElement.classList.add('preloader-already-seen');
+    } else {
+      // El preloader va a animarse: congelar la web desde el primer frame
+      document.documentElement.classList.add('preloader-lock');
     }
   } catch (e) {}
 </script>
@@ -86,20 +89,39 @@
       }
     }
 
+    // Congelar / liberar la web de fondo (igual que el menú hamburguesa)
+    const rootEl = document.documentElement;
+    function lockPage() {
+      rootEl.classList.add('preloader-lock');
+    }
+    function unlockPage() {
+      rootEl.classList.remove('preloader-lock');
+    }
+
+    // Bloquear gestos de arrastre sobre el overlay (iOS ignora overflow:hidden en algunos casos)
+    preloader.addEventListener('touchmove', (e) => {
+      if (!preloader.classList.contains('preloader-hidden')) e.preventDefault();
+    }, { passive: false });
+    preloader.addEventListener('wheel', (e) => {
+      if (!preloader.classList.contains('preloader-hidden')) e.preventDefault();
+    }, { passive: false });
+
     // Ocultar preloader con suave desvanecimiento
     function hidePreloader(instant = false) {
       if (instant) {
         preloader.classList.add('preloader-hidden-instant');
         preloader.classList.add('preloader-hidden');
+        unlockPage();
       } else {
         preloader.classList.remove('preloader-hidden-instant');
         preloader.classList.add('preloader-hidden');
       }
       setTimeout(() => {
-        if (lottieAnim && preloader.classList.contains('preloader-hidden')) {
-          lottieAnim.pause();
+        if (preloader.classList.contains('preloader-hidden')) {
+          unlockPage(); // La web vuelve a ser navegable al terminar el fade-out
+          if (lottieAnim) lottieAnim.pause();
         }
-      }, 550);
+      }, 470);
     }
 
     // Mostrar preloader con texto personalizado
@@ -107,11 +129,20 @@
       if (customSub && brandSub) {
         brandSub.textContent = customSub;
       }
+      lockPage();
       document.documentElement.classList.remove('preloader-already-seen');
       preloader.classList.remove('preloader-hidden-instant');
       preloader.classList.remove('preloader-hidden');
       playLottie();
     }
+
+    // Al volver atrás desde /reservar (caché del navegador), no dejar la web bloqueada
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) {
+        try { sessionStorage.removeItem(FROM_RESERVAR_KEY); } catch (err) {}
+        hidePreloader(true);
+      }
+    });
 
     // 1. Si venimos navegando hacia Reservar Mesa
     if (isNavigatingToReservar) {
@@ -188,17 +219,33 @@
     display: none !important;
   }
 
+  /* Web congelada mientras el loading anima (sin scroll, sin rebote, sin toques) */
+  html.preloader-lock,
+  html.preloader-lock body {
+    overflow: hidden !important;
+    overscroll-behavior: none;
+    touch-action: none;
+    /* Safari iOS pinta la zona bajo su barra flotante con el fondo del documento:
+       lo igualamos al verde del loading para que no se vea ningún recorte */
+    background-color: #183321 !important;
+  }
+
   .site-preloader {
     position: fixed;
-    inset: 0;
+    /* Inset negativo + lvh: cubre también bajo la barra de cristal y el notch de Safari iOS */
+    inset: -2px;
     z-index: 999999;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    /* Fondo rosáceo porcelana cálido sutil acorde a la web */
-    background: radial-gradient(circle at 50% 45%, #FFFFFF 0%, #FDF7F4 52%, #F7ECE6 100%);
+    width: auto;
+    height: calc(100vh + 4px);
+    height: calc(100lvh + 4px);
+    min-height: calc(100% + 4px);
+    touch-action: none;
+    overscroll-behavior: contain;
+    /* Verde oliva corporativo con un halo cálido central */
+    background: radial-gradient(circle at 50% 45%, #24452E 0%, #1B3925 50%, #183321 100%);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -248,7 +295,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 6px;
-    filter: drop-shadow(0 6px 18px rgba(158, 66, 33, 0.14));
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.35));
   }
 
   .lottie-preloader-box svg {
@@ -269,7 +316,7 @@
     font-family: "Playfair Display", Georgia, serif;
     font-size: 1.65rem;
     font-weight: 700;
-    color: #183321;
+    color: #FBF9F5;
     letter-spacing: -0.015em;
     line-height: 1.15;
   }
@@ -280,7 +327,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.22em;
-    color: #9E4221;
+    color: #D97757;
     opacity: 0.95;
   }
 

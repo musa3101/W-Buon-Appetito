@@ -91,11 +91,25 @@
                 box-shadow 400ms ease;
     border: none !important;
     border-bottom: none !important;
+    /* Respeta el notch / Dynamic Island con viewport-fit=cover */
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* Franja sólida verde oliva bajo la barra de estado (estilo Arko: color fuerte y limpio arriba) */
+  #main-header::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: env(safe-area-inset-top, 0px);
+    background: #183321;
+    pointer-events: none;
   }
 
   /* Estado inicial en Hero: Degradado ambiente verde oliva estilo Arko que se funde con el vídeo (sin líneas) */
   .header-hero {
-    background: linear-gradient(to bottom, rgba(24, 51, 33, 0.65) 0%, rgba(24, 51, 33, 0.20) 65%, transparent 100%);
+    /* Arranca en verde oliva fuerte (Safari toma este color para la barra superior) y se funde con el vídeo */
+    background: linear-gradient(to bottom, rgba(24, 51, 33, 0.95) 0%, rgba(24, 51, 33, 0.50) 40%, rgba(24, 51, 33, 0.15) 75%, transparent 100%);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     border: none !important;

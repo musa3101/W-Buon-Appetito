@@ -5,7 +5,7 @@ import HeroActions from './ui/HeroActions';
 <!-- ======================================================== -->
 <!-- 2. FULL-BLEED HERO SECTION (Inspirado fielmente en Arko) -->
 <!-- ======================================================== -->
-<section id="inicio" class="relative h-svh min-h-[600px] w-full flex flex-col justify-end items-center pb-14 sm:pb-20 md:pb-24 overflow-hidden">
+<section id="inicio" class="hero-fullscreen relative w-full flex flex-col justify-end items-center overflow-hidden">
   
   <!-- Background Video en Bucle Continuo (Autoplay, Muted, Loop) -->
   <video
@@ -29,11 +29,10 @@ import HeroActions from './ui/HeroActions';
   <!-- Cinematic Gradients estilo Arko para máxima legibilidad sin tapar el vídeo -->
   <div aria-hidden="true" class="absolute inset-0 bg-black/15 pointer-events-none"></div>
   <div aria-hidden="true" class="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none"></div>
-  <!-- Efecto ambiental verde oliva #183321 sutil a ras de suelo en el pie del Hero (no sube hacia los botones) -->
+  <!-- Efecto ambiental verde oliva #183321 a la altura de la barra de cristal de Safari (nace por debajo de los botones) -->
   <div 
     aria-hidden="true" 
-    class="absolute inset-x-0 bottom-0 h-10 sm:h-14 pointer-events-none" 
-    style="background: linear-gradient(to top, #183321 0%, rgba(24, 51, 33, 0.75) 30%, transparent 100%);"
+    class="hero-bottom-fade absolute inset-x-0 bottom-0 pointer-events-none" 
   ></div>
 
   <!-- Hero Content Center-Bottom: Minimalista y Despejado con respiración amplia -->
@@ -56,3 +55,29 @@ import HeroActions from './ui/HeroActions';
 
   </div>
 </section>
+
+<style>
+  /* Altura: viewport grande (lvh) para que el vídeo se extienda bajo la barra de cristal de Safari iOS */
+  .hero-fullscreen {
+    height: 100vh;
+    height: 100lvh;
+    min-height: 600px;
+    /* Botones siempre por encima de la barra flotante de Safari + safe-area inferior */
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+  }
+
+  /* Degradado verde que cubre la zona de la barra de Safari y se funde hacia arriba */
+  .hero-bottom-fade {
+    height: calc(env(safe-area-inset-bottom, 0px) + 72px);
+    background: linear-gradient(to top, #183321 0%, rgba(24, 51, 33, 0.85) 30%, rgba(24, 51, 33, 0.35) 65%, transparent 100%);
+  }
+
+  @media (min-width: 640px) {
+    .hero-fullscreen { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5rem); }
+    .hero-bottom-fade { height: 3.5rem; }
+  }
+
+  @media (min-width: 768px) {
+    .hero-fullscreen { padding-bottom: 6rem; }
+  }
+</style>
