@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local asset backups
+public/assets/**/*_original*
+public/assets/*_original/
+

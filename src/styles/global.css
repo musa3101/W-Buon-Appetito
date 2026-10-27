@@ -17,6 +17,8 @@
   --font-cormorant: "Cormorant Garamond", Georgia, serif;
   --font-questrial: "Questrial", system-ui, sans-serif;
   --font-jakarta: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-boska: "Boska", "Cormorant Garamond", Georgia, serif;
+  --font-satoshi: "Satoshi", "Outfit", system-ui, -apple-system, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
