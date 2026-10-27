@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Preloader from '../components/Preloader.astro';
+import { TRANSLATIONS } from '../data/translations';
 
 interface Props {
   title?: string;
@@ -41,5 +42,72 @@ const {
   <body class="bg-[#FBF9F5] text-[#1B1C1A] font-sans antialiased selection:bg-[#9E4221] selection:text-white relative overflow-x-hidden">
     <Preloader />
     <slot />
+
+    <!-- Runtime Oficial de Traducción (i18nstack) -->
+    <script is:inline define:vars={{ TRANSLATIONS }}>
+      window.BUON_TRANSLATIONS = TRANSLATIONS;
+
+      function setBuonLanguage(lang) {
+        if (!lang || !window.BUON_TRANSLATIONS || !window.BUON_TRANSLATIONS[lang]) return;
+
+        try {
+          localStorage.setItem('buon_appetito_lang', lang);
+          localStorage.setItem('preferred_language', lang);
+        } catch (e) {}
+
+        document.documentElement.lang = lang;
+        const dict = window.BUON_TRANSLATIONS[lang];
+
+        // 1. Textos data-i18n
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (key && dict[key] !== undefined) {
+            el.textContent = dict[key];
+          }
+        });
+
+        // 2. HTML data-i18n-html
+        document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+          const key = el.getAttribute('data-i18n-html');
+          if (key && dict[key] !== undefined) {
+            el.innerHTML = dict[key];
+          }
+        });
+
+        // 3. Botones de Selector de Idioma (Desktop & Mobile)
+        document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
+          const btnLang = btn.getAttribute('data-lang-btn');
+          const isActive = btnLang === lang;
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          if (isActive) {
+            btn.classList.add('text-white', 'font-bold', 'opacity-100');
+            btn.classList.remove('opacity-60', 'font-normal');
+          } else {
+            btn.classList.remove('text-white', 'font-bold', 'opacity-100');
+            btn.classList.add('opacity-60', 'font-normal');
+          }
+        });
+
+        // 4. Notificar a componentes cliente (HeroActions, menús dinámicos)
+        window.dispatchEvent(new CustomEvent('buon:languageChange', { detail: { lang } }));
+      }
+
+      window.setBuonLanguage = setBuonLanguage;
+
+      function initI18n() {
+        let savedLang = 'es';
+        try {
+          savedLang = localStorage.getItem('buon_appetito_lang') || localStorage.getItem('preferred_language') || 'es';
+        } catch (e) {}
+        setBuonLanguage(savedLang);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initI18n);
+      } else {
+        initI18n();
+      }
+      document.addEventListener('astro:page-load', initI18n);
+    </script>
   </body>
 </html>

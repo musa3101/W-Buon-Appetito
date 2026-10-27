@@ -14,11 +14,11 @@ import { ShimmerButton } from './ui/shimmer-button';
     
     <!-- Section Header -->
     <div class="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4">
-      <span class="font-satoshi text-[11px] sm:text-xs font-semibold text-[#9E4221] uppercase tracking-[0.28em]">Visítanos &bull; Port d'Andratx</span>
-      <h2 class="font-boska text-3xl sm:text-4xl md:text-5xl text-[#183321] font-normal tracking-tight">
+      <span data-i18n="contact_eyebrow" class="font-satoshi text-[11px] sm:text-xs font-semibold text-[#9E4221] uppercase tracking-[0.28em]">Visítanos &bull; Port d'Andratx</span>
+      <h2 data-i18n="contact_title" class="font-boska text-3xl sm:text-4xl md:text-5xl text-[#183321] font-normal tracking-tight">
         Dónde Encontrarnos
       </h2>
-      <p class="font-satoshi text-[#5A635B] text-sm sm:text-base font-normal leading-relaxed">
+      <p data-i18n="contact_desc" class="font-satoshi text-[#5A635B] text-sm sm:text-base font-normal leading-relaxed">
         Frente al puerto deportivo de Port d'Andratx. Terraza exterior con vistas al mar y acogedor salón interior climatizado.
       </p>
     </div>
@@ -30,9 +30,9 @@ import { ShimmerButton } from './ui/shimmer-button';
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 pb-5 sm:pb-7 border-b border-[#BED0C1]">
         <div class="space-y-0.5 sm:space-y-1">
           <h3 class="font-boska text-2xl sm:text-3xl md:text-4xl font-normal text-[#183321] tracking-[-0.01em] leading-tight">
-            Información <span class="italic font-normal text-[#9E4221]">&amp;</span> Contacto
+            <span data-i18n="contact_panel_title">Información</span> <span data-i18n="contact_panel_and" class="italic font-normal text-[#9E4221]">&amp;</span> <span data-i18n="contact_panel_title2">Contacto</span>
           </h3>
-          <p class="font-satoshi text-xs sm:text-[13px] text-[#3D5243] font-normal leading-relaxed">
+          <p data-i18n="contact_panel_desc" class="font-satoshi text-xs sm:text-[13px] text-[#3D5243] font-normal leading-relaxed">
             Atención personalizada de sala, reservas y ubicación frente al puerto.
           </p>
         </div>
@@ -56,7 +56,7 @@ import { ShimmerButton } from './ui/shimmer-button';
             <line x1="8" y1="2" x2="8" y2="6"></line>
             <line x1="3" y1="10" x2="21" y2="10"></line>
           </svg>
-          <span>Reservar Mesa</span>
+          <span data-i18n="contact_btn_reservar">Reservar Mesa</span>
           <svg class="w-3.5 h-3.5 text-white/80 shrink-0 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
           </svg>
@@ -68,14 +68,14 @@ import { ShimmerButton } from './ui/shimmer-button';
         
         <!-- Columna 1: Horario (Cabinet Grotesk / Fontshare - moderno, nítido y compacto) -->
         <div class="space-y-1 sm:pr-6 sm:border-r border-[#BED0C1]">
-          <span class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.22em] block">
+          <span data-i18n="contact_schedule_label" class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.22em] block">
             Horario
           </span>
           <div>
-            <p class="font-cabinet font-bold text-base xs:text-lg sm:text-2xl text-[#183321] tracking-tight leading-snug">
+            <p data-i18n="contact_schedule_val" class="font-cabinet font-bold text-base xs:text-lg sm:text-2xl text-[#183321] tracking-tight leading-snug">
               11:30 – 23:30 h
             </p>
-            <p class="font-satoshi text-[11px] sm:text-xs text-[#4A5D4F] font-normal leading-relaxed mt-0.5">
+            <p data-i18n="contact_schedule_sub" class="font-satoshi text-[11px] sm:text-xs text-[#4A5D4F] font-normal leading-relaxed mt-0.5">
               Lunes a Domingo
             </p>
           </div>
@@ -83,7 +83,7 @@ import { ShimmerButton } from './ui/shimmer-button';
 
         <!-- Columna 2: Teléfono (Cabinet Grotesk / Fontshare - dígitos arquitectónicos limpios) -->
         <div class="space-y-1 sm:px-6 sm:border-r border-[#BED0C1]">
-          <span class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.22em] block">
+          <span data-i18n="contact_phone_label" class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.22em] block">
             Teléfono de Sala
           </span>
           <div>
@@ -95,7 +95,7 @@ import { ShimmerButton } from './ui/shimmer-button';
               <p class="font-cabinet font-bold text-base xs:text-lg sm:text-2xl text-[#183321] group-hover:text-[#9E4221] tracking-tight transition-colors leading-snug">
                 +34 632 44 60 64
               </p>
-              <p class="font-satoshi text-[11px] sm:text-xs text-[#4A5D4F] font-normal leading-relaxed mt-0.5">
+              <p data-i18n="contact_phone_sub" class="font-satoshi text-[11px] sm:text-xs text-[#4A5D4F] font-normal leading-relaxed mt-0.5">
                 Atención directa
               </p>
             </a>
@@ -104,7 +104,7 @@ import { ShimmerButton } from './ui/shimmer-button';
 
         <!-- Columna 3: Email (General Sans / Fontshare) -->
         <div class="col-span-2 sm:col-span-1 pt-3 sm:pt-0 border-t border-[#BED0C1]/60 sm:border-t-0 space-y-1 sm:pl-6">
-          <span class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.22em] block">
+          <span data-i18n="contact_email_label" class="font-satoshi text-[10px] sm:text-[10.5px] font-semibold text-[#9E4221] uppercase tracking-[0.22em] block">
             Correo Electrónico
           </span>
           <div>
@@ -116,7 +116,7 @@ import { ShimmerButton } from './ui/shimmer-button';
               <p class="font-general font-medium text-[13px] sm:text-[15px] text-[#183321] group-hover:text-[#9E4221] transition-colors leading-snug break-all sm:break-normal">
                 buonappetitoandratx@gmail.com
               </p>
-              <p class="font-satoshi text-[11px] sm:text-xs text-[#4A5D4F] font-normal leading-relaxed mt-0.5">
+              <p data-i18n="contact_email_sub" class="font-satoshi text-[11px] sm:text-xs text-[#4A5D4F] font-normal leading-relaxed mt-0.5">
                 Eventos privados y grupos
               </p>
             </a>
@@ -139,7 +139,7 @@ import { ShimmerButton } from './ui/shimmer-button';
           class="absolute top-4 left-4 z-20 inline-flex items-center font-satoshi text-[11px] uppercase tracking-[0.2em] font-semibold bg-[#FBF9F5]/95 hover:bg-[#183321] text-[#183321] hover:text-white px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all backdrop-blur-md border border-[#D9D4CC] cursor-pointer"
           title="Abrir ubicación en la app de Google Maps"
         >
-          <span>Abrir en Google Maps</span>
+          <span data-i18n="contact_btn_maps">Abrir en Google Maps</span>
         </a>
 
         <!-- Placeholder visual elegante y cálido mientras el mapa carga -->

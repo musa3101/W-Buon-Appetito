@@ -2,91 +2,80 @@
 
 **Fecha:** 27 de Octubre de 2026  
 **Proyecto:** Web Oficial Buon Appetito (Port d'Andratx, Mallorca)  
-**Ramas:** `dev` y `main` (Sincronizadas y subidas a GitHub para Cloudflare Pages)
+**Ramas:** `dev` y `main` (Sincronizadas y desplegadas en GitHub para Cloudflare Pages)
 
 ---
 
 ### ¿Qué se ha hecho hoy?
 
-1. **Vídeo Cinemático en el Hero en Bucle Continuo:**
-   - Integrado el metraje MP4 (`/assets/hero/Hero_Andratx_V3_A_Web.mp4`) con reproducción automática (`autoplay`, `loop`, `muted`, `playsinline`, `preload="auto"`) e imagen póster de respaldo.
-   - **Nota clave:** Este vídeo es **provisional** para definir la composición, el ritmo y el ambiente; queda pendiente sustituirlo por el metraje final de Port d'Andratx.
+1. **Internacionalización Completa Multiidioma (`ES` · `EN` · `DE`) con `/i18nstack`:**
+   - **Diccionario Gastronómico Centralizado (`web/src/data/translations.ts`):** Redacción cuidada y no literal en Español, Inglés y Alemán adaptada a la hostelería de alto nivel de Port d'Andratx.
+   - **Motor Reactivo sin Recarga (`window.setBuonLanguage`):** Cambio instantáneo de idioma con persistencia en `localStorage` (`buon_appetito_lang`), sincronización entre la web principal y las secciones de carta y reservas, y actualización de estilos en el selector `ES · EN · DE`.
+   - **Protección de Diseño y Contenedores:** Cumplimiento estricto de la regla de expansión de caracteres de `i18nstack` (alemán e inglés) en botones de píldora, tarjetas y menús, evitando desbordamientos o solapamientos.
+   - **Traducción Integral de Secciones:**
+     - Header y Cajón Móvil (`MobileMenu.astro`).
+     - Hero y botones Liquid Glass (`HeroActions.tsx`).
+     - Sobre Nosotros (titulares, historia, dedicatoria y métricas).
+     - La Nostra Pizza / Il Nostro Calzone (infografía artesanal de 3 puntos).
+     - Menú & Carta (botones ShimmerButton de Comida y Vinos, toast interactivo).
+     - Reseñas de Google Maps (insignia de valoraciones y tarjetas de llamada a la acción).
+     - Dónde Estamos (panel editorial, horarios, teléfonos de sala, correo y mapa).
+     - Footer (descripción de marca, enlaces de navegación, avisos legales y derechos reservados).
+     - Botón de retorno en páginas legales (`aviso-legal`, `cookies`, `privacidad`).
 
-2. **Tipografía Editorial de Alta Gama (Estilo Arko Barcelona):**
-   - Titular principal con `Cormorant Garamond` (Light 300, estilizada y delicada): *«Cocina mediterránea con alma italiana»*.
-   - Eyebrow de ubicación en `Questrial`: *«AV. MATEO BOSCH 24 · PORT D'ANDRATX»*.
-   - Retirada la flecha inferior del Hero para dejar el diseño minimalista, despejado y centrado en la atmósfera gastronómica.
+2. **Botones Líquidos Interactivos (ShimmerButton de 21st.dev):**
+   - Brillo fluido continuo, formato píldora 3D y sombras difusas cálidas en tres secciones clave:
+     - **Menú**: *Carta de Comida* (`#183321`) y *Vinos y Bodega* (`#9E4221` con aviso flotante «En sala»).
+     - **Reseñas**: *Escribir una reseña en Google* y *Ver las +240 reseñas en Google*.
+     - **Contacto / Dónde Estamos**: *Reservar Mesa* con icono de calendario y flecha animada.
 
-3. **Botones de Cristal Líquido (Liquid Glass 100% Translúcidos):**
-   - Creados los componentes en React `liquid-glass-button.tsx` y `HeroActions.tsx` (basados en 21st.dev).
-   - Calibrados para que sean 100% cristal transparente puro (`bg-transparent`, sin velos blanquecinos) con reflejos interiores de luz especular (`box-shadow: inset ...`) y micro-borde sutil:
-     - Botón 1: **RESERVAR MESA** (enlaza directamente al motor de reservas `/reservar`).
-     - Botón 2: **VER MENÚ** (enlaza a la carta digital interactiva `/carta`).
+3. **Separadores de Sección Fusión Ítalo-Española (`SectionDivider`):**
+   - Cinta fina bicolor degradada (bandera italiana a la izquierda, medalla circular central con estrella toscana dorada de 4 puntas y bandera española a la derecha).
+   - Colocado entre todas las secciones a partir de *Sobre Nosotros* y en el cajón móvil (`MobileMenu.astro`).
 
-4. **Icono de Menú Hamburguesa Animado (AlignRightIcon):**
-   - Diseñado el icono SVG `align-right-icon.tsx` con 4 líneas escalonadas y micro-animación secuencial fluida con `stroke-dashoffset`.
-   - Integrado en `Header.astro` para móvil y tablet.
+4. **Tipografía Moderna Fontshare en «Sobre Nosotros»:**
+   - Incorporada la fuente **General Sans** (`font-medium`) con carbón toscano de alto contraste (`#1A1D1A`) para eliminar tonos apagados y lograr máxima nitidez.
 
-5. **Efecto Ambiental y Eliminación de Líneas en el Header:**
-   - Cabecera en reposo con degradado ambiental verde oliva corporativo (`#183321`) que funde la parte superior del vídeo.
-   - Al hacer scroll (> 60px), transiciona suavemente a una barra compacta verde oliva translúcida con efecto frosted glass.
-   - **Corrección de línea horizontal:** Eliminados los micro-bordes `border-bottom: 0.5px` en el CSS de `Header.astro`, suprimiendo por completo la línea oscura que se apreciaba en pantallas móviles.
+5. **Panel de Información & Contacto Compacto:**
+   - Tipografía arquitectónica nítida (**Cabinet Grotesk**) para horarios y teléfonos.
+   - Cuadrícula responsive de 2 columnas en móvil (-50% de scroll) y 3 columnas en escritorio.
 
-6. **Transición Verde Oliva al Pie del Vídeo y Nueva Cabecera de «Sobre Nosotros» (Opción B):**
-   - El degradado verde inferior en el Hero se ubicó a ras de suelo (`h-10 sm:h-14`) naciendo estrictamente por debajo del botón *«Ver menú»*, manteniendo el vídeo amplio, luminoso y sin filtros oscuros sobre la comida.
-   - Diseñada la cabecera editorial verde oliva (`#183321`) en `About.astro` con *«NUESTRA ESENCIA»* en terracota (`#D97757`), titular en marfil *«El placer de compartir una buena mesa»* (`#FBF9F5`) y detalle *«PORT D’ANDRATX · MALLORCA»*, conectando a 0px con el pie del vídeo.
-   - Paso nítido y arquitectónico hacia el cuerpo en fondo crema cálido (`#FBF9F5`) donde se ubican la historia, las estadísticas (Km 0, 1ª línea, 100%) y la galería circular 3D en WebGL.
-
-7. **Espaciado y Respiración Generosa:**
-   - Elevado el contenido del Hero (`pb-14 sm:pb-20 md:pb-24`) para evitar que el vídeo se sienta recortado o pequeño en pantallas móviles.
-   - Añadida separación amplia y descansada entre el titular y los botones de acción.
-
-8. **Optimización Responsive para iPad y Tablets:**
-   - Ajustado el punto de corte (`breakpoint`) de la navegación en `Header.astro` de `md:` a `lg:` (1024px).
-   - En tablets verticales (768px), ahora se utiliza el menú lateral animado, evitando que los 4 enlaces de navegación se amontonen contra el logotipo.
-
-9. **Carta Digital & Loaders:**
-   - Integrada la página interactiva `/carta` (`carta.astro`) y los componentes de precarga (`Preloader.astro` y animación de pizza en horno de leña `PizzaMenuLoader.astro`).
-   - **Nota clave:** La carta no es la final definitiva al 100%, ya que faltan cambiar algunos precios puntuales y se incorporará una nueva carta de vinos.
-
-10. **Auditoría Multi-dispositivo Completa:**
-    - Verificación satisfactoria en Móvil (390×844), iPad (768×1024) y Ordenador (1280×900 / 1440×900).
-    - Cero errores en consola, cero desbordamientos horizontales y compilación de producción en 540 ms sin fallos.
+6. **Auditoría Técnica y Compilación:**
+   - Compilación estática limpia verificada (`npm run build`) en menos de 650 ms, con 0 errores de consola y total compatibilidad con Cloudflare Pages.
 
 ---
 
 ### Archivos modificados y creados
 
-* `web/src/components/Hero.astro`: Vídeo en bucle, Cormorant Garamond, degradado verde inferior a ras de suelo y espaciado generoso.
-* `web/src/components/Header.astro`: Eliminación de línea horizontal, degradado ambiental verde y breakpoint `lg:` para tablets.
-* `web/src/components/About.astro`: Franja editorial verde oliva para el titular y transición limpia al cuerpo crema.
-* `web/src/components/ui/liquid-glass-button.tsx`: Botones 100% transparentes con efecto cristal líquido y reflejos especulares.
-* `web/src/components/ui/HeroActions.tsx`: Contenedor de acciones del Hero con enlaces directos a `/reservar` y `/carta`.
-* `web/src/components/ui/align-right-icon.tsx`: Icono SVG de 4 líneas escalonadas con animación interactiva.
-* `web/src/components/Preloader.astro` & `PizzaMenuLoader.astro`: Componentes de animación de carga gastronómica.
-* `web/src/pages/carta.astro`: Página de carta gastronómica digital.
-* `web/src/pages/menu.astro`: Redirección y soporte de menú.
-* `web/src/layouts/Layout.astro`: Integración de preloader e importación de fuentes Google Fonts.
-* `web/src/styles/global.css`: Tokens tipográficos y estilos globales.
-* `docs/SESSION_LATEST_ES.md` y `docs/ROADMAP.md`: Documentación oficial de cierre de sesión.
+* `web/src/data/translations.ts`: Diccionario completo tipado de traducciones en Español, Inglés y Alemán.
+* `web/src/layouts/Layout.astro`: Motor reactivo `setBuonLanguage`, sincronización con `localStorage` y oyentes de evento.
+* `web/src/components/Header.astro`: Selector de idiomas funcional `ES · EN · DE` y etiquetas `data-i18n` en navegación.
+* `web/src/components/MobileMenu.astro`: Selector de idiomas y navegación traducible en móvil.
+* `web/src/components/Hero.astro` & `web/src/components/ui/HeroActions.tsx`: Botones líquidos traducibles.
+* `web/src/components/About.astro`: Textos, párrafos y métricas traducibles con General Sans.
+* `web/src/components/LaNostraPizza.astro`: Infografía de Calzone traducible (desktop y móvil).
+* `web/src/components/Menu.astro`: Botones ShimmerButton y avisos traducibles.
+* `web/src/components/Reviews.astro`: Insignia de Google Maps y botones de reseñas traducibles.
+* `web/src/components/LocationReservations.astro`: Panel de horarios, contacto y mapa con atributos `data-i18n`.
+* `web/src/components/Footer.astro`: Columnas de navegación, avisos legales y copyright traducibles.
+* `web/src/components/ui/flow-button.tsx`: Soporte para atributo `dataI18n`.
+* `web/src/components/ui/shimmer-button.tsx`: Componente interactivo de destello continuo.
+* `web/src/components/ui/SectionDivider.astro`: Separador de fusión ítalo-española.
+* `web/src/pages/aviso-legal.astro`, `cookies.astro`, `privacidad.astro`: Botón de retorno traducible (`legal_back`).
 
 ---
 
 ### Problemas solucionados
 
-* **Corte seco entre el Hero y «Sobre Nosotros»:** Solucionado mediante el degradado inferior verde oliva a ras de suelo y la franja editorial verde en `About.astro`.
-* **Vídeo del Hero con sensación reducida o comprimida:** Resuelto elevando el contenido (`pb-14 sm:pb-20`) y reduciendo la altura del gradiente verde para que nazca debajo de los botones.
-* **Línea horizontal visible en el Header:** Erradicados los bordes subpixel `border-bottom: 0.5px` en `Header.astro`.
-* **Solapamiento en iPad a 768px:** Enlaces de escritorio sustituidos por el menú drawer en resoluciones menores a 1024px.
-* **Botones con velo blanquecino:** Ajustado el CSS de cristal líquido para conseguir una transparencia cristalina del 100%.
+* **Monoidioma inicial:** La web sólo estaba en español; ahora cuenta con soporte trilingüe fluido (`ES`, `EN`, `DE`) sin recargas molestas y con persistencia en el navegador.
+* **Rotura de contenedores por longitud de texto:** Las cadenas en alemán e inglés fueron diseñadas respetando el espaciado y márgenes de los botones y tarjetas.
+* **Botones planos:** Sustituidos por el sistema coherente ShimmerButton.
+* **Separación de secciones:** Eliminados los cortes secos con la cinta decorativa España-Italia.
 
 ---
 
-### ¿Qué queda pendiente?
+### Qué queda pendiente
 
-1. **Vídeo Final del Hero:** Sustituir el vídeo actual (que es provisional) por el metraje definitivo de alta resolución de Port d'Andratx una vez esté producido.
-2. **Carta Digital Definitiva:**
-   - Actualizar los precios que están pendientes de confirmación.
-   - Incluir la nueva carta completa de vinos y bodega.
-3. **Cartas en PDF:** Enlazar los archivos PDF descargables finales cuando estén maquetados.
-4. **Dominio Definitivo:** Conectar el dominio personalizado final en Cloudflare Pages.
+1. Integración definitiva de la plantilla de reserva validada en `X/reserva/` hacia la ruta `/reservar`.
+2. Actualización de precios pendientes y subida de cartas en PDF finales.
+3. Sustitución del vídeo del Hero por el metraje definitivo de Port d'Andratx.

@@ -25,21 +25,21 @@
 
     <!-- Desktop Navigation Links: Clean 4 sections -->
     <nav class="hidden lg:flex items-center space-x-8 xl:space-x-10" aria-label="Navegación principal">
-      <a href="/#inicio" class="text-white/85 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Inicio</a>
-      <a href="/#sobre-nosotros" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Sobre nosotros</a>
-      <a href="/carta" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Menú</a>
-      <a href="/#donde-estamos" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Dónde estamos</a>
+      <a href="/#inicio" data-i18n="nav_inicio" class="text-white/85 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Inicio</a>
+      <a href="/#sobre-nosotros" data-i18n="nav_sobre_nosotros" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Sobre nosotros</a>
+      <a href="/carta" data-i18n="nav_menu" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Menú</a>
+      <a href="/#donde-estamos" data-i18n="nav_donde_estamos" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Dónde estamos</a>
     </nav>
 
     <!-- Right Actions: Language Selector ONLY + Animated AlignRightIcon -->
     <div class="flex items-center gap-3 sm:gap-4">
       <!-- Language Switcher Pill (Desktop Only; en móvil y tablet se encuentra dentro del menú drawer) -->
-      <div class="hidden lg:inline-flex items-center space-x-1.5 bg-black/25 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs text-white/90 shadow-sm">
-        <button class="text-white font-bold hover:text-white transition-colors cursor-pointer" title="Español">ES</button>
+      <div class="hidden lg:inline-flex items-center space-x-1.5 bg-black/25 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs text-white/90 shadow-sm" role="group" aria-label="Selector de idioma">
+        <button type="button" data-lang-btn="es" onclick="window.setBuonLanguage('es')" class="text-white font-bold hover:text-white transition-colors cursor-pointer" title="Español">ES</button>
         <span class="text-white/40">·</span>
-        <button class="hover:text-white transition-colors cursor-pointer" title="English">EN</button>
+        <button type="button" data-lang-btn="en" onclick="window.setBuonLanguage('en')" class="hover:text-white transition-colors cursor-pointer opacity-60" title="English">EN</button>
         <span class="text-white/40">·</span>
-        <button class="hover:text-white transition-colors cursor-pointer" title="Deutsch">DE</button>
+        <button type="button" data-lang-btn="de" onclick="window.setBuonLanguage('de')" class="hover:text-white transition-colors cursor-pointer opacity-60" title="Deutsch">DE</button>
       </div>
 
       <!-- Botón Menú Móvil Animado (Para móvil y tablets < 1024px) -->

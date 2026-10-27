@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 export interface FlowButtonProps {
   text?: string;
+  dataI18n?: string;
   href?: string;
   target?: string;
   rel?: string;
@@ -18,6 +19,7 @@ export interface FlowButtonProps {
 
 export function FlowButton({
   text = "Modern Button",
+  dataI18n,
   href,
   target,
   rel,
@@ -76,7 +78,7 @@ export function FlowButton({
       />
 
       {/* Texto principal animado (z-10 sobre el círculo) */}
-      <span className={`relative z-10 -translate-x-3 group-hover:translate-x-3 ${textClass} transition-all duration-[800ms] ease-out`}>
+      <span data-i18n={dataI18n} className={`relative z-10 -translate-x-3 group-hover:translate-x-3 ${textClass} transition-all duration-[800ms] ease-out`}>
         {text}
       </span>
 
