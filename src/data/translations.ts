@@ -83,16 +83,21 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     contact_btn_maps: "Abrir en Google Maps",
     
     // Footer
-    footer_desc: "Cocina mediterránea y pizzería artesanal al horno de leña en primera línea del puerto deportivo.",
-    footer_nav_title: "Navegación",
+    footer_desc: "Cocina mediterránea tradicional, pastas artesanales y pizzería en horno de leña en primera línea de Port d'Andratx.",
+    footer_nav_title: "Enlaces Rápidos",
     footer_legal_title: "Avisos Legales",
     footer_legal_aviso: "Aviso legal",
     footer_legal_privacidad: "Política de privacidad",
     footer_legal_cookies: "Política de cookies",
     footer_rights: "Todos los derechos reservados.",
+    footer_made_with: "Hecho con",
 
-    // Legal Header
-    legal_back: "Volver atrás"
+    // Legal Header & Pages
+    legal_back: "Volver atrás",
+    legal_info_badge: "Información Legal y LSSI-CE",
+    legal_aviso_title: "Aviso Legal",
+    legal_privacidad_title: "Política de Privacidad",
+    legal_cookies_title: "Política de Cookies"
   },
   en: {
     // Nav
@@ -172,16 +177,21 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     contact_btn_maps: "Open in Google Maps",
     
     // Footer
-    footer_desc: "Mediterranean cuisine and artisanal wood-fired pizzeria on the front line of the marina.",
-    footer_nav_title: "Navigation",
-    footer_legal_title: "Legal Notices",
+    footer_desc: "Traditional Mediterranean cuisine, artisanal pasta, and wood-fired pizzeria on the front line of Port d'Andratx.",
+    footer_nav_title: "Quick Links",
+    footer_legal_title: "Legal Information",
     footer_legal_aviso: "Legal notice",
     footer_legal_privacidad: "Privacy policy",
-    footer_legal_cookies: "Cookies policy",
+    footer_legal_cookies: "Cookie policy",
     footer_rights: "All rights reserved.",
+    footer_made_with: "Made with",
 
-    // Legal Header
-    legal_back: "Go back"
+    // Legal Header & Pages
+    legal_back: "Go back",
+    legal_info_badge: "Legal Information & Compliance",
+    legal_aviso_title: "Legal Notice",
+    legal_privacidad_title: "Privacy Policy",
+    legal_cookies_title: "Cookie Policy"
   },
   de: {
     // Nav
@@ -261,15 +271,20 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     contact_btn_maps: "In Google Maps öffnen",
     
     // Footer
-    footer_desc: "Mediterrane Küche und handwerkliche Holzofenpizzeria in erster Linie am Yachthafen.",
-    footer_nav_title: "Navigation",
-    footer_legal_title: "Rechtliches",
+    footer_desc: "Traditionelle mediterrane Küche, hausgemachte Pasta und Holzofenpizzeria in erster Meereslinie von Port d'Andratx.",
+    footer_nav_title: "Schnelllinks",
+    footer_legal_title: "Rechtliche Hinweise",
     footer_legal_aviso: "Impressum",
     footer_legal_privacidad: "Datenschutzerklärung",
     footer_legal_cookies: "Cookie-Richtlinie",
     footer_rights: "Alle Rechte vorbehalten.",
+    footer_made_with: "Erstellt mit",
 
-    // Legal Header
-    legal_back: "Zurück"
+    // Legal Header & Pages
+    legal_back: "Zurück",
+    legal_info_badge: "Rechtliche Angaben & LSSI-CE",
+    legal_aviso_title: "Impressum",
+    legal_privacidad_title: "Datenschutzerklärung",
+    legal_cookies_title: "Cookie-Richtlinie"
   }
 };

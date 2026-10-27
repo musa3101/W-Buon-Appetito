@@ -128,13 +128,23 @@
 
     </div>
 
-    <!-- Bottom Copyright & Credits Bar -->
-    <div class="mt-10 pt-6 border-t border-[#B8CEBC]/70 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#3F5545] font-satoshi text-center sm:text-left">
+    <!-- Bottom Copyright, Language & Credits Bar -->
+    <div class="mt-10 pt-6 border-t border-[#B8CEBC]/70 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#3F5545] font-satoshi text-center md:text-left">
       <p>
         &copy; 2026 Buon Appetito &bull; Port d'Andratx, Mallorca. <span data-i18n="footer_rights">Todos los derechos reservados.</span>
       </p>
+
+      <!-- Selector de idioma integrado en el pie para acceso inmediato -->
+      <div class="inline-flex items-center gap-1.5 bg-white/60 backdrop-blur-xs px-3.5 py-1 rounded-full border border-[#B8CEBC] shadow-xs text-xs" role="group" aria-label="Selector de idioma">
+        <button type="button" data-lang-btn="es" onclick="window.setBuonLanguage('es')" class="font-bold text-[#183321] hover:text-[#9E4221] transition-colors cursor-pointer px-1 py-0.5 rounded-full" title="Español">ES</button>
+        <span class="text-[#183321]/30 select-none">·</span>
+        <button type="button" data-lang-btn="en" onclick="window.setBuonLanguage('en')" class="opacity-60 hover:opacity-100 hover:text-[#9E4221] transition-colors cursor-pointer px-1 py-0.5 rounded-full" title="English">EN</button>
+        <span class="text-[#183321]/30 select-none">·</span>
+        <button type="button" data-lang-btn="de" onclick="window.setBuonLanguage('de')" class="opacity-60 hover:opacity-100 hover:text-[#9E4221] transition-colors cursor-pointer px-1 py-0.5 rounded-full" title="Deutsch">DE</button>
+      </div>
+
       <p class="text-xs text-[#3F5545] flex items-center justify-center gap-1">
-        <span>Hecho con</span>
+        <span data-i18n="footer_made_with">Hecho con</span>
         <a 
           href="https://mynextbymusa.com" 
           target="_blank" 
