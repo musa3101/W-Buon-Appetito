@@ -1,5 +1,6 @@
 ---
 import PolaroidLineCarousel from './ui/polaroid-line-carousel';
+import { ShimmerButton } from './ui/shimmer-button';
 ---
 
 <!-- ======================================================== -->
@@ -24,41 +25,48 @@ import PolaroidLineCarousel from './ui/polaroid-line-carousel';
       <PolaroidLineCarousel client:visible />
     </div>
 
-    <!-- Buttons: Food Menu & Wine Cellar -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 pt-4">
+    <!-- Buttons: Food Menu & Wine Cellar with ShimmerButton (21st.dev) -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-4">
       <!-- Button 1: Carta de Comida (Activo -> /carta) -->
-      <a 
-        href="/carta" 
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#183321] hover:bg-[#2E4A36] text-white px-8 py-3.5 rounded-full font-semibold text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+      <ShimmerButton 
+        client:load
+        href="/carta"
+        background="#183321"
+        shimmerColor="#FFFFFF"
+        shimmerDuration="3s"
+        borderRadius="100px"
+        className="shadow-xl shadow-[#183321]/20 w-full sm:w-auto"
         title="Ver Carta Digital Oficial"
       >
-        <!-- Icono gastronómico refinado: Tenedor y Cuchillo de Restaurante -->
-        <svg class="w-4 h-4 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="w-4 h-4 text-white/95" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
           <path d="M7 2v20"/>
           <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
         </svg>
         <span>Carta de Comida</span>
-      </a>
+      </ShimmerButton>
 
       <!-- Button 2: Carta de Vinos y Bodega (Disponible en sala) -->
       <div class="relative group w-full sm:w-auto">
-        <button 
-          type="button" 
+        <ShimmerButton 
+          client:load
           id="btn-bodega-info"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#9E4221] hover:bg-[#B34E2A] text-white px-8 py-3.5 rounded-full font-semibold text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+          background="#9E4221"
+          shimmerColor="#FED7AA"
+          shimmerDuration="3s"
+          borderRadius="100px"
+          className="shadow-xl shadow-[#9E4221]/20 w-full sm:w-auto"
           title="Carta de bodega y vinos disponible directamente en mesa"
         >
-          <!-- Copa de vino elegante de sumiller (sin frasco de laboratorio) -->
-          <svg class="w-4 h-4 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="w-4 h-4 text-white/95" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M8 22h8"/>
             <path d="M7 10h10"/>
             <path d="M12 15v7"/>
             <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/>
           </svg>
           <span>Vinos y Bodega</span>
-          <span class="text-[9px] uppercase tracking-wider bg-white/20 text-white/95 px-2 py-0.5 rounded-full font-medium ml-0.5">En sala</span>
-        </button>
+          <span class="text-[9px] uppercase tracking-wider bg-white/20 text-white px-2 py-0.5 rounded-full font-medium ml-1">En sala</span>
+        </ShimmerButton>
 
         <!-- Mensaje informativo flotante al pulsar -->
         <div 

@@ -147,12 +147,12 @@ const googleWriteReviewUrl = "https://search.google.com/local/writereview?placei
         Opiniones reales de vecinos, locales y viajeros que disfrutan de nuestra cocina italiana y terraza junto al puerto.
       </p>
       
-      <!-- Authentic Google Maps Badge Card -->
-      <div class="mt-4 inline-flex items-center justify-center bg-[#FBF9F5] px-5 sm:px-7 py-3 sm:py-3.5 rounded-2xl border border-[#D9D4CC]/60 shadow-sm">
+      <!-- Authentic Google Maps Badge Card (Más amplio, prominente y prestigioso en formato desktop) -->
+      <div class="mt-5 inline-flex items-center justify-center bg-[#FBF9F5] px-5 sm:px-7 py-3 sm:py-3.5 md:px-12 md:py-6 lg:px-14 lg:py-6.5 rounded-2xl md:rounded-3xl border border-[#D9D4CC]/80 shadow-xs md:shadow-lg transition-all hover:border-[#183321]/30">
         <!-- Google G Logo + Big Rating + Stars + Count -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 sm:gap-4 md:gap-6">
           <!-- Google 4-color SVG Icon -->
-          <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24">
+          <svg class="w-6 h-6 sm:w-8 sm:h-8 md:w-11 md:h-11 shrink-0" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.04h3.88c2.27-2.09 3.66-5.17 3.66-9.14z"/>
             <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.04c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.13C3.26 21.41 7.34 24 12 24z"/>
             <path fill="#FBBC05" d="M5.28 14.28c-.25-.72-.38-1.49-.38-2.28s.13-1.56.38-2.28V6.59H1.24C.45 8.16 0 9.94 0 12s.45 3.84 1.24 5.41l4.04-3.13z"/>
@@ -160,16 +160,16 @@ const googleWriteReviewUrl = "https://search.google.com/local/writereview?placei
           </svg>
           
           <div class="text-left font-satoshi">
-            <div class="flex items-center gap-1.5">
-              <span class="font-boska font-bold text-2xl text-[#183321] leading-none">4.4</span>
+            <div class="flex items-center gap-2 md:gap-3">
+              <span class="font-boska font-bold text-2xl sm:text-3xl md:text-5xl lg:text-5xl text-[#183321] leading-none">4.4</span>
               <div class="flex text-[#FBBC04]">
                 {Array.from({ length: 4 }).map(() => (
-                  <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                   </svg>
                 ))}
                 <!-- 5th star: 40% filled for accurate 4.4 rating representation -->
-                <svg class="w-4 h-4" viewBox="0 0 20 20">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 20 20">
                   <defs>
                     <linearGradient id="half-star-badge">
                       <stop offset="40%" stop-color="#FBBC04" />
@@ -180,34 +180,10 @@ const googleWriteReviewUrl = "https://search.google.com/local/writereview?placei
                 </svg>
               </div>
             </div>
-            <span class="text-xs text-[#424842] font-medium">+240 opiniones en Google Maps</span>
+            <span class="text-xs sm:text-sm md:text-base text-[#424842] font-medium block mt-0.5 md:mt-1.5">+240 opiniones en Google Maps</span>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Desktop Carousel Navigation Buttons -->
-    <div class="hidden md:flex justify-end gap-2 mb-6">
-      <button 
-        type="button" 
-        id="reviews-prev-btn" 
-        aria-label="Reseña anterior" 
-        class="w-10 h-10 rounded-full bg-[#FBF9F5] border border-[#D9D4CC]/60 flex items-center justify-center text-[#183321] hover:bg-[#183321] hover:text-[#FBF9F5] transition-colors shadow-xs cursor-pointer"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-        </svg>
-      </button>
-      <button 
-        type="button" 
-        id="reviews-next-btn" 
-        aria-label="Siguiente reseña" 
-        class="w-10 h-10 rounded-full bg-[#FBF9F5] border border-[#D9D4CC]/60 flex items-center justify-center text-[#183321] hover:bg-[#183321] hover:text-[#FBF9F5] transition-colors shadow-xs cursor-pointer"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      </button>
     </div>
 
     <!-- Review Cards Container (Scroll-snap Carousel on Mobile & Desktop) -->
@@ -340,34 +316,73 @@ const googleWriteReviewUrl = "https://search.google.com/local/writereview?placei
       ))}
     </div>
 
-    <!-- Bottom Call to Action: Leave a Review & See All on Google Maps -->
-    <div class="mt-8 pt-8 border-t border-[#D9D4CC]/40 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
-      <span class="text-xs sm:text-sm text-[#424842]">
-        ¿Has probado nuestras pizzas o cenado en nuestra terraza?
-      </span>
-      <div class="flex flex-wrap items-center justify-center gap-3">
-        <a 
-          href={googleWriteReviewUrl} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 bg-[#183321] text-[#FBF9F5] hover:bg-[#254b32] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow"
-        >
-          <span>Escribir una reseña en Google</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-          </svg>
-        </a>
-        <a 
-          href={googleMapsUrl} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="inline-flex items-center gap-1.5 bg-[#FBF9F5] text-[#183321] border border-[#D9D4CC]/60 hover:bg-[#EFE9E3] px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors"
-        >
-          <span>Ver las +240 reseñas en Google</span>
-          <svg class="w-3.5 h-3.5 text-[#9E4221]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-          </svg>
-        </a>
+    <!-- Desktop Carousel Navigation Buttons (Abajo de las reseñas y Centrado) -->
+    <div class="hidden md:flex items-center justify-center gap-4 mt-6 mb-12">
+      <button 
+        type="button" 
+        id="reviews-prev-btn" 
+        aria-label="Reseña anterior" 
+        class="w-12 h-12 rounded-full bg-[#FBF9F5] border border-[#D9D4CC]/80 flex items-center justify-center text-[#183321] hover:bg-[#183321] hover:text-[#FBF9F5] transition-all duration-200 shadow-xs hover:shadow-md hover:scale-105 active:scale-95 cursor-pointer"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button 
+        type="button" 
+        id="reviews-next-btn" 
+        aria-label="Siguiente reseña" 
+        class="w-12 h-12 rounded-full bg-[#FBF9F5] border border-[#D9D4CC]/80 flex items-center justify-center text-[#183321] hover:bg-[#183321] hover:text-[#FBF9F5] transition-all duration-200 shadow-xs hover:shadow-md hover:scale-105 active:scale-95 cursor-pointer"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Bottom Call to Action: Leave a Review & See All on Google Maps (Organizado verticalmente en tarjeta editorial) -->
+    <div class="mt-8 pt-8 md:mt-12 md:pt-10 border-t border-[#D9D4CC]/40 text-center">
+      <div class="max-w-xl mx-auto bg-[#FBF9F5] rounded-3xl p-6 sm:p-8 md:p-10 border border-[#D9D4CC]/60 shadow-xs md:shadow-sm">
+        
+        <!-- Text Header: Encima de las opciones -->
+        <div class="space-y-2 mb-6 md:mb-7">
+          <h3 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal tracking-tight">
+            ¿Has probado nuestras pizzas o cenado en nuestra terraza?
+          </h3>
+          <p class="font-satoshi text-xs sm:text-sm md:text-base text-[#424842] max-w-lg mx-auto leading-relaxed">
+            Tu valoración ayuda a otros comensales a descubrir la auténtica cocina mediterránea en Port d'Andratx.
+          </p>
+        </div>
+
+        <!-- Buttons Stacked Vertically (Uno encima del otro para ocupar el espacio con equilibrio y elegancia) -->
+        <div class="flex flex-col items-center justify-center gap-3 w-full max-w-sm mx-auto">
+          <!-- Botón 1: Escribir reseña (Principal arriba) -->
+          <a 
+            href={googleWriteReviewUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="w-full inline-flex items-center justify-center gap-2.5 bg-[#183321] text-[#FBF9F5] hover:bg-[#254b32] px-6 py-3.5 md:py-4 rounded-full text-xs sm:text-sm md:text-base font-semibold transition-all duration-200 shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99]"
+          >
+            <span>Escribir una reseña en Google</span>
+            <svg class="w-4 h-4 md:w-4.5 md:h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+
+          <!-- Botón 2: Ver reseñas (Secundario debajo) -->
+          <a 
+            href={googleMapsUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="w-full inline-flex items-center justify-center gap-2.5 bg-[#FFFFFF] text-[#183321] border border-[#D9D4CC] hover:bg-[#EFE9E3] hover:border-[#183321]/40 px-6 py-3.5 md:py-4 rounded-full text-xs sm:text-sm md:text-base font-medium transition-all duration-200 shadow-xs hover:shadow"
+          >
+            <span>Ver las +240 reseñas en Google</span>
+            <svg class="w-4 h-4 md:w-4.5 md:h-4.5 text-[#9E4221]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
+        </div>
+
       </div>
     </div>
 

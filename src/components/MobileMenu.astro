@@ -1,4 +1,5 @@
 ---
+import { FlowButton } from './ui/flow-button';
 ---
 
 <!-- ======================================================== -->
@@ -63,16 +64,17 @@
       <span class="hover:text-white cursor-pointer transition-colors">DE</span>
     </div>
 
-    <!-- Call to Action Reservar Mesa (más alargado, elegante y con presencia) -->
-    <a 
-      href="/reservar" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="w-full max-w-[310px] inline-flex justify-center items-center gap-3 bg-gradient-to-r from-[#9E4221] to-[#C45E3B] hover:brightness-110 text-white font-semibold text-xs sm:text-sm uppercase tracking-widest py-3.5 px-6 rounded-full shadow-lg hover:shadow-xl transition-all active:scale-95 cursor-pointer font-satoshi" 
-    >
-      <span class="material-symbols-outlined text-lg">calendar_month</span>
-      <span>RESERVAR MESA</span>
-    </a>
+    <!-- Call to Action Reservar Mesa con FlowButton de 21st.dev -->
+    <FlowButton 
+      client:load
+      text="Reservar Mesa"
+      href="/reservar"
+      target="_blank"
+      rel="noopener noreferrer"
+      variant="mobile-dark"
+      fullWidth={true}
+      title="Reservar mesa en Buon Appetito"
+    />
   </div>
 </div>
 

@@ -13,10 +13,10 @@
     id="header-inner"
   >
     
-    <!-- Brand Logo Oficial (Brillando sobre el fondo del Hero) -->
+    <!-- Brand Logo Oficial (Con bandera italiana, tomates vivos y tipografía blanca) -->
     <a href="/#inicio" class="flex items-center gap-2 group" aria-label="Buon Appetito - Volver al inicio">
       <img 
-        src="/assets/logos/logo-buon-appetito-white.png" 
+        src="/assets/logos/logo-buon-appetito-color-dark.png" 
         alt="Buon Appetito Port d'Andratx" 
         id="header-logo"
         class="h-8 sm:h-9 md:h-10 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-all duration-300"
@@ -126,33 +126,62 @@
     border-bottom: none !important;
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45);
   }
+
+  /* Reducción en scroll: especialmente por abajo en versión móvil para ganar espacio de lectura */
+  .header-scrolled #header-inner {
+    padding-top: 0.55rem !important;
+    padding-bottom: 0.35rem !important;
+  }
+
+  @media (min-width: 640px) {
+    .header-scrolled #header-inner {
+      padding-top: 0.75rem !important;
+      padding-bottom: 0.75rem !important;
+    }
+  }
+
+  .header-scrolled #header-logo {
+    height: 1.75rem !important; /* 28px en móvil */
+  }
+
+  @media (min-width: 640px) {
+    .header-scrolled #header-logo {
+      height: 2.25rem !important;
+    }
+  }
+
+  .header-scrolled #menu-toggle-btn {
+    width: 2.25rem !important; /* 36px */
+    height: 2.25rem !important;
+    padding: 0.25rem !important;
+  }
+
+  @media (min-width: 640px) {
+    .header-scrolled #menu-toggle-btn {
+      width: 2.75rem !important;
+      height: 2.75rem !important;
+      padding: 0.5rem !important;
+    }
+  }
 </style>
 
 <script>
   // Control de scroll idéntico a Arko: cambia suavemente al bajar > 60px
   const header = document.getElementById('main-header');
-  const headerInner = document.getElementById('header-inner');
-  const headerLogo = document.getElementById('header-logo');
 
   function updateHeaderOnScroll() {
-    if (!header || !headerInner) return;
+    if (!header) return;
     const isScrolled = window.scrollY > 60;
 
     if (isScrolled) {
       if (!header.classList.contains('header-scrolled')) {
         header.classList.remove('header-hero');
         header.classList.add('header-scrolled');
-        headerInner.classList.remove('py-5', 'sm:py-6');
-        headerInner.classList.add('py-3', 'sm:py-3.5');
-        headerLogo?.classList.add('scale-95');
       }
     } else {
       if (!header.classList.contains('header-hero')) {
         header.classList.remove('header-scrolled');
         header.classList.add('header-hero');
-        headerInner.classList.remove('py-3', 'sm:py-3.5');
-        headerInner.classList.add('py-5', 'sm:py-6');
-        headerLogo?.classList.remove('scale-95');
       }
     }
   }
