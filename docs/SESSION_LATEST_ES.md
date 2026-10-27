@@ -8,74 +8,57 @@
 
 ### ¿Qué se ha hecho hoy?
 
-1. **Internacionalización Completa Multiidioma (`ES` · `EN` · `DE`) con `/i18nstack`:**
+1. **Integración Definitiva del Motor de Reservas Estilo Cappuccino (`/reservar`):**
+   - Se trasladó e integró la plantilla validada de reservas desde `X/reserva/` a la web oficial (`web/src/pages/reservar.astro`, `web/src/styles/reservar.css`, `web/src/scripts/reservar.js`).
+   - Selector visual de comensales (chips cuadrados 1 a 5 y selector dinámico `...` para más de 6 comensales).
+   - Generador de fechas vivas de 6 días + calendario nativo desplegable.
+   - Acordeón de turnos (*Comida* y *Cena*) con horas exactas que se despliegan únicamente al elegir turno.
+   - Selector de espacio optimizado: *Terraza Puerto* y *Salón Interior*.
+   - Confirmación inteligente: en móvil (iPhone/Android) genera solicitud directa por WhatsApp con mensaje preformateado; en ordenador/tablet permite elegir entre WhatsApp Web y correo electrónico a `buonappetitoandratx@gmail.com`.
+   - Soporte multiidioma sincronizado (`ES`, `EN`, `DE`) que respeta y recuerda la selección del usuario en `localStorage`.
+
+2. **Solución al Preloader en iPhone (Pantalla Completa sin Hueco Inferior):**
+   - Corregido el problema donde la pantalla de carga no cubría el fondo de Safari en iPhone dejando una franja inferior visible.
+   - Se aplicó sobre-extensión inferior (`bottom: -150px`) y altura dinámica sin restricciones fijas (`height: auto`, `min-height: calc(100vh + 150px)`, `min-height: 100dvh`), acompañada de `.preloader-backdrop` de `#183321` y pintura síncrona del lienzo raíz (`backgroundColor = '#183321'`), garantizando 100% de cobertura bajo la barra de cristal y el *Home Indicator* de iOS.
+
+3. **Internacionalización Completa Multiidioma (`ES` · `EN` · `DE`) con `/i18nstack`:**
    - **Diccionario Gastronómico Centralizado (`web/src/data/translations.ts`):** Redacción cuidada y no literal en Español, Inglés y Alemán adaptada a la hostelería de alto nivel de Port d'Andratx.
    - **Motor Reactivo sin Recarga (`window.setBuonLanguage`):** Cambio instantáneo de idioma con persistencia en `localStorage` (`buon_appetito_lang`), sincronización entre la web principal y las secciones de carta y reservas, y actualización de estilos en el selector `ES · EN · DE`.
-   - **Protección de Diseño y Contenedores:** Cumplimiento estricto de la regla de expansión de caracteres de `i18nstack` (alemán e inglés) en botones de píldora, tarjetas y menús, evitando desbordamientos o solapamientos.
-   - **Traducción Integral de Secciones:**
-     - Header y Cajón Móvil (`MobileMenu.astro`).
-     - Hero y botones Liquid Glass (`HeroActions.tsx`).
-     - Sobre Nosotros (titulares, historia, dedicatoria y métricas).
-     - La Nostra Pizza / Il Nostro Calzone (infografía artesanal de 3 puntos).
-     - Menú & Carta (botones ShimmerButton de Comida y Vinos, toast interactivo).
-     - Reseñas de Google Maps (insignia de valoraciones y tarjetas de llamada a la acción).
-     - Dónde Estamos (panel editorial, horarios, teléfonos de sala, correo y mapa).
-     - Footer (descripción de marca, enlaces de navegación, avisos legales y derechos reservados).
-     - Botón de retorno en páginas legales (`aviso-legal`, `cookies`, `privacidad`).
+   - **Traducción Integral de Secciones:** Header, Mobile Drawer, Hero Liquid Buttons, Sobre Nosotros, Il Nostro Calzone, Menú, Reseñas, Dónde Estamos y Footer.
 
-2. **Botones Líquidos Interactivos (ShimmerButton de 21st.dev):**
-   - Brillo fluido continuo, formato píldora 3D y sombras difusas cálidas en tres secciones clave:
-     - **Menú**: *Carta de Comida* (`#183321`) y *Vinos y Bodega* (`#9E4221` con aviso flotante «En sala»).
-     - **Reseñas**: *Escribir una reseña en Google* y *Ver las +240 reseñas en Google*.
-     - **Contacto / Dónde Estamos**: *Reservar Mesa* con icono de calendario y flecha animada.
+4. **Botones Líquidos Interactivos (ShimmerButton de 21st.dev):**
+   - Brillo fluido continuo en Menú (*Carta de Comida* y *Vinos y Bodega*), Reseñas (*Escribir reseña* y *Ver opiniones en Google*) y Contacto (*Reservar Mesa*).
 
-3. **Separadores de Sección Fusión Ítalo-Española (`SectionDivider`):**
-   - Cinta fina bicolor degradada (bandera italiana a la izquierda, medalla circular central con estrella toscana dorada de 4 puntas y bandera española a la derecha).
-   - Colocado entre todas las secciones a partir de *Sobre Nosotros* y en el cajón móvil (`MobileMenu.astro`).
+5. **Separadores de Sección Fusión Ítalo-Española (`SectionDivider`):**
+   - Cinta bicolor degradada con estrella toscana de 4 puntas en medallón circular entre todas las secciones a partir de *Sobre Nosotros*.
 
-4. **Tipografía Moderna Fontshare en «Sobre Nosotros»:**
-   - Incorporada la fuente **General Sans** (`font-medium`) con carbón toscano de alto contraste (`#1A1D1A`) para eliminar tonos apagados y lograr máxima nitidez.
-
-5. **Panel de Información & Contacto Compacto:**
-   - Tipografía arquitectónica nítida (**Cabinet Grotesk**) para horarios y teléfonos.
-   - Cuadrícula responsive de 2 columnas en móvil (-50% de scroll) y 3 columnas en escritorio.
-
-6. **Auditoría Técnica y Compilación:**
-   - Compilación estática limpia verificada (`npm run build`) en menos de 650 ms, con 0 errores de consola y total compatibilidad con Cloudflare Pages.
+6. **Tipografía Moderna Fontshare en «Sobre Nosotros» y Panel de Contacto:**
+   - Incorporada **General Sans** (`font-medium`) con carbón toscano `#1A1D1A` y **Cabinet Grotesk** para horarios y teléfonos en cuadrícula compacta de 2 columnas en móvil.
 
 ---
 
 ### Archivos modificados y creados
 
-* `web/src/data/translations.ts`: Diccionario completo tipado de traducciones en Español, Inglés y Alemán.
-* `web/src/layouts/Layout.astro`: Motor reactivo `setBuonLanguage`, sincronización con `localStorage` y oyentes de evento.
-* `web/src/components/Header.astro`: Selector de idiomas funcional `ES · EN · DE` y etiquetas `data-i18n` en navegación.
-* `web/src/components/MobileMenu.astro`: Selector de idiomas y navegación traducible en móvil.
-* `web/src/components/Hero.astro` & `web/src/components/ui/HeroActions.tsx`: Botones líquidos traducibles.
-* `web/src/components/About.astro`: Textos, párrafos y métricas traducibles con General Sans.
-* `web/src/components/LaNostraPizza.astro`: Infografía de Calzone traducible (desktop y móvil).
-* `web/src/components/Menu.astro`: Botones ShimmerButton y avisos traducibles.
-* `web/src/components/Reviews.astro`: Insignia de Google Maps y botones de reseñas traducibles.
-* `web/src/components/LocationReservations.astro`: Panel de horarios, contacto y mapa con atributos `data-i18n`.
-* `web/src/components/Footer.astro`: Columnas de navegación, avisos legales y copyright traducibles.
-* `web/src/components/ui/flow-button.tsx`: Soporte para atributo `dataI18n`.
-* `web/src/components/ui/shimmer-button.tsx`: Componente interactivo de destello continuo.
-* `web/src/components/ui/SectionDivider.astro`: Separador de fusión ítalo-española.
-* `web/src/pages/aviso-legal.astro`, `cookies.astro`, `privacidad.astro`: Botón de retorno traducible (`legal_back`).
+* `web/src/pages/reservar.astro`: Integración de la interfaz de reserva estilo Cappuccino con Preloader.
+* `web/src/styles/reservar.css`: Estilos editoriales completos de la reserva (paleta oro-oliva, verde bosque y tipografía Cormorant/Playfair).
+* `web/src/scripts/reservar.js`: Lógica interactiva de reservas, multiidioma y confirmación vía WhatsApp/Email.
+* `web/src/components/Preloader.astro`: Cobertura inferior 100% en Safari iPhone y backdrop síncrono.
+* `web/src/data/translations.ts`: Diccionario trilingüe oficial.
+* `web/src/layouts/Layout.astro`: Motor reactivo `setBuonLanguage`.
+* `web/src/components/Header.astro`, `MobileMenu.astro`, `Hero.astro`, `About.astro`, `LaNostraPizza.astro`, `Menu.astro`, `Reviews.astro`, `LocationReservations.astro`, `Footer.astro`: Soporte i18n y diseño responsive.
 
 ---
 
 ### Problemas solucionados
 
-* **Monoidioma inicial:** La web sólo estaba en español; ahora cuenta con soporte trilingüe fluido (`ES`, `EN`, `DE`) sin recargas molestas y con persistencia en el navegador.
-* **Rotura de contenedores por longitud de texto:** Las cadenas en alemán e inglés fueron diseñadas respetando el espaciado y márgenes de los botones y tarjetas.
-* **Botones planos:** Sustituidos por el sistema coherente ShimmerButton.
-* **Separación de secciones:** Eliminados los cortes secos con la cinta decorativa España-Italia.
+* **Interfaz de reservas no sincronizada:** Se integró la versión moderna estilo Cappuccino en `/reservar` reemplazando la plantilla previa.
+* **Hueco inferior en loading de iPhone:** Se extendió el preloader más allá del límite inferior de la pantalla para neutralizar el comportamiento de la barra flotante de Safari iOS.
+* **Monoidioma inicial:** La web ahora cuenta con soporte trilingüe completo (`ES`, `EN`, `DE`).
 
 ---
 
 ### Qué queda pendiente
 
-1. Integración definitiva de la plantilla de reserva validada en `X/reserva/` hacia la ruta `/reservar`.
-2. Actualización de precios pendientes y subida de cartas en PDF finales.
+1. Actualización de precios pendientes en la carta digital gastronómica.
+2. Incorporación de los archivos PDF finales de comida y bodega.
 3. Sustitución del vídeo del Hero por el metraje definitivo de Port d'Andratx.

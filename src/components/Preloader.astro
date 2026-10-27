@@ -10,6 +10,7 @@
     } else {
       // El preloader va a animarse: congelar la web desde el primer frame
       document.documentElement.classList.add('preloader-lock');
+      document.documentElement.style.backgroundColor = '#183321';
     }
   } catch (e) {}
 </script>
@@ -93,9 +94,13 @@
     const rootEl = document.documentElement;
     function lockPage() {
       rootEl.classList.add('preloader-lock');
+      rootEl.style.backgroundColor = '#183321';
+      if (document.body) document.body.style.backgroundColor = '#183321';
     }
     function unlockPage() {
       rootEl.classList.remove('preloader-lock');
+      rootEl.style.backgroundColor = '';
+      if (document.body) document.body.style.backgroundColor = '';
     }
 
     // Bloquear gestos de arrastre sobre el overlay (iOS ignora overflow:hidden en algunos casos)
@@ -232,18 +237,23 @@
 
   .site-preloader {
     position: fixed;
-    /* Inset negativo + lvh: cubre también bajo la barra de cristal y el notch de Safari iOS */
-    inset: -2px;
-    z-index: 999999;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* Cubre 150px por debajo del borde de la pantalla para neutralizar cualquier barra dinámica de Safari iOS y notch */
+    bottom: -150px;
+    width: 100vw;
+    width: 100dvw;
+    height: auto;
+    min-height: calc(100vh + 150px);
+    min-height: calc(100dvh + 150px);
+    min-height: -webkit-fill-available;
+    z-index: 9999999;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: auto;
-    height: calc(100vh + 4px);
-    height: calc(100lvh + 4px);
-    min-height: calc(100% + 4px);
     touch-action: none;
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
     /* Verde oliva corporativo con un halo cálido central */
     background: radial-gradient(circle at 50% 45%, #24452E 0%, #1B3925 50%, #183321 100%);
     opacity: 1;
@@ -251,6 +261,17 @@
     pointer-events: auto;
     transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
                 visibility 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .preloader-backdrop {
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    right: -100px;
+    bottom: -200px;
+    background-color: #183321;
+    z-index: -1;
+    pointer-events: none;
   }
 
   /* Ocultación suave con fade-out */

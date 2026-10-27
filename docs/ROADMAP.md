@@ -2,6 +2,19 @@
 
 ## 1. Tareas Completadas
 
+* [x] **Motor de Reservas Estilo Cappuccino (`/reservar`):**
+  * Migrado e integrado desde `X/reserva/` a la web oficial (`reservar.astro`, `reservar.css`, `reservar.js`).
+  * Chips cuadrados para 1–5 comensales y selector dinámico `...` para más de 6 comensales.
+  * Selector de fechas vivas (6 días contiguos) con apertura de calendario nativo al pulsar `...`.
+  * Acordeón de turnos (*Comida* y *Cena*) con horas exactas desplegables.
+  * Selección de espacio (*Terraza Puerto* y *Salón Interior*) y ocasiones especiales.
+  * Confirmación inteligente: directa a WhatsApp en móviles y modal con opción WhatsApp Web / Email en ordenadores y tablets.
+  * Soporte multiidioma (`ES`, `EN`, `DE`) sincronizado con `localStorage`.
+
+* [x] **Optimización del Preloader para iPhone & Safari iOS:**
+  * Cobertura 100% de pantalla completa sin franja inferior bajo la barra de Safari o el Home Indicator.
+  * Fondo reactivo síncrono en `#183321` y sobre-extensión inferior (`bottom: -150px`).
+
 * [x] **Internacionalización Trilingüe Adaptativa (`ES` · `EN` · `DE`) con `/i18nstack`:**
   * Diccionario tipado centralizado (`web/src/data/translations.ts`) con traducción cuidada para hostelería de alto nivel en Port d'Andratx.
   * Motor reactivo `window.setBuonLanguage` con persistencia en `localStorage` (`buon_appetito_lang`), cero saltos de recarga y sincronización entre selector `ES · EN · DE` de header y cajón móvil.
@@ -42,15 +55,14 @@
 
 ## 2. Tareas en Progreso / Próxima Sesión
 
-* [ ] Integración final de la plantilla pulida de reservas desde `X/reserva/` hacia la ruta `/reservar` de la web.
 * [ ] Sustitución del vídeo del Hero por el metraje final en alta definición de Port d'Andratx.
 * [ ] Actualización de precios pendientes en la carta digital gastronómica.
 * [ ] Incorporación de la nueva carta completa de vinos y bodega.
+* [ ] Enlazar los archivos PDF descargables finales cuando estén maquetados.
 
 ---
 
 ## 3. Próximas Mejoras Prioritarias
 
-1. **Cartas en PDF:** Enlazar los archivos PDF descargables finales cuando estén maquetados.
-2. **Dominio Personalizado:** Conectar el dominio oficial definitivo en Cloudflare Pages.
-3. **Métricas de «Sobre Nosotros»:** Evaluar sustitución de las métricas (`Km 0`, `1ª`, `100%`) por una dedicatoria familiar de Buon Appetito.
+1. **Dominio Personalizado:** Conectar el dominio oficial definitivo en Cloudflare Pages.
+2. **Métricas de «Sobre Nosotros»:** Evaluar sustitución de las métricas (`Km 0`, `1ª`, `100%`) por una dedicatoria familiar de Buon Appetito.
