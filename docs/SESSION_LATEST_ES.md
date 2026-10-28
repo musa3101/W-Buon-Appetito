@@ -2,67 +2,64 @@
 
 **Fecha:** 28 de Octubre de 2026  
 **Proyecto:** Web Oficial Buon Appetito (Port d'Andratx, Mallorca)  
-**Ramas:** `dev` y `main` (Sincronizadas y desplegadas en GitHub para Cloudflare Pages)
+**Ramas:** `dev` y `main` (Sincronizadas y desplegadas en GitHub para Cloudflare Pages / Workers)
 
 ---
 
 ### ¿Qué se ha hecho hoy?
 
-1. **Corrección Oficial a "Pizza Rúcula" en la Galería:**
-   - Se corrigió el plato número 12 de la galería polaroid de la Home. Estaba nombrado como *"Pizza Stella"*, pero visualmente y gastronómicamente es una **Pizza Rúcula** (con base tradicional redonda, jamón de Parma, rúcula fresca y lascas de parmesano).
-   - Se ajustó el título y su texto alternativo en los tres idiomas: *Pizza Rúcula* (ES/EN) y *Pizza Rucola* (DE).
+1. **Evolución de Marca a Nexoo en el Motor de Reservas (`/reservar`):**
+   - Se sustituyeron todas las menciones de tecnología por la nueva identidad oficial: **"Con la tecnología de Nexoo"** (adaptado también a inglés: *Powered by Nexoo* y alemán: *Bereitgestellt von Nexoo*).
+   - Se integró el nuevo **isotipo gastronómico de Nexoo** (silueta de tenedor y cuchara formando la "N") en el pie de página al lado del nombre de la marca.
+   - Enlace directo configurado en el isotipo y nombre hacia la web oficial [mynextbymusa.com](https://mynextbymusa.com).
+   - Integración del **Favicon oficial de Nexoo** (`FAVicon.JPG` y assets redimensionados `32x32` y `192x192`) en la pestaña del motor de reservas.
 
-2. **Traducción Dinámica del Carrusel de Platos con `i18nstack`:**
-   - Los 21 platos del carrusel de la Home ahora se traducen en tiempo real al seleccionar **Inglés (EN)** o **Alemán (DE)** (*Crispy Baby Squid*, *Beef Carpaccio*, *Tagliatelle mit Trüffel*, *Meeresfrüchte-Linguine*, *Pizza Rucola*, *Meeresfrüchte-Paella*, etc.).
-   - La carta oficial ([`/carta`](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/pages/carta.astro)) y sus bases de datos se mantuvieron 100% intactas como pidió el usuario.
+2. **Resolución de Bloqueo y Zoom Accidental en Móvil (iOS / Android):**
+   - Se implementó `touch-action: manipulation;` universal para evitar que las dobles pulsaciones en pantalla disparen el zoom de Safari o congelen la interfaz.
+   - Se corrigió la estructura del selector de fechas (`...`), eliminando superposiciones invisibles y asegurando que las tarjetas de días (Mié, Jue, Vie, etc.) se seleccionen al primer toque y el botón `...` abra el calendario nativo limpiamente.
 
-3. **Páginas Legales y de Cookies 100% Traducidas:**
-   - Se crearon las versiones legales completas, oficiales y redactadas profesionalmente para:
-     - [`/aviso-legal`](file:///Users/musa/Documents/W-boun%20apeptito v1/web/src/pages/aviso-legal.astro): Aviso Legal (ES), Legal Notice (EN) y **Offizielles Impressum** (DE).
-     - [`/privacidad`](file:///Users/musa/Documents/W-boun%20apeptito v1/web/src/pages/privacidad.astro): Política de Privacidad (ES), Privacy Policy (EN) y **Datenschutzerklärung** (DE).
-     - [`/cookies`](file:///Users/musa/Documents/W-boun%20apeptito v1/web/src/pages/cookies.astro): Política de Cookies (ES), Cookie Policy (EN) y **Cookie-Richtlinie** (DE).
-   - Ahora, al pulsar cualquier idioma en la web, el contenido de estas páginas cambia de inmediato al texto completo en ese idioma.
+3. **Rediseño Editorial y Proporciones Compactas para Móviles:**
+   - Reducción armoniosa de los chips de personas (`54px × 48px`), turnos Comida/Cena (`40px`) y horas exactas (`12.5px` en 4 columnas simétricas).
+   - Aplicación de bordes redondeados suaves (`--radius-sm: 8px`) para eliminar la apariencia tosca y ofrecer un aspecto fluido y premium estilo Restoo / Cappuccino Gstaad.
+   - Nuevos iconos vectoriales de trazo limpio (`1.8px`) para Personas (perfil circular), Fecha (calendario fino) y Reserva (reloj de agujas).
+   - Línea divisoria del footer más nítida (`1.5px solid #2A2D2A`) para delimitar con claridad el fin del formulario y el inicio del pie de página.
+   - Espaciado vertical holgado (`gap: 16px`) entre la firma de Nexoo y su lema *"Tu tecnología de reserva inteligente sin comisiones"*.
 
-4. **Corrección del Selector de Idioma en el Footer:**
-   - Se solucionó el fallo visual por el cual el botón activo se volvía blanco sobre fondo verde salvia claro. Ahora se mantiene en verde corporativo oscuro (`#183321`) con total nitidez y contraste.
-   - Se vincularon con `data-i18n` los textos de *"Fotos de clientes:"* y *"Opinión verificada en Google Maps"* en [`Reviews.astro`](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/components/Reviews.astro).
+4. **Mensaje de WhatsApp Ultralimpio y Ejecutivo:**
+   - Se eliminó el exceso de emojis y asteriscos, conservando únicamente los 3 esenciales (`👤`, `📞`, `✉️`) sin palabras redundantes.
+   - Se renombraron los campos a términos directos (*Nombre*, *Lugar*, *Peticiones*).
+   - En el Paso 2 de la reserva, el aviso de confianza se limpió a un elegante: **✓ Sin intermediarios ni comisiones**, acompañado de la firma compacta de Nexoo al final.
 
-5. **Solución Definitiva de Pantalla Completa y Bloqueo en Loaders (Safari iOS):**
-   - Se eliminó el fallo en iPhone donde el preloader dejaba ver contenido en la parte inferior durante la carga en Inicio y en Reservar.
-   - Se extendió el alto con `calc(100lvh + 200px)` y `bottom: -200px` para cubrir cualquier barra dinámica de Safari.
-   - Se aplicó ocultación total de fondo (`opacity: 0 !important; visibility: hidden !important;`) para evitar que el usuario navegue o vea contenido mientras dura la animación.
-   - Navegación limpia: arranque al principio de la web y apertura de reservas en la misma pestaña (`target="_self"`).
+5. **Integración Completa en `web/` y Despliegue en Cloudflare:**
+   - Se trasladaron todas las mejoras probadas en `X/reserva/` a los archivos de producción `web/src/pages/reservar.astro`, `web/src/styles/reservar.css`, `web/src/scripts/reservar.js` y `web/public/assets/`.
+   - Se fijaron rutas absolutas (`/assets/...` y `/logo%20NEXOO/...`) para que las imágenes y favicons carguen sin fallos tanto en local como en los servidores de Cloudflare.
+   - Compilación exitosa en Astro (`npm run build`) y sincronización a las ramas `dev` y `main` en GitHub.
 
 ---
 
 ### Archivos modificados
 
-* `web/src/components/ui/polaroid-line-carousel.tsx`: Diccionario trilingüe para los 21 platos, corrección a Pizza Rúcula y escucha del evento de cambio de idioma.
-* `web/src/components/Menu.astro`: Hidratación inmediata `client:load` para el carrusel de platos.
-* `web/src/layouts/Layout.astro`: Soporte para `data-lang-block` y contraste correcto para botones de idioma en footer.
-* `web/src/data/translations.ts`: Nuevas claves legales y de reseñas.
-* `web/src/components/Reviews.astro`: Textos de verificación y fotos traducibles.
-* `web/src/pages/aviso-legal.astro`: Bloques legales en ES, EN y DE (Impressum).
-* `web/src/pages/privacidad.astro`: Bloques legales en ES, EN y DE (Datenschutzerklärung).
-* `web/src/pages/cookies.astro`: Bloques legales en ES, EN y DE (Cookie-Richtlinie).
-* `web/src/components/Preloader.astro`: Cobertura absoluta `100lvh + 200px` y ocultación de fondo.
-* `web/src/components/PizzaMenuLoader.astro`: Mismo tratamiento de pantalla completa para el loader de la carta.
-* `web/src/styles/reservar.css`: Bloqueo de opacidad durante la carga.
+* `web/src/pages/reservar.astro`: Integración del nuevo favicon de Nexoo, nuevos iconos vectoriales SVG, aviso de confianza limpio, footer compacto en Paso 2 y rutas absolutas para imágenes.
+* `web/src/styles/reservar.css`: Proporciones móviles compactas, bordes de 8px, regla `touch-action: manipulation;`, estilos del número de teléfono sin subrayado y nueva línea divisoria del footer.
+* `web/src/scripts/reservar.js`: Generador de texto de WhatsApp ultralimpio, resolución del listener de fechas nativas y soporte trilingüe.
+* `web/public/assets/`: Incorporación de `nexoo-isotype-black.png`, `nexoo-isotype-gold.png`, `nexoo-isotype.png` y favicons en varios tamaños.
+* `web/public/logo NEXOO/`: Archivos originales de identidad gráfica (`FAVicon.JPG`, `SIN FONDO.PNG`).
+* `X/reserva/`: Prototipado, validación interactiva y banco de pruebas de la landing de reserva aislada.
 
 ---
 
 ### Problemas solucionados
 
-* **Nombre incorrecto del plato #12:** Ya no aparece como "Pizza Stella", ahora es fiel a la foto: "Pizza Rúcula".
-* **Falta de traducción en carrusel de la Home:** Ahora los 21 platos se traducen a inglés y alemán sin tocar la carta gastronómica.
-* **Textos legales solo en español:** Solucionado al 100% con redacción completa en alemán e inglés.
-* **Botón de idioma invisible en el footer:** Contraste corregido con verde oscuro corporativo.
-* **Loaders incompletos en Safari iPhone:** Pantalla completa sin cortes y fondo congelado hasta finalizar la animación.
+* **Zoom y congelación en móvil al pulsar fechas:** Solucionado mediante `touch-action: manipulation;` y desvinculación de inputs invisibles sobre la cuadrícula.
+* **Invasión del selector de calendario al pulsar Comida o Cena:** Corregido limitando el input nativo únicamente al interior del botón `...`.
+* **Subrayado dorado en el teléfono de contacto:** Eliminado para una apariencia tipográfica limpia, manteniendo el click-to-call funcional.
+* **Mensaje de WhatsApp sobrecargado:** Transformado a un formato minimalista, fácil de leer y profesional para el personal de sala.
+* **Icono roto `[?]` de Nexoo y favicon en producción:** Solucionado convirtiendo las rutas a absolutas (`/assets/...`) para que Cloudflare las sirva directamente desde la raíz.
+* **Botones tapados en Safari móvil:** Ajuste milimétrico de márgenes para que los botones de acción queden por encima de la barra de navegación del navegador.
 
 ---
 
 ### Qué queda pendiente
 
-1. Sustituir el vídeo del Hero por el metraje definitivo en alta definición cuando esté listo.
-2. Incorporar la carta de vinos física en PDF o sala cuando se decida.
-3. Conectar el dominio oficial definitivo en Cloudflare Pages si aplica.
+* Sustitución del vídeo del Hero por el metraje final en alta definición cuando esté disponible.
+* Conectar el dominio personalizado final en Cloudflare Pages cuando se decida.

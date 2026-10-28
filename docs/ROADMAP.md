@@ -2,19 +2,22 @@
 
 ## 1. Tareas Completadas
 
+* [x] **Motor de Reservas Oficial con Identidad Nexoo (`/reservar`):**
+  * Integración completa de la marca Nexoo ("Con la tecnología de Nexoo" con soporte ES / EN / DE y enlace a `mynextbymusa.com`).
+  * Inclusión del isotipo oficial de Nexoo (tenedor y cuchara en "N") en el footer y favicon oficial en la pestaña.
+  * Proporciones móviles compactas y estilizadas para personas, fechas, turnos y horas exactas.
+  * Curvaturas suaves de 8px e iconos vectoriales finos (perfil de comensal, calendario limpio y reloj de agujas).
+  * Solución al doble tap y zoom no deseado en Safari/Chrome móvil con `touch-action: manipulation;`.
+  * Mensaje de WhatsApp simplificado, ejecutivo y con emojis mínimos esenciales (`👤`, `📞`, `✉️`).
+  * Aviso de confianza limpio: "✓ Sin intermediarios ni comisiones" y línea divisoria del footer nítida (`1.5px solid #2A2D2A`).
+  * Rutas absolutas para assets compatibles al 100% con Cloudflare Pages y subida a ramas `dev` y `main`.
+
 * [x] **Internacionalización Trilingüe Integral (`ES` · `EN` · `DE`) con `/i18nstack`:**
-  * Traducción completa y adaptada culturalmente en toda la web: Cabecera, Navegación, Menú Móvil, Hero, Sobre Nosotros, La Nostra Pizza, Carrusel de Menú, Reseñas, Dónde Estamos y Footer.
+  * Traducción completa en toda la web: Cabecera, Navegación, Menú Móvil, Hero, Sobre Nosotros, La Nostra Pizza, Carrusel de Menú, Reseñas, Dónde Estamos y Footer.
   * Traducción reactiva de los 21 platos del carrusel polaroid de la Home (`PolaroidLineCarousel.tsx`) en los 3 idiomas sin tocar la carta gastronómica.
   * Corrección oficial del plato #12: renombrado a **Pizza Rúcula** (*Pizza Rúcula* en ES/EN, *Pizza Rucola* en DE).
   * Redacción jurídica completa y oficial para todas las páginas legales (`/aviso-legal` con Impressum en alemán, `/privacidad` con Datenschutzerklärung y `/cookies` con Cookie-Richtlinie).
-  * Corrección visual del selector de idiomas en el pie de página (contraste óptimo verde bosque `#183321` sobre fondo claro).
-
-* [x] **Motor de Reservas Estilo Cappuccino (`/reservar`):**
-  * Chips cuadrados 1–5 y selector dinámico `...` para grupos.
-  * Selector de fechas vivas y turnos de Comida y Cena con acordeón de horas exactas.
-  * Selector de espacio (*Terraza Puerto* y *Salón Interior*) y ocasiones especiales.
-  * Confirmación inteligente a WhatsApp directo (móvil) o modal Web/Email (ordenador/tablet).
-  * Multiidioma sincronizado (`ES`, `EN`, `DE`) guardado en `localStorage`.
+  * Selector de idiomas del footer con contraste óptimo verde bosque `#183321`.
 
 * [x] **Optimización de Pantalla Completa y Bloqueo en Loaders (Safari iOS):**
   * Eliminación del hueco inferior mediante extensión `100lvh + 200px` y `bottom: -200px`.
@@ -33,9 +36,9 @@
   * Sello dinámico `4.4` con estrellas doradas y `+240 opiniones`.
   * Carrusel de opiniones y visor modal de fotos de clientes.
 
-* [x] **Auditoría Técnica y Compilación:**
-  * Compilación estática limpia (`npm run build`) en 608 ms con 0 errores.
-  * Verificación en vivo con Google Chrome DevTools (CDP).
+* [x] **Auditoría Técnica y Despliegue:**
+  * Compilación estática limpia (`npm run build`) en Astro con 0 errores.
+  * Ramas `dev` y `main` sincronizadas y desplegadas en GitHub y Cloudflare.
 
 ---
 
