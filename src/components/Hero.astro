@@ -9,6 +9,7 @@ import HeroActions from './ui/HeroActions';
   
   <!-- Background Video en Bucle Continuo (Autoplay, Muted, Loop) -->
   <video
+    id="hero-bg-video"
     autoplay
     loop
     muted
@@ -17,8 +18,10 @@ import HeroActions from './ui/HeroActions';
     poster="/assets/hero/hero_poster.webp"
     class="absolute inset-0 w-full h-full object-cover object-center"
   >
-    <source src="/assets/hero/Hero_Andratx_Final.webm" type="video/webm" />
+    <!-- MP4 como fuente principal (1080p nativo, optimizado y menor peso) -->
     <source src="/assets/hero/Hero_Andratx_Final.mp4" type="video/mp4" />
+    <!-- Fallback secundario WebM -->
+    <source src="/assets/hero/Hero_Andratx_Final.webm" type="video/webm" />
     <!-- Imagen de respaldo por si el navegador o dispositivo restringe vídeo -->
     <img 
       src="/assets/hero/hero_poster.webp" 
@@ -82,3 +85,20 @@ import HeroActions from './ui/HeroActions';
     .hero-fullscreen { padding-bottom: 6rem; }
   }
 </style>
+
+<script>
+  // Garantizar reproducción continua sin cortes en Safari iOS / ahorro de batería
+  const heroVideo = document.getElementById('hero-bg-video') as HTMLVideoElement | null;
+  if (heroVideo) {
+    const ensurePlay = () => {
+      if (heroVideo.paused) {
+        heroVideo.play().catch(() => {});
+      }
+    };
+    heroVideo.addEventListener('ended', ensurePlay);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) ensurePlay();
+    });
+    window.addEventListener('pageshow', ensurePlay);
+  }
+</script>
