@@ -22,7 +22,7 @@
     <div class="hidden md:block relative max-w-5xl mx-auto h-[640px] select-none">
       
       <!-- Center: Authentic Calzone Artesanal con destellos en punta derecha -->
-      <div class="calzone-center-anim absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div class="relative pointer-events-auto">
           <img 
             src="/assets/our-pizza.webp" 
@@ -40,48 +40,42 @@
       </div>
 
       <!-- Callout 1 (Arriba-Izquierda): Masa y plegado característico -->
-      <div class="callout-anim-c1 absolute top-2 left-4 lg:left-8 max-w-[290px] text-left">
+      <div class="absolute top-2 left-4 lg:left-8 max-w-[290px] text-left">
         <h3 data-i18n-html="pizza_c1_title" class="font-boska text-2xl lg:text-[28px] font-medium text-[#1B1C1A] leading-tight tracking-tight">
           Plegado artesanal<br/>en media luna
         </h3>
         <p data-i18n="pizza_c1_desc" class="font-satoshi text-xs lg:text-[13px] text-[#424842] mt-2 leading-relaxed">
           Masa madre sellada a mano que guarda todo el vapor, aroma y jugosidad en su interior.
         </p>
-        <div class="arrow-draw-c1 mt-2 ml-16 lg:ml-22 pointer-events-none">
-          <img 
-            src="/assets/arrow1.svg" 
-            alt="Flecha señalando el plegado artesanal" 
-            class="w-32 lg:w-36 h-auto" 
-          />
-        </div>
+        <img 
+          src="/assets/arrow1.svg" 
+          alt="Flecha señalando el plegado artesanal" 
+          class="w-32 lg:w-36 h-auto mt-2 ml-16 lg:ml-22 pointer-events-none" 
+        />
       </div>
 
       <!-- Callout 2 (Abajo-Izquierda): Horneado y textura -->
-      <div class="callout-anim-c2 absolute bottom-4 left-6 lg:left-10 max-w-[290px] text-left">
+      <div class="absolute bottom-4 left-6 lg:left-10 max-w-[290px] text-left">
         <h3 data-i18n-html="pizza_c2_title" class="font-boska text-2xl lg:text-[28px] font-medium text-[#1B1C1A] leading-tight tracking-tight mb-1">
           Horneado al punto<br/>crujiente
         </h3>
         <p data-i18n="pizza_c2_desc" class="font-satoshi text-xs lg:text-[13px] text-[#424842] mt-1 leading-relaxed">
           Borde dorado y aireado a alta temperatura para un contraste crujiente por fuera y tierno por dentro.
         </p>
-        <div class="arrow-draw-c2 mt-2 ml-14 lg:ml-20 pointer-events-none">
-          <img 
-            src="/assets/arrow-clean.svg" 
-            alt="Flecha señalando el horneado crujiente" 
-            class="w-40 lg:w-44 h-auto" 
-          />
-        </div>
+        <img 
+          src="/assets/arrow3.svg" 
+          alt="Flecha señalando el horneado crujiente" 
+          class="w-44 lg:w-48 h-auto mt-2 ml-14 lg:ml-20 pointer-events-none" 
+        />
       </div>
 
       <!-- Callout 3 (Abajo-Derecha): Relleno y topping fresco -->
-      <div class="callout-anim-c3 absolute bottom-4 right-6 lg:right-10 max-w-[300px] text-left">
-        <div class="arrow-draw-c3 mb-2 -ml-4 lg:-ml-6 pointer-events-none">
-          <img 
-            src="/assets/arrow-clean.svg" 
-            alt="Flecha señalando el relleno y toque fresco" 
-            class="w-40 lg:w-44 h-auto scale-x-[-1]" 
-          />
-        </div>
+      <div class="absolute bottom-4 right-6 lg:right-10 max-w-[300px] text-left">
+        <img 
+          src="/assets/arrow3.svg" 
+          alt="Flecha señalando el relleno y toque fresco" 
+          class="w-44 lg:w-48 h-auto mb-2 -ml-6 lg:-ml-8 pointer-events-none scale-x-[-1]" 
+        />
         <h3 data-i18n-html="pizza_c3_title" class="font-boska text-2xl lg:text-[28px] font-medium text-[#1B1C1A] leading-tight tracking-tight mb-1">
           Corazón fundido<br/>y toque fresco
         </h3>
@@ -96,7 +90,7 @@
     <div class="md:hidden relative w-full max-w-[380px] mx-auto h-[540px] select-none overflow-visible">
       
       <!-- 1. Calzone Central con halo sutil -->
-      <div class="calzone-center-anim absolute left-1/2 top-[215px] -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <div class="absolute left-1/2 top-[215px] -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         <div class="absolute inset-0 flex items-center justify-center">
           <div class="w-48 h-32 bg-[#9E4221]/10 rounded-full blur-2xl"></div>
         </div>
@@ -117,7 +111,7 @@
       </div>
 
       <!-- 2. Callout 1 (Arriba-Izquierda): Masa y plegado -->
-      <div class="callout-anim-c1 absolute top-2 left-3 max-w-[155px] text-left z-10">
+      <div class="absolute top-2 left-3 max-w-[165px] text-left z-10">
         <h3 data-i18n-html="pizza_c1_title" class="font-boska text-[16px] font-medium text-[#1B1C1A] leading-tight tracking-tight">
           Plegado artesanal<br/>en media luna
         </h3>
@@ -125,25 +119,21 @@
           Masa madre sellada a mano que guarda todo el vapor, aroma y jugosidad.
         </p>
       </div>
-      <!-- Flecha 1 (Móvil): Nace a la derecha del texto hacia la punta del calzone con curvatura descendente natural -->
-      <div class="arrow-draw-c1 absolute top-[110px] left-[175px] pointer-events-none z-10">
-        <img 
-          src="/assets/arrow-superior-c1.svg" 
-          alt="Flecha masa" 
-          class="w-[66px] h-auto rotate-[18deg]" 
-        />
-      </div>
+      <!-- Flecha 1: Arco hacia abajo apuntando a la corteza superior -->
+      <img 
+        src="/assets/arrow2.svg" 
+        alt="Flecha masa" 
+        class="absolute top-[88px] left-[80px] w-[88px] h-auto pointer-events-none z-10 scale-x-[-1] rotate-12" 
+      />
 
       <!-- 3. Callout 2 (Abajo a la Izquierda): Horneado y textura -->
-      <div class="callout-anim-c2 absolute top-[305px] left-3 max-w-[148px] text-left z-10">
-        <!-- Flecha: Nace desde el callout y asciende de forma limpia hacia la base del calzone -->
-        <div class="arrow-draw-c2 mb-1.5 ml-8 pointer-events-none">
-          <img 
-            src="/assets/arrow-inferior-left.svg" 
-            alt="Flecha horneado" 
-            class="w-[72px] h-auto" 
-          />
-        </div>
+      <div class="absolute top-[315px] left-3 max-w-[150px] text-left z-10">
+        <!-- Flecha: Nace sobre el texto y asciende hacia la base de la pizza -->
+        <img 
+          src="/assets/arrow3.svg" 
+          alt="Flecha horneado" 
+          class="w-[88px] h-auto mb-1 ml-6 pointer-events-none" 
+        />
         <h3 data-i18n-html="pizza_c2_title" class="font-boska text-[16px] font-medium text-[#1B1C1A] leading-tight tracking-tight mb-0.5">
           Horneado al punto<br/>crujiente
         </h3>
@@ -153,15 +143,13 @@
       </div>
 
       <!-- 4. Callout 3 (Abajo a la Derecha): Relleno y toque fresco -->
-      <div class="callout-anim-c3 absolute top-[305px] right-2 sm:right-3 max-w-[155px] text-left z-10">
-        <!-- Flecha: Nace desde el callout y asciende con curvatura simétrica hacia el centro del calzone -->
-        <div class="arrow-draw-c3 mb-1.5 ml-1 pointer-events-none">
-          <img 
-            src="/assets/arrow-inferior-right.svg" 
-            alt="Flecha relleno" 
-            class="w-[72px] h-auto" 
-          />
-        </div>
+      <div class="absolute top-[315px] right-2 sm:right-3 max-w-[155px] text-left z-10">
+        <!-- Flecha: Nace sobre el texto y asciende apuntando a los ingredientes -->
+        <img 
+          src="/assets/arrow3.svg" 
+          alt="Flecha relleno" 
+          class="w-[88px] h-auto mb-1 -ml-2 pointer-events-none scale-x-[-1]" 
+        />
         <h3 data-i18n-html="pizza_c3_title" class="font-boska text-[16px] font-medium text-[#1B1C1A] leading-tight tracking-tight mb-0.5">
           Corazón fundido<br/>y toque fresco
         </h3>
@@ -173,147 +161,4 @@
     </div>
 
   </div>
-
-  <style>
-    /* ======================================================== */
-    /* Animación de entrada fluida al llegar al viewport        */
-    /* ======================================================== */
-    
-    /* 1. Calzone: entrada suave con scale & fade */
-    .calzone-center-anim {
-      opacity: 0;
-      transform: scale(0.90);
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform, opacity;
-    }
-    #pizza.is-revealed .calzone-center-anim {
-      opacity: 1;
-      transform: scale(1);
-    }
-    /* Especial para móvil con translate centrado */
-    .md\:hidden .calzone-center-anim {
-      transform: translate(-50%, -50%) scale(0.90);
-    }
-    #pizza.is-revealed .md\:hidden .calzone-center-anim {
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    /* 2. Callouts: Fade-up elegante escalonado */
-    .callout-anim-c1,
-    .callout-anim-c2,
-    .callout-anim-c3 {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform, opacity;
-    }
-
-    #pizza.is-revealed .callout-anim-c1 {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 200ms;
-    }
-
-    #pizza.is-revealed .callout-anim-c2 {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 350ms;
-    }
-
-    #pizza.is-revealed .callout-anim-c3 {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 500ms;
-    }
-
-    /* 3. Flechas / Arcos: animación de dibujo y revelación (wipe fluido que guía al calzone) */
-    .arrow-draw-c1,
-    .arrow-draw-c2,
-    .arrow-draw-c3 {
-      opacity: 0;
-      clip-path: inset(0 100% 0 0);
-      transition: opacity 0.5s ease-out, clip-path 0.85s cubic-bezier(0.25, 1, 0.5, 1);
-      will-change: clip-path, opacity;
-    }
-
-    /* Flecha 1 se dibuja de izquierda a derecha guiando al calzone */
-    #pizza.is-revealed .arrow-draw-c1 {
-      opacity: 1;
-      clip-path: inset(0 0 0 0);
-      transition-delay: 350ms;
-    }
-
-    /* Flecha 2 se dibuja de abajo a arriba guiando a la base */
-    .arrow-draw-c2 {
-      clip-path: inset(100% 0 0 0);
-    }
-    #pizza.is-revealed .arrow-draw-c2 {
-      opacity: 1;
-      clip-path: inset(0 0 0 0);
-      transition-delay: 500ms;
-    }
-
-    /* Flecha 3 se dibuja guiando al relleno */
-    .arrow-draw-c3 {
-      clip-path: inset(100% 0 0 0);
-    }
-    #pizza.is-revealed .arrow-draw-c3 {
-      opacity: 1;
-      clip-path: inset(0 0 0 0);
-      transition-delay: 650ms;
-    }
-
-    /* Accesibilidad: Respetar preferencias de reducción de movimiento */
-    @media (prefers-reduced-motion: reduce) {
-      .calzone-center-anim,
-      .callout-anim-c1,
-      .callout-anim-c2,
-      .callout-anim-c3,
-      .arrow-draw-c1,
-      .arrow-draw-c2,
-      .arrow-draw-c3 {
-        opacity: 1 !important;
-        transform: none !important;
-        clip-path: none !important;
-        transition: none !important;
-      }
-      .md\:hidden .calzone-center-anim {
-        transform: translate(-50%, -50%) !important;
-      }
-    }
-  </style>
-
-  <script>
-    // IntersectionObserver de alta fidelidad para revelar suavemente el calzone, callouts y flechas al llegar a la sección
-    function setupPizzaScrollAnimation() {
-      const section = document.getElementById('pizza');
-      if (!section) return;
-
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              section.classList.add('is-revealed');
-              obs.disconnect();
-            }
-          });
-        }, {
-          threshold: 0.22,
-          rootMargin: '0px 0px -50px 0px'
-        });
-
-        observer.observe(section);
-      } else {
-        // Fallback inmediato si no hay soporte para IntersectionObserver
-        section.classList.add('is-revealed');
-      }
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setupPizzaScrollAnimation);
-    } else {
-      setupPizzaScrollAnimation();
-    }
-  </script>
 </section>
-
