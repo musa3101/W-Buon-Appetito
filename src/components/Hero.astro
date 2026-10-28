@@ -16,7 +16,7 @@ import HeroActions from './ui/HeroActions';
     playsinline
     preload="auto"
     poster="/assets/hero/hero_poster.webp"
-    class="absolute inset-0 w-full h-full object-cover object-center"
+    class="absolute inset-0 w-full h-full object-cover object-center brightness-[0.88]"
   >
     <!-- MP4 como fuente principal (1080p nativo, optimizado y menor peso) -->
     <source src="/assets/hero/Hero_Andratx_Final.mp4" type="video/mp4" />
@@ -26,12 +26,12 @@ import HeroActions from './ui/HeroActions';
     <img 
       src="/assets/hero/hero_poster.webp" 
       alt="Buon Appetito Port d'Andratx" 
-      class="absolute inset-0 w-full h-full object-cover object-center"
+      class="absolute inset-0 w-full h-full object-cover object-center brightness-[0.88]"
     />
   </video>
 
   <!-- Cinematic Gradients estilo Arko para máxima legibilidad sin tapar el vídeo -->
-  <div aria-hidden="true" class="absolute inset-0 bg-black/15 pointer-events-none"></div>
+  <div aria-hidden="true" class="absolute inset-0 bg-black/25 pointer-events-none"></div>
   <div aria-hidden="true" class="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none"></div>
   <!-- Efecto ambiental verde oliva #183321 a la altura de la barra de cristal de Safari (nace por debajo de los botones) -->
   <div 
@@ -40,20 +40,20 @@ import HeroActions from './ui/HeroActions';
   ></div>
 
   <!-- Hero Content Center-Bottom: Minimalista y Despejado con respiración amplia -->
-  <div class="relative z-10 max-w-3xl mx-auto px-4 text-center space-y-4 sm:space-y-6">
+  <div class="relative z-10 max-w-3xl mx-auto px-4 text-center space-y-3 sm:space-y-6">
     
     <!-- Eyebrow: Ubicación exacta como en Arko (letras sutiles que ceden todo el protagonismo al vídeo) -->
-    <p data-i18n="hero_location" class="font-['Questrial',sans-serif] text-[9.5px] sm:text-[11px] md:text-xs tracking-[0.28em] uppercase text-[#EFE8DD]/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+    <p data-i18n="hero_location" class="font-['Questrial',sans-serif] text-[9.5px] sm:text-[11px] md:text-xs tracking-[0.28em] uppercase text-[#EFE8DD] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
       AV. MATEO BOSCH 24 · PORT D'ANDRATX
     </p>
 
     <!-- Main Editorial Headline: Cormorant Garamond Light (más esbelta y delicada como en Arko) -->
-    <h1 class="font-['Cormorant_Garamond',Georgia,serif] text-2xl sm:text-4xl md:text-[42px] font-light tracking-[0.015em] text-center leading-[1.18] max-w-xs sm:max-w-xl mx-auto text-[#FBF9F5] drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]">
+    <h1 class="font-['Cormorant_Garamond',Georgia,serif] text-2xl sm:text-4xl md:text-[42px] font-light tracking-[0.015em] text-center leading-[1.18] max-w-xs sm:max-w-xl mx-auto text-[#FFFFFF] drop-shadow-[0_3px_18px_rgba(0,0,0,0.95)]">
       <span data-i18n="hero_title_part1">Cocina mediterránea</span><br /><span data-i18n="hero_title_part2">con alma italiana</span>
     </h1>
 
     <!-- 2 Rounded Pill CTAs con efecto Liquid Glass (21st.dev) con holgura para respirar -->
-    <div class="pt-2 sm:pt-4">
+    <div class="pt-1 sm:pt-4">
       <HeroActions client:load />
     </div>
 
@@ -66,8 +66,8 @@ import HeroActions from './ui/HeroActions';
     height: 100vh;
     height: 100lvh;
     min-height: 600px;
-    /* Botones siempre por encima de la barra flotante de Safari + safe-area inferior */
-    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+    /* Bajamos el contenido en móvil hacia la base para darle más aire y protagonismo al vídeo */
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 3.8rem);
   }
 
   /* Degradado verde que cubre la zona de la barra de Safari y se funde hacia arriba */
