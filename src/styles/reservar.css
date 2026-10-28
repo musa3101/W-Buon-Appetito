@@ -34,8 +34,8 @@
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
   --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 8px;
+  --radius-sm: 8px; /* Curvatura más elegante y refinada estilo Restoo */
+  --radius-md: 10px;
   --radius-lg: 12px;
   --radius-xl: 16px;
   
@@ -51,6 +51,10 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html, body, button, input, select, textarea, a, .person-chip, .date-chip, .shift-btn, .time-slot-btn, .btn-primary {
+  touch-action: manipulation;
+}
+
 html, body {
   width: 100%;
   min-height: 100%;
@@ -58,24 +62,6 @@ html, body {
   background-color: var(--color-bg-page);
   color: var(--color-text-main);
   -webkit-font-smoothing: antialiased;
-}
-
-/* Durante la animación del preloader: fondo verde corporativo y opacidad cero para evitar filtraciones */
-html.preloader-lock,
-body.preloader-lock {
-  background-color: #183321 !important;
-}
-
-html.preloader-lock .booking-wrapper,
-body.preloader-lock .booking-wrapper {
-  pointer-events: none !important;
-  user-select: none !important;
-  opacity: 0;
-}
-
-body:not(.preloader-lock) .booking-wrapper {
-  opacity: 1;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .font-editorial {
@@ -281,7 +267,7 @@ body:not(.preloader-lock) .booking-wrapper {
 .step-view {
   display: none;
   flex-direction: column;
-  padding: 24px 20px 40px 20px;
+  padding: 16px 20px 36px 20px;
   flex: 1;
   animation: fadeIn 0.28s ease-out forwards;
 }
@@ -297,7 +283,7 @@ body:not(.preloader-lock) .booking-wrapper {
 
 .booking-header {
   text-align: center;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 
 .booking-header.compact {
@@ -330,7 +316,7 @@ body:not(.preloader-lock) .booking-wrapper {
 .step-form {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 19px; /* Equilibrio perfecto: respira con holgura y los botones quedan exactamente encima de la barra */
 }
 
 .field-group {
@@ -345,16 +331,22 @@ body:not(.preloader-lock) .booking-wrapper {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--color-text-secondary);
-  margin-bottom: 10px;
+  margin-bottom: 9px;
   letter-spacing: 0.02em;
 }
 
-.field-label .icon-label {
-  font-size: 18px;
-  color: var(--color-text-muted);
+.field-label .icon-label,
+.field-label .label-svg-icon {
+  font-size: 17px;
+  width: 17px;
+  height: 17px;
+  color: var(--color-text-secondary);
+  stroke: var(--color-text-secondary);
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* ==========================================================================
@@ -378,27 +370,27 @@ body:not(.preloader-lock) .booking-wrapper {
 .persons-grid-row.row-four {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  max-width: 290px;
+  max-width: 250px;
   width: 100%;
-  gap: 10px;
+  gap: 8px;
 }
 
 .persons-grid-row.second-row.row-two {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
 .person-chip {
   width: 100%;
-  max-width: 65px;
-  height: 56px;
+  max-width: 54px;
+  height: 48px;
   background-color: var(--color-chip-bg);
   border: 1px solid var(--color-chip-border);
   border-radius: var(--radius-sm);
   font-family: var(--font-editorial);
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--color-text-main);
   display: flex;
@@ -410,7 +402,7 @@ body:not(.preloader-lock) .booking-wrapper {
 }
 
 .persons-grid-row.second-row .person-chip {
-  width: 65px;
+  width: 54px;
 }
 
 .person-chip:hover {
@@ -575,9 +567,12 @@ body:not(.preloader-lock) .booking-wrapper {
 }
 
 .date-chip-more {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .date-chip-more .date-chip-dots {
@@ -585,18 +580,29 @@ body:not(.preloader-lock) .booking-wrapper {
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--color-text-secondary);
+  pointer-events: none;
 }
 
 .date-chip-more.active .date-chip-dots {
   color: #FFFFFF;
 }
 
-.hidden-native-date {
+.date-chip-more .chip-native-date {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0;
-  pointer-events: none;
-  width: 1px;
-  height: 1px;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* ==========================================================================
@@ -613,8 +619,8 @@ body:not(.preloader-lock) .booking-wrapper {
   background: var(--color-chip-bg);
   border: 1px solid var(--color-chip-border);
   border-radius: var(--radius-sm);
-  padding: 8px 6px;
-  min-height: 46px;
+  padding: 6px 4px;
+  min-height: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -638,18 +644,18 @@ body:not(.preloader-lock) .booking-wrapper {
 
 .shift-name {
   font-family: var(--font-editorial);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   color: var(--color-text-main);
   text-transform: uppercase;
 }
 
 .shift-hours {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 500;
   color: var(--color-text-muted);
-  margin-top: 2px;
+  margin-top: 1px;
   letter-spacing: 0.02em;
 }
 
@@ -687,7 +693,7 @@ body:not(.preloader-lock) .booking-wrapper {
 .time-slots-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  gap: 6px;
   width: 100%;
 }
 
@@ -695,8 +701,8 @@ body:not(.preloader-lock) .booking-wrapper {
   background: #FFFFFF;
   border: 1px solid var(--color-chip-border);
   border-radius: var(--radius-sm);
-  padding: 10px 4px;
-  font-size: 13.5px;
+  padding: 7px 2px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--color-text-main);
   cursor: pointer;
@@ -788,15 +794,15 @@ body:not(.preloader-lock) .booking-wrapper {
    9. FOOTER DE RESERVAS (ESTILO CAPPUCCINO + MYNEXT)
    ========================================================================== */
 .booking-footer {
-  margin-top: 48px;
-  padding-top: 36px;
+  margin-top: 36px;
+  padding-top: 30px;
   padding-bottom: 36px;
-  border-top: 1px solid var(--color-border-subtle);
+  border-top: 1.5px solid #2A2D2A; /* Línea visible, nítida y elegante que delimita el footer sin ser exagerada */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 26px;
+  gap: 24px;
 }
 
 .help-text {
@@ -807,17 +813,20 @@ body:not(.preloader-lock) .booking-wrapper {
 }
 
 .phone-link {
-  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  font-size: 13.5px;
   font-weight: 600;
-  text-decoration: none;
-  border-bottom: 1px solid var(--color-gold);
-  padding-bottom: 1px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  letter-spacing: 0.02em;
+  color: var(--color-text-main) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  padding: 1px 2px;
+  display: inline-block;
+  transition: color 0.15s ease;
 }
 
 .phone-link:hover {
-  color: var(--color-gold);
-  border-color: var(--color-gold);
+  color: var(--color-gold) !important;
 }
 
 .change-lang-link {
@@ -867,9 +876,10 @@ body:not(.preloader-lock) .booking-wrapper {
   opacity: 0.35;
 }
 
-/* CRÉDITO DE TECNOLOGÍA MYNEXT (ESTILO RESTOO PURO: SIN CUADROS) */
+/* CRÉDITO DE TECNOLOGÍA NEXOO (ESTILO RESTOO PURO: ELEGANTE Y COMPACTO) */
+.nexoo-credit-card,
 .mynext-credit-card {
-  margin-top: 10px;
+  margin-top: 18px;
   padding: 0;
   background: transparent;
   border: none;
@@ -877,33 +887,65 @@ body:not(.preloader-lock) .booking-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  max-width: 320px;
+  gap: 16px; /* Separación generosa y holgada entre 'Con la tecnología de Nexoo' y el tagline */
+  max-width: 360px;
 }
 
+.nexoo-lead,
 .mynext-lead {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  line-height: 1.2;
 }
 
-.mynext-brand-link {
+.nexoo-brand-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Espacio armónico entre el isotipo y Nexoo */
   font-weight: 700;
   color: var(--color-text-main);
   text-decoration: none;
-  border-bottom: 1px dotted var(--color-text-muted);
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
-.mynext-brand-link:hover {
-  color: var(--color-gold);
-  border-color: var(--color-gold);
+.nexoo-brand-wrapper:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
 }
 
+.nexoo-logo-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+}
+
+.nexoo-iso-img {
+  width: 20px;
+  height: 22px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nexoo-brand-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text-main);
+  letter-spacing: -0.01em;
+}
+
+.nexoo-sub,
 .mynext-sub {
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--color-text-muted);
-  letter-spacing: 0.01em;
-  line-height: 1.4;
+  letter-spacing: 0.015em;
+  line-height: 1.5;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -1115,16 +1157,54 @@ body:not(.preloader-lock) .booking-wrapper {
   display: none;
 }
 
+.trust-notice-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -4px;
+  margin-bottom: 6px;
+}
+
 .trust-notice {
-  font-size: 11px;
+  font-size: 11.5px;
   color: var(--color-text-muted);
   text-align: center;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  line-height: 1.35;
-  margin-top: -6px;
+  gap: 6px;
+  line-height: 1.4;
+}
+
+.trust-icon {
+  font-size: 15px !important;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+.step2-footer {
+  margin-top: 36px;
+  padding-top: 28px;
+  gap: 20px;
+}
+
+.nexoo-credit-step2 {
+  margin-top: 4px;
+}
+
+.nexoo-credit-step2 .nexoo-lead {
+  font-size: 12.5px;
+  gap: 7px;
+}
+
+.nexoo-credit-step2 .nexoo-iso-img {
+  width: 17px;
+  height: 18px;
+}
+
+.nexoo-credit-step2 .nexoo-brand-name {
+  font-size: 13.5px;
 }
 
 .btn-spinner {

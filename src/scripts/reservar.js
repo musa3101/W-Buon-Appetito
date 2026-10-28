@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       groupOrGiftCard: "RESERVAR PARA GRUPOS O EVENTO",
       callHelp: "Llámenos al",
       callHelpSuffix: "si tiene cualquier duda.",
-      changeLanguage: "Cambiar idioma",
+      changeLanguage: "Change language",
       termsOfUse: "Condiciones de Uso",
       privacyPolicy: "Política de Privacidad",
       cookiesPolicy: "Política de Cookies",
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       occFamily: "Celebración familiar",
       notesLabel: "Alergias o peticiones especiales (Opcional)",
       confirmBtn: "CONFIRMAR RESERVA",
-      directBookingNotice: "Sin intermediarios ni comisiones • Confirmación directa con el restaurante",
+      directBookingNotice: "Sin intermediarios ni comisiones",
       groupModalTitle: "Reservas para Grupos y Eventos",
       groupModalDesc: "Para reservas de más de 8 personas, menús cerrados o celebraciones especiales, contacta directamente con nuestro equipo de sala para garantizar la mejor atención y disponibilidad.",
       closeBtn: "Cerrar",
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       groupOrGiftCard: "GROUP BOOKING OR EVENT",
       callHelp: "Call us at",
       callHelpSuffix: "if you have any questions.",
-      changeLanguage: "Change language",
+      changeLanguage: "Cambiar idioma",
       termsOfUse: "Terms of Use",
       privacyPolicy: "Privacy Policy",
       cookiesPolicy: "Cookie Policy",
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       occFamily: "Family gathering",
       notesLabel: "Allergies or special requests (Optional)",
       confirmBtn: "CONFIRM RESERVATION",
-      directBookingNotice: "Direct booking, no commissions • Direct confirmation with the restaurant",
+      directBookingNotice: "Direct booking, no commissions",
       groupModalTitle: "Group & Event Bookings",
       groupModalDesc: "For parties of more than 8 guests, custom menus or private celebrations, please contact our team directly for availability.",
       closeBtn: "Close",
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       groupOrGiftCard: "GRUPPENRESERVIERUNG ODER EVENT",
       callHelp: "Rufen Sie uns an unter",
       callHelpSuffix: "wenn Sie Fragen haben.",
-      changeLanguage: "Sprache ändern",
+      changeLanguage: "Change language",
       termsOfUse: "Nutzungsbedingungen",
       privacyPolicy: "Datenschutzerklärung",
       cookiesPolicy: "Cookie-Richtlinie",
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       occFamily: "Familienfeier",
       notesLabel: "Allergien oder Wünsche (Optional)",
       confirmBtn: "RESERVIERUNG BESTÄTIGEN",
-      directBookingNotice: "Direktbuchung ohne Provisionen • Direkte Bestätigung mit dem Restaurant",
+      directBookingNotice: "Direktbuchung ohne Provisionen",
       groupModalTitle: "Gruppen- und Eventreservierungen",
       groupModalDesc: "Für Reservierungen von mehr als 8 Personen oder Events wenden Sie sich bitte direkt an unser Serviceteam.",
       closeBtn: "Schließen",
@@ -259,7 +259,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const dd = String(today.getDate()).padStart(2, '0');
-    nativeDateInput.min = `${yyyy}-${mm}-${dd}`;
+    if (nativeDateInput) {
+      nativeDateInput.min = `${yyyy}-${mm}-${dd}`;
+    }
 
     let isDefaultDateSet = false;
 
@@ -304,12 +306,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Botón '...' para más fechas en el calendario
-    const moreBtn = document.createElement('button');
-    moreBtn.type = 'button';
+    const moreBtn = document.createElement('div');
     moreBtn.className = 'date-chip date-chip-more';
     moreBtn.id = 'btn-date-more';
     moreBtn.setAttribute('title', 'Elegir otra fecha');
-    moreBtn.innerHTML = `<span class="date-chip-dots">...</span>`;
+    moreBtn.innerHTML = `
+      <span class="date-chip-dots">...</span>
+      <input type="date" class="chip-native-date" id="native-date-input-chip" aria-label="Seleccionar fecha" />
+    `;
 
     // Si la fecha elegida está fuera de los primeros 6 días, marcamos '...' como activo
     const renderedIsos = [];
@@ -322,13 +326,20 @@ document.addEventListener('DOMContentLoaded', () => {
       moreBtn.classList.add('active');
     }
 
-    moreBtn.addEventListener('click', () => {
-      if (typeof nativeDateInput.showPicker === 'function') {
-        nativeDateInput.showPicker();
-      } else {
-        nativeDateInput.click();
+    const inputDate = moreBtn.getElementsByTagName('input')[0];
+    if (inputDate) {
+      if (reservationState.dateIso) {
+        inputDate.value = reservationState.dateIso;
       }
-    });
+      const todayIso = today.toISOString().split('T')[0];
+      inputDate.min = todayIso;
+
+      inputDate.addEventListener('change', (e) => {
+        if (e.target.value) {
+          selectDate(e.target.value);
+        }
+      });
+    }
 
     row2.appendChild(moreBtn);
     dateChipsContainer.appendChild(row1);
@@ -377,13 +388,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const langData = translations[currentLang];
     reservationState.dateFormatted = `${day} ${langData.monthsShort[monthIndex]}, ${year}`;
   }
-
-  // Listener para el selector de fecha nativo oculto ('...')
-  nativeDateInput?.addEventListener('change', (e) => {
-    if (e.target.value) {
-      selectDate(e.target.value);
-    }
-  });
 
   // ==========================================
   // 4. SELECTOR DE PERSONAS (CHIPS 1..6 + '...')
@@ -541,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const unit = reservationState.guests === 1 ? langData.personUnitSingle : langData.personUnit;
     if (summaryGuests) summaryGuests.textContent = `${reservationState.guests} ${unit}`;
     if (summaryDate) summaryDate.textContent = reservationState.dateFormatted;
-
+    
     const shiftLabel = reservationState.shift === 'lunch' ? langData.lunchName : langData.dinnerName;
     if (summaryTime) summaryTime.textContent = `${reservationState.time} (${shiftLabel})`;
   }
@@ -581,8 +585,8 @@ document.addEventListener('DOMContentLoaded', () => {
       goToStep1();
       return;
     }
-    // Si estamos en el Paso 1, vuelve a la web previa o al inicio
-    if (window.history.length > 1) {
+    // Si estamos en el Paso 1, vuelve a la web previa o a la raíz
+    if (window.history.length > 1 && document.referrer && document.referrer.includes(window.location.host)) {
       window.history.back();
     } else {
       window.location.href = '/';
@@ -625,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnCloseChannelModal = document.getElementById('btn-close-channel-modal');
 
   const RESTAURANT_PHONE = '34632446064'; // Teléfono para WhatsApp (+34 632 44 60 64)
-  const RESTAURANT_EMAIL = 'buonappetitoandratx@gmail.com';
+  const RESTAURANT_EMAIL = 'info@buonappetitocuisine.com';
 
   // Sanitizadores y utilidades de formato
   function sanitizeName(val) {
@@ -705,19 +709,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const unit = reservationState.guests === 1 ? langData.personUnitSingle : langData.personUnit;
     const shiftLabel = reservationState.shift === 'lunch' ? langData.lunchName : langData.dinnerName;
 
-    return `🏛️ *SOLICITUD DE RESERVA — BUON APPETITO*
-📍 *Localización:* Av. Mateo Bosch, 24 · Port d'Andratx
+    let lines = [
+      `*Reserva Buon Appetito*`,
+      ``,
+      `👤 ${reservationState.name}`,
+      `📞 ${reservationState.phone}`
+    ];
 
-👤 *Cliente:* ${reservationState.name}
-📞 *Teléfono:* ${reservationState.phone}${reservationState.email ? `\n✉️ *Email:* ${reservationState.email}` : ''}
+    if (reservationState.email) {
+      lines.push(`✉️ ${reservationState.email}`);
+    }
 
-👥 *Comensales:* ${reservationState.guests} ${unit}
-📅 *Fecha:* ${reservationState.dateFormatted}
-⏰ *Hora:* ${reservationState.time} (${shiftLabel})
-🌿 *Preferencia de Espacio:* ${reservationState.zone}
-🎉 *Ocasión:* ${reservationState.occasion}${reservationState.notes ? `\n📝 *Notas o Peticiones:* ${reservationState.notes}` : ''}
+    lines.push(
+      ``,
+      `Comensales: ${reservationState.guests} ${unit}`,
+      `Fecha: ${reservationState.dateFormatted}`,
+      `Hora: ${reservationState.time} (${shiftLabel})`,
+      `Lugar: ${reservationState.zone}`
+    );
 
-_Solicitud generada a través de la web oficial de Buon Appetito._`;
+    if (reservationState.occasion && reservationState.occasion !== 'Comida o cena habitual' && reservationState.occasion !== 'Casual lunch / dinner' && reservationState.occasion !== 'Reguläres Essen') {
+      lines.push(`Ocasión: ${reservationState.occasion}`);
+    } else if (reservationState.occasion) {
+      lines.push(`Ocasión: ${reservationState.occasion}`);
+    }
+
+    if (reservationState.notes) {
+      lines.push(`Peticiones: ${reservationState.notes}`);
+    }
+
+    lines.push(
+      ``,
+      `_Tecnología Nexoo_`
+    );
+
+    return lines.join('\n');
   }
 
   function sendViaWhatsApp(isWeb = false) {
@@ -735,7 +761,7 @@ _Solicitud generada a través de la web oficial de Buon Appetito._`;
   function sendViaEmail() {
     const subject = encodeURIComponent(`Reserva de Mesa — ${reservationState.name} (${reservationState.dateFormatted} ${reservationState.time})`);
     const body = encodeURIComponent(buildReservationText().replace(/\*/g, '').replace(/_/g, ''));
-
+    
     // mailto abre el cliente nativo o Gmail
     const mailtoUrl = `mailto:${RESTAURANT_EMAIL}?subject=${subject}&body=${body}`;
     window.location.href = mailtoUrl;
@@ -801,7 +827,7 @@ _Solicitud generada a través de la web oficial de Buon Appetito._`;
         confirmSpinner?.classList.add('hidden');
         sendViaWhatsApp(false);
       }, 350);
-    }
+    } 
     // En Tablet / Ordenador: muestra el modal con las 2 opciones (WhatsApp o Email)
     else {
       modalChannelChoice?.classList.remove('hidden');
@@ -871,9 +897,6 @@ _Solicitud generada a través de la web oficial de Buon Appetito._`;
   function applyLanguage(lang) {
     if (!translations[lang]) return;
     currentLang = lang;
-    try {
-      localStorage.setItem('buon_appetito_lang', lang);
-    } catch (e) { }
     const data = translations[lang];
 
     if (currentLangText) currentLangText.textContent = lang.toUpperCase();
@@ -909,13 +932,6 @@ _Solicitud generada a través de la web oficial de Buon Appetito._`;
   // ==========================================
   // 11. INICIALIZACIÓN
   // ==========================================
-  let initialLang = 'es';
-  try {
-    const saved = localStorage.getItem('buon_appetito_lang');
-    if (saved && translations[saved]) {
-      initialLang = saved;
-    }
-  } catch (e) { }
-  applyLanguage(initialLang);
+  renderDateChips();
   // Plantilla limpia de serie: turnos en reposo y acordeón de horas 100% plegado hasta pulsar Comida o Cena
 });

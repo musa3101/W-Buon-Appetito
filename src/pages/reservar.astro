@@ -84,7 +84,11 @@ const description = "Reserve su mesa en Buon Appetito, Port d'Andratx. Cocina me
           <!-- 1. PERSONAS (CHIPS CUADRADOS 1..5, 6, ...) -->
           <div class="field-group">
             <label class="field-label">
-              <span class="material-symbols-outlined icon-label">person_outline</span>
+              <svg class="label-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5"></circle>
+                <circle cx="12" cy="9.5" r="3"></circle>
+                <path d="M6.8 17.8c.8-2.2 2.8-3.6 5.2-3.6s4.4 1.4 5.2 3.6"></path>
+              </svg>
               <span data-i18n="guestsLabel">Personas</span>
             </label>
             <div class="persons-chips-wrapper">
@@ -114,21 +118,33 @@ const description = "Reserve su mesa en Buon Appetito, Port d'Andratx. Cocina me
           <!-- 2. SELECTOR DE FECHA (TARJETAS VIVAS: DÍA, NÚMERO, MES + BOTÓN '...') -->
           <div class="field-group">
             <label class="field-label">
-              <span class="material-symbols-outlined icon-label">calendar_today</span>
+              <svg class="label-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3.5" y="4.5" width="17" height="16" rx="2"></rect>
+                <line x1="16" y1="2.5" x2="16" y2="5.5"></line>
+                <line x1="8" y1="2.5" x2="8" y2="5.5"></line>
+                <line x1="3.5" y1="9" x2="20.5" y2="9"></line>
+                <circle cx="8" cy="13" r="0.8" fill="currentColor"></circle>
+                <circle cx="12" cy="13" r="0.8" fill="currentColor"></circle>
+                <circle cx="16" cy="13" r="0.8" fill="currentColor"></circle>
+                <circle cx="8" cy="17" r="0.8" fill="currentColor"></circle>
+                <circle cx="12" cy="17" r="0.8" fill="currentColor"></circle>
+                <circle cx="16" cy="17" r="0.8" fill="currentColor"></circle>
+              </svg>
               <span data-i18n="dateLabel">Fecha</span>
             </label>
             <div class="date-chips-grid" id="date-chips-container">
-              <!-- Se genera dinámicamente con JS a partir de la fecha de hoy -->
+              <!-- Se genera dinámicamente con JS a partir de la fecha de hoy, incluyendo el chip '...' con selector de fecha -->
             </div>
-            <!-- Input de fecha nativo oculto para cuando el usuario pulse '...' -->
-            <input type="date" id="native-date-input" class="hidden-native-date" />
             <input type="hidden" id="selected-date-value" value="" />
           </div>
 
           <!-- 3. RESERVA PARA (COMIDA vs CENA) -->
           <div class="field-group">
             <label class="field-label">
-              <span class="material-symbols-outlined icon-label">schedule</span>
+              <svg class="label-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5"></circle>
+                <polyline points="12 7 12 12 15.5 14"></polyline>
+              </svg>
               <span data-i18n="reservationForLabel">Reserva para</span>
             </label>
             <div class="shift-selector">
@@ -146,7 +162,10 @@ const description = "Reserve su mesa en Buon Appetito, Port d'Andratx. Cocina me
           <!-- 4. HORA EXACTA (ACORDEÓN DESPLEGABLE: Oculto por defecto hasta pulsar Comida o Cena) -->
           <div class="time-slots-accordion is-collapsed" id="time-slots-accordion">
             <label class="field-label">
-              <span class="material-symbols-outlined icon-label">alarm</span>
+              <svg class="label-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9.5"></circle>
+                <polyline points="12 7 12 12 15.5 14"></polyline>
+              </svg>
               <span data-i18n="exactTimeLabel">Hora exacta</span>
             </label>
             <div class="time-slots-grid" id="time-slots-container">
@@ -193,13 +212,18 @@ const description = "Reserve su mesa en Buon Appetito, Port d'Andratx. Cocina me
             <a href="/cookies" target="_blank" data-i18n="cookiesPolicy">Política de Cookies</a>
           </nav>
 
-          <!-- CRÉDITO DE TECNOLOGÍA MYNEXT -->
-          <div class="mynext-credit-card">
-            <p class="mynext-lead">
+          <!-- CRÉDITO DE TECNOLOGÍA NEXOO -->
+          <div class="nexoo-credit-card">
+            <p class="nexoo-lead">
               <span data-i18n="techBy">Con la tecnología de</span>
-              <a href="https://mynextbymusa.com" target="_blank" rel="noopener" class="mynext-brand-link">MyNext</a>
+              <a href="https://mynextbymusa.com" target="_blank" rel="noopener" class="nexoo-brand-wrapper">
+                <span class="nexoo-logo-slot" id="nexoo-logo-slot">
+                  <img src="assets/nexoo-isotype-black.png" alt="Nexoo Isotipo" class="nexoo-iso-img" />
+                </span>
+                <span class="nexoo-brand-name">Nexoo</span>
+              </a>
             </p>
-            <p class="mynext-sub" data-i18n="techTagline">Tu tecnología de reserva inteligente sin comisiones.</p>
+            <p class="nexoo-sub" data-i18n="techTagline">Tu tecnología de reserva inteligente sin comisiones.</p>
           </div>
         </footer>
 
@@ -323,21 +347,36 @@ const description = "Reserve su mesa en Buon Appetito, Port d'Andratx. Cocina me
             </button>
           </div>
 
-          <!-- AVISO DE CONFIANZA DIRECTA -->
-          <p class="trust-notice">
-            <span class="material-symbols-outlined text-xs">verified</span>
-            <span data-i18n="directBookingNotice">Sin intermediarios ni comisiones • Confirmación directa con el restaurante</span>
-          </p>
+          <!-- AVISO DE CONFIANZA DIRECTA (CON TICK CENTRADO) -->
+          <div class="trust-notice-wrapper">
+            <p class="trust-notice">
+              <span class="material-symbols-outlined trust-icon">verified</span>
+              <span data-i18n="directBookingNotice">Sin intermediarios ni comisiones</span>
+            </p>
+          </div>
 
         </form>
 
-        <!-- FOOTER EN PASO 2 -->
-        <footer class="booking-footer">
+        <!-- FOOTER EN PASO 2: CON TELÉFONO Y CRÉDITO COMPACTO NEXOO -->
+        <footer class="booking-footer step2-footer">
           <p class="help-text font-serif-text">
             <span data-i18n="callHelp">Llámenos al</span>
             <a href="tel:+34632446064" class="phone-link">+34 632 44 60 64</a>
             <span data-i18n="callHelpSuffix">si tiene cualquier duda.</span>
           </p>
+
+          <!-- CRÉDITO NEXOO COMPACTO EN PASO 2 -->
+          <div class="nexoo-credit-card nexoo-credit-step2">
+            <p class="nexoo-lead">
+              <span data-i18n="techBy">Con la tecnología de</span>
+              <a href="https://mynextbymusa.com" target="_blank" rel="noopener" class="nexoo-brand-wrapper">
+                <span class="nexoo-logo-slot">
+                  <img src="assets/nexoo-isotype-black.png" alt="Nexoo Isotipo" class="nexoo-iso-img" />
+                </span>
+                <span class="nexoo-brand-name">Nexoo</span>
+              </a>
+            </p>
+          </div>
         </footer>
 
       </main>
