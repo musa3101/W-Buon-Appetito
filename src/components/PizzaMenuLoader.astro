@@ -2583,22 +2583,27 @@
   body.pizza-loading-active {
     overflow: hidden !important;
     height: 100% !important;
-    max-height: 100vh !important;
-    max-height: 100dvh !important;
     touch-action: none !important;
     overscroll-behavior: none !important;
     background-color: #0E2015 !important;
     -webkit-overflow-scrolling: auto !important;
   }
 
-  /* Congelación de elementos de la carta */
+  /* Ocultación 100% total de elementos de la carta mientras carga */
   html.pizza-loading-active .site-header,
   html.pizza-loading-active .menu-page-wrapper,
   html.pizza-loading-active main,
   html.pizza-loading-active footer {
+    opacity: 0 !important;
+    visibility: hidden !important;
     pointer-events: none !important;
     user-select: none !important;
     -webkit-user-select: none !important;
+  }
+
+  /* Transición suave al desvanecer el loader de pizza */
+  .site-header, .menu-page-wrapper, main, footer {
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .pizza-menu-loader {
@@ -2606,18 +2611,19 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    inset: 0;
+    /* Se extiende 200px por debajo del borde de la pantalla */
+    bottom: -200px;
     width: 100vw;
-    width: 100dvw;
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: 100dvh;
+    width: 100%;
+    height: calc(100lvh + 200px);
+    height: calc(100vh + 200px);
+    min-height: calc(100lvh + 200px);
+    min-height: -webkit-fill-available;
     z-index: 99999999;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 200px;
     touch-action: none;
     overscroll-behavior: none;
     /* Fondo 100% OPACO Verde Ciprés sin transparencia para que no se filtre ningún plato */

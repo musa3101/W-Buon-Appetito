@@ -249,20 +249,28 @@
   html.preloader-lock body {
     overflow: hidden !important;
     height: 100% !important;
-    max-height: 100vh !important;
-    max-height: 100dvh !important;
     touch-action: none !important;
     overscroll-behavior: none !important;
     background-color: #183321 !important;
   }
 
+  /* Ocultación 100% absoluta de todo el contenido de fondo para que NADA se filtre ni asome por debajo */
   html.preloader-lock main,
   html.preloader-lock header,
   html.preloader-lock footer,
+  html.preloader-lock #main-header,
+  html.preloader-lock #mobile-menu,
   html.preloader-lock .booking-wrapper {
+    opacity: 0 !important;
+    visibility: hidden !important;
     pointer-events: none !important;
     user-select: none !important;
     -webkit-user-select: none !important;
+  }
+
+  /* Transición suave al desvanecer el preloader */
+  main, header, footer, #main-header, #mobile-menu, .booking-wrapper {
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .site-preloader {
@@ -270,18 +278,19 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    inset: 0;
+    /* Se extiende 200px por debajo del borde de la pantalla para neutralizar cualquier barra flotante o notch */
+    bottom: -200px;
     width: 100vw;
-    width: 100dvw;
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: 100dvh;
+    width: 100%;
+    height: calc(100lvh + 200px);
+    height: calc(100vh + 200px);
+    min-height: calc(100lvh + 200px);
+    min-height: -webkit-fill-available;
     z-index: 99999999;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 200px;
     touch-action: none;
     overscroll-behavior: none;
     /* Verde oliva corporativo con un halo cálido central */
