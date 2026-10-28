@@ -2,67 +2,51 @@
 
 ## 1. Tareas Completadas
 
+* [x] **Internacionalización Trilingüe Integral (`ES` · `EN` · `DE`) con `/i18nstack`:**
+  * Traducción completa y adaptada culturalmente en toda la web: Cabecera, Navegación, Menú Móvil, Hero, Sobre Nosotros, La Nostra Pizza, Carrusel de Menú, Reseñas, Dónde Estamos y Footer.
+  * Traducción reactiva de los 21 platos del carrusel polaroid de la Home (`PolaroidLineCarousel.tsx`) en los 3 idiomas sin tocar la carta gastronómica.
+  * Corrección oficial del plato #12: renombrado a **Pizza Rúcula** (*Pizza Rúcula* en ES/EN, *Pizza Rucola* en DE).
+  * Redacción jurídica completa y oficial para todas las páginas legales (`/aviso-legal` con Impressum en alemán, `/privacidad` con Datenschutzerklärung y `/cookies` con Cookie-Richtlinie).
+  * Corrección visual del selector de idiomas en el pie de página (contraste óptimo verde bosque `#183321` sobre fondo claro).
+
 * [x] **Motor de Reservas Estilo Cappuccino (`/reservar`):**
-  * Migrado e integrado desde `X/reserva/` a la web oficial (`reservar.astro`, `reservar.css`, `reservar.js`).
-  * Chips cuadrados para 1–5 comensales y selector dinámico `...` para más de 6 comensales.
-  * Selector de fechas vivas (6 días contiguos) con apertura de calendario nativo al pulsar `...`.
-  * Acordeón de turnos (*Comida* y *Cena*) con horas exactas desplegables.
-  * Selección de espacio (*Terraza Puerto* y *Salón Interior*) y ocasiones especiales.
-  * Confirmación inteligente: directa a WhatsApp en móviles y modal con opción WhatsApp Web / Email en ordenadores y tablets.
-  * Soporte multiidioma (`ES`, `EN`, `DE`) sincronizado con `localStorage`.
+  * Chips cuadrados 1–5 y selector dinámico `...` para grupos.
+  * Selector de fechas vivas y turnos de Comida y Cena con acordeón de horas exactas.
+  * Selector de espacio (*Terraza Puerto* y *Salón Interior*) y ocasiones especiales.
+  * Confirmación inteligente a WhatsApp directo (móvil) o modal Web/Email (ordenador/tablet).
+  * Multiidioma sincronizado (`ES`, `EN`, `DE`) guardado en `localStorage`.
 
-* [x] **Optimización del Preloader para iPhone & Safari iOS:**
-  * Cobertura 100% de pantalla completa sin franja inferior bajo la barra de Safari o el Home Indicator.
-  * Fondo reactivo síncrono en `#183321` y sobre-extensión inferior (`bottom: -150px`).
-
-* [x] **Internacionalización Trilingüe Adaptativa (`ES` · `EN` · `DE`) con `/i18nstack`:**
-  * Diccionario tipado centralizado (`web/src/data/translations.ts`) con traducción cuidada para hostelería de alto nivel en Port d'Andratx.
-  * Motor reactivo `window.setBuonLanguage` con persistencia en `localStorage` (`buon_appetito_lang`), cero saltos de recarga y sincronización entre selector `ES · EN · DE` de header y cajón móvil.
-  * Traducción íntegra de: Header, Mobile Drawer, Hero Liquid Buttons, Sobre Nosotros, Il Nostro Calzone (infografía de 3 puntos), Menú (ShimmerButtons y toast), Reseñas de Google, Panel de Dónde Estamos y Contacto, y Footer completo con avisos legales.
-  * Protección total contra rotura de diseño o desbordamientos por expansión de caracteres en alemán e inglés.
+* [x] **Optimización de Pantalla Completa y Bloqueo en Loaders (Safari iOS):**
+  * Eliminación del hueco inferior mediante extensión `100lvh + 200px` y `bottom: -200px`.
+  * Congelación total del fondo (`opacity: 0 !important; visibility: hidden !important;`) durante la animación.
+  * Navegación limpia al inicio y apertura de reservas en la misma pestaña.
 
 * [x] **Hero Cinemático & Atmósfera Arko:**
-  * Metraje de vídeo en bucle continuo (`Hero_Andratx_V3_A_Web.mp4`) sin saltos de reproducción.
-  * Tipografía editorial *Cormorant Garamond* y *Questrial*.
-  * Botones de cristal líquido translúcido (*Reservar mesa* y *Ver menú*).
-  * Reducción de la altura del header fijo en móvil durante el scroll.
+  * Vídeo en bucle continuo con gradientes ambientales.
+  * Tipografía editorial Cormorant Garamond y Questrial.
+  * Botones translúcidos de cristal líquido (Liquid Glass).
 
-* [x] **Separadores de Sección (Fusión España-Italia):**
-  * Componente `SectionDivider.astro` con cinta bicolor degradada y estrella toscana de 4 puntas en medallón circular.
-  * Instalado entre todas las secciones a partir de *Sobre Nosotros* y en el cajón móvil (`MobileMenu.astro`).
-
-* [x] **Sistema de Botones Interactivos (ShimmerButton de 21st.dev):**
-  * Botones de Menú (*Carta de Comida* y *Vinos y Bodega* con toast explicativo).
-  * Botones de Reseñas (*Escribir reseña* y *Ver opiniones en Google Maps*).
-  * Botón de Contacto (*Reservar Mesa* en verde bosque con icono y flecha).
-
-* [x] **Tipografía y Lectura en «Sobre Nosotros»:**
-  * Letra *General Sans* (`font-medium`) con alto contraste `#1A1D1A` y estadísticas en verde bosque `#183321`.
-  * Galería circular 3D WebGL con la foto destacada de Aymeric Laporte.
+* [x] **Separadores de Sección Bicolor Ítalo-Españoles:**
+  * Componente `SectionDivider` con medallón de estrella toscana en todas las secciones clave.
 
 * [x] **Reseñas Verificadas de Google Maps:**
-  * Sello editorial con animación interactiva (`0.0 → 4.4`, `+240 opiniones` y estrellas doradas escalonadas).
-  * Carrusel táctil y visor modal de fotos de clientes.
-
-* [x] **Panel de Contacto & Dónde Estamos:**
-  * Cuadrícula responsive optimizada (2 columnas en móvil, 3 en escritorio) con dígitos en Cabinet Grotesk.
-  * Mapa panorámico interactivo con botón directo a Google Maps.
+  * Sello dinámico `4.4` con estrellas doradas y `+240 opiniones`.
+  * Carrusel de opiniones y visor modal de fotos de clientes.
 
 * [x] **Auditoría Técnica y Compilación:**
-  * Compilación estática limpia (`npm run build`) en < 650 ms, con 0 errores y validada para Cloudflare Pages.
+  * Compilación estática limpia (`npm run build`) en 608 ms con 0 errores.
+  * Verificación en vivo con Google Chrome DevTools (CDP).
 
 ---
 
-## 2. Tareas en Progreso / Próxima Sesión
+## 2. Tareas en Progreso
 
-* [ ] Sustitución del vídeo del Hero por el metraje final en alta definición de Port d'Andratx.
-* [ ] Actualización de precios pendientes en la carta digital gastronómica.
-* [ ] Incorporación de la nueva carta completa de vinos y bodega.
-* [ ] Enlazar los archivos PDF descargables finales cuando estén maquetados.
+* [ ] Sustitución del vídeo del Hero por el metraje final en alta definición de Port d'Andratx cuando se entregue el archivo.
+* [ ] Incorporación de la carta de vinos y bodega física en sala o PDF descargable.
 
 ---
 
 ## 3. Próximas Mejoras Prioritarias
 
-1. **Dominio Personalizado:** Conectar el dominio oficial definitivo en Cloudflare Pages.
-2. **Métricas de «Sobre Nosotros»:** Evaluar sustitución de las métricas (`Km 0`, `1ª`, `100%`) por una dedicatoria familiar de Buon Appetito.
+1. **Dominio Personalizado:** Configurar y asociar el dominio definitivo de producción en Cloudflare Pages.
+2. **SEO y Metadatos Multilingües:** Añadir etiquetas `hreflang` automáticas para optimizar el posicionamiento en Google España, Reino Unido y Alemania.

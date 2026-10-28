@@ -1,6 +1,6 @@
 # Resumen de Sesión — Buon Appetito
 
-**Fecha:** 27 de Octubre de 2026  
+**Fecha:** 28 de Octubre de 2026  
 **Proyecto:** Web Oficial Buon Appetito (Port d'Andratx, Mallorca)  
 **Ramas:** `dev` y `main` (Sincronizadas y desplegadas en GitHub para Cloudflare Pages)
 
@@ -8,66 +8,61 @@
 
 ### ¿Qué se ha hecho hoy?
 
-1. **Perfeccionamiento 100% de la Traducción del Footer y Avisos Legales (`/i18nstack`):**
-   - **Footer Principal ([Footer.astro](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/components/Footer.astro)):**
-     - Columna de navegación: *Enlaces Rápidos* (`ES`) ↔ *Quick Links* (`EN`) ↔ *Schnelllinks* (`DE`).
-     - Columna legal: *Avisos Legales* (`ES`) ↔ *Legal Information* (`EN`) ↔ *Rechtliche Hinweise* (`DE`).
-     - Enlaces individuales: *Aviso legal / Legal notice / Impressum*, *Política de privacidad / Privacy policy / Datenschutzerklärung*, *Política de cookies / Cookie policy / Cookie-Richtlinie*.
-     - Barra de créditos: *Hecho con / Made with / Erstellt mit* y *Todos los derechos reservados / All rights reserved / Alle Rechte vorbehalten*.
-     - **Selector de idiomas accesible en el pie de página (`ES · EN · DE`):** Permite cambiar de idioma al instante desde el footer sin tener que volver arriba.
-   - **Footer de Reservas ([reservar.js](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/scripts/reservar.js)):**
-     - Corregido el selector inferior de idiomas (*Cambiar idioma* en ES, *Change language* en EN, *Sprache ändern* en DE).
-     - Traducidos al 100% los enlaces legales (*Condiciones de Uso / Terms of Use / Nutzungsbedingungen*, etc.) y créditos MyNext.
-   - **Cabeceras de Páginas Legales ([aviso-legal.astro](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/pages/aviso-legal.astro), [cookies.astro](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/pages/cookies.astro), [privacidad.astro](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/pages/privacidad.astro)):**
-     - Incorporado selector de idioma superior `ES · EN · DE` y botón traducible de retorno (*Volver atrás / Go back / Zurück*).
-     - Títulos e insignias legales traducibles reactivamente.
+1. **Corrección Oficial a "Pizza Rúcula" en la Galería:**
+   - Se corrigió el plato número 12 de la galería polaroid de la Home. Estaba nombrado como *"Pizza Stella"*, pero visualmente y gastronómicamente es una **Pizza Rúcula** (con base tradicional redonda, jamón de Parma, rúcula fresca y lascas de parmesano).
+   - Se ajustó el título y su texto alternativo en los tres idiomas: *Pizza Rúcula* (ES/EN) y *Pizza Rucola* (DE).
 
-2. **Integración Definitiva del Motor de Reservas Estilo Cappuccino (`/reservar`):**
-   - Se trasladó e integró la plantilla validada de reservas desde `X/reserva/` a la web oficial (`web/src/pages/reservar.astro`, `web/src/styles/reservar.css`, `web/src/scripts/reservar.js`).
-   - Selector visual de comensales (chips cuadrados 1 a 5 y selector dinámico `...` para más de 6 comensales).
-   - Generador de fechas vivas de 6 días + calendario nativo desplegable.
-   - Acordeón de turnos (*Comida* y *Cena*) con horas exactas que se despliegan únicamente al elegir turno.
-   - Selector de espacio optimizado: *Terraza Puerto* y *Salón Interior*.
-   - Confirmación inteligente: directa a WhatsApp en iPhone/Android y modal WhatsApp Web / Email en tablet/PC.
-   - Soporte multiidioma sincronizado (`ES`, `EN`, `DE`) que respeta y recuerda la selección del usuario en `localStorage`.
+2. **Traducción Dinámica del Carrusel de Platos con `i18nstack`:**
+   - Los 21 platos del carrusel de la Home ahora se traducen en tiempo real al seleccionar **Inglés (EN)** o **Alemán (DE)** (*Crispy Baby Squid*, *Beef Carpaccio*, *Tagliatelle mit Trüffel*, *Meeresfrüchte-Linguine*, *Pizza Rucola*, *Meeresfrüchte-Paella*, etc.).
+   - La carta oficial ([`/carta`](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/pages/carta.astro)) y sus bases de datos se mantuvieron 100% intactas como pidió el usuario.
 
-3. **Solución al Preloader en iPhone (Pantalla Completa sin Hueco Inferior):**
-   - Corregido el problema donde la pantalla de carga no cubría el fondo de Safari en iPhone dejando una franja inferior visible.
-   - Se aplicó sobre-extensión inferior (`bottom: -150px`) y altura dinámica sin restricciones fijas (`height: auto`, `min-height: calc(100vh + 150px)`, `min-height: 100dvh`), acompañada de `.preloader-backdrop` de `#183321` y pintura síncrona del lienzo raíz (`backgroundColor = '#183321'`), garantizando 100% de cobertura bajo la barra de cristal y el *Home Indicator* de iOS.
+3. **Páginas Legales y de Cookies 100% Traducidas:**
+   - Se crearon las versiones legales completas, oficiales y redactadas profesionalmente para:
+     - [`/aviso-legal`](file:///Users/musa/Documents/W-boun%20apeptito v1/web/src/pages/aviso-legal.astro): Aviso Legal (ES), Legal Notice (EN) y **Offizielles Impressum** (DE).
+     - [`/privacidad`](file:///Users/musa/Documents/W-boun%20apeptito v1/web/src/pages/privacidad.astro): Política de Privacidad (ES), Privacy Policy (EN) y **Datenschutzerklärung** (DE).
+     - [`/cookies`](file:///Users/musa/Documents/W-boun%20apeptito v1/web/src/pages/cookies.astro): Política de Cookies (ES), Cookie Policy (EN) y **Cookie-Richtlinie** (DE).
+   - Ahora, al pulsar cualquier idioma en la web, el contenido de estas páginas cambia de inmediato al texto completo en ese idioma.
 
-4. **Botones Líquidos Interactivos (ShimmerButton de 21st.dev):**
-   - Brillo fluido continuo en Menú (*Carta de Comida* y *Vinos y Bodega*), Reseñas (*Escribir reseña* y *Ver opiniones en Google*) y Contacto (*Reservar Mesa*).
+4. **Corrección del Selector de Idioma en el Footer:**
+   - Se solucionó el fallo visual por el cual el botón activo se volvía blanco sobre fondo verde salvia claro. Ahora se mantiene en verde corporativo oscuro (`#183321`) con total nitidez y contraste.
+   - Se vincularon con `data-i18n` los textos de *"Fotos de clientes:"* y *"Opinión verificada en Google Maps"* en [`Reviews.astro`](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/components/Reviews.astro).
 
-5. **Separadores de Sección Fusión Ítalo-Española (`SectionDivider`):**
-   - Cinta bicolor degradada con estrella toscana de 4 puntas en medallón circular entre todas las secciones a partir de *Sobre Nosotros*.
-
-6. **Tipografía Moderna Fontshare en «Sobre Nosotros» y Panel de Contacto:**
-   - Incorporada **General Sans** (`font-medium`) con carbón toscano `#1A1D1A` y **Cabinet Grotesk** para horarios y teléfonos en cuadrícula compacta de 2 columnas en móvil.
+5. **Solución Definitiva de Pantalla Completa y Bloqueo en Loaders (Safari iOS):**
+   - Se eliminó el fallo en iPhone donde el preloader dejaba ver contenido en la parte inferior durante la carga en Inicio y en Reservar.
+   - Se extendió el alto con `calc(100lvh + 200px)` y `bottom: -200px` para cubrir cualquier barra dinámica de Safari.
+   - Se aplicó ocultación total de fondo (`opacity: 0 !important; visibility: hidden !important;`) para evitar que el usuario navegue o vea contenido mientras dura la animación.
+   - Navegación limpia: arranque al principio de la web y apertura de reservas en la misma pestaña (`target="_self"`).
 
 ---
 
-### Archivos modificados y creados
+### Archivos modificados
 
-* `web/src/data/translations.ts`: Diccionario trilingüe oficial con todas las claves legales y de footer.
-* `web/src/components/Footer.astro`: Soporte 100% i18n con selector integrado de idiomas y traducción de créditos.
-* `web/src/scripts/reservar.js`: Corrección del diccionario en footer de reservas.
-* `web/src/pages/aviso-legal.astro`, `cookies.astro`, `privacidad.astro`: Selector de idiomas y titulares traducibles.
-* `web/src/pages/reservar.astro`, `styles/reservar.css`: Interfaz de reservas estilo Cappuccino.
-* `web/src/components/Preloader.astro`: Cobertura inferior 100% en Safari iPhone y backdrop síncrono.
-* `web/src/layouts/Layout.astro`: Motor reactivo `setBuonLanguage`.
+* `web/src/components/ui/polaroid-line-carousel.tsx`: Diccionario trilingüe para los 21 platos, corrección a Pizza Rúcula y escucha del evento de cambio de idioma.
+* `web/src/components/Menu.astro`: Hidratación inmediata `client:load` para el carrusel de platos.
+* `web/src/layouts/Layout.astro`: Soporte para `data-lang-block` y contraste correcto para botones de idioma en footer.
+* `web/src/data/translations.ts`: Nuevas claves legales y de reseñas.
+* `web/src/components/Reviews.astro`: Textos de verificación y fotos traducibles.
+* `web/src/pages/aviso-legal.astro`: Bloques legales en ES, EN y DE (Impressum).
+* `web/src/pages/privacidad.astro`: Bloques legales en ES, EN y DE (Datenschutzerklärung).
+* `web/src/pages/cookies.astro`: Bloques legales en ES, EN y DE (Cookie-Richtlinie).
+* `web/src/components/Preloader.astro`: Cobertura absoluta `100lvh + 200px` y ocultación de fondo.
+* `web/src/components/PizzaMenuLoader.astro`: Mismo tratamiento de pantalla completa para el loader de la carta.
+* `web/src/styles/reservar.css`: Bloqueo de opacidad durante la carga.
 
 ---
 
 ### Problemas solucionados
 
-* **Traducción incompleta en el footer:** Se tradujeron todas las etiquetas, avisos legales, créditos de autor y columnas de navegación, además de dotar al footer de su propio selector de idiomas.
-* **Interfaz de reservas no sincronizada:** Se integró la versión moderna estilo Cappuccino en `/reservar` reemplazando la plantilla previa.
-* **Hueco inferior en loading de iPhone:** Se extendió el preloader más allá del límite inferior de la pantalla para neutralizar el comportamiento de la barra flotante de Safari iOS.
+* **Nombre incorrecto del plato #12:** Ya no aparece como "Pizza Stella", ahora es fiel a la foto: "Pizza Rúcula".
+* **Falta de traducción en carrusel de la Home:** Ahora los 21 platos se traducen a inglés y alemán sin tocar la carta gastronómica.
+* **Textos legales solo en español:** Solucionado al 100% con redacción completa en alemán e inglés.
+* **Botón de idioma invisible en el footer:** Contraste corregido con verde oscuro corporativo.
+* **Loaders incompletos en Safari iPhone:** Pantalla completa sin cortes y fondo congelado hasta finalizar la animación.
 
 ---
 
 ### Qué queda pendiente
 
-1. Actualización de precios pendientes en la carta digital gastronómica.
-2. Incorporación de los archivos PDF finales de comida y bodega.
-3. Sustitución del vídeo del Hero por el metraje definitivo de Port d'Andratx.
+1. Sustituir el vídeo del Hero por el metraje definitivo en alta definición cuando esté listo.
+2. Incorporar la carta de vinos física en PDF o sala cuando se decida.
+3. Conectar el dominio oficial definitivo en Cloudflare Pages si aplica.
