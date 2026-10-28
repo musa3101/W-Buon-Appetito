@@ -38,6 +38,21 @@ const {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Questrial&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- Control de Scroll Limpio: Evitar saltos automáticos a mitad de página y forzar inicio arriba -->
+    <script is:inline>
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        if (!window.location.hash || window.location.hash === '#inicio') {
+          window.scrollTo(0, 0);
+          if (window.location.hash === '#inicio') {
+            history.replaceState(null, '', window.location.pathname);
+          }
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body class="bg-[#FBF9F5] text-[#1B1C1A] font-sans antialiased selection:bg-[#9E4221] selection:text-white relative overflow-x-hidden">
     <Preloader />

@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const unit = reservationState.guests === 1 ? langData.personUnitSingle : langData.personUnit;
     if (summaryGuests) summaryGuests.textContent = `${reservationState.guests} ${unit}`;
     if (summaryDate) summaryDate.textContent = reservationState.dateFormatted;
-    
+
     const shiftLabel = reservationState.shift === 'lunch' ? langData.lunchName : langData.dinnerName;
     if (summaryTime) summaryTime.textContent = `${reservationState.time} (${shiftLabel})`;
   }
@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.history.length > 1) {
       window.history.back();
     } else {
-      window.location.href = '/#inicio';
+      window.location.href = '/';
     }
   });
 
@@ -735,7 +735,7 @@ _Solicitud generada a través de la web oficial de Buon Appetito._`;
   function sendViaEmail() {
     const subject = encodeURIComponent(`Reserva de Mesa — ${reservationState.name} (${reservationState.dateFormatted} ${reservationState.time})`);
     const body = encodeURIComponent(buildReservationText().replace(/\*/g, '').replace(/_/g, ''));
-    
+
     // mailto abre el cliente nativo o Gmail
     const mailtoUrl = `mailto:${RESTAURANT_EMAIL}?subject=${subject}&body=${body}`;
     window.location.href = mailtoUrl;
@@ -801,7 +801,7 @@ _Solicitud generada a través de la web oficial de Buon Appetito._`;
         confirmSpinner?.classList.add('hidden');
         sendViaWhatsApp(false);
       }, 350);
-    } 
+    }
     // En Tablet / Ordenador: muestra el modal con las 2 opciones (WhatsApp o Email)
     else {
       modalChannelChoice?.classList.remove('hidden');
@@ -873,7 +873,7 @@ _Solicitud generada a través de la web oficial de Buon Appetito._`;
     currentLang = lang;
     try {
       localStorage.setItem('buon_appetito_lang', lang);
-    } catch (e) {}
+    } catch (e) { }
     const data = translations[lang];
 
     if (currentLangText) currentLangText.textContent = lang.toUpperCase();
@@ -915,7 +915,7 @@ _Solicitud generada a través de la web oficial de Buon Appetito._`;
     if (saved && translations[saved]) {
       initialLang = saved;
     }
-  } catch (e) {}
+  } catch (e) { }
   applyLanguage(initialLang);
   // Plantilla limpia de serie: turnos en reposo y acordeón de horas 100% plegado hasta pulsar Comida o Cena
 });

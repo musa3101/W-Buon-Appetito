@@ -11,6 +11,10 @@
       // El preloader va a animarse: congelar la web desde el primer frame
       document.documentElement.classList.add('preloader-lock');
       document.documentElement.style.backgroundColor = '#183321';
+      if (document.body) {
+        document.body.classList.add('preloader-lock');
+        document.body.style.backgroundColor = '#183321';
+      }
     }
   } catch (e) {}
 </script>
@@ -90,26 +94,40 @@
       }
     }
 
-    // Congelar / liberar la web de fondo (igual que el menú hamburguesa)
+    // Congelar / liberar la web de fondo (Bloqueo activo en fase de captura)
     const rootEl = document.documentElement;
-    function lockPage() {
-      rootEl.classList.add('preloader-lock');
-      rootEl.style.backgroundColor = '#183321';
-      if (document.body) document.body.style.backgroundColor = '#183321';
-    }
-    function unlockPage() {
-      rootEl.classList.remove('preloader-lock');
-      rootEl.style.backgroundColor = '';
-      if (document.body) document.body.style.backgroundColor = '';
+    let isPreloaderLocked = false;
+
+    function preventScrollAndTouch(e) {
+      if (isPreloaderLocked) {
+        e.preventDefault();
+      }
     }
 
-    // Bloquear gestos de arrastre sobre el overlay (iOS ignora overflow:hidden en algunos casos)
-    preloader.addEventListener('touchmove', (e) => {
-      if (!preloader.classList.contains('preloader-hidden')) e.preventDefault();
-    }, { passive: false });
-    preloader.addEventListener('wheel', (e) => {
-      if (!preloader.classList.contains('preloader-hidden')) e.preventDefault();
-    }, { passive: false });
+    function lockPage() {
+      if (isPreloaderLocked) return;
+      isPreloaderLocked = true;
+      window.addEventListener('touchmove', preventScrollAndTouch, { passive: false, capture: true });
+      window.addEventListener('wheel', preventScrollAndTouch, { passive: false, capture: true });
+      rootEl.classList.add('preloader-lock');
+      rootEl.style.backgroundColor = '#183321';
+      if (document.body) {
+        document.body.classList.add('preloader-lock');
+        document.body.style.backgroundColor = '#183321';
+      }
+    }
+
+    function unlockPage() {
+      isPreloaderLocked = false;
+      window.removeEventListener('touchmove', preventScrollAndTouch, { capture: true });
+      window.removeEventListener('wheel', preventScrollAndTouch, { capture: true });
+      rootEl.classList.remove('preloader-lock');
+      rootEl.style.backgroundColor = '';
+      if (document.body) {
+        document.body.classList.remove('preloader-lock');
+        document.body.style.backgroundColor = '';
+      }
+    }
 
     // Ocultar preloader con suave desvanecimiento
     function hidePreloader(instant = false) {
@@ -153,6 +171,7 @@
     if (isNavigatingToReservar) {
       try { sessionStorage.removeItem(FROM_RESERVAR_KEY); } catch (e) {}
       if (brandSub) brandSub.textContent = 'PREPARANDO SU MESA...';
+      lockPage();
       playLottie();
       setTimeout(() => {
         hidePreloader(false);
@@ -160,6 +179,7 @@
     } 
     // 2. Si es la primera visita de la sesión en la web: mostrar 1.35s (intervalo 1.2 a 1.5s)
     else if (!hasSeenFirstVisit) {
+      lockPage();
       playLottie();
       setTimeout(() => {
         hidePreloader(false);
@@ -228,11 +248,21 @@
   html.preloader-lock,
   html.preloader-lock body {
     overflow: hidden !important;
-    overscroll-behavior: none;
-    touch-action: none;
-    /* Safari iOS pinta la zona bajo su barra flotante con el fondo del documento:
-       lo igualamos al verde del loading para que no se vea ningún recorte */
+    height: 100% !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    touch-action: none !important;
+    overscroll-behavior: none !important;
     background-color: #183321 !important;
+  }
+
+  html.preloader-lock main,
+  html.preloader-lock header,
+  html.preloader-lock footer,
+  html.preloader-lock .booking-wrapper {
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
   }
 
   .site-preloader {
@@ -240,22 +270,23 @@
     top: 0;
     left: 0;
     right: 0;
-    /* Cubre 150px por debajo del borde de la pantalla para neutralizar cualquier barra dinámica de Safari iOS y notch */
-    bottom: -150px;
+    bottom: 0;
+    inset: 0;
     width: 100vw;
     width: 100dvw;
-    height: auto;
-    min-height: calc(100vh + 150px);
-    min-height: calc(100dvh + 150px);
-    min-height: -webkit-fill-available;
-    z-index: 9999999;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    z-index: 99999999;
     display: flex;
     align-items: center;
     justify-content: center;
     touch-action: none;
     overscroll-behavior: none;
     /* Verde oliva corporativo con un halo cálido central */
-    background: radial-gradient(circle at 50% 45%, #24452E 0%, #1B3925 50%, #183321 100%);
+    background: #183321 !important;
+    background: radial-gradient(circle at 50% 45%, #24452E 0%, #1B3925 50%, #183321 100%) !important;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -263,13 +294,16 @@
                 visibility 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  /* Escudo 360° sobredimensionado para neutralizar rebotes elásticos de iOS y barras dinámicas */
+  .site-preloader::before,
   .preloader-backdrop {
+    content: "";
     position: fixed;
-    top: -100px;
-    left: -100px;
-    right: -100px;
-    bottom: -200px;
-    background-color: #183321;
+    top: -50vh;
+    bottom: -50vh;
+    left: -50vw;
+    right: -50vw;
+    background-color: #183321 !important;
     z-index: -1;
     pointer-events: none;
   }

@@ -14,7 +14,7 @@ import SectionDivider from './ui/SectionDivider.astro';
   <!-- Drawer Header con Logo a Todo Color, Botón Cerrar y Separador Bicolor -->
   <div>
     <div class="flex justify-between items-center pb-2">
-      <a href="/#inicio" class="flex items-center" id="mobile-menu-brand-link" aria-label="Buon Appetito - Volver al inicio">
+      <a href="/" class="flex items-center" id="mobile-menu-brand-link" aria-label="Buon Appetito - Volver al inicio">
         <img 
           src="/assets/logos/logo-buon-appetito-color-dark.png" 
           alt="Buon Appetito Port d'Andratx" 
@@ -41,7 +41,7 @@ import SectionDivider from './ui/SectionDivider.astro';
 
   <!-- Navigation List: Editorial numbered style -->
   <div class="flex flex-col gap-4 my-auto py-6">
-    <a href="/#inicio" class="mobile-nav-link group flex items-baseline gap-3 py-2 border-b border-white/10 transition-colors">
+    <a href="/" class="mobile-nav-link group flex items-baseline gap-3 py-2 border-b border-white/10 transition-colors">
       <span class="text-xs font-mono text-[#C45E3B] font-bold tracking-widest">01</span>
       <span data-i18n="nav_inicio" class="font-boska text-3xl text-white group-hover:text-[#C45E3B] transition-colors">Inicio</span>
     </a>
@@ -76,8 +76,6 @@ import SectionDivider from './ui/SectionDivider.astro';
       text="Reservar Mesa"
       dataI18n="nav_reservar"
       href="/reservar"
-      target="_blank"
-      rel="noopener noreferrer"
       variant="mobile-dark"
       fullWidth={true}
       title="Reservar mesa en Buon Appetito"

@@ -25,8 +25,19 @@ const description = "Reserve su mesa en Buon Appetito, Port d'Andratx. Cocina me
 
   <!-- Material Symbols Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <meta name="theme-color" content="#183321" />
+
+  <!-- Control de Scroll Limpio -->
+  <script is:inline>
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    } catch (e) {}
+  </script>
 </head>
-<body>
+<body class="preloader-lock" style="background-color: #183321;">
   
   <Preloader />
 

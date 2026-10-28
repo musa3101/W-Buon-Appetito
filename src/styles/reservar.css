@@ -60,6 +60,24 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Durante la animación del preloader: fondo verde corporativo y opacidad cero para evitar filtraciones */
+html.preloader-lock,
+body.preloader-lock {
+  background-color: #183321 !important;
+}
+
+html.preloader-lock .booking-wrapper,
+body.preloader-lock .booking-wrapper {
+  pointer-events: none !important;
+  user-select: none !important;
+  opacity: 0;
+}
+
+body:not(.preloader-lock) .booking-wrapper {
+  opacity: 1;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .font-editorial {
   font-family: var(--font-editorial);
 }

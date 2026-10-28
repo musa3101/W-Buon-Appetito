@@ -10,7 +10,7 @@ export function HeroActions() {
     try {
       const saved = localStorage.getItem("buon_appetito_lang") || "es";
       setLang(saved);
-    } catch (e) {}
+    } catch (e) { }
 
     const handler = (e: any) => {
       if (e.detail?.lang) setLang(e.detail.lang);
@@ -32,8 +32,6 @@ export function HeroActions() {
       {/* Botón 1: Reservar Mesa (100% Cristal Transparente Líquido sin velos) */}
       <LiquidButton
         href="/reservar"
-        target="_blank"
-        rel="noopener noreferrer"
         variant="default"
         size="default"
         className="w-full sm:w-auto h-11 px-7 rounded-full text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase text-white bg-transparent hover:bg-white/10 border border-white/60 shadow-[0_4px_16px_rgba(0,0,0,0.25),inset_0_1.5px_1.5px_rgba(255,255,255,0.9),inset_0_-1px_1px_rgba(255,255,255,0.35)] hover:border-white/80 hover:scale-105 active:scale-95 transition-all duration-300"

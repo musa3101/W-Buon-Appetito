@@ -11,6 +11,7 @@ export type Slide = {
   image: string;
   title: string;
   alt?: string;
+  objectPosition?: string;
 };
 
 export type PolaroidLineCarouselProps = {
@@ -35,78 +36,121 @@ export type PolaroidLineCarouselProps = {
 };
 
 export const buonAppetitoDishes: Slide[] = [
+  // 1. Entrantes
   {
     image: "/assets/menu/menu_01.webp",
-    title: "Ensalada Thai",
-    alt: "Ensalada Thai",
-  },
-  {
-    image: "/assets/menu/menu_02.webp",
-    title: "Ensalada Caprese",
-    alt: "Ensalada Caprese",
-  },
-  {
-    image: "/assets/menu/menu_03.webp",
     title: "Bruschetta & Padrón",
     alt: "Bruschetta al Pomodoro y Pimientos de Padrón",
   },
   {
+    image: "/assets/menu/menu_02.webp",
+    title: "Chipirones Fritos",
+    alt: "Chipirones fritos con salsa de yuzu",
+  },
+  {
+    image: "/assets/menu/menu_03.webp",
+    title: "Carpaccio de Ternera",
+    alt: "Carpaccio de ternera con rúcula y parmesano",
+  },
+  {
     image: "/assets/menu/menu_04.webp",
+    title: "Tataki de Atún Rojo",
+    alt: "Tataki de atún rojo con salsa de soja",
+  },
+
+  // 2. Ensaladas
+  {
+    image: "/assets/menu/menu_05.webp",
     title: "Ensalada Pomodoro",
     alt: "Ensalada Pomodoro",
   },
   {
-    image: "/assets/menu/menu_05.webp",
-    title: "Tagliatelle con Trufa Fresca",
-    alt: "Tagliatelle con Trufa Fresca",
-  },
-  {
     image: "/assets/menu/menu_06.webp",
-    title: "Linguine ai Frutti di Mare",
-    alt: "Linguine ai Frutti di Mare",
+    title: "Ensalada Caprese",
+    alt: "Ensalada Caprese con mozzarella di bufala",
   },
   {
     image: "/assets/menu/menu_07.webp",
+    title: "Ensalada Thai",
+    alt: "Ensalada Thai con gambas",
+  },
+  {
+    image: "/assets/menu/menu_08.webp",
+    title: "Ensalada Exótica",
+    alt: "Ensalada exótica con pollo, mango y papaya",
+  },
+
+  // 3. Pastas
+  {
+    image: "/assets/menu/menu_09.webp",
     title: "Spaghetti Aglio e Olio",
     alt: "Spaghetti Aglio e Olio",
   },
   {
-    image: "/assets/menu/menu_08.webp",
-    title: "Pizza Frutti di Mare",
-    alt: "Pizza Frutti di Mare",
-  },
-  {
-    image: "/assets/menu/menu_09.webp",
-    title: "Pizza Stella",
-    alt: "Pizza Stella",
-  },
-  {
     image: "/assets/menu/menu_10.webp",
-    title: "Solomillo de Ternera",
-    alt: "Solomillo de Ternera",
+    title: "Tagliatelle con Trufa Fresca",
+    alt: "Tagliatelle con Trufa Fresca",
   },
   {
     image: "/assets/menu/menu_11.webp",
-    title: "Tagliata de Solomillo",
-    alt: "Tagliata de Solomillo",
+    title: "Linguine ai Frutti di Mare",
+    alt: "Linguine ai Frutti di Mare",
   },
+
+  // 4. Pizzas
   {
     image: "/assets/menu/menu_12.webp",
-    title: "Calamar a la Plancha",
-    alt: "Calamar a la Plancha",
+    title: "Pizza Stella",
+    alt: "Pizza Stella con jamón de Parma y rúcula",
   },
   {
     image: "/assets/menu/menu_13.webp",
-    title: "Brownie Casero & Tiramisú",
-    alt: "Brownie Casero y Tiramisú",
+    title: "Pizza Frutti di Mare",
+    alt: "Pizza Frutti di Mare",
   },
+
+  // 5. Arroces y Pescados
   {
     image: "/assets/menu/menu_14.webp",
-    title: "Crema Catalana Caramelizada",
-    alt: "Crema Catalana Caramelizada",
+    title: "Paella de Marisco",
+    alt: "Paella de marisco",
   },
   {
     image: "/assets/menu/menu_15.webp",
+    title: "Calamar a la Plancha",
+    alt: "Calamar a la plancha con verduras",
+  },
+  {
+    image: "/assets/menu/menu_16.webp",
+    title: "Lubina a la Plancha",
+    alt: "Lubina a la plancha con verduras salteadas",
+  },
+
+  // 6. Carnes
+  {
+    image: "/assets/menu/menu_17.webp",
+    title: "Tagliata de Solomillo",
+    alt: "Tagliata de solomillo de ternera",
+  },
+  {
+    image: "/assets/menu/menu_18.webp",
+    title: "Solomillo de Ternera",
+    alt: "Solomillo de ternera con verduras y patatas",
+  },
+
+  // 7. Postres
+  {
+    image: "/assets/menu/menu_19.webp",
+    title: "Brownie Casero & Tiramisú",
+    alt: "Brownie casero con helado y tiramisú",
+  },
+  {
+    image: "/assets/menu/menu_20.webp",
+    title: "Crema Catalana",
+    alt: "Crema Catalana Caramelizada",
+  },
+  {
+    image: "/assets/menu/menu_21.webp",
     title: "Dolce Buon Appetito",
     alt: "Dolce Buon Appetito",
   },
@@ -437,7 +481,13 @@ export default function PolaroidLineCarousel({
         >
           <div className="pl-print">
             <div className="pl-shot">
-              <img src={sl.image} alt={sl.alt || sl.title || ""} draggable={false} loading="lazy" />
+              <img
+                src={sl.image}
+                alt={sl.alt || sl.title || ""}
+                style={{ objectPosition: sl.objectPosition || "center" }}
+                draggable={false}
+                loading="lazy"
+              />
             </div>
             <div className="pl-note">
               <span className="pl-title">{sl.title}</span>

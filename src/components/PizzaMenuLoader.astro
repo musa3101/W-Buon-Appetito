@@ -2513,14 +2513,32 @@
     const statusText = document.getElementById('pizza-loader-status');
     if (!loader) return;
 
+    let isPizzaLocked = false;
+    function preventPizzaScroll(e) {
+      if (isPizzaLocked) {
+        e.preventDefault();
+      }
+    }
+
     function lockScroll() {
+      if (isPizzaLocked) return;
+      isPizzaLocked = true;
+      window.addEventListener('touchmove', preventPizzaScroll, { passive: false, capture: true });
+      window.addEventListener('wheel', preventPizzaScroll, { passive: false, capture: true });
       document.documentElement.classList.add('pizza-loading-active');
-      document.body.classList.add('pizza-loading-active');
+      if (document.body) {
+        document.body.classList.add('pizza-loading-active');
+      }
     }
 
     function unlockScroll() {
+      isPizzaLocked = false;
+      window.removeEventListener('touchmove', preventPizzaScroll, { capture: true });
+      window.removeEventListener('wheel', preventPizzaScroll, { capture: true });
       document.documentElement.classList.remove('pizza-loading-active');
-      document.body.classList.remove('pizza-loading-active');
+      if (document.body) {
+        document.body.classList.remove('pizza-loading-active');
+      }
     }
 
     // Bloquear scroll inmediatamente para evitar que se filtre contenido
@@ -2568,7 +2586,19 @@
     max-height: 100vh !important;
     max-height: 100dvh !important;
     touch-action: none !important;
+    overscroll-behavior: none !important;
+    background-color: #0E2015 !important;
     -webkit-overflow-scrolling: auto !important;
+  }
+
+  /* Congelación de elementos de la carta */
+  html.pizza-loading-active .site-header,
+  html.pizza-loading-active .menu-page-wrapper,
+  html.pizza-loading-active main,
+  html.pizza-loading-active footer {
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
   }
 
   .pizza-menu-loader {
@@ -2577,17 +2607,19 @@
     left: 0;
     right: 0;
     bottom: 0;
+    inset: 0;
     width: 100vw;
-    width: 100%;
+    width: 100dvw;
     height: 100vh;
     height: 100dvh;
     min-height: 100vh;
     min-height: 100dvh;
-    min-height: -webkit-fill-available;
-    z-index: 9999999;
+    z-index: 99999999;
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: none;
+    overscroll-behavior: none;
     /* Fondo 100% OPACO Verde Ciprés sin transparencia para que no se filtre ningún plato */
     background: #0E2015 !important;
     background-color: #0E2015 !important;
@@ -2596,6 +2628,20 @@
     pointer-events: auto;
     transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Escudo 360° sobredimensionado para neutralizar rebotes elásticos de iOS */
+  .pizza-menu-loader::before,
+  .pizza-loader-backdrop {
+    content: "";
+    position: fixed;
+    top: -50vh;
+    bottom: -50vh;
+    left: -50vw;
+    right: -50vw;
+    background-color: #0E2015 !important;
+    z-index: -1;
+    pointer-events: none;
   }
 
   .pizza-menu-loader.pizza-loader-hidden {
