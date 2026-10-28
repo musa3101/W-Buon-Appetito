@@ -47,20 +47,29 @@ const description = "Información legal, términos de uso y datos identificativo
     
     <!-- Title & Date Header -->
     <div class="border-b border-[#D9D4CC]/60 pb-8 mb-10">
-      <span data-i18n="legal_info_badge" class="text-xs font-semibold text-[#9E4221] uppercase tracking-[0.2em] block mb-2 font-satoshi">
+      <span data-i18n="legal_aviso_badge" class="text-xs font-semibold text-[#9E4221] uppercase tracking-[0.2em] block mb-2 font-satoshi">
         Información Legal y LSSI-CE
       </span>
       <h1 data-i18n="legal_aviso_title" class="font-boska text-3xl sm:text-4xl md:text-5xl text-[#183321] font-normal tracking-tight">
         Aviso Legal
       </h1>
-      <p class="text-xs sm:text-sm text-[#424842] mt-3">
-        Última actualización: <strong>Octubre 2026</strong> · En cumplimiento del artículo 10 de la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE).
+      
+      <!-- Date Subtitles per Language -->
+      <p data-lang-block="es" class="text-xs sm:text-sm text-[#424842] mt-3">
+        Última actualización: <strong>Octubre 2026</strong> · En cumplimiento del artículo 10 de la Ley 34/2002 de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSI-CE).
+      </p>
+      <p data-lang-block="en" class="text-xs sm:text-sm text-[#424842] mt-3 hidden">
+        Last updated: <strong>October 2026</strong> · In compliance with Article 10 of Spanish Law 34/2002 on Information Society Services and E-Commerce (LSSI-CE).
+      </p>
+      <p data-lang-block="de" class="text-xs sm:text-sm text-[#424842] mt-3 hidden">
+        Zuletzt aktualisiert: <strong>Oktober 2026</strong> · Angaben gemäß Artikel 10 des spanischen Gesetzes über Informationsgesellschaft und E-Commerce (LSSI-CE).
       </p>
     </div>
 
-    <!-- Legal Sections -->
-    <div class="space-y-10 text-sm sm:text-base leading-relaxed text-[#2C302D]">
-
+    <!-- ========================================== -->
+    <!-- CONTENIDO EN ESPAÑOL                       -->
+    <!-- ========================================== -->
+    <div data-lang-block="es" class="space-y-10 text-sm sm:text-base leading-relaxed text-[#2C302D]">
       <!-- Section 1: Datos Identificativos -->
       <section class="space-y-3">
         <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
@@ -99,10 +108,7 @@ const description = "Información legal, términos de uso y datos identificativo
           3. Condiciones de uso del sitio web
         </h2>
         <p>
-          El Usuario se compromete a hacer un uso lícito, diligente y adecuado de los contenidos y servicios de este sitio web de conformidad con la ley, la moral, el orden público y las presentes condiciones.
-        </p>
-        <p>
-          Queda expresamente prohibido realizar cualquier acción que pueda:
+          El Usuario se compromete a hacer un uso lícito, diligente y adecuado de los contenidos y servicios de este sitio web de conformidad con la ley, la moral, el orden público y las presentes condiciones. Queda expresamente prohibido realizar cualquier acción que pueda:
         </p>
         <ul class="list-disc pl-5 space-y-1.5">
           <li>Causar daños, sobrecargas o perturbaciones en los servidores o sistemas informáticos del sitio web.</li>
@@ -157,7 +163,204 @@ const description = "Información legal, términos de uso y datos identificativo
           Para la resolución de cualquier controversia o litigio derivado de la utilización del presente sitio web, será de aplicación la <strong>legislación española</strong>. Las partes se someten expresamente a la jurisdicción de los <strong>Juzgados y Tribunales de Palma de Mallorca (Illes Balears)</strong>, con renuncia a cualquier otro fuero que pudiera corresponderles, salvo disposición legal imperativa en contrario para personas consumidoras.
         </p>
       </section>
+    </div>
 
+    <!-- ========================================== -->
+    <!-- CONTENT IN ENGLISH                         -->
+    <!-- ========================================== -->
+    <div data-lang-block="en" class="space-y-10 text-sm sm:text-base leading-relaxed text-[#2C302D] hidden">
+      <!-- Section 1: Company Details -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          1. Company information and website ownership
+        </h2>
+        <p>
+          In accordance with Article 10 of Spanish <em>Law 34/2002 on Information Society Services and Electronic Commerce (LSSI-CE)</em>, the identification details of the website owner are set out below:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-base">
+          <li><strong>Trade name:</strong> Buon Apeetito (Buon Appetito)</li>
+          <li><strong>Company name / Legal entity:</strong> Buon Apeetito av.24 SL.</li>
+          <li><strong>Tax Identification Number (NIF/CIF):</strong> B26841494</li>
+          <li><strong>Registered and physical address:</strong> Avenida Mateo Bosch, 24, 07157 Port d'Andratx, Illes Balears, Spain</li>
+          <li><strong>Business activity:</strong> Restaurant services, artisan pizzeria, and Mediterranean cuisine</li>
+          <li><strong>Contact phone:</strong> <a href="tel:+34632446064" class="text-[#9E4221] hover:underline font-medium">+34 632 44 60 64</a></li>
+          <li><strong>Email contact:</strong> <a href="mailto:buonappetitoandratx@gmail.com" class="text-[#9E4221] hover:underline font-medium">buonappetitoandratx@gmail.com</a></li>
+        </ul>
+      </section>
+
+      <!-- Section 2: Purpose and Scope -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          2. Purpose and scope of application
+        </h2>
+        <p>
+          This Legal Notice governs access to, browsing, and use of the official website of <strong>Buon Appetito</strong> (hereinafter, "the website"), as well as any responsibilities arising from the use of its content (texts, graphics, photographs, menu listings, trademarks, and source code).
+        </p>
+        <p>
+          Accessing or using this website attributes the status of <strong>User</strong>, which implies full and unconditional acceptance of all terms contained in this Legal Notice from the very moment of access.
+        </p>
+      </section>
+
+      <!-- Section 3: Terms of Use -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          3. Terms of use of the website
+        </h2>
+        <p>
+          The User agrees to make lawful, diligent, and proper use of the website's contents and services in full compliance with applicable law, moral standards, public order, and these terms. The following actions are strictly prohibited:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li>Causing damage, overload, or disruption to the servers or computer systems of the website.</li>
+          <li>Introducing viruses, trojans, malware, or any other software capable of damaging digital systems.</li>
+          <li>Attempting unauthorized access to restricted accounts, servers, or source codes.</li>
+          <li>Using the website for unlawful purposes or activities contrary to the legitimate interests of Buon Appetito or third parties.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4: Intellectual Property -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          4. Intellectual and industrial property
+        </h2>
+        <p>
+          All components forming part of this website (including but not limited to brand logos, trademarks, restaurant imagery, menu compositions, descriptions, graphic design, and underlying code) are the exclusive property of <strong>Buon Appetito</strong> or third parties who have authorized their use, protected by Spanish and international intellectual property laws.
+        </p>
+        <p>
+          Any reproduction, distribution, public transmission, or modification of any part of this website for commercial purposes without prior express written consent is strictly prohibited.
+        </p>
+      </section>
+
+      <!-- Section 5: Disclaimer -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          5. Disclaimer of warranties and liability
+        </h2>
+        <p>
+          Buon Appetito makes reasonable efforts to ensure uninterrupted access and correct information on the website, but does not guarantee total absence of technical interruptions or temporary errors.
+        </p>
+        <p>
+          Likewise, Buon Appetito accepts no responsibility for content, services, or links to third-party platforms (such as Google Maps, Instagram, or external booking channels) over which it has no direct editorial control.
+        </p>
+      </section>
+
+      <!-- Section 6: Menus and Reservations -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          6. Menus, pricing, and table bookings
+        </h2>
+        <p>
+          Dishes, menus, and prices displayed on the website are provided for informational and indicative purposes. Buon Appetito reserves the right to adapt ingredients, fresh harbor fish availability, and prices according to seasonal market supply. Final table confirmations are agreed directly with our dining room staff.
+        </p>
+      </section>
+
+      <!-- Section 7: Law and Jurisdiction -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          7. Applicable law and jurisdiction
+        </h2>
+        <p>
+          Any dispute or claim related to this website shall be governed by <strong>Spanish law</strong>. Both parties expressly agree to submit to the exclusive jurisdiction of the <strong>Courts of Palma de Mallorca (Balearic Islands, Spain)</strong>, waiving any other jurisdiction that might otherwise apply, without prejudice to mandatory statutory consumer rights.
+        </p>
+      </section>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- INHALT AUF DEUTSCH (IMPRESSUM)             -->
+    <!-- ========================================== -->
+    <div data-lang-block="de" class="space-y-10 text-sm sm:text-base leading-relaxed text-[#2C302D] hidden">
+      <!-- Section 1: Impressum & Unternehmensangaben -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          1. Impressum und Angaben zum Seitenbetreiber
+        </h2>
+        <p>
+          Gemäß Artikel 10 des spanischen Gesetzes <em>Ley 34/2002 (LSSI-CE) über Dienste der Informationsgesellschaft und den elektronischen Geschäftsverkehr</em> werden nachstehend die Angaben des Betreibers aufgeführt:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-sm sm:text-base">
+          <li><strong>Handelsname:</strong> Buon Apeetito (Buon Appetito)</li>
+          <li><strong>Rechtsträger / Firmenname:</strong> Buon Apeetito av.24 SL.</li>
+          <li><strong>Steuernummer (NIF / CIF):</strong> B26841494</li>
+          <li><strong>Geschäfts- und Betriebsanschrift:</strong> Avenida Mateo Bosch, 24, 07157 Port d'Andratx, Illes Balears, Spanien</li>
+          <li><strong>Unternehmensgegenstand:</strong> Gastronomiebetrieb, traditionelle Holzofen-Pizzeria und mediterrane Küche</li>
+          <li><strong>Telefon:</strong> <a href="tel:+34632446064" class="text-[#9E4221] hover:underline font-medium">+34 632 44 60 64</a></li>
+          <li><strong>E-Mail:</strong> <a href="mailto:buonappetitoandratx@gmail.com" class="text-[#9E4221] hover:underline font-medium">buonappetitoandratx@gmail.com</a></li>
+        </ul>
+      </section>
+
+      <!-- Section 2: Gegenstand und Geltungsbereich -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          2. Gegenstand und Geltungsbereich
+        </h2>
+        <p>
+          Dieses Impressum regelt den Zugang, die Navigation und die Nutzung der offiziellen Website von <strong>Buon Appetito</strong> (nachfolgend „die Website“) sowie alle Verpflichtungen, die sich aus der Nutzung der Inhalte (Texte, Speisekarten, Fotografien, Marken und Programmcode) ergeben.
+        </p>
+        <p>
+          Durch den Zugriff auf die Website wird die Eigenschaft als <strong>Nutzer</strong> erlangt, was die vollständige und vorbehaltlose Annahme aller in diesem Impressum genannten Bestimmungen mit dem Zeitpunkt des Aufrufs bedeutet.
+        </p>
+      </section>
+
+      <!-- Section 3: Nutzungsbedingungen -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          3. Nutzungsbedingungen der Website
+        </h2>
+        <p>
+          Der Nutzer verpflichtet sich zu einer rechtmäßigen, sorgfältigen und sachgemäßen Nutzung der Inhalte und Dienste dieser Website unter Beachtung der geltenden Gesetze und der öffentlichen Ordnung. Ausdrücklich untersagt ist:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li>Handlungen vorzunehmen, die zu Schäden, Überlastungen oder Störungen der Server oder IT-Systeme der Website führen können.</li>
+          <li>Viren, Schadprogramme oder bösartigen Code einzuschleusen, der digitale Systeme beschädigen könnte.</li>
+          <li>Unbefugten Zugang zu geschützten Konten, Servern oder Quellcodes zu erlangen.</li>
+          <li>Die Website für ungesetzliche Zwecke oder zum Nachteil von Buon Appetito oder Dritten zu verwenden.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4: Urheberrecht -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          4. Geistiges Eigentum und Urheberrecht
+        </h2>
+        <p>
+          Alle Bestandteile dieser Website (insbesondere Logos, Marken, Fotos des Restaurants, Speisekarten, Texte, grafische Elemente und Programmierung) sind Eigentum von <strong>Buon Appetito</strong> oder Dritten, die die Nutzung ausdrücklich gestattet haben, und unterliegen dem spanischen sowie internationalen Urheberrecht.
+        </p>
+        <p>
+          Jede Vervielfältigung, Verbreitung oder öffentliche Wiedergabe zu gewerblichen Zwecken ohne vorherige schriftliche Zustimmung des Betreibers ist strengstens untersagt.
+        </p>
+      </section>
+
+      <!-- Section 5: Haftungsausschluss -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          5. Haftungsausschluss für Inhalte und Links
+        </h2>
+        <p>
+          Buon Appetito bemüht sich um ständige Verfügbarkeit und Richtigkeit der Website-Inhalte, übernimmt jedoch keine Gewähr für ununterbrochenen Betrieb oder das Fehlen technischer Störungen.
+        </p>
+        <p>
+          Ebenso übernimmt Buon Appetito keine Haftung für externe Links zu Websites Dritter (wie Google Maps oder soziale Medien), auf deren Inhalte kein direkter Einfluss besteht.
+        </p>
+      </section>
+
+      <!-- Section 6: Speisekarten und Reservierungen -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          6. Speisekarten, Preise und Tischreservierungen
+        </h2>
+        <p>
+          Die auf der Website präsentierten Speisen und Preise dienen der allgemeinen Information und Orientierung. Buon Appetito behält sich das Recht vor, Zutaten, Angebote von frischem Fisch vom Hafen und Preise je nach Marktlage und Saison anzupassen. Tischreservierungen werden im direkten Kontakt mit dem Restaurant-Team bestätigt.
+        </p>
+      </section>
+
+      <!-- Section 7: Anwendbares Recht und Gerichtsstand -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          7. Anwendbares Recht und Gerichtsstand
+        </h2>
+        <p>
+          Für Streitigkeiten aus der Nutzung dieser Website gilt ausschließlich das <strong>Recht des Königreichs Spanien</strong>. Gerichtsstand ist, soweit gesetzlich zulässig, <strong>Palma de Mallorca (Balearen, Spanien)</strong>.
+        </p>
+      </section>
     </div>
   </main>
 

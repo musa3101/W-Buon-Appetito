@@ -47,20 +47,29 @@ const description = "Información sobre el uso de cookies y tecnologías de alma
     
     <!-- Title & Date Header -->
     <div class="border-b border-[#D9D4CC]/60 pb-8 mb-10">
-      <span class="text-xs font-semibold text-[#9E4221] uppercase tracking-[0.2em] block mb-2 font-satoshi">
+      <span data-i18n="legal_cookies_badge" class="text-xs font-semibold text-[#9E4221] uppercase tracking-[0.2em] block mb-2 font-satoshi">
         Transparencia y Navegación
       </span>
       <h1 data-i18n="legal_cookies_title" class="font-boska text-3xl sm:text-4xl md:text-5xl text-[#183321] font-normal tracking-tight">
         Política de Cookies
       </h1>
-      <p class="text-xs sm:text-sm text-[#424842] mt-3">
-        Última actualización: <strong>Octubre 2026</strong> · De conformidad con el artículo 22.2 de la Ley 34/2002 (LSSI-CE) y las directrices de la Agencia Española de Protección de Datos (AEPD).
+      
+      <!-- Date Subtitles per Language -->
+      <p data-lang-block="es" class="text-xs sm:text-sm text-[#424842] mt-3">
+        Última actualización: <strong>Octubre 2026</strong> · De conformidad con el artículo 22.2 de la Ley 34/2002 (LSSI-CE) y directrices de la Agencia Española de Protección de Datos (AEPD).
+      </p>
+      <p data-lang-block="en" class="text-xs sm:text-sm text-[#424842] mt-3 hidden">
+        Last updated: <strong>October 2026</strong> · In accordance with Article 22.2 of Spanish LSSI-CE Law and EU ePrivacy guidelines.
+      </p>
+      <p data-lang-block="de" class="text-xs sm:text-sm text-[#424842] mt-3 hidden">
+        Zuletzt aktualisiert: <strong>Oktober 2026</strong> · Gemäß Art. 22.2 des spanischen Gesetzes LSSI-CE und den Richtlinien der europäischen Datenschutzbehörden.
       </p>
     </div>
 
-    <!-- Legal Sections -->
-    <div class="space-y-10 text-sm sm:text-base leading-relaxed text-[#2C302D]">
-
+    <!-- ========================================== -->
+    <!-- CONTENIDO EN ESPAÑOL                       -->
+    <!-- ========================================== -->
+    <div data-lang-block="es" class="space-y-10 text-sm sm:text-base leading-relaxed text-[#2C302D]">
       <!-- Section 1: Qué son las cookies -->
       <section class="space-y-3">
         <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
@@ -116,18 +125,10 @@ const description = "Información sobre el uso de cookies y tecnologías de alma
           Usted puede en cualquier momento permitir, bloquear o eliminar las cookies instaladas en su dispositivo mediante la configuración de las opciones de su navegador de internet:
         </p>
         <ul class="list-disc pl-5 space-y-2 text-sm sm:text-base">
-          <li>
-            <strong>Google Chrome:</strong> Configuración &gt; Privacidad y seguridad &gt; Cookies y otros datos de sitios.
-          </li>
-          <li>
-            <strong>Apple Safari (macOS e iOS):</strong> Ajustes &gt; Safari &gt; Avanzado &gt; Privacidad y bloqueo de cookies.
-          </li>
-          <li>
-            <strong>Mozilla Firefox:</strong> Opciones &gt; Privacidad y seguridad &gt; Cookies y datos del sitio.
-          </li>
-          <li>
-            <strong>Microsoft Edge:</strong> Configuración &gt; Permisos del sitio &gt; Cookies y datos de sitios.
-          </li>
+          <li><strong>Google Chrome:</strong> Configuración &gt; Privacidad y seguridad &gt; Cookies y otros datos de sitios.</li>
+          <li><strong>Apple Safari (macOS e iOS):</strong> Ajustes &gt; Safari &gt; Avanzado &gt; Privacidad y bloqueo de cookies.</li>
+          <li><strong>Mozilla Firefox:</strong> Opciones &gt; Privacidad y seguridad &gt; Cookies y datos del sitio.</li>
+          <li><strong>Microsoft Edge:</strong> Configuración &gt; Permisos del sitio &gt; Cookies y datos de sitios.</li>
         </ul>
         <p class="pt-2 text-sm text-[#424842]">
           Tenga en cuenta que si desactiva o bloquea determinadas cookies técnicas, algunas funcionalidades del sitio web podrían verse afectadas o no operar con total fluidez.
@@ -143,7 +144,166 @@ const description = "Información sobre el uso de cookies y tecnologías de alma
           Buon Appetito puede modificar la presente Política de Cookies en función de exigencias legislativas, reglamentarias o con la finalidad de adaptar dicha política a las instrucciones dictadas por la Agencia Española de Protección de Datos. Se aconseja al usuario visitarla periódicamente.
         </p>
       </section>
+    </div>
 
+    <!-- ========================================== -->
+    <!-- CONTENT IN ENGLISH                         -->
+    <!-- ========================================== -->
+    <div data-lang-block="en" class="space-y-10 text-sm sm:text-base leading-relaxed text-[#2C302D] hidden">
+      <!-- Section 1: What are cookies -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          1. What are cookies?
+        </h2>
+        <p>
+          A <strong>cookie</strong> is a small text file downloaded and stored on your computer, tablet, or smartphone when visiting a website. Cookies allow the website to remember user preferences (such as your chosen display language), facilitating subsequent visits and ensuring smoother site operation.
+        </p>
+      </section>
+
+      <!-- Section 2: Types of cookies used -->
+      <section class="space-y-4">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          2. What types of cookies do we use?
+        </h2>
+        <p>
+          At <strong>Buon Appetito</strong>, user privacy is paramount. This website <strong>does not use commercial profiling cookies or intrusive third-party advertising trackers</strong>.
+        </p>
+        <p>
+          The technologies utilized are strictly classified into:
+        </p>
+
+        <div class="space-y-3">
+          <div class="bg-[#FBF9F5] border border-[#D9D4CC]/70 p-4 sm:p-5 rounded-xl">
+            <h3 class="font-semibold text-[#183321] text-base mb-1">A) Strictly technical and essential cookies</h3>
+            <p class="text-sm text-[#424842]">
+              Indispensable for enabling navigation across the website, session identification, security safeguards, and language persistence. Because these are essential for technical delivery, they do not require prior consent.
+            </p>
+          </div>
+
+          <div class="bg-[#FBF9F5] border border-[#D9D4CC]/70 p-4 sm:p-5 rounded-xl">
+            <h3 class="font-semibold text-[#183321] text-base mb-1">B) Integrated third-party map services (Google Maps)</h3>
+            <p class="text-sm text-[#424842]">
+              Our location section integrates an interactive <strong>Google Maps</strong> view to assist guests finding our restaurant at Port d'Andratx. Google may set technical and preference cookies under the <a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener noreferrer" class="text-[#9E4221] hover:underline font-medium">Google Privacy Policy</a>.
+            </p>
+          </div>
+
+          <div class="bg-[#FBF9F5] border border-[#D9D4CC]/70 p-4 sm:p-5 rounded-xl">
+            <h3 class="font-semibold text-[#183321] text-base mb-1">C) Web fonts delivery (Google Fonts)</h3>
+            <p class="text-sm text-[#424842]">
+              To guarantee optimal typography across devices, font families are served securely without tracking any personal guest identifiers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Browser Management -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          3. How to manage or disable cookies in your browser
+        </h2>
+        <p>
+          You may configure, block, or delete cookies installed on your device through your browser settings:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-sm sm:text-base">
+          <li><strong>Google Chrome:</strong> Settings &gt; Privacy and Security &gt; Cookies and other site data.</li>
+          <li><strong>Apple Safari (macOS &amp; iOS):</strong> Settings &gt; Safari &gt; Advanced &gt; Privacy &amp; Cookie Blocking.</li>
+          <li><strong>Mozilla Firefox:</strong> Settings &gt; Privacy &amp; Security &gt; Cookies and Site Data.</li>
+          <li><strong>Microsoft Edge:</strong> Settings &gt; Site permissions &gt; Cookies and site data.</li>
+        </ul>
+        <p class="pt-2 text-sm text-[#424842]">
+          Please note that disabling strictly technical cookies may affect the smoothness of website navigation.
+        </p>
+      </section>
+
+      <!-- Section 4: Updates -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          4. Updates and changes
+        </h2>
+        <p>
+          Buon Appetito may update this Cookie Policy to adapt to legal, regulatory, or technical requirements. Users are advised to review this policy periodically.
+        </p>
+      </section>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- INHALT AUF DEUTSCH (COOKIE-RICHTLINIE)     -->
+    <!-- ========================================== -->
+    <div data-lang-block="de" class="space-y-10 text-sm sm:text-base leading-relaxed text-[#2C302D] hidden">
+      <!-- Section 1: Was sind Cookies -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          1. Was sind Cookies?
+        </h2>
+        <p>
+          Ein <strong>Cookie</strong> ist eine kleine Textdatei, die beim Besuch einer Website auf Ihrem Computer, Smartphone oder Tablet gespeichert wird. Cookies ermöglichen es der Website, Informationen über Ihren Besuch (wie z. B. Ihre bevorzugte Sprache) zu speichern, um die Bedienung bei wiederholten Besuchen flüssig zu gestalten.
+        </p>
+      </section>
+
+      <!-- Section 2: Verwendete Cookie-Arten -->
+      <section class="space-y-4">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          2. Welche Arten von Cookies werden verwendet?
+        </h2>
+        <p>
+          Im <strong>Buon Appetito</strong> hat der Schutz Ihrer Privatsphäre oberste Priorität. Diese Website <strong>verwendet keine kommerziellen Profilierungs-Cookies und keine aufdringlichen Werbetracker von Drittanbietern</strong>.
+        </p>
+        <p>
+          Die verwendeten Technologien unterteilen sich in:
+        </p>
+
+        <div class="space-y-3">
+          <div class="bg-[#FBF9F5] border border-[#D9D4CC]/70 p-4 sm:p-5 rounded-xl">
+            <h3 class="font-semibold text-[#183321] text-base mb-1">A) Technisch notwendige Cookies</h3>
+            <p class="text-sm text-[#424842]">
+              Unerlässlich für die Navigation, Sitzungsidentifizierung, Sprachspeicherung und Serversicherheit. Da sie für den technischen Betrieb zwingend erforderlich sind, bedürfen sie keiner vorherigen Einwilligung.
+            </p>
+          </div>
+
+          <div class="bg-[#FBF9F5] border border-[#D9D4CC]/70 p-4 sm:p-5 rounded-xl">
+            <h3 class="font-semibold text-[#183321] text-base mb-1">B) Kartendienst von Google Maps</h3>
+            <p class="text-sm text-[#424842]">
+              Im Standortbereich ist eine interaktive Karte von <strong>Google Maps</strong> integriert, um Gästen die Anreise nach Port d'Andratx zu erleichtern. Google verarbeitet technische Daten gemäß der <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer" class="text-[#9E4221] hover:underline font-medium">Google Datenschutzerklärung</a>.
+            </p>
+          </div>
+
+          <div class="bg-[#FBF9F5] border border-[#D9D4CC]/70 p-4 sm:p-5 rounded-xl">
+            <h3 class="font-semibold text-[#183321] text-base mb-1">C) Web-Schriftarten (Google Fonts)</h3>
+            <p class="text-sm text-[#424842]">
+              Zur einheitlichen und ansprechenden typografischen Darstellung werden Schriftfamilien über Google Fonts geladen, ohne dass persönliche Profile erstellt werden.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Deaktivierung im Browser -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          3. Verwaltung und Deaktivierung von Cookies im Browser
+        </h2>
+        <p>
+          Sie können gespeicherte Cookies in den Einstellungen Ihres Internet-Browsers jederzeit einsehen, blockieren oder löschen:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-sm sm:text-base">
+          <li><strong>Google Chrome:</strong> Einstellungen &gt; Datenschutz und Sicherheit &gt; Cookies und Websitedaten.</li>
+          <li><strong>Apple Safari (macOS &amp; iOS):</strong> Einstellungen &gt; Safari &gt; Erweitert &gt; Datenschutz &amp; Cookies blockieren.</li>
+          <li><strong>Mozilla Firefox:</strong> Einstellungen &gt; Datenschutz &amp; Sicherheit &gt; Cookies und Website-Daten.</li>
+          <li><strong>Microsoft Edge:</strong> Einstellungen &gt; Websiteberechtigungen &gt; Cookies und Websitedaten.</li>
+        </ul>
+        <p class="pt-2 text-sm text-[#424842]">
+          Bitte beachten Sie, dass die Deaktivierung technisch notwendiger Cookies die Funktionalität der Website beeinträchtigen kann.
+        </p>
+      </section>
+
+      <!-- Section 4: Änderungen -->
+      <section class="space-y-3">
+        <h2 class="font-boska text-2xl sm:text-3xl text-[#183321] font-normal">
+          4. Aktualisierungen der Richtlinie
+        </h2>
+        <p>
+          Buon Appetito behält sich vor, diese Cookie-Richtlinie bei veränderten gesetzlichen Vorgaben oder technischen Weiterentwicklungen anzupassen.
+        </p>
+      </section>
     </div>
   </main>
 

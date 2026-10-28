@@ -35,126 +35,102 @@ export type PolaroidLineCarouselProps = {
   ariaLabel?: string;
 };
 
-export const buonAppetitoDishes: Slide[] = [
-  // 1. Entrantes
-  {
-    image: "/assets/menu/menu_01.webp",
-    title: "Bruschetta & Padrón",
-    alt: "Bruschetta al Pomodoro y Pimientos de Padrón",
-  },
-  {
-    image: "/assets/menu/menu_02.webp",
-    title: "Chipirones Fritos",
-    alt: "Chipirones fritos con salsa de yuzu",
-  },
-  {
-    image: "/assets/menu/menu_03.webp",
-    title: "Carpaccio de Ternera",
-    alt: "Carpaccio de ternera con rúcula y parmesano",
-  },
-  {
-    image: "/assets/menu/menu_04.webp",
-    title: "Tataki de Atún Rojo",
-    alt: "Tataki de atún rojo con salsa de soja",
-  },
+export type Language = "es" | "en" | "de";
 
-  // 2. Ensaladas
-  {
-    image: "/assets/menu/menu_05.webp",
-    title: "Ensalada Pomodoro",
-    alt: "Ensalada Pomodoro",
-  },
-  {
-    image: "/assets/menu/menu_06.webp",
-    title: "Ensalada Caprese",
-    alt: "Ensalada Caprese con mozzarella di bufala",
-  },
-  {
-    image: "/assets/menu/menu_07.webp",
-    title: "Ensalada Thai",
-    alt: "Ensalada Thai con gambas",
-  },
-  {
-    image: "/assets/menu/menu_08.webp",
-    title: "Ensalada Exótica",
-    alt: "Ensalada exótica con pollo, mango y papaya",
-  },
+export const buonAppetitoDishesByLang: Record<Language, Slide[]> = {
+  es: [
+    // 1. Entrantes
+    { image: "/assets/menu/menu_01.webp", title: "Bruschetta & Padrón", alt: "Bruschetta al Pomodoro y Pimientos de Padrón" },
+    { image: "/assets/menu/menu_02.webp", title: "Chipirones Fritos", alt: "Chipirones fritos con salsa de yuzu" },
+    { image: "/assets/menu/menu_03.webp", title: "Carpaccio de Ternera", alt: "Carpaccio de ternera con rúcula y parmesano" },
+    { image: "/assets/menu/menu_04.webp", title: "Tataki de Atún Rojo", alt: "Tataki de atún rojo con salsa de soja" },
+    // 2. Ensaladas
+    { image: "/assets/menu/menu_05.webp", title: "Ensalada Pomodoro", alt: "Ensalada Pomodoro" },
+    { image: "/assets/menu/menu_06.webp", title: "Ensalada Caprese", alt: "Ensalada Caprese con mozzarella di bufala" },
+    { image: "/assets/menu/menu_07.webp", title: "Ensalada Thai", alt: "Ensalada Thai con gambas" },
+    { image: "/assets/menu/menu_08.webp", title: "Ensalada Exótica", alt: "Ensalada exótica con pollo, mango y papaya" },
+    // 3. Pastas
+    { image: "/assets/menu/menu_09.webp", title: "Spaghetti Aglio e Olio", alt: "Spaghetti Aglio e Olio" },
+    { image: "/assets/menu/menu_10.webp", title: "Tagliatelle con Trufa Fresca", alt: "Tagliatelle con Trufa Fresca" },
+    { image: "/assets/menu/menu_11.webp", title: "Linguine ai Frutti di Mare", alt: "Linguine ai Frutti di Mare" },
+    // 4. Pizzas
+    { image: "/assets/menu/menu_12.webp", title: "Pizza Rúcula", alt: "Pizza Rúcula con jamón de Parma y lascas de parmesano" },
+    { image: "/assets/menu/menu_13.webp", title: "Pizza Frutti di Mare", alt: "Pizza Frutti di Mare" },
+    // 5. Arroces y Pescados
+    { image: "/assets/menu/menu_14.webp", title: "Paella de Marisco", alt: "Paella de marisco" },
+    { image: "/assets/menu/menu_15.webp", title: "Calamar a la Plancha", alt: "Calamar a la plancha con verduras" },
+    { image: "/assets/menu/menu_16.webp", title: "Lubina a la Plancha", alt: "Lubina a la plancha con verduras salteadas" },
+    // 6. Carnes
+    { image: "/assets/menu/menu_17.webp", title: "Tagliata de Solomillo", alt: "Tagliata de solomillo de ternera" },
+    { image: "/assets/menu/menu_18.webp", title: "Solomillo de Ternera", alt: "Solomillo de ternera con verduras y patatas" },
+    // 7. Postres
+    { image: "/assets/menu/menu_19.webp", title: "Brownie & Tiramisú", alt: "Brownie casero con helado y tiramisú" },
+    { image: "/assets/menu/menu_20.webp", title: "Crema Catalana", alt: "Crema Catalana Caramelizada" },
+    { image: "/assets/menu/menu_21.webp", title: "Dolce Buon Appetito", alt: "Dolce Buon Appetito" },
+  ],
+  en: [
+    // 1. Starters
+    { image: "/assets/menu/menu_01.webp", title: "Bruschetta & Padrón", alt: "Toasted Bruschetta with Tomatoes and Padrón Peppers" },
+    { image: "/assets/menu/menu_02.webp", title: "Crispy Baby Squid", alt: "Crispy fried baby squid with yuzu dip" },
+    { image: "/assets/menu/menu_03.webp", title: "Beef Carpaccio", alt: "Beef carpaccio with rocket and shaved parmesan" },
+    { image: "/assets/menu/menu_04.webp", title: "Red Tuna Tataki", alt: "Red tuna tataki with soy reduction" },
+    // 2. Salads
+    { image: "/assets/menu/menu_05.webp", title: "Pomodoro Salad", alt: "Fresh tomato salad with red onion and basil" },
+    { image: "/assets/menu/menu_06.webp", title: "Caprese Salad", alt: "Caprese salad with buffalo mozzarella" },
+    { image: "/assets/menu/menu_07.webp", title: "Thai Prawn Salad", alt: "Thai salad with grilled prawns" },
+    { image: "/assets/menu/menu_08.webp", title: "Exotic Salad", alt: "Exotic salad with chicken, mango, and papaya" },
+    // 3. Pasta
+    { image: "/assets/menu/menu_09.webp", title: "Spaghetti Aglio e Olio", alt: "Spaghetti Aglio e Olio with garlic and prawns" },
+    { image: "/assets/menu/menu_10.webp", title: "Tagliatelle with Truffle", alt: "Tagliatelle with fresh black truffle" },
+    { image: "/assets/menu/menu_11.webp", title: "Linguine Frutti di Mare", alt: "Seafood linguine with clams and prawns" },
+    // 4. Pizzas
+    { image: "/assets/menu/menu_12.webp", title: "Pizza Rúcula", alt: "Pizza Rúcula with Parma ham and shaved parmesan" },
+    { image: "/assets/menu/menu_13.webp", title: "Pizza Frutti di Mare", alt: "Seafood pizza with Mediterranean catch" },
+    // 5. Rice & Fish
+    { image: "/assets/menu/menu_14.webp", title: "Seafood Paella", alt: "Traditional Mediterranean seafood paella" },
+    { image: "/assets/menu/menu_15.webp", title: "Grilled Squid", alt: "Grilled whole squid with garden vegetables" },
+    { image: "/assets/menu/menu_16.webp", title: "Grilled Sea Bass", alt: "Grilled sea bass with sautéed vegetables" },
+    // 6. Meat
+    { image: "/assets/menu/menu_17.webp", title: "Beef Sirloin Tagliata", alt: "Beef sirloin tagliata with rocket and parmesan" },
+    { image: "/assets/menu/menu_18.webp", title: "Grilled Tenderloin", alt: "Grilled beef tenderloin with potatoes and vegetables" },
+    // 7. Desserts
+    { image: "/assets/menu/menu_19.webp", title: "Brownie & Tiramisù", alt: "Homemade brownie with ice cream and classic tiramisù" },
+    { image: "/assets/menu/menu_20.webp", title: "Crema Catalana", alt: "Caramelized traditional Crema Catalana" },
+    { image: "/assets/menu/menu_21.webp", title: "Dolce Buon Appetito", alt: "House specialty dessert Buon Appetito" },
+  ],
+  de: [
+    // 1. Vorspeisen
+    { image: "/assets/menu/menu_01.webp", title: "Bruschetta & Padrón", alt: "Geröstete Bruschetta mit Tomaten und Padrón-Peperoni" },
+    { image: "/assets/menu/menu_02.webp", title: "Baby-Calamari", alt: "Frittierte Baby-Calamari mit Yuzu-Dip" },
+    { image: "/assets/menu/menu_03.webp", title: "Rindercarpaccio", alt: "Rindercarpaccio mit frischem Rucola und Parmesan" },
+    { image: "/assets/menu/menu_04.webp", title: "Rotes Thunfisch-Tataki", alt: "Rotes Thunfisch-Tataki mit Soja-Reduktion" },
+    // 2. Salate
+    { image: "/assets/menu/menu_05.webp", title: "Pomodoro-Salat", alt: "Frischer Tomatensalat mit roten Zwiebeln und Basilikum" },
+    { image: "/assets/menu/menu_06.webp", title: "Caprese-Salat", alt: "Caprese-Salat mit echtem Büffelmozzarella" },
+    { image: "/assets/menu/menu_07.webp", title: "Thai-Garnelensalat", alt: "Thai-Salat mit gebratenen Garnelen" },
+    { image: "/assets/menu/menu_08.webp", title: "Exotischer Salat", alt: "Exotischer Salat mit Hähnchen, Mango und Papaya" },
+    // 3. Pasta
+    { image: "/assets/menu/menu_09.webp", title: "Spaghetti Aglio e Olio", alt: "Spaghetti Aglio e Olio mit Knoblauch und Garnelen" },
+    { image: "/assets/menu/menu_10.webp", title: "Tagliatelle mit Trüffel", alt: "Tagliatelle mit frischem schwarzem Trüffel" },
+    { image: "/assets/menu/menu_11.webp", title: "Linguine Frutti di Mare", alt: "Meeresfrüchte-Linguine mit Muscheln und Garnelen" },
+    // 4. Pizzen
+    { image: "/assets/menu/menu_12.webp", title: "Pizza Rucola", alt: "Pizza Rucola mit Parmaschinken und gehobeltem Parmesan" },
+    { image: "/assets/menu/menu_13.webp", title: "Pizza Frutti di Mare", alt: "Meeresfrüchte-Pizza mit fangfrischem Fisch" },
+    // 5. Reis & Fisch
+    { image: "/assets/menu/menu_14.webp", title: "Meeresfrüchte-Paella", alt: "Traditionelle mediterrane Meeresfrüchte-Paella" },
+    { image: "/assets/menu/menu_15.webp", title: "Gegrillter Calamar", alt: "Gegrillter Calamar mit frischem Marktgemüse" },
+    { image: "/assets/menu/menu_16.webp", title: "Gegrillter Wolfsbarsch", alt: "Gegrillter Wolfsbarsch mit sautiertem Gemüse" },
+    // 6. Fleisch
+    { image: "/assets/menu/menu_17.webp", title: "Rinderfilet-Tagliata", alt: "Rinderfilet-Tagliata mit Rucola und Parmesan" },
+    { image: "/assets/menu/menu_18.webp", title: "Gegrilltes Rinderfilet", alt: "Gegrilltes Rinderfilet mit Kartoffeln und Gemüse" },
+    // 7. Desserts
+    { image: "/assets/menu/menu_19.webp", title: "Brownie & Tiramisù", alt: "Hausgemachter Brownie mit Eis und klassischem Tiramisù" },
+    { image: "/assets/menu/menu_20.webp", title: "Crema Catalana", alt: "Karamellisierte traditionelle Crema Catalana" },
+    { image: "/assets/menu/menu_21.webp", title: "Dolce Buon Appetito", alt: "Hausgemachtes Spezialdessert Buon Appetito" },
+  ],
+};
 
-  // 3. Pastas
-  {
-    image: "/assets/menu/menu_09.webp",
-    title: "Spaghetti Aglio e Olio",
-    alt: "Spaghetti Aglio e Olio",
-  },
-  {
-    image: "/assets/menu/menu_10.webp",
-    title: "Tagliatelle con Trufa Fresca",
-    alt: "Tagliatelle con Trufa Fresca",
-  },
-  {
-    image: "/assets/menu/menu_11.webp",
-    title: "Linguine ai Frutti di Mare",
-    alt: "Linguine ai Frutti di Mare",
-  },
-
-  // 4. Pizzas
-  {
-    image: "/assets/menu/menu_12.webp",
-    title: "Pizza Stella",
-    alt: "Pizza Stella con jamón de Parma y rúcula",
-  },
-  {
-    image: "/assets/menu/menu_13.webp",
-    title: "Pizza Frutti di Mare",
-    alt: "Pizza Frutti di Mare",
-  },
-
-  // 5. Arroces y Pescados
-  {
-    image: "/assets/menu/menu_14.webp",
-    title: "Paella de Marisco",
-    alt: "Paella de marisco",
-  },
-  {
-    image: "/assets/menu/menu_15.webp",
-    title: "Calamar a la Plancha",
-    alt: "Calamar a la plancha con verduras",
-  },
-  {
-    image: "/assets/menu/menu_16.webp",
-    title: "Lubina a la Plancha",
-    alt: "Lubina a la plancha con verduras salteadas",
-  },
-
-  // 6. Carnes
-  {
-    image: "/assets/menu/menu_17.webp",
-    title: "Tagliata de Solomillo",
-    alt: "Tagliata de solomillo de ternera",
-  },
-  {
-    image: "/assets/menu/menu_18.webp",
-    title: "Solomillo de Ternera",
-    alt: "Solomillo de ternera con verduras y patatas",
-  },
-
-  // 7. Postres
-  {
-    image: "/assets/menu/menu_19.webp",
-    title: "Brownie Casero & Tiramisú",
-    alt: "Brownie casero con helado y tiramisú",
-  },
-  {
-    image: "/assets/menu/menu_20.webp",
-    title: "Crema Catalana",
-    alt: "Crema Catalana Caramelizada",
-  },
-  {
-    image: "/assets/menu/menu_21.webp",
-    title: "Dolce Buon Appetito",
-    alt: "Dolce Buon Appetito",
-  },
-];
+export const buonAppetitoDishes: Slide[] = buonAppetitoDishesByLang.es;
 
 export function clamp(v: number, a: number, b: number): number {
   return Math.min(b, Math.max(a, v));
@@ -198,7 +174,7 @@ const PL_CSS = `
 `;
 
 export default function PolaroidLineCarousel({
-  slides = buonAppetitoDishes,
+  slides: customSlides,
   height = "clamp(490px, 62vh, 560px)",
   cardWidth = 245,
   sag = 28,
@@ -210,9 +186,30 @@ export default function PolaroidLineCarousel({
   style,
   ariaLabel = "Carrusel de platos de la carta",
 }: PolaroidLineCarouselProps) {
-  const origCount = slides.length;
+  const [lang, setLang] = React.useState<Language>("es");
+
+  React.useEffect(() => {
+    try {
+      const saved = (localStorage.getItem("buon_appetito_lang") || "es") as Language;
+      if (["es", "en", "de"].includes(saved)) {
+        setLang(saved);
+      }
+    } catch (e) {}
+
+    const handleLang = (e: any) => {
+      if (e.detail?.lang && ["es", "en", "de"].includes(e.detail.lang)) {
+        setLang(e.detail.lang);
+      }
+    };
+
+    window.addEventListener("buon:languageChange", handleLang);
+    return () => window.removeEventListener("buon:languageChange", handleLang);
+  }, []);
+
+  const activeSlides = customSlides || buonAppetitoDishesByLang[lang] || buonAppetitoDishesByLang.es;
+  const origCount = activeSlides.length;
   // Triplicate slides to create a completely seamless infinite wrapping line
-  const allSlides = React.useMemo(() => [...slides, ...slides, ...slides], [slides]);
+  const allSlides = React.useMemo(() => [...activeSlides, ...activeSlides, ...activeSlides], [activeSlides]);
   const totalCount = allSlides.length;
 
   const [dragging, setDragging] = React.useState(false);

@@ -95,6 +95,10 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     // Legal Header & Pages
     legal_back: "Volver atrás",
     legal_info_badge: "Información Legal y LSSI-CE",
+    legal_aviso_badge: "Información Legal y LSSI-CE",
+    legal_privacidad_badge: "Protección de Datos Personales",
+    legal_cookies_badge: "Transparencia y Navegación",
+    legal_updated: "Última actualización: Octubre 2026",
     legal_aviso_title: "Aviso Legal",
     legal_privacidad_title: "Política de Privacidad",
     legal_cookies_title: "Política de Cookies"
@@ -189,6 +193,10 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     // Legal Header & Pages
     legal_back: "Go back",
     legal_info_badge: "Legal Information & Compliance",
+    legal_aviso_badge: "Legal Information & Compliance",
+    legal_privacidad_badge: "Personal Data Protection",
+    legal_cookies_badge: "Transparency & Cookie Policy",
+    legal_updated: "Last updated: October 2026",
     legal_aviso_title: "Legal Notice",
     legal_privacidad_title: "Privacy Policy",
     legal_cookies_title: "Cookie Policy"
@@ -283,6 +291,10 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     // Legal Header & Pages
     legal_back: "Zurück",
     legal_info_badge: "Rechtliche Angaben & LSSI-CE",
+    legal_aviso_badge: "Rechtliche Angaben & LSSI-CE",
+    legal_privacidad_badge: "Schutz personenbezogener Daten",
+    legal_cookies_badge: "Transparenz & Cookie-Richtlinie",
+    legal_updated: "Zuletzt aktualisiert: Oktober 2026",
     legal_aviso_title: "Impressum",
     legal_privacidad_title: "Datenschutzerklärung",
     legal_cookies_title: "Cookie-Richtlinie"
