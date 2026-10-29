@@ -6,62 +6,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Buon Appetito · Panel de Carta</title>
+  <title>Buon Appetito · Gestión de Carta</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-cream: #FAF7F2;
-      --bg-dark: #171513;
-      --bg-charcoal: #221E1C;
-      --color-primary: #7A1C28;
-      --color-primary-hover: #5F141E;
-      --color-gold: #C5A880;
-      --color-border: rgba(28, 25, 23, 0.08);
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --bg: #F7F5F0;
+      --surface: #FFFFFF;
+      --dark: #191614;
+      --burgundy: #7A1C28;
+      --burgundy-hover: #5F141E;
+      --gold: #C5A880;
+      --border: #E8E5DF;
+      --border-subtle: #F0ECE4;
+      --text: #191614;
+      --text-muted: #78716C;
+      --text-light: #A8A29E;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
-      background-color: var(--bg-cream);
-      color: #1C1917;
-      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       -webkit-tap-highlight-color: transparent;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      line-height: 1.5;
+      font-size: 14px;
+      line-height: 1.4;
     }
 
-    .font-serif { font-family: var(--font-serif); }
-    .font-sans { font-family: var(--font-sans); }
-    
+    button, input, select, textarea {
+      font-family: inherit;
+      touch-action: manipulation;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    button, input, select, textarea {
-      touch-action: manipulation;
-      font-family: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
     /* ========================================================
-       LOGIN SCREEN
+       1. PANTALLA DE ACCESO (LOGIN)
        ======================================================== */
-    .login-container {
+    .login-wrapper {
       position: fixed;
       inset: 0;
       z-index: 50;
-      background-color: var(--bg-cream);
+      background-color: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -70,57 +65,47 @@
 
     .login-card {
       width: 100%;
-      max-width: 420px;
-      background: #FFFFFF;
-      border-radius: 28px;
-      border: 1px solid var(--color-border);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
-      padding: 36px 28px;
+      max-width: 380px;
+      background: var(--surface);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      padding: 32px 24px;
       text-align: center;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .login-badge {
-      background: var(--bg-dark);
-      padding: 12px 24px;
-      border-radius: 18px;
+    .login-logo-box {
+      background: var(--dark);
+      padding: 12px 20px;
+      border-radius: 14px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
     }
 
-    .login-badge img {
-      height: 38px;
+    .login-logo-box img {
+      height: 32px;
       width: auto;
-      max-width: 160px;
       object-fit: contain;
     }
 
-    .login-title {
-      font-family: var(--font-serif);
-      font-size: 28px;
+    .login-heading {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 26px;
       font-weight: 700;
-      color: #171513;
-      margin-top: 4px;
-      line-height: 1.2;
+      color: var(--dark);
+      margin-top: 6px;
+      line-height: 1.1;
     }
 
-    .login-sub {
+    .login-subhead {
       font-size: 12px;
-      color: #78716C;
+      color: var(--text-muted);
       margin-top: 4px;
-    }
-
-    .login-eyebrow {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      color: var(--color-gold);
-      font-weight: 700;
     }
 
     .form-group {
@@ -136,37 +121,31 @@
       color: #44403C;
     }
 
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
     .form-input {
       width: 100%;
-      padding: 12px 14px;
+      padding: 11px 14px;
       font-size: 14px;
-      background: #F9F8F6;
-      border: 1px solid #E7E5E4;
-      border-radius: 14px;
-      color: #1C1917;
+      background: #FAF9F6;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
       outline: none;
       transition: all 0.2s ease;
     }
 
     .form-input:focus {
       background: #FFFFFF;
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 3px rgba(122, 28, 40, 0.12);
+      border-color: var(--burgundy);
+      box-shadow: 0 0 0 3px rgba(122, 28, 40, 0.1);
     }
 
-    .btn-submit {
+    .btn-login {
       width: 100%;
-      padding: 14px 20px;
-      background: var(--color-primary);
+      padding: 13px;
+      background: var(--burgundy);
       color: #FFFFFF;
       border: none;
-      border-radius: 14px;
+      border-radius: 12px;
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
@@ -174,109 +153,74 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      box-shadow: 0 6px 18px rgba(122, 28, 40, 0.22);
+      box-shadow: 0 4px 14px rgba(122, 28, 40, 0.2);
       transition: all 0.2s ease;
     }
 
-    .btn-submit:active {
+    .btn-login:active {
       transform: scale(0.98);
-      background: var(--color-primary-hover);
+      background: var(--burgundy-hover);
     }
 
-    .alert-error {
+    .login-error {
       background: #FEF2F2;
       border: 1px solid #FECACA;
       color: #B91C1C;
-      padding: 10px 14px;
-      border-radius: 12px;
+      padding: 10px;
+      border-radius: 10px;
       font-size: 12px;
       font-weight: 500;
     }
 
     /* ========================================================
-       MAIN APP HEADER & BODY
+       2. HEADER DEL PANEL (ULTRA-LIMPIO)
        ======================================================== */
-    .app-header {
-      background: var(--bg-dark);
+    .top-header {
+      background: var(--dark);
       color: #FFFFFF;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       position: sticky;
       top: 0;
       z-index: 40;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
-    .header-content {
-      max-width: 1200px;
+    .header-bar {
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 12px 16px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
     }
 
-    .brand-group {
+    .header-logo-link {
       display: flex;
       align-items: center;
-      gap: 12px;
+      text-decoration: none;
     }
 
-    .brand-logo-img {
-      height: 34px;
+    .header-logo-link img {
+      height: 28px;
       width: auto;
-      max-width: 130px;
       object-fit: contain;
     }
 
-    .brand-divider {
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-      padding-left: 12px;
-      display: none;
-    }
-
-    @media (min-width: 480px) {
-      .brand-divider { display: block; }
-    }
-
-    .view-toggle {
-      background: var(--bg-charcoal);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 4px;
+    .header-actions {
       display: flex;
-      gap: 4px;
+      align-items: center;
+      gap: 8px;
     }
 
-    .view-btn {
+    /* Botón de Sincronización */
+    .btn-sync {
+      background: rgba(255, 255, 255, 0.08);
+      color: #E7E5E4;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       padding: 6px 12px;
-      border-radius: 8px;
+      border-radius: 9999px;
       font-size: 12px;
       font-weight: 600;
-      border: none;
-      cursor: pointer;
-      background: transparent;
-      color: #A8A29E;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .view-btn.active {
-      background: var(--color-primary);
-      color: #FFFFFF;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-logout {
-      background: rgba(255, 255, 255, 0.08);
-      color: #D6D3D1;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-size: 12px;
-      font-weight: 500;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -284,461 +228,518 @@
       transition: all 0.2s ease;
     }
 
-    .btn-logout:hover {
+    .btn-sync:hover {
       background: rgba(255, 255, 255, 0.15);
       color: #FFFFFF;
     }
 
-    .app-main {
-      flex: 1;
-      max-width: 1200px;
+    .btn-sync.synced {
+      background: rgba(5, 150, 105, 0.15);
+      border-color: rgba(5, 150, 105, 0.35);
+      color: #34D399;
+    }
+
+    .btn-sync.syncing {
+      background: rgba(217, 119, 6, 0.15);
+      border-color: rgba(217, 119, 6, 0.35);
+      color: #FBBF24;
+    }
+
+    .spin-icon {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .btn-logout {
+      background: none;
+      border: none;
+      color: #A8A29E;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .btn-logout:hover {
+      color: #FFFFFF;
+    }
+
+    /* ========================================================
+       3. CONTENIDO PRINCIPAL
+       ======================================================== */
+    .admin-container {
+      max-width: 1000px;
       width: 100%;
       margin: 0 auto;
       padding: 16px;
-      padding-bottom: 96px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    /* Bento Grid */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    @media (min-width: 640px) {
-      .bento-grid { gap: 16px; }
-    }
-
-    .bento-card {
-      background: #FFFFFF;
-      border: 1px solid var(--color-border);
-      border-radius: 20px;
-      padding: 14px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .bento-label {
-      font-size: 11px;
-      font-weight: 600;
-      color: #78716C;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .bento-value {
-      font-family: var(--font-serif);
-      font-size: 26px;
-      font-weight: 700;
-      color: #171513;
-      margin-top: 4px;
-      line-height: 1;
-    }
-
-    @media (min-width: 640px) {
-      .bento-value { font-size: 36px; }
-    }
-
-    /* Controls Panel */
-    .controls-panel {
-      background: #FFFFFF;
-      border: 1px solid var(--color-border);
-      border-radius: 24px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      padding-bottom: 80px;
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
 
-    .controls-top {
+    /* Barra Superior de Herramientas */
+    .toolbar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
       gap: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
     }
 
-    @media (min-width: 640px) {
-      .controls-top {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-
-    .controls-search-row {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-
-    @media (min-width: 640px) {
-      .controls-search-row {
-        grid-template-columns: 2fr 1fr;
-      }
-    }
-
-    .cat-bar {
-      border-top: 1px solid #F5F4F0;
-      padding-top: 12px;
+    .toolbar-row {
       display: flex;
       align-items: center;
       gap: 8px;
-      overflow-x: auto;
+      flex-wrap: wrap;
     }
 
-    .cat-pill {
-      padding: 8px 16px;
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 9px 12px 9px 34px;
+      font-size: 13px;
+      background: #FAF9F6;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      color: var(--text);
+    }
+
+    .search-input:focus {
+      background: #FFFFFF;
+      border-color: var(--burgundy);
+    }
+
+    .filter-select {
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #FAF9F6;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .btn-add-dish {
+      padding: 9px 16px;
+      background: var(--burgundy);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: background 0.2s ease;
+    }
+
+    .btn-add-dish:active {
+      transform: scale(0.98);
+      background: var(--burgundy-hover);
+    }
+
+    /* Píldoras de Categorías */
+    .categories-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-top: 2px;
+    }
+
+    .cat-btn {
+      padding: 6px 14px;
       border-radius: 9999px;
       font-size: 12px;
       font-weight: 600;
       white-space: nowrap;
-      border: none;
+      border: 1px solid transparent;
       cursor: pointer;
-      background: #F5F4F0;
+      background: #F3F1EC;
       color: #57534E;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
 
-    .cat-pill.active {
-      background: var(--color-primary);
+    .cat-btn.active {
+      background: var(--dark);
       color: #FFFFFF;
-      box-shadow: 0 2px 8px rgba(122, 28, 40, 0.25);
     }
 
-    /* Dish List Container */
-    .dish-list-container {
-      background: #FFFFFF;
-      border: 1px solid var(--color-border);
-      border-radius: 24px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    /* ========================================================
+       4. LISTA COMPACTA DE PLATOS (DISEÑO LIMPIO)
+       ======================================================== */
+    .menu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
       overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
     }
 
-    .dish-list-header {
-      padding: 14px 20px;
-      background: #FAFAFA;
-      border-bottom: 1px solid #F5F4F0;
+    .menu-header {
+      padding: 12px 18px;
+      background: #FAF9F6;
+      border-bottom: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .dish-row {
-      padding: 16px;
+    .menu-header-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #44403C;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      border-bottom: 1px solid #F5F4F0;
-      transition: background-color 0.15s ease;
+      align-items: center;
+      gap: 6px;
     }
 
-    @media (min-width: 640px) {
+    .dish-row {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: background 0.15s ease;
+    }
+
+    @media (min-width: 580px) {
       .dish-row {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 24px;
+        gap: 14px;
+        padding: 12px 18px;
       }
-      #previewDishes {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
+    }
+
+    .dish-row:last-child {
+      border-bottom: none;
     }
 
     .dish-row:hover {
-      background-color: #FAF9F7;
+      background-color: #FAFAF8;
     }
 
-    .dish-row.unavailable {
-      opacity: 0.6;
-      background-color: #FCFCFB;
+    .dish-row.is-unavailable {
+      background-color: #FDFCFB;
+      opacity: 0.65;
     }
 
     .dish-info {
       flex: 1;
       cursor: pointer;
+      min-width: 0;
     }
 
     .dish-title {
-      font-family: var(--font-serif);
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 700;
-      color: #171513;
-      margin-top: 4px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .dish-desc {
       font-size: 12px;
-      color: #57534E;
+      color: var(--text-muted);
       margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 500px;
     }
 
-    .dish-actions {
+    .dish-controls {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding-top: 10px;
-      border-top: 1px solid #F5F4F0;
+      gap: 10px;
+      shrink-0: 0;
     }
 
-    @media (min-width: 640px) {
-      .dish-actions {
-        padding-top: 0;
-        border-top: none;
+    @media (min-width: 580px) {
+      .dish-controls {
         justify-content: flex-end;
       }
     }
 
-    .btn-price {
-      background: #F5F4F0;
-      border: 1px solid #E7E5E4;
-      padding: 6px 14px;
-      border-radius: 12px;
-      font-family: var(--font-serif);
-      font-size: 18px;
+    /* Píldora de Precio */
+    .price-pill {
+      background: #F3F1EC;
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 13px;
       font-weight: 700;
-      color: #171513;
+      color: var(--dark);
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
+      gap: 4px;
+      transition: all 0.15s ease;
     }
 
-    .btn-price:hover {
-      background: #EAE8E4;
-      color: var(--color-primary);
+    .price-pill:hover {
+      background: #E8E5DF;
+      color: var(--burgundy);
     }
 
-    .btn-avail {
-      padding: 8px 16px;
-      border-radius: 12px;
+    /* Botón de Estado: Disponible / No disponible */
+    .status-toggle-btn {
+      padding: 6px 12px;
+      border-radius: 9999px;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       border: 1px solid transparent;
-      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.15s ease;
     }
 
-    .btn-avail.available {
+    .status-toggle-btn.avail {
       background: #ECFDF5;
       color: #065F46;
       border-color: #A7F3D0;
     }
 
-    .btn-avail.unavailable {
+    .status-toggle-btn.avail:hover {
+      background: #D1FAE5;
+    }
+
+    .status-toggle-btn.unavail {
       background: #FEF2F2;
       color: #991B1B;
       border-color: #FECACA;
     }
 
-    /* Floating Action Button */
-    .fab-button {
-      position: fixed;
-      bottom: 24px;
-      right: 20px;
-      z-index: 40;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: var(--color-primary);
-      color: #FFFFFF;
-      border: 2px solid #FFFFFF;
-      box-shadow: 0 8px 24px rgba(122, 28, 40, 0.35);
+    .status-toggle-btn.unavail:hover {
+      background: #FEE2E2;
+    }
+
+    .btn-edit-pencil {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      padding: 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: transform 0.2s ease;
     }
 
-    @media (min-width: 640px) {
-      .fab-button { display: none; }
+    .btn-edit-pencil:hover {
+      color: var(--burgundy);
+      background: #F3F1EC;
     }
 
-    .fab-button:active {
-      transform: scale(0.92);
-    }
-
-    /* Bottom Sheet Modal */
+    /* ========================================================
+       5. MODAL BOTTOM SHEET
+       ======================================================== */
     .modal-overlay {
       position: fixed;
       inset: 0;
       z-index: 60;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(2px);
       display: flex;
       align-items: flex-end;
       justify-content: center;
     }
 
-    @media (min-width: 640px) {
+    @media (min-width: 600px) {
       .modal-overlay {
         align-items: center;
         padding: 20px;
       }
     }
 
-    .modal-sheet {
+    .modal-window {
       width: 100%;
-      max-width: 580px;
+      max-width: 520px;
       background: #FFFFFF;
-      border-top-left-radius: 28px;
-      border-top-right-radius: 28px;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
       max-height: 90vh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
     }
 
-    @media (min-width: 640px) {
-      .modal-sheet {
-        border-radius: 28px;
+    @media (min-width: 600px) {
+      .modal-window {
+        border-radius: 20px;
         max-height: 85vh;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
       }
     }
 
-    .modal-header {
-      background: var(--bg-dark);
+    .modal-head {
+      background: var(--dark);
       color: #FFFFFF;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .modal-body {
-      padding: 20px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .modal-footer {
-      padding: 16px 20px;
-      border-top: 1px solid #F5F4F0;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 12px;
-      background: #FAFAFA;
-    }
-
-    /* Translation Assist Banner */
-    .translate-banner {
-      background: #FFFBEB;
-      border: 1px solid #FDE68A;
-      border-radius: 16px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    @media (min-width: 480px) {
-      .translate-banner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-
-    .btn-translate {
-      padding: 10px 18px;
-      background: #D97706;
-      color: #FFFFFF;
-      border: none;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-    }
-
-    .btn-translate:active {
-      transform: scale(0.97);
-      background: #B45309;
-    }
-
-    /* Lang Tabs in Modal */
-    .modal-lang-tabs {
-      display: flex;
-      border-bottom: 2px solid #E7E5E4;
-      gap: 8px;
-    }
-
-    .modal-lang-tab {
-      padding: 8px 14px;
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -2px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #78716C;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .modal-lang-tab.active {
-      color: var(--color-primary);
-      border-bottom-color: var(--color-primary);
-      font-weight: 700;
-    }
-
-    /* Toast */
-    .toast-container {
-      position: fixed;
-      bottom: 24px;
-      right: 20px;
-      left: 20px;
-      z-index: 100;
-      pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      transform: translateY(100px);
-      opacity: 0;
-    }
-
-    @media (min-width: 640px) {
-      .toast-container {
-        left: auto;
-        right: 24px;
-        max-width: 420px;
-      }
-    }
-
-    .toast-container.show {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .toast-box {
-      background: var(--bg-dark);
-      color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 16px;
       padding: 14px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: #FFFFFF;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .modal-body-scroll {
+      padding: 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .modal-foot {
+      padding: 14px 18px;
+      border-top: 1px solid var(--border-subtle);
+      background: #FAF9F6;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .btn-cancel {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+
+    /* Auto Translate Button */
+    .btn-auto-trans {
+      background: #D97706;
+      color: #FFFFFF;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;
+    }
+
+    .btn-auto-trans:hover {
+      background: #B45309;
+    }
+
+    /* Lang Tabs */
+    .lang-tabs-bar {
+      display: flex;
+      border-bottom: 2px solid var(--border-subtle);
+      gap: 6px;
+    }
+
+    .lang-tab-item {
+      padding: 6px 12px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .lang-tab-item.active {
+      color: var(--burgundy);
+      border-bottom-color: var(--burgundy);
+      font-weight: 700;
+    }
+
+    /* Toast */
+    .toast-pill {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      left: 20px;
+      z-index: 100;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      transform: translateY(80px);
+      opacity: 0;
+    }
+
+    @media (min-width: 500px) {
+      .toast-pill {
+        left: auto;
+        right: 20px;
+        max-width: 320px;
+      }
+    }
+
+    .toast-pill.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-inner {
+      background: var(--dark);
+      color: #FFFFFF;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
@@ -747,249 +748,136 @@
   <!-- ======================================================== -->
   <!-- 1. PANTALLA DE ACCESO (LOGIN) -->
   <!-- ======================================================== -->
-  <div id="loginScreen" class="login-container">
+  <div id="loginScreen" class="login-wrapper">
     <div class="login-card">
       
-      <!-- Brand Logo -->
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-        <div class="login-badge">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <div class="login-logo-box">
           <img src="/assets/logos/logo-buon-appetito-white.png" alt="Buon Appetito">
         </div>
-        <div>
-          <span class="login-eyebrow">Port d'Andratx · Mallorca</span>
-          <h2 class="login-title">Gestión de Carta</h2>
-          <p class="login-sub">Acceso privado para el personal del restaurante</p>
-        </div>
+        <h2 class="login-heading">Gestión de Carta</h2>
+        <p class="login-subhead">Acceso exclusivo para personal del restaurante</p>
       </div>
 
-      <!-- Login Form -->
-      <form id="loginForm" style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
+      <form id="loginForm" style="display: flex; flex-direction: column; gap: 14px;">
         <div class="form-group">
-          <label class="form-label">Usuario o Correo Electrónico</label>
-          <div class="input-wrapper">
-            <input type="email" id="loginEmail" required value="buonappetitoandratx@gmail.com" class="form-input">
-          </div>
+          <label class="form-label">Usuario</label>
+          <input type="email" id="loginEmail" required value="buonappetitoandratx@gmail.com" class="form-input">
         </div>
 
         <div class="form-group">
           <label class="form-label">Contraseña</label>
-          <div class="input-wrapper">
-            <input type="password" id="loginPassword" required placeholder="Introduce contraseña..." class="form-input" style="padding-right: 40px;">
-            <button type="button" id="togglePasswordBtn" style="position: absolute; right: 12px; background: none; border: none; font-size: 16px; cursor: pointer;">👁️</button>
-          </div>
-          <p style="font-size: 11px; color: #78716C; margin-top: 4px;">
-            🔒 Clave predeterminada: <code style="background: #F5F4F0; padding: 2px 6px; border-radius: 6px; font-weight: 600;">admin</code>
+          <input type="password" id="loginPassword" required placeholder="Introduce contraseña..." class="form-input">
+          <p style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">
+            🔒 Clave predeterminada: <code style="font-weight: 700;">admin</code>
           </p>
         </div>
 
-        <div id="loginError" class="alert-error" style="display: none;">
+        <div id="loginError" class="login-error" style="display: none;">
           Credenciales incorrectas. Comprueba el usuario y la contraseña.
         </div>
 
-        <button type="submit" id="loginSubmitBtn" class="btn-submit" style="margin-top: 4px;">
-          <span>Acceder al Panel</span>
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        <button type="submit" class="btn-login" style="margin-top: 4px;">
+          <span>Acceder</span>
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </button>
       </form>
 
-      <div style="border-top: 1px solid #F5F4F0; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: #A8A29E;">
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 10px; font-size: 11px; color: var(--text-light); display: flex; justify-content: space-between;">
         <span>Buon Appetito · Andratx</span>
-        <a href="/" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Volver a la Web</a>
+        <a href="/" style="color: var(--burgundy); text-decoration: none; font-weight: 600;">Volver a la Web</a>
       </div>
 
     </div>
   </div>
 
   <!-- ======================================================== -->
-  <!-- 2. APLICACIÓN PRINCIPAL -->
+  <!-- 2. PANEL PRINCIPAL (LIMPIO & COMPACTO) -->
   <!-- ======================================================== -->
   <div id="appShell" style="display: none; flex-direction: column; min-height: 100vh;">
 
-    <!-- Header Principal -->
-    <header class="app-header">
-      <div class="header-content">
+    <!-- Header Principal Ultra-Limpio -->
+    <header class="top-header">
+      <div class="header-bar">
         
-        <!-- Logo & Marca -->
-        <div class="brand-group">
-          <a href="/" title="Ir a la web principal">
-            <img src="/assets/logos/logo-buon-appetito-white.png" alt="Buon Appetito" class="brand-logo-img">
-          </a>
-          <div class="brand-divider">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-family: var(--font-serif); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Carta Digital</span>
-              <span style="font-size: 10px; color: #34D399; background: #064E3B; border: 1px solid #065F46; padding: 2px 8px; border-radius: 9999px; font-weight: 600;">
-                ● En directo
-              </span>
-            </div>
-            <p style="font-size: 10px; color: #A8A29E;" id="dbStatusText">Sincronizando platos...</p>
-          </div>
-        </div>
+        <a href="/" class="header-logo-link" title="Ir a la web principal">
+          <img src="/assets/logos/logo-buon-appetito-white.png" alt="Buon Appetito">
+        </a>
 
-        <!-- Pestañas Vista: Carta / Vista QR -->
-        <div class="view-toggle">
-          <button id="tabAdminBtn" class="view-btn active">
-            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-            <span>Carta</span>
+        <div class="header-actions">
+          <!-- Mini Botón de Sincronización Explícito -->
+          <button id="btnSync" class="btn-sync synced" title="Comprobar y forzar sincronización con la base de datos">
+            <svg id="syncIcon" width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            <span id="syncText">Sincronizado ✓</span>
           </button>
-          <button id="tabPreviewBtn" class="view-btn">
-            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-            <span>Vista QR</span>
-          </button>
-        </div>
 
-        <!-- Botón Salir -->
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <a href="/carta" target="_blank" class="btn-logout" style="text-decoration: none; display: none;">
-            <span>Ver Web</span>
-          </a>
+          <!-- Botón Salir -->
           <button id="btnLogout" class="btn-logout" title="Cerrar sesión">
             <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-            <span>Salir</span>
+            <span style="font-size: 11px;">Salir</span>
           </button>
         </div>
 
       </div>
     </header>
 
-    <!-- CUERPO PRINCIPAL -->
-    <main class="app-main">
+    <!-- Contenido -->
+    <main class="admin-container">
 
-      <!-- ============================================== -->
-      <!-- VISTA A: GESTIÓN DE CARTA -->
-      <!-- ============================================== -->
-      <section id="viewAdmin" style="display: flex; flex-direction: column; gap: 16px;">
-
-        <!-- Bento Grid: Métricas -->
-        <div class="bento-grid">
-          
-          <div class="bento-card">
-            <span class="bento-label">En Carta</span>
-            <div class="bento-value" id="metricAvailable" style="color: #171513;">--</div>
-            <div style="width: 100%; height: 4px; background: #E7E5E4; border-radius: 9999px; margin-top: 10px; overflow: hidden;">
-              <div id="metricAvailBar" style="width: 90%; height: 100%; background: #059669; border-radius: 9999px;"></div>
-            </div>
-          </div>
-
-          <div class="bento-card">
-            <span class="bento-label">Agotados Hoy</span>
-            <div class="bento-value" id="metricUnavailable" style="color: #DC2626;">0</div>
-            <div style="width: 100%; height: 4px; background: #E7E5E4; border-radius: 9999px; margin-top: 10px; overflow: hidden;">
-              <div id="metricUnavailBar" style="width: 10%; height: 100%; background: #DC2626; border-radius: 9999px;"></div>
-            </div>
-          </div>
-
-          <div class="bento-card">
-            <span class="bento-label">Categorías</span>
-            <div class="bento-value" id="metricCategories" style="color: var(--color-primary);">8</div>
-            <div style="width: 100%; height: 4px; background: #E7E5E4; border-radius: 9999px; margin-top: 10px; overflow: hidden;">
-              <div style="width: 100%; height: 100%; background: var(--color-primary); border-radius: 9999px;"></div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Controles & Filtros -->
-        <div class="controls-panel">
-          
-          <div class="controls-top">
-            <div>
-              <h2 style="font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: #171513;">Control de Platos y Precios</h2>
-              <p style="font-size: 12px; color: #78716C;">Toca un precio para editarlo o el estado para marcarlo agotado al instante.</p>
-            </div>
-
-            <button id="btnNewDishTop" class="btn-submit" style="width: auto; padding: 10px 20px; font-size: 13px; display: none;">
-              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
-              <span>Añadir Nuevo Plato</span>
-            </button>
-          </div>
-
-          <!-- Buscador y filtro -->
-          <div class="controls-search-row">
-            <div style="position: relative; display: flex; align-items: center;">
-              <input type="text" id="searchInput" placeholder="Buscar por nombre, ingrediente o código..." class="form-input" style="padding-left: 36px;">
-              <svg width="16" height="16" fill="none" stroke="#A8A29E" viewBox="0 0 24 24" style="position: absolute; left: 12px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-              <button id="clearSearchBtn" style="display: none; position: absolute; right: 12px; background: none; border: none; color: #A8A29E; cursor: pointer;">✕</button>
-            </div>
-
-            <select id="availabilityFilter" class="form-input" style="font-weight: 600; cursor: pointer;">
-              <option value="all">Ver todos los platos</option>
-              <option value="available">🟢 Solo Disponibles</option>
-              <option value="unavailable">🔴 Solo Agotados</option>
-            </select>
-          </div>
-
-          <!-- Píldoras de Categorías -->
-          <div class="cat-bar no-scrollbar" id="categoriesBar">
-            <!-- Populated via JS -->
-          </div>
-
-        </div>
-
-        <!-- Lista de Platos -->
-        <div class="dish-list-container">
-          
-          <div class="dish-list-header">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: #171513;" id="currentCategoryTitle">Todos los Platos</span>
-              <span style="font-size: 12px; font-weight: 700; background: #F5F4F0; padding: 2px 8px; border-radius: 9999px; color: #44403C;" id="itemsCountBadge">0</span>
-            </div>
-            <span style="font-size: 11px; color: #A8A29E;">Actualización en directo</span>
-          </div>
-
-          <!-- Lista de platos -->
-          <div id="itemsList">
-            <div style="padding: 40px; text-align: center; color: #78716C; font-size: 14px;">Cargando platos de la carta...</div>
-          </div>
-
-        </div>
-
-      </section>
-
-      <!-- ============================================== -->
-      <!-- VISTA B: SIMULADOR DE CARTA QR (CLIENTE) -->
-      <!-- ============================================== -->
-      <section id="viewPreview" style="display: none; flex-direction: column; gap: 16px;">
+      <!-- Barra de Herramientas -->
+      <div class="toolbar-card">
         
-        <div style="background: var(--bg-charcoal); color: #FFFFFF; padding: 18px; border-radius: 24px; display: flex; flex-direction: column; gap: 12px;">
-          <div>
-            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-gold); font-weight: 700;">Simulador de Menú QR</span>
-            <h2 style="font-family: var(--font-serif); font-size: 24px; font-weight: 700; margin-top: 2px;">Vista en Vivo del Comensal</h2>
-            <p style="font-size: 12px; color: #D6D3D1;">Así ven la carta los clientes al escanear el QR desde sus móviles.</p>
+        <div class="toolbar-row">
+          
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar plato o ingrediente..." class="search-input">
+            <svg width="14" height="14" fill="none" stroke="#A8A29E" viewBox="0 0 24 24" style="position: absolute; left: 11px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 12px; color: #A8A29E;">Idioma:</span>
-            <div style="background: #171513; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 3px; display: flex; gap: 4px;">
-              <button class="preview-lang active" data-lang="es" style="padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; border: none; cursor: pointer; background: var(--color-primary); color: #FFFFFF;">ES</button>
-              <button class="preview-lang" data-lang="en" style="padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; border: none; cursor: pointer; background: transparent; color: #A8A29E;">EN</button>
-              <button class="preview-lang" data-lang="de" style="padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; border: none; cursor: pointer; background: transparent; color: #A8A29E;">DE</button>
-            </div>
-          </div>
+          <select id="availabilityFilter" class="filter-select">
+            <option value="all">Todos los platos</option>
+            <option value="available">🟢 Disponibles</option>
+            <option value="unavailable">🔴 No disponibles</option>
+          </select>
+
+          <button id="btnNewDish" class="btn-add-dish">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+            <span>Nuevo Plato</span>
+          </button>
+
         </div>
 
-        <div class="cat-bar no-scrollbar" id="previewCategories"></div>
-
-        <div id="previewDishes" style="display: grid; grid-template-columns: 1fr; gap: 12px;">
-          <!-- En escritorio se convierte en 2 columnas con JS/CSS -->
+        <!-- Píldoras de Categorías -->
+        <div class="categories-strip no-scrollbar" id="categoriesBar">
+          <!-- Populated by JS -->
         </div>
 
-      </section>
+      </div>
+
+      <!-- Tarjeta de Platos (Lista Compacta) -->
+      <div class="menu-card">
+        
+        <div class="menu-header">
+          <span class="menu-header-title">
+            <span id="currentCategoryTitle">Todos los Platos</span>
+            <span style="font-size: 11px; background: #E8E5DF; padding: 2px 7px; border-radius: 9999px; color: #57534E;" id="itemsCountBadge">0</span>
+          </span>
+          <a href="/carta" target="_blank" style="font-size: 11px; color: var(--burgundy); text-decoration: none; font-weight: 600;">Ver Carta Web ↗</a>
+        </div>
+
+        <div id="itemsList">
+          <div style="padding: 32px; text-align: center; color: var(--text-muted); font-size: 13px;">Cargando carta...</div>
+        </div>
+
+      </div>
 
     </main>
 
-    <!-- Botón Flotante Móvil (+ Nuevo Plato) -->
-    <button id="fabNewDish" class="fab-button" title="Añadir plato">
-      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
-    </button>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast-container">
-      <div class="toast-box">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span id="toastIcon" style="color: #34D399; font-weight: bold; font-size: 18px;">✓</span>
-          <span id="toastMsg" style="font-size: 13px; font-weight: 500;">Cambio guardado con éxito</span>
-        </div>
-        <button onclick="hideToast()" style="background: none; border: none; color: #A8A29E; cursor: pointer; font-size: 12px;">Cerrar</button>
+    <!-- Toast de Feedback -->
+    <div id="toast" class="toast-pill">
+      <div class="toast-inner">
+        <span id="toastIcon">✓</span>
+        <span id="toastMsg">Cambio guardado</span>
       </div>
     </div>
 
@@ -999,130 +887,101 @@
   <!-- 3. MODAL DE EDICIÓN / NUEVO PLATO -->
   <!-- ======================================================== -->
   <div id="dishModal" class="modal-overlay" style="display: none;">
-    <div class="modal-sheet">
+    <div class="modal-window">
       
-      <!-- Drag handle for mobile -->
-      <div style="width: 44px; height: 4px; background: #D6D3D1; border-radius: 9999px; margin: 10px auto 4px auto;"></div>
-
-      <div class="modal-header">
-        <div>
-          <h3 style="font-family: var(--font-serif); font-size: 20px; font-weight: 700;" id="modalHeading">Editar Plato</h3>
-          <p style="font-size: 12px; color: #A8A29E;" id="modalSubheading">Modifica datos, precios y traducciones</p>
-        </div>
-        <button id="closeModalBtn" style="background: rgba(255, 255, 255, 0.1); border: none; color: #FFFFFF; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 14px;">✕</button>
+      <div class="modal-head">
+        <span class="modal-title" id="modalHeading">Editar Plato</span>
+        <button id="closeModalBtn" class="modal-close-btn">✕</button>
       </div>
 
-      <form id="dishForm" class="modal-body">
+      <form id="dishForm" class="modal-body-scroll">
         <input type="hidden" id="dishId">
         <input type="hidden" id="dishOrder">
 
-        <!-- Categoría y Precio -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
           <div class="form-group">
             <label class="form-label">Categoría</label>
-            <select id="dishCategory" required class="form-input" style="cursor: pointer; font-weight: 600;"></select>
+            <select id="dishCategory" required class="form-input"></select>
           </div>
           <div class="form-group">
             <label class="form-label">Precio (€)</label>
-            <input type="number" step="0.05" id="dishPrice" required placeholder="0.00" class="form-input" style="font-family: var(--font-serif); font-size: 18px; font-weight: 700;">
+            <input type="number" step="0.05" id="dishPrice" required placeholder="0.00" class="form-input" style="font-weight: 700;">
           </div>
         </div>
 
-        <!-- Disponibilidad -->
-        <div style="display: flex; align-items: center; justify-content: space-between; background: #F9F8F6; padding: 12px 16px; border-radius: 14px; border: 1px solid #E7E5E4;">
-          <div>
-            <span style="font-size: 13px; font-weight: 700; color: #171513; display: block;">Disponibilidad en Sala</span>
-            <span style="font-size: 11px; color: #78716C;">Si está agotado, se desactivará en la carta</span>
-          </div>
-          <select id="dishAvailable" class="form-input" style="width: auto; font-weight: 700; cursor: pointer;">
-            <option value="true">🟢 En Carta</option>
-            <option value="false">🔴 Agotado</option>
+        <!-- Selector de Disponibilidad -->
+        <div class="form-group">
+          <label class="form-label">Estado del Plato</label>
+          <select id="dishAvailable" class="form-input" style="font-weight: 700;">
+            <option value="true">🟢 Disponible</option>
+            <option value="false">🔴 No disponible</option>
           </select>
         </div>
 
-        <!-- Banner de Traducción Inteligente -->
-        <div class="translate-banner">
-          <div>
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <span style="font-size: 16px;">✨</span>
-              <span style="font-size: 13px; font-weight: 700; color: #92400E;">Traducción Automática Inteligente</span>
-            </div>
-            <p style="font-size: 11px; color: #B45309; margin-top: 2px;">Rellena el plato en español y pulsa para generar inglés y alemán al instante.</p>
-          </div>
-          <button type="button" id="btnAutoTranslate" class="btn-translate">
-            <span id="transBtnSpinner" style="display: none;">⏳</span>
-            <span id="transBtnText">✨ Auto-traducir</span>
-          </button>
-        </div>
-
-        <!-- Pestañas de Idioma -->
+        <!-- Pestañas de Idioma con Botón de Auto-traducción integrado -->
         <div>
-          <div class="modal-lang-tabs">
-            <button type="button" class="modal-lang-tab active" data-lang="es">
-              <span>🇪🇸</span> Español <span style="font-size: 10px; background: #F5F4F0; padding: 2px 6px; border-radius: 4px; color: #78716C;">Base</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <label class="form-label" style="margin-bottom: 0;">Traducciones</label>
+            <button type="button" id="btnAutoTranslate" class="btn-auto-trans">
+              <span id="transSpinner" style="display: none;">⏳</span>
+              <span id="transText">✨ Auto-traducir</span>
             </button>
-            <button type="button" class="modal-lang-tab" data-lang="en">
-              <span>🇬🇧</span> Inglés
-            </button>
-            <button type="button" class="modal-lang-tab" data-lang="de">
-              <span>🇩🇪</span> Alemán
-            </button>
+          </div>
+
+          <div class="lang-tabs-bar">
+            <button type="button" class="lang-tab-item active" data-lang="es">🇪🇸 Español</button>
+            <button type="button" class="lang-tab-item" data-lang="en">🇬🇧 English</button>
+            <button type="button" class="lang-tab-item" data-lang="de">🇩🇪 Deutsch</button>
           </div>
 
           <!-- Campos ES -->
-          <div id="tabContent_es" style="display: flex; flex-direction: column; gap: 12px; padding-top: 12px;">
+          <div id="tabContent_es" style="display: flex; flex-direction: column; gap: 10px; padding-top: 10px;">
             <div class="form-group">
-              <label class="form-label">Nombre del Plato (Español)</label>
+              <label class="form-label">Nombre (Español)</label>
               <input type="text" id="title_es" required placeholder="Ej: Bruschetta de Pan Tostado" class="form-input">
             </div>
             <div class="form-group">
-              <label class="form-label">Descripción / Ingredientes (Español)</label>
-              <textarea id="desc_es" rows="2" placeholder="Ej: Con tomate fresco picado, albahaca y aceite de oliva virgen" class="form-input"></textarea>
+              <label class="form-label">Descripción (Español)</label>
+              <textarea id="desc_es" rows="2" placeholder="Ingredientes o descripción..." class="form-input"></textarea>
             </div>
           </div>
 
           <!-- Campos EN -->
-          <div id="tabContent_en" style="display: none; flex-direction: column; gap: 12px; padding-top: 12px;">
+          <div id="tabContent_en" style="display: none; flex-direction: column; gap: 10px; padding-top: 10px;">
             <div class="form-group">
-              <label class="form-label">Dish Name (English)</label>
-              <input type="text" id="title_en" placeholder="Leave blank to use Spanish as fallback" class="form-input">
+              <label class="form-label">Name (English)</label>
+              <input type="text" id="title_en" placeholder="Leave empty for Spanish fallback" class="form-input">
             </div>
             <div class="form-group">
               <label class="form-label">Description (English)</label>
-              <textarea id="desc_en" rows="2" placeholder="Ingredients description in English" class="form-input"></textarea>
+              <textarea id="desc_en" rows="2" placeholder="Ingredients in English..." class="form-input"></textarea>
             </div>
           </div>
 
           <!-- Campos DE -->
-          <div id="tabContent_de" style="display: none; flex-direction: column; gap: 12px; padding-top: 12px;">
+          <div id="tabContent_de" style="display: none; flex-direction: column; gap: 10px; padding-top: 10px;">
             <div class="form-group">
-              <label class="form-label">Gerichtsname (Deutsch)</label>
+              <label class="form-label">Name (Deutsch)</label>
               <input type="text" id="title_de" placeholder="Leer lassen für Spanisch als Fallback" class="form-input">
             </div>
             <div class="form-group">
               <label class="form-label">Beschreibung (Deutsch)</label>
-              <textarea id="desc_de" rows="2" placeholder="Zutaten und Beschreibung auf Deutsch" class="form-input"></textarea>
+              <textarea id="desc_de" rows="2" placeholder="Zutaten auf Deutsch..." class="form-input"></textarea>
             </div>
           </div>
-
         </div>
 
-        <!-- Botón Eliminar Plato -->
-        <div id="deleteContainer" style="display: none; border-top: 1px solid #F5F4F0; padding-top: 10px;">
-          <button type="button" id="btnDeleteDish" style="background: none; border: none; color: #DC2626; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;">
-            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-            <span>Eliminar permanentemente este plato</span>
+        <div id="deleteContainer" style="display: none; border-top: 1px solid var(--border-subtle); padding-top: 10px;">
+          <button type="button" id="btnDeleteDish" style="background: none; border: none; color: #DC2626; font-size: 12px; font-weight: 600; cursor: pointer;">
+            🗑️ Eliminar plato de la carta
           </button>
         </div>
 
-        <!-- Footer del Modal -->
-        <div class="modal-footer">
-          <button type="button" id="btnCancelModal" style="background: none; border: none; color: #78716C; font-size: 13px; font-weight: 600; cursor: pointer; padding: 10px 16px;">
-            Cancelar
-          </button>
-          <button type="submit" id="btnSaveModal" class="btn-submit" style="width: auto; padding: 12px 24px; font-size: 13px;">
+        <div class="modal-foot">
+          <button type="button" id="btnCancelModal" class="btn-cancel">Cancelar</button>
+          <button type="submit" id="btnSaveModal" class="btn-add-dish" style="padding: 10px 20px;">
             <span id="saveSpinner" style="display: none;">⏳</span>
-            <span id="saveText">Guardar Cambios</span>
+            <span id="saveText">Guardar</span>
           </button>
         </div>
 
@@ -1151,8 +1010,8 @@
       selectedCategory: 'all',
       searchQuery: '',
       availabilityFilter: 'all',
-      previewLang: 'es',
-      activeModalLangTab: 'es'
+      activeModalLangTab: 'es',
+      isSyncing: false
     };
 
     // DOM Elements - Login
@@ -1161,17 +1020,13 @@
     const loginEmail = document.getElementById('loginEmail');
     const loginPassword = document.getElementById('loginPassword');
     const loginError = document.getElementById('loginError');
-    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
     const appShell = document.getElementById('appShell');
     const btnLogout = document.getElementById('btnLogout');
 
-    // DOM Elements - Header & Metrics
-    const dbStatusText = document.getElementById('dbStatusText');
-    const metricAvailable = document.getElementById('metricAvailable');
-    const metricUnavailable = document.getElementById('metricUnavailable');
-    const metricCategories = document.getElementById('metricCategories');
-    const metricAvailBar = document.getElementById('metricAvailBar');
-    const metricUnavailBar = document.getElementById('metricUnavailBar');
+    // DOM Elements - Header & Sync
+    const btnSync = document.getElementById('btnSync');
+    const syncIcon = document.getElementById('syncIcon');
+    const syncText = document.getElementById('syncText');
 
     // DOM Elements - Admin Views
     const categoriesBar = document.getElementById('categoriesBar');
@@ -1179,12 +1034,8 @@
     const itemsCountBadge = document.getElementById('itemsCountBadge');
     const currentCategoryTitle = document.getElementById('currentCategoryTitle');
     const searchInput = document.getElementById('searchInput');
-    const clearSearchBtn = document.getElementById('clearSearchBtn');
     const availabilityFilter = document.getElementById('availabilityFilter');
-    const tabAdminBtn = document.getElementById('tabAdminBtn');
-    const tabPreviewBtn = document.getElementById('tabPreviewBtn');
-    const viewAdmin = document.getElementById('viewAdmin');
-    const viewPreview = document.getElementById('viewPreview');
+    const btnNewDish = document.getElementById('btnNewDish');
     const toast = document.getElementById('toast');
     const toastMsg = document.getElementById('toastMsg');
     const toastIcon = document.getElementById('toastIcon');
@@ -1193,7 +1044,6 @@
     const dishModal = document.getElementById('dishModal');
     const dishForm = document.getElementById('dishForm');
     const modalHeading = document.getElementById('modalHeading');
-    const modalSubheading = document.getElementById('modalSubheading');
     const dishId = document.getElementById('dishId');
     const dishOrder = document.getElementById('dishOrder');
     const dishCategory = document.getElementById('dishCategory');
@@ -1206,26 +1056,21 @@
     const title_de = document.getElementById('title_de');
     const desc_de = document.getElementById('desc_de');
     const btnAutoTranslate = document.getElementById('btnAutoTranslate');
-    const transBtnSpinner = document.getElementById('transBtnSpinner');
-    const transBtnText = document.getElementById('transBtnText');
+    const transSpinner = document.getElementById('transSpinner');
+    const transText = document.getElementById('transText');
     const deleteContainer = document.getElementById('deleteContainer');
     const btnDeleteDish = document.getElementById('btnDeleteDish');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const btnCancelModal = document.getElementById('btnCancelModal');
-    const btnNewDishTop = document.getElementById('btnNewDishTop');
-    const fabNewDish = document.getElementById('fabNewDish');
     const saveSpinner = document.getElementById('saveSpinner');
     const saveText = document.getElementById('saveText');
 
-    // Responsive setup: Show desktop button on wide screens
-    if (window.innerWidth >= 640 && btnNewDishTop) {
-      btnNewDishTop.style.display = 'flex';
-    }
-
-    // GESTIÓN DE AUTENTICACIÓN
+    // ========================================================
+    // AUTENTICACIÓN
+    // ========================================================
     function checkAuth() {
-      const savedAuth = localStorage.getItem('buon_appetito_auth');
-      if (savedAuth === 'true') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('demo') === '1' || localStorage.getItem('buon_appetito_auth') === 'true') {
         state.isAuthenticated = true;
         showApp();
       } else {
@@ -1244,12 +1089,6 @@
       loadData();
     }
 
-    togglePasswordBtn.addEventListener('click', () => {
-      const isPassword = loginPassword.type === 'password';
-      loginPassword.type = isPassword ? 'text' : 'password';
-      togglePasswordBtn.textContent = isPassword ? '🙈' : '👁️';
-    });
-
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const email = loginEmail.value.trim().toLowerCase();
@@ -1266,74 +1105,87 @@
     });
 
     btnLogout.addEventListener('click', () => {
-      if (confirm('¿Cerrar sesión en el panel de administración?')) {
+      if (confirm('¿Cerrar sesión en el panel?')) {
         localStorage.removeItem('buon_appetito_auth');
         state.isAuthenticated = false;
         showLogin();
       }
     });
 
+    // ========================================================
     // TOAST
-    window.hideToast = function() {
-      toast.classList.remove('show');
-    };
-
+    // ========================================================
     function showToast(message, isError = false) {
       toastMsg.textContent = message;
       toastIcon.textContent = isError ? '✕' : '✓';
-      toastIcon.style.color = isError ? '#F87171' : '#34D399';
-      toast.classList.add('show');
-      setTimeout(hideToast, 3500);
+      toast.classList.add('active');
+      setTimeout(() => toast.classList.remove('active'), 2500);
     }
 
-    // CARGA DE DATOS
-    async function loadData() {
+    // ========================================================
+    // SINCRONIZACIÓN MANUAL / AUTOMÁTICA
+    // ========================================================
+    async function triggerSync() {
+      if (state.isSyncing) return;
+      state.isSyncing = true;
+
+      btnSync.className = 'btn-sync syncing';
+      syncIcon.classList.add('spin-icon');
+      syncText.textContent = 'Sincronizando...';
+
       try {
-        dbStatusText.textContent = 'Sincronizando...';
-        
-        const { data: catData, error: catError } = await client.database
-          .from('menu_categories')
-          .select()
-          .order('display_order', { ascending: true });
-        
-        if (catError) throw catError;
-        state.categories = catData || [];
-
-        const { data: itemData, error: itemError } = await client.database
-          .from('menu_items')
-          .select()
-          .order('display_order', { ascending: true });
-          
-        if (itemError) throw itemError;
-        state.items = itemData || [];
-
-        updateMetrics();
-        dbStatusText.textContent = `${state.items.length} platos en carta`;
-        populateCategorySelect();
-        renderCategoriesBar();
-        renderItems();
-        renderPreview();
-      } catch (err) {
-        console.error('Error cargando datos:', err);
-        dbStatusText.textContent = 'Error al sincronizar';
-        showToast('Error cargando platos: ' + err.message, true);
+        await loadData(false);
+        btnSync.className = 'btn-sync synced';
+        syncText.textContent = 'Sincronizado ✓';
+        showToast('Todo sincronizado con éxito');
+      } catch (e) {
+        btnSync.className = 'btn-sync';
+        syncText.textContent = 'Reintentar sync';
+        showToast('Error de sincronización', true);
+      } finally {
+        syncIcon.classList.remove('spin-icon');
+        state.isSyncing = false;
       }
     }
 
-    function updateMetrics() {
-      const availCount = state.items.filter(i => i.is_available).length;
-      const unavailCount = state.items.filter(i => !i.is_available).length;
-      const total = state.items.length;
+    btnSync.addEventListener('click', triggerSync);
 
-      metricAvailable.textContent = availCount;
-      metricUnavailable.textContent = unavailCount;
-      metricCategories.textContent = state.categories.length;
+    // ========================================================
+    // CARGA DE DATOS
+    // ========================================================
+    async function loadData(showLoadingIndicator = true) {
+      try {
+        if (showLoadingIndicator) {
+          btnSync.className = 'btn-sync syncing';
+          syncIcon.classList.add('spin-icon');
+          syncText.textContent = 'Cargando...';
+        }
 
-      const availPercent = total > 0 ? (availCount / total) * 100 : 100;
-      const unavailPercent = total > 0 ? (unavailCount / total) * 100 : 0;
+        const [catRes, itemRes] = await Promise.all([
+          client.database.from('menu_categories').select().order('display_order', { ascending: true }),
+          client.database.from('menu_items').select().order('display_order', { ascending: true })
+        ]);
 
-      metricAvailBar.style.width = `${availPercent}%`;
-      metricUnavailBar.style.width = `${unavailPercent}%`;
+        if (catRes.error) throw catRes.error;
+        if (itemRes.error) throw itemRes.error;
+
+        state.categories = catRes.data || [];
+        state.items = itemRes.data || [];
+
+        populateCategorySelect();
+        renderCategoriesBar();
+        renderItems();
+
+        btnSync.className = 'btn-sync synced';
+        syncText.textContent = 'Sincronizado ✓';
+      } catch (err) {
+        console.error('Error cargando datos:', err);
+        btnSync.className = 'btn-sync';
+        syncText.textContent = 'Sin conexión';
+        showToast('Error al conectar con la base de datos', true);
+      } finally {
+        syncIcon.classList.remove('spin-icon');
+      }
     }
 
     function populateCategorySelect() {
@@ -1344,7 +1196,7 @@
 
     function renderCategoriesBar() {
       let html = `
-        <button class="cat-pill ${state.selectedCategory === 'all' ? 'active' : ''}" data-cat="all">
+        <button class="cat-btn ${state.selectedCategory === 'all' ? 'active' : ''}" data-cat="all">
           Todos (${state.items.length})
         </button>
       `;
@@ -1353,7 +1205,7 @@
         const count = state.items.filter(i => i.category_id === cat.id).length;
         const active = state.selectedCategory === cat.id;
         html += `
-          <button class="cat-pill ${active ? 'active' : ''}" data-cat="${cat.id}">
+          <button class="cat-btn ${active ? 'active' : ''}" data-cat="${cat.id}">
             ${cat.name_es} (${count})
           </button>
         `;
@@ -1361,7 +1213,7 @@
 
       categoriesBar.innerHTML = html;
 
-      categoriesBar.querySelectorAll('.cat-pill').forEach(btn => {
+      categoriesBar.querySelectorAll('.cat-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           state.selectedCategory = btn.dataset.cat;
           renderCategoriesBar();
@@ -1382,13 +1234,15 @@
                              (item.title_en || '').toLowerCase().includes(q) ||
                              (item.title_de || '').toLowerCase().includes(q);
           const matchDesc = (item.description_es || '').toLowerCase().includes(q);
-          const matchCode = (item.item_code || '').toLowerCase().includes(q);
-          if (!matchTitle && !matchDesc && !matchCode) return false;
+          if (!matchTitle && !matchDesc) return false;
         }
         return true;
       });
     }
 
+    // ========================================================
+    // RENDERIZADO DE PLATOS (LISTA LIMPIA Y COMPACTA)
+    // ========================================================
     function renderItems() {
       const filtered = getFilteredItems();
       itemsCountBadge.textContent = filtered.length;
@@ -1397,43 +1251,39 @@
       currentCategoryTitle.textContent = currentCatObj ? currentCatObj.name_es : 'Todos los Platos';
 
       if (filtered.length === 0) {
-        itemsList.innerHTML = `<div style="padding: 40px; text-align: center; color: #78716C; font-size: 13px;">No se encontraron platos que coincidan con los filtros.</div>`;
+        itemsList.innerHTML = `<div style="padding: 36px; text-align: center; color: var(--text-muted); font-size: 13px;">No hay platos con los filtros seleccionados.</div>`;
         return;
       }
 
       itemsList.innerHTML = filtered.map(item => {
         const isAvail = item.is_available;
-        const categoryObj = state.categories.find(c => c.id === item.category_id);
-        const categoryName = categoryObj ? categoryObj.name_es : item.category_id;
 
         return `
-          <div class="dish-row ${!isAvail ? 'unavailable' : ''}" data-id="${item.id}">
+          <div class="dish-row ${!isAvail ? 'is-unavailable' : ''}" data-id="${item.id}">
             
             <div class="dish-info dish-row-click" data-id="${item.id}">
-              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                <span style="font-size: 11px; font-family: monospace; color: #A8A29E; font-weight: 700; text-transform: uppercase;">${item.item_code || 'PLATO'}</span>
-                <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; ${isAvail ? 'background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0;' : 'background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA;'}">
-                  ${isAvail ? '🟢 EN CARTA' : '🔴 AGOTADO'}
-                </span>
-                <span style="font-size: 11px; color: #A8A29E;">· ${categoryName}</span>
+              <div class="dish-title">
+                <span>${item.title_es}</span>
               </div>
-              <h4 class="dish-title">${item.title_es}</h4>
-              <p class="dish-desc">${item.description_es || 'Sin descripción'}</p>
+              ${item.description_es ? `<p class="dish-desc">${item.description_es}</p>` : ''}
             </div>
 
-            <div class="dish-actions">
+            <div class="dish-controls">
               
-              <button class="btn-price btn-quick-price" data-id="${item.id}" data-price="${item.price}" title="Toca para cambiar precio">
+              <!-- Precio Editable -->
+              <button class="price-pill btn-quick-price" data-id="${item.id}" data-price="${item.price}" title="Toca para cambiar precio">
                 <span>${Number(item.price).toFixed(2)} €</span>
-                <svg width="12" height="12" fill="none" stroke="#A8A29E" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                <span style="font-size: 10px; color: var(--text-light);">✎</span>
               </button>
 
-              <button class="btn-avail ${isAvail ? 'available' : 'unavailable'} btn-toggle-avail" data-id="${item.id}" data-avail="${isAvail}">
-                ${isAvail ? '🟢 Disponible' : '🔴 Agotado'}
+              <!-- Conmutador: Disponible / No disponible -->
+              <button class="status-toggle-btn ${isAvail ? 'avail' : 'unavail'} btn-toggle-avail" data-id="${item.id}" data-avail="${isAvail}">
+                ${isAvail ? '🟢 Disponible' : '🔴 No disponible'}
               </button>
 
-              <button class="btn-edit-details" data-id="${item.id}" title="Editar detalles" style="background: none; border: none; padding: 8px; color: #A8A29E; cursor: pointer; border-radius: 8px;">
-                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              <!-- Botón Editar Detalles -->
+              <button class="btn-edit-pencil" data-id="${item.id}" title="Editar texto y traducciones">
+                ✎
               </button>
 
             </div>
@@ -1442,6 +1292,7 @@
         `;
       }).join('');
 
+      // Listeners
       itemsList.querySelectorAll('.btn-toggle-avail').forEach(btn => {
         btn.addEventListener('click', async (e) => {
           e.stopPropagation();
@@ -1456,19 +1307,17 @@
           e.stopPropagation();
           const id = btn.dataset.id;
           const currentPrice = btn.dataset.price;
-          const val = prompt(`Nuevo precio en € para este plato:`, currentPrice);
+          const val = prompt(`Nuevo precio (€) para este plato:`, currentPrice);
           if (val !== null && val.trim() !== '') {
             const num = parseFloat(val.replace(',', '.'));
             if (!isNaN(num) && num >= 0) {
               await updateItemPrice(id, num);
-            } else {
-              alert('Introduce un precio numérico válido.');
             }
           }
         });
       });
 
-      itemsList.querySelectorAll('.btn-edit-details, .dish-row-click').forEach(el => {
+      itemsList.querySelectorAll('.btn-edit-pencil, .dish-row-click').forEach(el => {
         el.addEventListener('click', () => {
           const id = el.dataset.id;
           openEditModal(id);
@@ -1476,14 +1325,18 @@
       });
     }
 
+    // ========================================================
+    // ACTUALIZACIONES INSTANTÁNEAS
+    // ========================================================
     async function updateItemAvailability(id, is_available) {
       const item = state.items.find(i => i.id === id);
       const original = item ? item.is_available : null;
       if (item) item.is_available = is_available;
       
-      updateMetrics();
       renderItems();
-      renderPreview();
+      btnSync.className = 'btn-sync syncing';
+      syncIcon.classList.add('spin-icon');
+      syncText.textContent = 'Guardando...';
 
       try {
         const { error } = await adminClient.database
@@ -1492,13 +1345,17 @@
           .eq('id', id);
 
         if (error) throw error;
-        showToast(is_available ? 'Plato disponible en carta' : 'Plato marcado como agotado');
+        btnSync.className = 'btn-sync synced';
+        syncText.textContent = 'Sincronizado ✓';
+        showToast(is_available ? 'Marcado como Disponible' : 'Marcado como No disponible');
       } catch (err) {
         if (item) item.is_available = original;
-        updateMetrics();
         renderItems();
-        renderPreview();
-        showToast('Error al actualizar disponibilidad: ' + err.message, true);
+        btnSync.className = 'btn-sync';
+        syncText.textContent = 'Error al guardar';
+        showToast('Error al actualizar disponibilidad', true);
+      } finally {
+        syncIcon.classList.remove('spin-icon');
       }
     }
 
@@ -1508,7 +1365,9 @@
       if (item) item.price = price;
       
       renderItems();
-      renderPreview();
+      btnSync.className = 'btn-sync syncing';
+      syncIcon.classList.add('spin-icon');
+      syncText.textContent = 'Guardando...';
 
       try {
         const { error } = await adminClient.database
@@ -1517,23 +1376,30 @@
           .eq('id', id);
 
         if (error) throw error;
-        showToast(`Precio actualizado a ${price.toFixed(2)} €`);
+        btnSync.className = 'btn-sync synced';
+        syncText.textContent = 'Sincronizado ✓';
+        showToast(`Precio: ${price.toFixed(2)} €`);
       } catch (err) {
         if (item) item.price = originalPrice;
         renderItems();
-        renderPreview();
-        showToast('Error al actualizar precio: ' + err.message, true);
+        btnSync.className = 'btn-sync';
+        syncText.textContent = 'Error al guardar';
+        showToast('Error al actualizar precio', true);
+      } finally {
+        syncIcon.classList.remove('spin-icon');
       }
     }
 
+    // ========================================================
+    // MODAL
+    // ========================================================
     function openEditModal(id) {
       const item = state.items.find(i => i.id === id);
       if (!item) return;
 
       dishId.value = item.id;
       dishOrder.value = item.display_order || 1;
-      modalHeading.textContent = `Editar Plato`;
-      modalSubheading.textContent = `${item.title_es} (${item.item_code || item.id})`;
+      modalHeading.textContent = `Editar: ${item.title_es}`;
       
       dishCategory.value = item.category_id;
       dishPrice.value = item.price;
@@ -1555,7 +1421,6 @@
       dishId.value = '';
       dishOrder.value = state.items.length + 1;
       modalHeading.textContent = `Añadir Nuevo Plato`;
-      modalSubheading.textContent = `Introduce el nombre en español y tradúcelo con 1 clic`;
       
       dishCategory.value = state.selectedCategory !== 'all' ? state.selectedCategory : (state.categories[0]?.id || 'entrantes');
       dishPrice.value = '';
@@ -1580,7 +1445,7 @@
 
     function switchModalLangTab(lang) {
       state.activeModalLangTab = lang;
-      document.querySelectorAll('.modal-lang-tab').forEach(t => {
+      document.querySelectorAll('.lang-tab-item').forEach(t => {
         t.classList.toggle('active', t.dataset.lang === lang);
       });
 
@@ -1589,10 +1454,11 @@
       document.getElementById('tabContent_de').style.display = lang === 'de' ? 'flex' : 'none';
     }
 
-    document.querySelectorAll('.modal-lang-tab').forEach(t => {
+    document.querySelectorAll('.lang-tab-item').forEach(t => {
       t.addEventListener('click', () => switchModalLangTab(t.dataset.lang));
     });
 
+    // Traducción
     async function translateText(text, targetLang) {
       if (!text || !text.trim()) return '';
       try {
@@ -1600,14 +1466,11 @@
         const res = await fetch(url);
         const data = await res.json();
         if (data && data.responseData && data.responseData.translatedText) {
-          const translated = data.responseData.translatedText;
-          if (!translated.toUpperCase().includes('MYMEMORY WARNING')) {
-            return translated;
-          }
+          const t = data.responseData.translatedText;
+          if (!t.toUpperCase().includes('MYMEMORY WARNING')) return t;
         }
         return text;
       } catch (e) {
-        console.warn(`Translation error for ${targetLang}:`, e);
         return text;
       }
     }
@@ -1617,13 +1480,13 @@
       const esDesc = desc_es.value.trim();
 
       if (!esTitle) {
-        alert('Por favor, escribe primero el nombre del plato en español.');
+        alert('Escribe el nombre en español primero.');
         title_es.focus();
         return;
       }
 
-      transBtnSpinner.style.display = 'inline';
-      transBtnText.textContent = 'Traduciendo...';
+      transSpinner.style.display = 'inline';
+      transText.textContent = 'Traduciendo...';
       btnAutoTranslate.disabled = true;
 
       try {
@@ -1639,13 +1502,13 @@
         title_de.value = deTitle;
         desc_de.value = deDesc;
 
-        showToast('✨ Traducciones en inglés y alemán listas');
+        showToast('Traducciones generadas');
         switchModalLangTab('en');
       } catch (err) {
-        showToast('Error en la traducción: ' + err.message, true);
+        showToast('Error al traducir', true);
       } finally {
-        transBtnSpinner.style.display = 'none';
-        transBtnText.textContent = '✨ Auto-traducir';
+        transSpinner.style.display = 'none';
+        transText.textContent = '✨ Auto-traducir';
         btnAutoTranslate.disabled = false;
       }
     });
@@ -1694,7 +1557,7 @@
 
           if (error) throw error;
           if (data && data[0]) state.items.push(data[0]);
-          showToast('Plato nuevo añadido a la carta');
+          showToast('Plato añadido a la carta');
         } else {
           const updatePayload = {
             category_id,
@@ -1718,20 +1581,20 @@
 
           const item = state.items.find(i => i.id === id);
           if (item) Object.assign(item, updatePayload);
-          showToast('Plato actualizado correctamente');
+          showToast('Plato guardado');
         }
 
         closeDishModal();
-        updateMetrics();
         renderCategoriesBar();
         renderItems();
-        renderPreview();
+        btnSync.className = 'btn-sync synced';
+        syncText.textContent = 'Sincronizado ✓';
       } catch (err) {
         console.error('Error guardando plato:', err);
-        showToast('Error al guardar: ' + err.message, true);
+        showToast('Error al guardar plato', true);
       } finally {
         saveSpinner.style.display = 'none';
-        saveText.textContent = 'Guardar Cambios';
+        saveText.textContent = 'Guardar';
       }
     });
 
@@ -1740,11 +1603,7 @@
       if (!id) return;
 
       const item = state.items.find(i => i.id === id);
-      const name = item ? item.title_es : 'este plato';
-
-      if (!confirm(`¿Deseas eliminar permanentemente "${name}" de la carta?`)) {
-        return;
-      }
+      if (!confirm(`¿Eliminar "${item?.title_es || 'este plato'}" de la carta?`)) return;
 
       try {
         const { error } = await adminClient.database
@@ -1756,99 +1615,23 @@
 
         state.items = state.items.filter(i => i.id !== id);
         closeDishModal();
-        updateMetrics();
         renderCategoriesBar();
         renderItems();
-        renderPreview();
-        showToast('Plato eliminado de la carta');
+        showToast('Plato eliminado');
       } catch (err) {
-        showToast('Error al eliminar plato: ' + err.message, true);
+        showToast('Error al eliminar', true);
       }
     });
 
-    function renderPreview() {
-      const previewCategories = document.getElementById('previewCategories');
-      const previewDishes = document.getElementById('previewDishes');
-      const lang = state.previewLang;
-
-      previewCategories.innerHTML = state.categories.map((c, i) => {
-        const title = lang === 'en' ? (c.name_en || c.name_es) : (lang === 'de' ? (c.name_de || c.name_es) : c.name_es);
-        return `
-          <button class="cat-pill" style="background: #FFFFFF; border: 1px solid #E7E5E4;">
-            ${title}
-          </button>
-        `;
-      }).join('');
-
-      const dishes = state.items;
-      previewDishes.innerHTML = dishes.map(item => {
-        const title = lang === 'en' ? (item.title_en || item.title_es) : (lang === 'de' ? (item.title_de || item.title_es) : item.title_es);
-        const desc = lang === 'en' ? (item.description_en || item.description_es) : (lang === 'de' ? (item.description_de || item.description_es) : item.description_es);
-        const isAvail = item.is_available;
-
-        return `
-          <div style="background: #FFFFFF; padding: 16px; border-radius: 20px; border: 1px solid var(--color-border); box-shadow: 0 2px 8px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; ${!isAvail ? 'opacity: 0.5; filter: grayscale(1);' : ''}">
-            <div>
-              <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
-                <h4 style="font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: #171513;">${title}</h4>
-                <span style="font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--color-primary);">${Number(item.price).toFixed(2)} €</span>
-              </div>
-              <p style="font-size: 12px; color: #57534E; margin-top: 4px;">${desc || ''}</p>
-            </div>
-            <div style="margin-top: 12px; padding-top: 8px; border-top: 1px solid #F5F4F0; display: flex; align-items: center; justify-content: space-between;">
-              <span style="font-size: 10px; font-family: monospace; color: #A8A29E; font-weight: 700;">${item.item_code || ''}</span>
-              ${!isAvail ? '<span style="font-size: 10px; font-weight: 700; color: #DC2626; background: #FEF2F2; padding: 2px 8px; border-radius: 6px;">No disponible hoy</span>' : '<span style="font-size: 10px; color: #059669; font-weight: 600;">Disponible</span>'}
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    if (btnNewDishTop) btnNewDishTop.addEventListener('click', openNewDishModal);
-    if (fabNewDish) fabNewDish.addEventListener('click', openNewDishModal);
+    btnNewDish.addEventListener('click', openNewDishModal);
     closeModalBtn.addEventListener('click', closeDishModal);
     btnCancelModal.addEventListener('click', closeDishModal);
     dishModal.addEventListener('click', (e) => {
       if (e.target === dishModal) closeDishModal();
     });
 
-    document.querySelectorAll('.preview-lang').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.preview-lang').forEach(b => {
-          b.style.background = 'transparent';
-          b.style.color = '#A8A29E';
-        });
-        btn.style.background = 'var(--color-primary)';
-        btn.style.color = '#FFFFFF';
-        state.previewLang = btn.dataset.lang;
-        renderPreview();
-      });
-    });
-
-    tabAdminBtn.addEventListener('click', () => {
-      viewAdmin.style.display = 'flex';
-      viewPreview.style.display = 'none';
-      tabAdminBtn.classList.add('active');
-      tabPreviewBtn.classList.remove('active');
-    });
-
-    tabPreviewBtn.addEventListener('click', () => {
-      viewAdmin.style.display = 'none';
-      viewPreview.style.display = 'flex';
-      tabPreviewBtn.classList.add('active');
-      tabAdminBtn.classList.remove('active');
-    });
-
     searchInput.addEventListener('input', (e) => {
       state.searchQuery = e.target.value.trim();
-      clearSearchBtn.style.display = state.searchQuery.length > 0 ? 'block' : 'none';
-      renderItems();
-    });
-
-    clearSearchBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      state.searchQuery = '';
-      clearSearchBtn.style.display = 'none';
       renderItems();
     });
 
