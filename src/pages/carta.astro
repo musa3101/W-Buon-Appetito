@@ -260,14 +260,56 @@ const description = "Carta digital interactiva de Buon Appetito en Port d'Andrat
     let scrollObserver = null;
 
     async function initMenu() {
-      if (window.MENU_DATA) {
-        menuData = window.MENU_DATA;
-      } else {
-        try {
-          const res = await fetch('/data/menu.json');
-          if (res.ok) menuData = await res.json();
-        } catch (e) {
-          console.warn('Error loading menu.json', e);
+      // 1. Sincronización en vivo con base de datos
+      try {
+        const { createClient } = await import('https://esm.sh/@insforge/sdk@latest');
+        const liveClient = createClient({
+          baseUrl: 'https://pz3qiueg.eu-central.insforge.app',
+          anonKey: 'anon_64c904f7d36d64a81882dd8b41b193c03240d144f6de6a656b1d85ba0683ccec'
+        });
+        const [catsRes, itemsRes] = await Promise.all([
+          liveClient.database.from('menu_categories').select().order('display_order', { ascending: true }),
+          liveClient.database.from('menu_items').select().order('display_order', { ascending: true })
+        ]);
+
+        if (catsRes.data && itemsRes.data && catsRes.data.length && itemsRes.data.length) {
+          menuData = {
+            restaurant: "Buon Appetito",
+            categories: catsRes.data.map(c => ({
+              id: c.id,
+              order: c.display_order,
+              es: c.name_es,
+              en: c.name_en || c.name_es,
+              de: c.name_de || c.name_es,
+              icon: c.icon || 'restaurant'
+            })),
+            items: itemsRes.data.map(i => ({
+              id: i.item_code || i.id,
+              num: i.display_order,
+              category: i.category_id,
+              price: parseFloat(i.price),
+              is_available: i.is_available,
+              es: { title: i.title_es, description: i.description_es },
+              en: { title: i.title_en || i.title_es, description: i.description_en || i.description_es },
+              de: { title: i.title_de || i.title_es, description: i.description_de || i.description_es }
+            }))
+          };
+        }
+      } catch (e) {
+        console.warn('Fallback a datos locales de carta:', e);
+      }
+
+      // 2. Fallback local si no hay conexión o falla la red
+      if (!menuData) {
+        if (window.MENU_DATA) {
+          menuData = window.MENU_DATA;
+        } else {
+          try {
+            const res = await fetch('/data/menu.json');
+            if (res.ok) menuData = await res.json();
+          } catch (e) {
+            console.warn('Error loading menu.json', e);
+          }
         }
       }
 
@@ -436,12 +478,15 @@ const description = "Carta digital interactiva de Buon Appetito en Port d'Andrat
               ${catItems.map(item => {
                 const trans = item[currentLang] || item.es;
                 const hasDesc = Boolean(trans.description && trans.description.trim().length > 0);
+                const isAvail = item.is_available !== false;
+                const soldOutLabel = currentLang === 'en' ? 'Sold out today' : (currentLang === 'de' ? 'Heute ausverkauft' : 'Agotado hoy');
 
                 return `
-                  <article class="menu-item-row" id="item-${item.id}">
+                  <article class="menu-item-row ${!isAvail ? 'opacity-50 grayscale' : ''}" id="item-${item.id}">
                     <div class="menu-item-top">
                       <div class="menu-item-title-group">
                         <h3 class="menu-item-title">${trans.title}</h3>
+                        ${!isAvail ? `<span class="inline-block text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full uppercase tracking-wider ml-2">${soldOutLabel}</span>` : ''}
                       </div>
                       <span class="menu-item-dots" aria-hidden="true"></span>
                       <span class="menu-item-price">${item.price.toFixed(2)} €</span>
