@@ -8,271 +8,937 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Buon Appetito · Panel de Carta</title>
   <meta name="robots" content="noindex, nofollow">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script is:inline>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              cream: '#FAF7F2',
-              surface: '#FFFFFF',
-              dark: '#171513',
-              charcoal: '#221E1C',
-              burgundy: '#7A1C28',
-              burgundyHover: '#60141E',
-              gold: '#C5A880',
-              goldLight: '#E8DCC9',
-              border: 'rgba(28, 25, 23, 0.08)',
-              borderDark: 'rgba(255, 255, 255, 0.10)',
-              muted: '#78716C'
-            }
-          },
-          fontFamily: {
-            serif: ['"Cormorant Garamond"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif']
-          },
-          boxShadow: {
-            'card': '0 2px 10px rgba(28, 25, 23, 0.04), 0 1px 3px rgba(28, 25, 23, 0.02)',
-            'card-hover': '0 10px 25px -5px rgba(28, 25, 23, 0.08), 0 8px 10px -6px rgba(28, 25, 23, 0.04)',
-            'sheet': '0 -10px 40px rgba(0, 0, 0, 0.25)'
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    body { background-color: #FAF7F2; color: #171513; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
-    .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+    :root {
+      --bg-cream: #FAF7F2;
+      --bg-dark: #171513;
+      --bg-charcoal: #221E1C;
+      --color-primary: #7A1C28;
+      --color-primary-hover: #5F141E;
+      --color-gold: #C5A880;
+      --color-border: rgba(28, 25, 23, 0.08);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-cream);
+      color: #1C1917;
+      font-family: var(--font-sans);
+      -webkit-tap-highlight-color: transparent;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    .font-serif { font-family: var(--font-serif); }
+    .font-sans { font-family: var(--font-sans); }
+    
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    button, input, select, textarea { touch-action: manipulation; }
+
+    button, input, select, textarea {
+      touch-action: manipulation;
+      font-family: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ========================================================
+       LOGIN SCREEN
+       ======================================================== */
+    .login-container {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background-color: var(--bg-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+      padding: 36px 28px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .login-badge {
+      background: var(--bg-dark);
+      padding: 12px 24px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .login-badge img {
+      height: 38px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+    }
+
+    .login-title {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: #171513;
+      margin-top: 4px;
+      line-height: 1.2;
+    }
+
+    .login-sub {
+      font-size: 12px;
+      color: #78716C;
+      margin-top: 4px;
+    }
+
+    .login-eyebrow {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-gold);
+      font-weight: 700;
+    }
+
+    .form-group {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #44403C;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 14px;
+      background: #F9F8F6;
+      border: 1px solid #E7E5E4;
+      border-radius: 14px;
+      color: #1C1917;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-input:focus {
+      background: #FFFFFF;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(122, 28, 40, 0.12);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px 20px;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(122, 28, 40, 0.22);
+      transition: all 0.2s ease;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+      background: var(--color-primary-hover);
+    }
+
+    .alert-error {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #B91C1C;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* ========================================================
+       MAIN APP HEADER & BODY
+       ======================================================== */
+    .app-header {
+      background: var(--bg-dark);
+      color: #FFFFFF;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo-img {
+      height: 34px;
+      width: auto;
+      max-width: 130px;
+      object-fit: contain;
+    }
+
+    .brand-divider {
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      padding-left: 12px;
+      display: none;
+    }
+
+    @media (min-width: 480px) {
+      .brand-divider { display: block; }
+    }
+
+    .view-toggle {
+      background: var(--bg-charcoal);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 4px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .view-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      color: #A8A29E;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .view-btn.active {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-logout {
+      background: rgba(255, 255, 255, 0.08);
+      color: #D6D3D1;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-logout:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+    }
+
+    .app-main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px;
+      padding-bottom: 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    @media (min-width: 640px) {
+      .bento-grid { gap: 16px; }
+    }
+
+    .bento-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bento-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #78716C;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .bento-value {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 700;
+      color: #171513;
+      margin-top: 4px;
+      line-height: 1;
+    }
+
+    @media (min-width: 640px) {
+      .bento-value { font-size: 36px; }
+    }
+
+    /* Controls Panel */
+    .controls-panel {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .controls-top {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .controls-top {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .controls-search-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .controls-search-row {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .cat-bar {
+      border-top: 1px solid #F5F4F0;
+      padding-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .cat-pill {
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      background: #F5F4F0;
+      color: #57534E;
+      transition: all 0.2s ease;
+    }
+
+    .cat-pill.active {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(122, 28, 40, 0.25);
+    }
+
+    /* Dish List Container */
+    .dish-list-container {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+    }
+
+    .dish-list-header {
+      padding: 14px 20px;
+      background: #FAFAFA;
+      border-bottom: 1px solid #F5F4F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dish-row {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-bottom: 1px solid #F5F4F0;
+      transition: background-color 0.15s ease;
+    }
+
+    @media (min-width: 640px) {
+      .dish-row {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+      }
+      #previewDishes {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+
+    .dish-row:hover {
+      background-color: #FAF9F7;
+    }
+
+    .dish-row.unavailable {
+      opacity: 0.6;
+      background-color: #FCFCFB;
+    }
+
+    .dish-info {
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .dish-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: #171513;
+      margin-top: 4px;
+    }
+
+    .dish-desc {
+      font-size: 12px;
+      color: #57534E;
+      margin-top: 2px;
+    }
+
+    .dish-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 1px solid #F5F4F0;
+    }
+
+    @media (min-width: 640px) {
+      .dish-actions {
+        padding-top: 0;
+        border-top: none;
+        justify-content: flex-end;
+      }
+    }
+
+    .btn-price {
+      background: #F5F4F0;
+      border: 1px solid #E7E5E4;
+      padding: 6px 14px;
+      border-radius: 12px;
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: #171513;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-price:hover {
+      background: #EAE8E4;
+      color: var(--color-primary);
+    }
+
+    .btn-avail {
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-avail.available {
+      background: #ECFDF5;
+      color: #065F46;
+      border-color: #A7F3D0;
+    }
+
+    .btn-avail.unavailable {
+      background: #FEF2F2;
+      color: #991B1B;
+      border-color: #FECACA;
+    }
+
+    /* Floating Action Button */
+    .fab-button {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      z-index: 40;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 8px 24px rgba(122, 28, 40, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    @media (min-width: 640px) {
+      .fab-button { display: none; }
+    }
+
+    .fab-button:active {
+      transform: scale(0.92);
+    }
+
+    /* Bottom Sheet Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    @media (min-width: 640px) {
+      .modal-overlay {
+        align-items: center;
+        padding: 20px;
+      }
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 580px;
+      background: #FFFFFF;
+      border-top-left-radius: 28px;
+      border-top-right-radius: 28px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (min-width: 640px) {
+      .modal-sheet {
+        border-radius: 28px;
+        max-height: 85vh;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    .modal-header {
+      background: var(--bg-dark);
+      color: #FFFFFF;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-footer {
+      padding: 16px 20px;
+      border-top: 1px solid #F5F4F0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      background: #FAFAFA;
+    }
+
+    /* Translation Assist Banner */
+    .translate-banner {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (min-width: 480px) {
+      .translate-banner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .btn-translate {
+      padding: 10px 18px;
+      background: #D97706;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .btn-translate:active {
+      transform: scale(0.97);
+      background: #B45309;
+    }
+
+    /* Lang Tabs in Modal */
+    .modal-lang-tabs {
+      display: flex;
+      border-bottom: 2px solid #E7E5E4;
+      gap: 8px;
+    }
+
+    .modal-lang-tab {
+      padding: 8px 14px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #78716C;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-lang-tab.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      left: 20px;
+      z-index: 100;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(100px);
+      opacity: 0;
+    }
+
+    @media (min-width: 640px) {
+      .toast-container {
+        left: auto;
+        right: 24px;
+        max-width: 420px;
+      }
+    }
+
+    .toast-container.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .toast-box {
+      background: var(--bg-dark);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased">
+<body>
 
   <!-- ======================================================== -->
-  <!-- 1. PANTALLA DE ACCESO (LOGIN EXCLUSIVO) -->
+  <!-- 1. PANTALLA DE ACCESO (LOGIN) -->
   <!-- ======================================================== -->
-  <div id="loginScreen" class="fixed inset-0 z-50 bg-[#FAF7F2] flex items-center justify-center p-4">
-    <div class="w-full max-w-md bg-white rounded-3xl border border-brand-border shadow-2xl overflow-hidden p-6 sm:p-10 text-center space-y-6">
+  <div id="loginScreen" class="login-container">
+    <div class="login-card">
       
       <!-- Brand Logo -->
-      <div class="flex flex-col items-center justify-center space-y-2">
-        <div class="p-3 rounded-2xl bg-[#171513] shadow-md inline-block">
-          <img src="/assets/logos/logo-buon-appetito-white.png" alt="Buon Appetito" class="h-10 sm:h-12 w-auto object-contain">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <div class="login-badge">
+          <img src="/assets/logos/logo-buon-appetito-white.png" alt="Buon Appetito">
         </div>
-        <div class="pt-2">
-          <span class="text-[10px] uppercase tracking-[0.25em] text-brand-gold font-bold block">Port d'Andratx · Mallorca</span>
-          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#171513] mt-1">Gestión de Carta</h2>
-          <p class="text-xs text-stone-500 mt-1">Acceso privado para el personal del restaurante</p>
+        <div>
+          <span class="login-eyebrow">Port d'Andratx · Mallorca</span>
+          <h2 class="login-title">Gestión de Carta</h2>
+          <p class="login-sub">Acceso privado para el personal del restaurante</p>
         </div>
       </div>
 
       <!-- Login Form -->
-      <form id="loginForm" class="space-y-4 text-left">
-        <div>
-          <label class="block text-xs font-semibold text-stone-700 mb-1.5">Usuario o Correo Electrónico</label>
-          <div class="relative">
-            <input type="email" id="loginEmail" required value="buonappetitoandratx@gmail.com" class="w-full text-xs sm:text-sm px-3.5 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-burgundy/20 focus:border-brand-burgundy transition-all text-stone-800 font-medium">
-            <svg class="w-4 h-4 text-stone-400 absolute right-3.5 top-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.206"></path></svg>
+      <form id="loginForm" style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
+        <div class="form-group">
+          <label class="form-label">Usuario o Correo Electrónico</label>
+          <div class="input-wrapper">
+            <input type="email" id="loginEmail" required value="buonappetitoandratx@gmail.com" class="form-input">
           </div>
         </div>
 
-        <div>
-          <label class="block text-xs font-semibold text-stone-700 mb-1.5">Contraseña</label>
-          <div class="relative">
-            <input type="password" id="loginPassword" required placeholder="Introduce contraseña..." class="w-full text-xs sm:text-sm px-3.5 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-burgundy/20 focus:border-brand-burgundy transition-all text-stone-800 font-medium">
-            <button type="button" id="togglePasswordBtn" class="absolute right-3.5 top-3 text-stone-400 hover:text-stone-600 text-xs">👁️</button>
+        <div class="form-group">
+          <label class="form-label">Contraseña</label>
+          <div class="input-wrapper">
+            <input type="password" id="loginPassword" required placeholder="Introduce contraseña..." class="form-input" style="padding-right: 40px;">
+            <button type="button" id="togglePasswordBtn" style="position: absolute; right: 12px; background: none; border: none; font-size: 16px; cursor: pointer;">👁️</button>
           </div>
-          <p class="text-[11px] text-stone-400 mt-1.5 flex items-center gap-1">
-            <span>🔒</span> Clave predeterminada: <code class="bg-stone-100 text-stone-600 px-1.5 py-0.5 rounded font-mono text-[10px]">admin</code>
+          <p style="font-size: 11px; color: #78716C; margin-top: 4px;">
+            🔒 Clave predeterminada: <code style="background: #F5F4F0; padding: 2px 6px; border-radius: 6px; font-weight: 600;">admin</code>
           </p>
         </div>
 
-        <div id="loginError" class="hidden p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-700 font-medium text-center">
+        <div id="loginError" class="alert-error" style="display: none;">
           Credenciales incorrectas. Comprueba el usuario y la contraseña.
         </div>
 
-        <button type="submit" id="loginSubmitBtn" class="w-full py-3.5 px-4 bg-brand-burgundy hover:bg-brand-burgundyHover text-white rounded-xl text-xs sm:text-sm font-bold tracking-wide shadow-lg hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+        <button type="submit" id="loginSubmitBtn" class="btn-submit" style="margin-top: 4px;">
           <span>Acceder al Panel</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </button>
       </form>
 
-      <div class="pt-2 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-400">
-        <span>Buon Appetito · Puerto de Andratx</span>
-        <a href="/" class="text-brand-burgundy hover:underline">Volver a la Web</a>
+      <div style="border-top: 1px solid #F5F4F0; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: #A8A29E;">
+        <span>Buon Appetito · Andratx</span>
+        <a href="/" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Volver a la Web</a>
       </div>
 
     </div>
   </div>
 
   <!-- ======================================================== -->
-  <!-- 2. APLICACIÓN PRINCIPAL (PANEL DE GESTIÓN) -->
+  <!-- 2. APLICACIÓN PRINCIPAL -->
   <!-- ======================================================== -->
-  <div id="appShell" class="hidden flex-1 flex flex-col">
+  <div id="appShell" style="display: none; flex-direction: column; min-height: 100vh;">
 
     <!-- Header Principal -->
-    <header class="bg-[#171513] text-white border-b border-brand-borderDark sticky top-0 z-40 shadow-md">
-      <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-3">
+    <header class="app-header">
+      <div class="header-content">
         
-        <!-- Logo & Brand Info -->
-        <div class="flex items-center gap-3 min-w-0">
+        <!-- Logo & Marca -->
+        <div class="brand-group">
           <a href="/" title="Ir a la web principal">
-            <img src="/assets/logos/logo-buon-appetito-white.png" alt="Buon Appetito" class="h-8 sm:h-9 w-auto object-contain shrink-0">
+            <img src="/assets/logos/logo-buon-appetito-white.png" alt="Buon Appetito" class="brand-logo-img">
           </a>
-          <div class="border-l border-stone-700/80 pl-3 hidden xs:block">
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-serif tracking-wider text-white font-bold uppercase">Carta Digital</span>
-              <span class="flex items-center gap-1 text-[10px] text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2 py-0.5 rounded-full font-medium">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                En directo
+          <div class="brand-divider">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-family: var(--font-serif); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Carta Digital</span>
+              <span style="font-size: 10px; color: #34D399; background: #064E3B; border: 1px solid #065F46; padding: 2px 8px; border-radius: 9999px; font-weight: 600;">
+                ● En directo
               </span>
             </div>
-            <p class="text-[10px] text-stone-400 truncate" id="dbStatusText">Sincronizando platos...</p>
+            <p style="font-size: 10px; color: #A8A29E;" id="dbStatusText">Sincronizando platos...</p>
           </div>
         </div>
 
-        <!-- Central Tabs: Gestión / Vista QR -->
-        <div class="flex items-center bg-[#221E1C] border border-stone-800 p-1 rounded-xl text-xs shrink-0">
-          <button id="tabAdminBtn" class="px-3 py-1.5 rounded-lg font-semibold bg-brand-burgundy text-white shadow-sm transition-all flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+        <!-- Pestañas Vista: Carta / Vista QR -->
+        <div class="view-toggle">
+          <button id="tabAdminBtn" class="view-btn active">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
             <span>Carta</span>
           </button>
-          <button id="tabPreviewBtn" class="px-3 py-1.5 rounded-lg text-stone-400 hover:text-white transition-all flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+          <button id="tabPreviewBtn" class="view-btn">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
             <span>Vista QR</span>
           </button>
         </div>
 
-        <!-- User profile & Logout -->
-        <div class="flex items-center gap-2">
-          <a href="/carta" target="_blank" title="Abrir carta web" class="hidden md:flex items-center gap-1 text-xs text-stone-300 hover:text-white bg-stone-800/80 px-2.5 py-1.5 rounded-lg border border-stone-700">
-            <span>Ver Carta Web</span>
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        <!-- Botón Salir -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <a href="/carta" target="_blank" class="btn-logout" style="text-decoration: none; display: none;">
+            <span>Ver Web</span>
           </a>
-          <button id="btnLogout" title="Cerrar sesión" class="p-2 text-stone-400 hover:text-white hover:bg-stone-800 rounded-xl transition-colors flex items-center gap-1.5 text-xs">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-            <span class="hidden sm:inline">Salir</span>
+          <button id="btnLogout" class="btn-logout" title="Cerrar sesión">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            <span>Salir</span>
           </button>
         </div>
 
       </div>
     </header>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-20 md:bottom-6 right-4 left-4 md:left-auto md:right-6 z-50 transform transition-all duration-300 translate-y-24 opacity-0 pointer-events-none">
-      <div class="bg-[#171513] text-white border border-stone-700 shadow-2xl rounded-2xl px-4 py-3 flex items-center justify-between gap-3 text-sm max-w-md ml-auto">
-        <div class="flex items-center gap-2.5 min-w-0">
-          <span id="toastIcon" class="text-emerald-400 font-bold text-base shrink-0">✓</span>
-          <span id="toastMsg" class="font-medium text-xs sm:text-sm truncate">Cambio guardado con éxito</span>
-        </div>
-        <button onclick="hideToast()" class="text-stone-400 hover:text-white text-xs px-2 py-1 shrink-0">Cerrar</button>
-      </div>
-    </div>
-
-    <!-- MAIN BODY -->
-    <main class="flex-1 max-w-7xl mx-auto w-full px-3.5 sm:px-6 lg:px-8 py-4 sm:py-6 pb-24 md:pb-12">
+    <!-- CUERPO PRINCIPAL -->
+    <main class="app-main">
 
       <!-- ============================================== -->
       <!-- VISTA A: GESTIÓN DE CARTA -->
       <!-- ============================================== -->
-      <section id="viewAdmin" class="space-y-4 sm:space-y-6">
+      <section id="viewAdmin" style="display: flex; flex-direction: column; gap: 16px;">
 
-        <!-- Bento Summary Cards -->
-        <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
+        <!-- Bento Grid: Métricas -->
+        <div class="bento-grid">
           
-          <div class="bg-white rounded-2xl border border-brand-border p-3 sm:p-4 shadow-card flex flex-col justify-between">
-            <span class="text-[10px] sm:text-xs font-semibold text-stone-500 uppercase tracking-wider">En Carta</span>
-            <div class="flex items-baseline gap-1 mt-1">
-              <span class="font-serif text-2xl sm:text-4xl font-bold text-[#171513]" id="metricAvailable">--</span>
-              <span class="text-[11px] text-emerald-600 font-semibold hidden sm:inline">activos</span>
-            </div>
-            <div class="w-full bg-emerald-100 rounded-full h-1 mt-2 overflow-hidden">
-              <div class="bg-emerald-600 h-1 rounded-full" id="metricAvailBar" style="width: 90%"></div>
+          <div class="bento-card">
+            <span class="bento-label">En Carta</span>
+            <div class="bento-value" id="metricAvailable" style="color: #171513;">--</div>
+            <div style="width: 100%; height: 4px; background: #E7E5E4; border-radius: 9999px; margin-top: 10px; overflow: hidden;">
+              <div id="metricAvailBar" style="width: 90%; height: 100%; background: #059669; border-radius: 9999px;"></div>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl border border-brand-border p-3 sm:p-4 shadow-card flex flex-col justify-between">
-            <span class="text-[10px] sm:text-xs font-semibold text-stone-500 uppercase tracking-wider">Agotados Hoy</span>
-            <div class="flex items-baseline gap-1 mt-1">
-              <span class="font-serif text-2xl sm:text-4xl font-bold text-rose-600" id="metricUnavailable">0</span>
-              <span class="text-[11px] text-rose-500 font-medium hidden sm:inline">en cocina</span>
-            </div>
-            <div class="w-full bg-rose-100 rounded-full h-1 mt-2 overflow-hidden">
-              <div class="bg-rose-500 h-1 rounded-full" id="metricUnavailBar" style="width: 10%"></div>
+          <div class="bento-card">
+            <span class="bento-label">Agotados Hoy</span>
+            <div class="bento-value" id="metricUnavailable" style="color: #DC2626;">0</div>
+            <div style="width: 100%; height: 4px; background: #E7E5E4; border-radius: 9999px; margin-top: 10px; overflow: hidden;">
+              <div id="metricUnavailBar" style="width: 10%; height: 100%; background: #DC2626; border-radius: 9999px;"></div>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl border border-brand-border p-3 sm:p-4 shadow-card flex flex-col justify-between">
-            <span class="text-[10px] sm:text-xs font-semibold text-stone-500 uppercase tracking-wider">Categorías</span>
-            <div class="flex items-baseline gap-1 mt-1">
-              <span class="font-serif text-2xl sm:text-4xl font-bold text-brand-burgundy" id="metricCategories">8</span>
-              <span class="text-[11px] text-stone-400 hidden sm:inline">secciones</span>
-            </div>
-            <div class="w-full bg-stone-100 rounded-full h-1 mt-2 overflow-hidden">
-              <div class="bg-brand-burgundy h-1 rounded-full" style="width: 100%"></div>
+          <div class="bento-card">
+            <span class="bento-label">Categorías</span>
+            <div class="bento-value" id="metricCategories" style="color: var(--color-primary);">8</div>
+            <div style="width: 100%; height: 4px; background: #E7E5E4; border-radius: 9999px; margin-top: 10px; overflow: hidden;">
+              <div style="width: 100%; height: 100%; background: var(--color-primary); border-radius: 9999px;"></div>
             </div>
           </div>
 
         </div>
 
-        <!-- Controls Box: Search, Filters & Quick Add -->
-        <div class="bg-white rounded-2xl sm:rounded-3xl border border-brand-border shadow-card p-4 sm:p-6 space-y-4">
+        <!-- Controles & Filtros -->
+        <div class="controls-panel">
           
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="controls-top">
             <div>
-              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#171513]">Control de Precios y Platos</h2>
-              <p class="text-xs text-stone-500 mt-0.5">Toca el estado para marcarlo agotado o el precio para editarlo al instante.</p>
+              <h2 style="font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: #171513;">Control de Platos y Precios</h2>
+              <p style="font-size: 12px; color: #78716C;">Toca un precio para editarlo o el estado para marcarlo agotado al instante.</p>
             </div>
 
-            <!-- Botón Añadir Plato Desktop -->
-            <button id="btnNewDishTop" class="hidden sm:flex px-4 py-2.5 bg-brand-burgundy hover:bg-brand-burgundyHover text-white rounded-xl text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all items-center gap-2 active:scale-95">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+            <button id="btnNewDishTop" class="btn-submit" style="width: auto; padding: 10px 20px; font-size: 13px; display: none;">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
               <span>Añadir Nuevo Plato</span>
             </button>
           </div>
 
           <!-- Buscador y filtro -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-            <div class="relative sm:col-span-2">
-              <input type="text" id="searchInput" placeholder="Buscar por nombre, ingrediente o código..." class="w-full text-xs sm:text-sm pl-10 pr-4 py-2.5 sm:py-3 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-burgundy/15 focus:border-brand-burgundy transition-all">
-              <svg class="w-4 h-4 text-stone-400 absolute left-3.5 top-3 sm:top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-              <button id="clearSearchBtn" class="hidden absolute right-3 top-3 text-stone-400 hover:text-stone-600 text-xs px-1">✕</button>
+          <div class="controls-search-row">
+            <div style="position: relative; display: flex; align-items: center;">
+              <input type="text" id="searchInput" placeholder="Buscar por nombre, ingrediente o código..." class="form-input" style="padding-left: 36px;">
+              <svg width="16" height="16" fill="none" stroke="#A8A29E" viewBox="0 0 24 24" style="position: absolute; left: 12px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              <button id="clearSearchBtn" style="display: none; position: absolute; right: 12px; background: none; border: none; color: #A8A29E; cursor: pointer;">✕</button>
             </div>
 
-            <select id="availabilityFilter" class="w-full text-xs sm:text-sm py-2.5 sm:py-3 px-3 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-brand-burgundy text-stone-700 font-medium">
+            <select id="availabilityFilter" class="form-input" style="font-weight: 600; cursor: pointer;">
               <option value="all">Ver todos los platos</option>
               <option value="available">🟢 Solo Disponibles</option>
               <option value="unavailable">🔴 Solo Agotados</option>
             </select>
           </div>
 
-          <!-- Píldoras de Categorías Deslizables -->
-          <div class="border-t border-stone-100 pt-3 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" id="categoriesBar">
+          <!-- Píldoras de Categorías -->
+          <div class="cat-bar no-scrollbar" id="categoriesBar">
             <!-- Populated via JS -->
           </div>
 
         </div>
 
-        <!-- Lista de Platos Principal -->
-        <div class="bg-white rounded-2xl sm:rounded-3xl border border-brand-border shadow-card overflow-hidden">
+        <!-- Lista de Platos -->
+        <div class="dish-list-container">
           
-          <div class="px-4 sm:px-6 py-3.5 bg-stone-50/70 border-b border-stone-100 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="font-serif text-lg font-bold text-[#171513]" id="currentCategoryTitle">Todos los Platos</span>
-              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-stone-200 text-stone-700" id="itemsCountBadge">0</span>
+          <div class="dish-list-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: #171513;" id="currentCategoryTitle">Todos los Platos</span>
+              <span style="font-size: 12px; font-weight: 700; background: #F5F4F0; padding: 2px 8px; border-radius: 9999px; color: #44403C;" id="itemsCountBadge">0</span>
             </div>
-            <span class="text-[11px] text-stone-400 hidden sm:inline">Actualizaciones automáticas para los clientes</span>
+            <span style="font-size: 11px; color: #A8A29E;">Actualización en directo</span>
           </div>
 
-          <!-- Items Container -->
-          <div class="divide-y divide-stone-100" id="itemsList">
-            <div class="p-12 text-center text-stone-400 text-xs sm:text-sm">Cargando platos de la carta...</div>
+          <!-- Lista de platos -->
+          <div id="itemsList">
+            <div style="padding: 40px; text-align: center; color: #78716C; font-size: 14px;">Cargando platos de la carta...</div>
           </div>
 
         </div>
@@ -280,181 +946,182 @@
       </section>
 
       <!-- ============================================== -->
-      <!-- VISTA B: SIMULADOR DE CARTA COMENSAL (QR) -->
+      <!-- VISTA B: SIMULADOR DE CARTA QR (CLIENTE) -->
       <!-- ============================================== -->
-      <section id="viewPreview" class="hidden space-y-4 sm:space-y-6">
+      <section id="viewPreview" style="display: none; flex-direction: column; gap: 16px;">
         
-        <div class="bg-[#221E1C] text-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-lg border border-stone-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div style="background: var(--bg-charcoal); color: #FFFFFF; padding: 18px; border-radius: 24px; display: flex; flex-direction: column; gap: 12px;">
           <div>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold">Simulador de Menú QR</span>
-            <h2 class="text-xl sm:text-2xl font-serif font-bold text-white mt-0.5">Vista en Tiempo Real del Comensal</h2>
-            <p class="text-xs text-stone-300">Así ven la carta los clientes desde sus móviles al escanear el QR en las mesas.</p>
+            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-gold); font-weight: 700;">Simulador de Menú QR</span>
+            <h2 style="font-family: var(--font-serif); font-size: 24px; font-weight: 700; margin-top: 2px;">Vista en Vivo del Comensal</h2>
+            <p style="font-size: 12px; color: #D6D3D1;">Así ven la carta los clientes al escanear el QR desde sus móviles.</p>
           </div>
 
-          <!-- Language Selector -->
-          <div class="flex items-center gap-2 self-end sm:self-center">
-            <span class="text-xs text-stone-400">Idioma:</span>
-            <div class="bg-stone-900 p-1 rounded-xl border border-stone-700 flex gap-1 text-xs">
-              <button class="px-2.5 py-1 rounded-lg bg-brand-burgundy text-white font-bold preview-lang" data-lang="es">ES</button>
-              <button class="px-2.5 py-1 rounded-lg text-stone-400 hover:text-white preview-lang" data-lang="en">EN</button>
-              <button class="px-2.5 py-1 rounded-lg text-stone-400 hover:text-white preview-lang" data-lang="de">DE</button>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 12px; color: #A8A29E;">Idioma:</span>
+            <div style="background: #171513; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 3px; display: flex; gap: 4px;">
+              <button class="preview-lang active" data-lang="es" style="padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; border: none; cursor: pointer; background: var(--color-primary); color: #FFFFFF;">ES</button>
+              <button class="preview-lang" data-lang="en" style="padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; border: none; cursor: pointer; background: transparent; color: #A8A29E;">EN</button>
+              <button class="preview-lang" data-lang="de" style="padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; border: none; cursor: pointer; background: transparent; color: #A8A29E;">DE</button>
             </div>
           </div>
         </div>
 
-        <!-- Preview Categories Swipe -->
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" id="previewCategories"></div>
+        <div class="cat-bar no-scrollbar" id="previewCategories"></div>
 
-        <!-- Preview Grid of Dishes -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="previewDishes"></div>
+        <div id="previewDishes" style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+          <!-- En escritorio se convierte en 2 columnas con JS/CSS -->
+        </div>
 
       </section>
 
     </main>
 
-    <!-- Botón Flotante para Móvil (+ Nuevo Plato) -->
-    <button id="fabNewDish" class="sm:hidden fixed bottom-6 right-5 z-40 w-14 h-14 bg-brand-burgundy hover:bg-brand-burgundyHover text-white rounded-full shadow-2xl flex items-center justify-center border-2 border-white active:scale-90 transition-all">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+    <!-- Botón Flotante Móvil (+ Nuevo Plato) -->
+    <button id="fabNewDish" class="fab-button" title="Añadir plato">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
     </button>
 
-    <!-- Footer Discreto -->
-    <footer class="bg-white border-t border-brand-border py-4 text-center text-xs text-stone-400">
-      Ristorante Buon Appetito · Puerto de Andratx · Carta Digital
-    </footer>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-container">
+      <div class="toast-box">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span id="toastIcon" style="color: #34D399; font-weight: bold; font-size: 18px;">✓</span>
+          <span id="toastMsg" style="font-size: 13px; font-weight: 500;">Cambio guardado con éxito</span>
+        </div>
+        <button onclick="hideToast()" style="background: none; border: none; color: #A8A29E; cursor: pointer; font-size: 12px;">Cerrar</button>
+      </div>
+    </div>
 
   </div>
 
   <!-- ======================================================== -->
-  <!-- 3. MODAL DE EDICIÓN / NUEVO PLATO (BOTTOM SHEET EN MÓVIL) -->
+  <!-- 3. MODAL DE EDICIÓN / NUEVO PLATO -->
   <!-- ======================================================== -->
-  <div id="dishModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="bg-white w-full sm:max-w-xl sm:rounded-3xl rounded-t-3xl shadow-sheet sm:shadow-2xl border border-stone-200 overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[85vh] animate-in slide-in-from-bottom duration-200">
+  <div id="dishModal" class="modal-overlay" style="display: none;">
+    <div class="modal-sheet">
       
-      <!-- Mobile Drag Handle -->
-      <div class="sm:hidden w-12 h-1 bg-stone-300 rounded-full mx-auto my-2.5"></div>
+      <!-- Drag handle for mobile -->
+      <div style="width: 44px; height: 4px; background: #D6D3D1; border-radius: 9999px; margin: 10px auto 4px auto;"></div>
 
-      <!-- Modal Header -->
-      <div class="bg-[#171513] text-white px-5 py-4 flex items-center justify-between shrink-0">
+      <div class="modal-header">
         <div>
-          <h3 class="font-serif text-lg font-bold text-white" id="modalHeading">Editar Plato</h3>
-          <p class="text-xs text-stone-400" id="modalSubheading">Modifica los detalles, precios y traducciones</p>
+          <h3 style="font-family: var(--font-serif); font-size: 20px; font-weight: 700;" id="modalHeading">Editar Plato</h3>
+          <p style="font-size: 12px; color: #A8A29E;" id="modalSubheading">Modifica datos, precios y traducciones</p>
         </div>
-        <button id="closeModalBtn" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-stone-700 flex items-center justify-center text-stone-300 hover:text-white text-sm">✕</button>
+        <button id="closeModalBtn" style="background: rgba(255, 255, 255, 0.1); border: none; color: #FFFFFF; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 14px;">✕</button>
       </div>
 
-      <!-- Modal Body (Scrollable) -->
-      <form id="dishForm" class="p-5 overflow-y-auto space-y-4 flex-1">
+      <form id="dishForm" class="modal-body">
         <input type="hidden" id="dishId">
         <input type="hidden" id="dishOrder">
 
         <!-- Categoría y Precio -->
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-semibold text-stone-700 mb-1">Categoría</label>
-            <select id="dishCategory" required class="w-full text-xs sm:text-sm px-3 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-brand-burgundy font-medium">
-              <!-- Categorías -->
-            </select>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Categoría</label>
+            <select id="dishCategory" required class="form-input" style="cursor: pointer; font-weight: 600;"></select>
           </div>
-          <div>
-            <label class="block text-xs font-semibold text-stone-700 mb-1">Precio (€)</label>
-            <input type="number" step="0.05" id="dishPrice" required placeholder="0.00" class="w-full text-xs sm:text-sm px-3 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-brand-burgundy font-serif font-bold text-base text-[#171513]">
+          <div class="form-group">
+            <label class="form-label">Precio (€)</label>
+            <input type="number" step="0.05" id="dishPrice" required placeholder="0.00" class="form-input" style="font-family: var(--font-serif); font-size: 18px; font-weight: 700;">
           </div>
         </div>
 
-        <!-- Disponibilidad Rápida -->
-        <div class="flex items-center justify-between bg-stone-50 p-3 rounded-2xl border border-stone-200">
+        <!-- Disponibilidad -->
+        <div style="display: flex; align-items: center; justify-content: space-between; background: #F9F8F6; padding: 12px 16px; border-radius: 14px; border: 1px solid #E7E5E4;">
           <div>
-            <span class="text-xs font-bold text-stone-800 block">Disponibilidad en Sala</span>
-            <span class="text-[11px] text-stone-500">Si está agotado, se desactivará en la carta de las mesas</span>
+            <span style="font-size: 13px; font-weight: 700; color: #171513; display: block;">Disponibilidad en Sala</span>
+            <span style="font-size: 11px; color: #78716C;">Si está agotado, se desactivará en la carta</span>
           </div>
-          <select id="dishAvailable" class="text-xs font-bold px-3 py-2 rounded-xl border focus:outline-none bg-white">
+          <select id="dishAvailable" class="form-input" style="width: auto; font-weight: 700; cursor: pointer;">
             <option value="true">🟢 En Carta</option>
             <option value="false">🔴 Agotado</option>
           </select>
         </div>
 
-        <!-- Bloque de Traducción Inteligente -->
-        <div class="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-3 sm:p-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+        <!-- Banner de Traducción Inteligente -->
+        <div class="translate-banner">
           <div>
-            <div class="flex items-center gap-1.5">
-              <span class="text-base">✨</span>
-              <span class="text-xs font-bold text-amber-900">Traducción Automática Asistida</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="font-size: 16px;">✨</span>
+              <span style="font-size: 13px; font-weight: 700; color: #92400E;">Traducción Automática Inteligente</span>
             </div>
-            <p class="text-[11px] text-amber-700 mt-0.5">Rellena el plato en español y pulsa para generar inglés y alemán al instante.</p>
+            <p style="font-size: 11px; color: #B45309; margin-top: 2px;">Rellena el plato en español y pulsa para generar inglés y alemán al instante.</p>
           </div>
-          <button type="button" id="btnAutoTranslate" class="px-3.5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold shrink-0 shadow-sm flex items-center justify-center gap-1.5 active:scale-95 transition-all">
-            <span id="transBtnSpinner" class="hidden animate-spin">⏳</span>
+          <button type="button" id="btnAutoTranslate" class="btn-translate">
+            <span id="transBtnSpinner" style="display: none;">⏳</span>
             <span id="transBtnText">✨ Auto-traducir</span>
           </button>
         </div>
 
-        <!-- Pestañas de Idioma (ES, EN, DE) -->
+        <!-- Pestañas de Idioma -->
         <div>
-          <div class="flex items-center border-b border-stone-200 text-xs font-semibold gap-1">
-            <button type="button" class="lang-tab px-3 py-2 border-b-2 border-brand-burgundy text-brand-burgundy font-bold flex items-center gap-1" data-lang="es">
-              <span>🇪🇸</span> Español <span class="text-[10px] bg-stone-100 px-1 rounded text-stone-500 font-normal">Base</span>
+          <div class="modal-lang-tabs">
+            <button type="button" class="modal-lang-tab active" data-lang="es">
+              <span>🇪🇸</span> Español <span style="font-size: 10px; background: #F5F4F0; padding: 2px 6px; border-radius: 4px; color: #78716C;">Base</span>
             </button>
-            <button type="button" class="lang-tab px-3 py-2 border-b-2 border-transparent text-stone-500 hover:text-stone-800 flex items-center gap-1" data-lang="en">
+            <button type="button" class="modal-lang-tab" data-lang="en">
               <span>🇬🇧</span> Inglés
             </button>
-            <button type="button" class="lang-tab px-3 py-2 border-b-2 border-transparent text-stone-500 hover:text-stone-800 flex items-center gap-1" data-lang="de">
+            <button type="button" class="modal-lang-tab" data-lang="de">
               <span>🇩🇪</span> Alemán
             </button>
           </div>
 
           <!-- Campos ES -->
-          <div id="tabContent_es" class="space-y-3 pt-3">
-            <div>
-              <label class="block text-xs font-semibold text-stone-700 mb-1">Nombre del Plato (Español)</label>
-              <input type="text" id="title_es" required placeholder="Ej: Bruschetta de Pan Tostado" class="w-full text-xs sm:text-sm px-3.5 py-2.5 border border-stone-200 rounded-xl focus:outline-none focus:border-brand-burgundy font-medium">
+          <div id="tabContent_es" style="display: flex; flex-direction: column; gap: 12px; padding-top: 12px;">
+            <div class="form-group">
+              <label class="form-label">Nombre del Plato (Español)</label>
+              <input type="text" id="title_es" required placeholder="Ej: Bruschetta de Pan Tostado" class="form-input">
             </div>
-            <div>
-              <label class="block text-xs font-semibold text-stone-700 mb-1">Descripción / Ingredientes (Español)</label>
-              <textarea id="desc_es" rows="2" placeholder="Ej: Con tomate fresco picado, albahaca y aceite de oliva virgen" class="w-full text-xs sm:text-sm px-3.5 py-2.5 border border-stone-200 rounded-xl focus:outline-none focus:border-brand-burgundy"></textarea>
+            <div class="form-group">
+              <label class="form-label">Descripción / Ingredientes (Español)</label>
+              <textarea id="desc_es" rows="2" placeholder="Ej: Con tomate fresco picado, albahaca y aceite de oliva virgen" class="form-input"></textarea>
             </div>
           </div>
 
           <!-- Campos EN -->
-          <div id="tabContent_en" class="space-y-3 pt-3 hidden">
-            <div>
-              <label class="block text-xs font-semibold text-stone-700 mb-1">Dish Name (English)</label>
-              <input type="text" id="title_en" placeholder="Leave blank to use Spanish as fallback" class="w-full text-xs sm:text-sm px-3.5 py-2.5 border border-stone-200 rounded-xl focus:outline-none focus:border-brand-burgundy font-medium">
+          <div id="tabContent_en" style="display: none; flex-direction: column; gap: 12px; padding-top: 12px;">
+            <div class="form-group">
+              <label class="form-label">Dish Name (English)</label>
+              <input type="text" id="title_en" placeholder="Leave blank to use Spanish as fallback" class="form-input">
             </div>
-            <div>
-              <label class="block text-xs font-semibold text-stone-700 mb-1">Description (English)</label>
-              <textarea id="desc_en" rows="2" placeholder="Ingredients description in English" class="w-full text-xs sm:text-sm px-3.5 py-2.5 border border-stone-200 rounded-xl focus:outline-none focus:border-brand-burgundy"></textarea>
+            <div class="form-group">
+              <label class="form-label">Description (English)</label>
+              <textarea id="desc_en" rows="2" placeholder="Ingredients description in English" class="form-input"></textarea>
             </div>
           </div>
 
           <!-- Campos DE -->
-          <div id="tabContent_de" class="space-y-3 pt-3 hidden">
-            <div>
-              <label class="block text-xs font-semibold text-stone-700 mb-1">Gerichtsname (Deutsch)</label>
-              <input type="text" id="title_de" placeholder="Leer lassen für Spanisch als Fallback" class="w-full text-xs sm:text-sm px-3.5 py-2.5 border border-stone-200 rounded-xl focus:outline-none focus:border-brand-burgundy font-medium">
+          <div id="tabContent_de" style="display: none; flex-direction: column; gap: 12px; padding-top: 12px;">
+            <div class="form-group">
+              <label class="form-label">Gerichtsname (Deutsch)</label>
+              <input type="text" id="title_de" placeholder="Leer lassen für Spanisch als Fallback" class="form-input">
             </div>
-            <div>
-              <label class="block text-xs font-semibold text-stone-700 mb-1">Beschreibung (Deutsch)</label>
-              <textarea id="desc_de" rows="2" placeholder="Zutaten und Beschreibung auf Deutsch" class="w-full text-xs sm:text-sm px-3.5 py-2.5 border border-stone-200 rounded-xl focus:outline-none focus:border-brand-burgundy"></textarea>
+            <div class="form-group">
+              <label class="form-label">Beschreibung (Deutsch)</label>
+              <textarea id="desc_de" rows="2" placeholder="Zutaten und Beschreibung auf Deutsch" class="form-input"></textarea>
             </div>
           </div>
 
         </div>
 
-        <!-- Botón Eliminar Plato (si existe) -->
-        <div id="deleteContainer" class="pt-2 hidden border-t border-stone-100">
-          <button type="button" id="btnDeleteDish" class="text-xs text-rose-600 hover:text-rose-700 flex items-center gap-1.5 font-semibold py-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        <!-- Botón Eliminar Plato -->
+        <div id="deleteContainer" style="display: none; border-top: 1px solid #F5F4F0; padding-top: 10px;">
+          <button type="button" id="btnDeleteDish" style="background: none; border: none; color: #DC2626; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
             <span>Eliminar permanentemente este plato</span>
           </button>
         </div>
 
-        <!-- Botones de Acción del Modal -->
-        <div class="pt-3 border-t border-stone-100 flex items-center justify-end gap-2.5">
-          <button type="button" id="btnCancelModal" class="px-4 py-2.5 text-xs font-semibold text-stone-600 hover:bg-stone-100 rounded-xl transition-colors">
+        <!-- Footer del Modal -->
+        <div class="modal-footer">
+          <button type="button" id="btnCancelModal" style="background: none; border: none; color: #78716C; font-size: 13px; font-weight: 600; cursor: pointer; padding: 10px 16px;">
             Cancelar
           </button>
-          <button type="submit" id="btnSaveModal" class="px-5 py-2.5 text-xs font-bold bg-brand-burgundy text-white hover:bg-brand-burgundyHover rounded-xl shadow-md transition-all flex items-center gap-1.5 active:scale-95">
-            <span id="saveSpinner" class="hidden animate-spin">⏳</span>
+          <button type="submit" id="btnSaveModal" class="btn-submit" style="width: auto; padding: 12px 24px; font-size: 13px;">
+            <span id="saveSpinner" style="display: none;">⏳</span>
             <span id="saveText">Guardar Cambios</span>
           </button>
         </div>
@@ -463,24 +1130,20 @@
     </div>
   </div>
 
-  <!-- SCRIPT DE LA APLICACIÓN -->
-  <script type="module">
+  <!-- SCRIPT DE CONTROL -->
+  <script is:inline type="module">
     import { createClient, createAdminClient } from 'https://esm.sh/@insforge/sdk@latest';
 
-    // Configuración de conexión privada
     const INSFORGE_URL = 'https://pz3qiueg.eu-central.insforge.app';
     const ANON_KEY = 'anon_64c904f7d36d64a81882dd8b41b193c03240d144f6de6a656b1d85ba0683ccec';
     const API_KEY = 'ik_7334a7a922b9b5b02262f3bce4c4cad8';
 
-    // Credenciales autorizadas
     const VALID_USER = 'buonappetitoandratx@gmail.com';
     const VALID_PASS = 'admin';
 
-    // Clientes de backend
     const client = createClient({ baseUrl: INSFORGE_URL, anonKey: ANON_KEY });
     const adminClient = createAdminClient({ baseUrl: INSFORGE_URL, apiKey: API_KEY });
 
-    // Estado global de la aplicación
     let state = {
       isAuthenticated: false,
       categories: [],
@@ -554,6 +1217,11 @@
     const saveSpinner = document.getElementById('saveSpinner');
     const saveText = document.getElementById('saveText');
 
+    // Responsive setup: Show desktop button on wide screens
+    if (window.innerWidth >= 640 && btnNewDishTop) {
+      btnNewDishTop.style.display = 'flex';
+    }
+
     // GESTIÓN DE AUTENTICACIÓN
     function checkAuth() {
       const savedAuth = localStorage.getItem('buon_appetito_auth');
@@ -566,13 +1234,13 @@
     }
 
     function showLogin() {
-      loginScreen.classList.remove('hidden');
-      appShell.classList.add('hidden');
+      loginScreen.style.display = 'flex';
+      appShell.style.display = 'none';
     }
 
     function showApp() {
-      loginScreen.classList.add('hidden');
-      appShell.classList.remove('hidden');
+      loginScreen.style.display = 'none';
+      appShell.style.display = 'flex';
       loadData();
     }
 
@@ -588,12 +1256,12 @@
       const pass = loginPassword.value.trim();
 
       if (email === VALID_USER && pass === VALID_PASS) {
-        loginError.classList.add('hidden');
+        loginError.style.display = 'none';
         localStorage.setItem('buon_appetito_auth', 'true');
         state.isAuthenticated = true;
         showApp();
       } else {
-        loginError.classList.remove('hidden');
+        loginError.style.display = 'block';
       }
     });
 
@@ -607,14 +1275,14 @@
 
     // TOAST
     window.hideToast = function() {
-      toast.classList.add('opacity-0', 'translate-y-24', 'pointer-events-none');
+      toast.classList.remove('show');
     };
 
     function showToast(message, isError = false) {
       toastMsg.textContent = message;
       toastIcon.textContent = isError ? '✕' : '✓';
-      toastIcon.className = isError ? 'text-rose-400 font-bold' : 'text-emerald-400 font-bold';
-      toast.classList.remove('opacity-0', 'translate-y-24', 'pointer-events-none');
+      toastIcon.style.color = isError ? '#F87171' : '#34D399';
+      toast.classList.add('show');
       setTimeout(hideToast, 3500);
     }
 
@@ -676,7 +1344,7 @@
 
     function renderCategoriesBar() {
       let html = `
-        <button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${state.selectedCategory === 'all' ? 'bg-brand-burgundy text-white shadow-sm' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}" data-cat="all">
+        <button class="cat-pill ${state.selectedCategory === 'all' ? 'active' : ''}" data-cat="all">
           Todos (${state.items.length})
         </button>
       `;
@@ -685,7 +1353,7 @@
         const count = state.items.filter(i => i.category_id === cat.id).length;
         const active = state.selectedCategory === cat.id;
         html += `
-          <button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${active ? 'bg-brand-burgundy text-white shadow-sm' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}" data-cat="${cat.id}">
+          <button class="cat-pill ${active ? 'active' : ''}" data-cat="${cat.id}">
             ${cat.name_es} (${count})
           </button>
         `;
@@ -729,7 +1397,7 @@
       currentCategoryTitle.textContent = currentCatObj ? currentCatObj.name_es : 'Todos los Platos';
 
       if (filtered.length === 0) {
-        itemsList.innerHTML = `<div class="p-10 text-center text-stone-400 text-xs sm:text-sm">No se encontraron platos que coincidan con los filtros.</div>`;
+        itemsList.innerHTML = `<div style="padding: 40px; text-align: center; color: #78716C; font-size: 13px;">No se encontraron platos que coincidan con los filtros.</div>`;
         return;
       }
 
@@ -739,35 +1407,33 @@
         const categoryName = categoryObj ? categoryObj.name_es : item.category_id;
 
         return `
-          <div class="p-4 sm:px-6 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 hover:bg-stone-50/80 transition-colors group ${!isAvail ? 'opacity-60 bg-stone-50/50' : ''}" data-id="${item.id}">
+          <div class="dish-row ${!isAvail ? 'unavailable' : ''}" data-id="${item.id}">
             
-            <div class="flex-1 min-w-0 cursor-pointer dish-row-click" data-id="${item.id}">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-[11px] font-mono text-stone-400 uppercase font-semibold">${item.item_code || 'PLATO'}</span>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${isAvail ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-700 border border-rose-200'}">
+            <div class="dish-info dish-row-click" data-id="${item.id}">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 11px; font-family: monospace; color: #A8A29E; font-weight: 700; text-transform: uppercase;">${item.item_code || 'PLATO'}</span>
+                <span style="font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; ${isAvail ? 'background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0;' : 'background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA;'}">
                   ${isAvail ? '🟢 EN CARTA' : '🔴 AGOTADO'}
                 </span>
-                <span class="text-[11px] text-stone-400">· ${categoryName}</span>
+                <span style="font-size: 11px; color: #A8A29E;">· ${categoryName}</span>
               </div>
-              <h4 class="font-serif text-lg sm:text-xl font-bold text-[#171513] mt-1">${item.title_es}</h4>
-              <p class="text-xs text-stone-600 line-clamp-2 mt-0.5">${item.description_es || 'Sin descripción'}</p>
+              <h4 class="dish-title">${item.title_es}</h4>
+              <p class="dish-desc">${item.description_es || 'Sin descripción'}</p>
             </div>
 
-            <div class="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t border-stone-100 sm:border-0 shrink-0">
+            <div class="dish-actions">
               
-              <div class="text-left sm:text-right">
-                <button class="btn-quick-price px-3.5 py-1.5 bg-stone-100 hover:bg-stone-200 rounded-xl font-serif text-lg font-bold text-[#171513] hover:text-brand-burgundy transition-all flex items-center gap-1 active:scale-95" data-id="${item.id}" data-price="${item.price}" title="Toca para cambiar precio">
-                  <span>${Number(item.price).toFixed(2)} €</span>
-                  <svg class="w-3 h-3 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-                </button>
-              </div>
+              <button class="btn-price btn-quick-price" data-id="${item.id}" data-price="${item.price}" title="Toca para cambiar precio">
+                <span>${Number(item.price).toFixed(2)} €</span>
+                <svg width="12" height="12" fill="none" stroke="#A8A29E" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+              </button>
 
-              <button class="btn-toggle-avail min-h-[42px] px-4 py-2 rounded-xl text-xs font-bold border transition-all active:scale-95 ${isAvail ? 'bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-rose-50 hover:text-rose-700 hover:border-rose-300' : 'bg-rose-50 text-rose-800 border-rose-300 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300'}" data-id="${item.id}" data-avail="${isAvail}">
+              <button class="btn-avail ${isAvail ? 'available' : 'unavailable'} btn-toggle-avail" data-id="${item.id}" data-avail="${isAvail}">
                 ${isAvail ? '🟢 Disponible' : '🔴 Agotado'}
               </button>
 
-              <button class="btn-edit-details p-2.5 text-stone-400 hover:text-brand-burgundy hover:bg-stone-100 rounded-xl transition-colors" data-id="${item.id}" title="Editar traducciones y detalles">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              <button class="btn-edit-details" data-id="${item.id}" title="Editar detalles" style="background: none; border: none; padding: 8px; color: #A8A29E; cursor: pointer; border-radius: 8px;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
               </button>
 
             </div>
@@ -880,10 +1546,9 @@
       title_de.value = item.title_de || '';
       desc_de.value = item.description_de || '';
 
-      deleteContainer.classList.remove('hidden');
+      deleteContainer.style.display = 'block';
       switchModalLangTab('es');
-      dishModal.classList.remove('hidden');
-      dishModal.classList.add('flex');
+      dishModal.style.display = 'flex';
     }
 
     function openNewDishModal() {
@@ -903,34 +1568,28 @@
       title_de.value = '';
       desc_de.value = '';
 
-      deleteContainer.classList.add('hidden');
+      deleteContainer.style.display = 'none';
       switchModalLangTab('es');
-      dishModal.classList.remove('hidden');
-      dishModal.classList.add('flex');
+      dishModal.style.display = 'flex';
       title_es.focus();
     }
 
     function closeDishModal() {
-      dishModal.classList.add('hidden');
-      dishModal.classList.remove('flex');
+      dishModal.style.display = 'none';
     }
 
     function switchModalLangTab(lang) {
       state.activeModalLangTab = lang;
-      document.querySelectorAll('.lang-tab').forEach(t => {
-        if (t.dataset.lang === lang) {
-          t.className = 'lang-tab px-3 py-2 border-b-2 border-brand-burgundy text-brand-burgundy font-bold flex items-center gap-1';
-        } else {
-          t.className = 'lang-tab px-3 py-2 border-b-2 border-transparent text-stone-500 hover:text-stone-800 flex items-center gap-1';
-        }
+      document.querySelectorAll('.modal-lang-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.lang === lang);
       });
 
-      document.getElementById('tabContent_es').classList.toggle('hidden', lang !== 'es');
-      document.getElementById('tabContent_en').classList.toggle('hidden', lang !== 'en');
-      document.getElementById('tabContent_de').classList.toggle('hidden', lang !== 'de');
+      document.getElementById('tabContent_es').style.display = lang === 'es' ? 'flex' : 'none';
+      document.getElementById('tabContent_en').style.display = lang === 'en' ? 'flex' : 'none';
+      document.getElementById('tabContent_de').style.display = lang === 'de' ? 'flex' : 'none';
     }
 
-    document.querySelectorAll('.lang-tab').forEach(t => {
+    document.querySelectorAll('.modal-lang-tab').forEach(t => {
       t.addEventListener('click', () => switchModalLangTab(t.dataset.lang));
     });
 
@@ -963,7 +1622,7 @@
         return;
       }
 
-      transBtnSpinner.classList.remove('hidden');
+      transBtnSpinner.style.display = 'inline';
       transBtnText.textContent = 'Traduciendo...';
       btnAutoTranslate.disabled = true;
 
@@ -985,7 +1644,7 @@
       } catch (err) {
         showToast('Error en la traducción: ' + err.message, true);
       } finally {
-        transBtnSpinner.classList.add('hidden');
+        transBtnSpinner.style.display = 'none';
         transBtnText.textContent = '✨ Auto-traducir';
         btnAutoTranslate.disabled = false;
       }
@@ -1007,7 +1666,7 @@
       const t_de = title_de.value.trim() || t_es;
       const d_de = desc_de.value.trim() || d_es;
 
-      saveSpinner.classList.remove('hidden');
+      saveSpinner.style.display = 'inline';
       saveText.textContent = 'Guardando...';
 
       try {
@@ -1071,7 +1730,7 @@
         console.error('Error guardando plato:', err);
         showToast('Error al guardar: ' + err.message, true);
       } finally {
-        saveSpinner.classList.add('hidden');
+        saveSpinner.style.display = 'none';
         saveText.textContent = 'Guardar Cambios';
       }
     });
@@ -1115,7 +1774,7 @@
       previewCategories.innerHTML = state.categories.map((c, i) => {
         const title = lang === 'en' ? (c.name_en || c.name_es) : (lang === 'de' ? (c.name_de || c.name_es) : c.name_es);
         return `
-          <button class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white border border-stone-200 text-stone-700 hover:border-brand-burgundy transition-all">
+          <button class="cat-pill" style="background: #FFFFFF; border: 1px solid #E7E5E4;">
             ${title}
           </button>
         `;
@@ -1128,25 +1787,25 @@
         const isAvail = item.is_available;
 
         return `
-          <div class="bg-white p-4 sm:p-5 rounded-2xl border border-brand-border shadow-card flex flex-col justify-between transition-all ${!isAvail ? 'opacity-55 grayscale bg-stone-50/70' : 'hover:border-brand-burgundy/30'}">
+          <div style="background: #FFFFFF; padding: 16px; border-radius: 20px; border: 1px solid var(--color-border); box-shadow: 0 2px 8px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; ${!isAvail ? 'opacity: 0.5; filter: grayscale(1);' : ''}">
             <div>
-              <div class="flex items-start justify-between gap-3">
-                <h4 class="font-serif text-lg font-bold text-[#171513] leading-snug">${title}</h4>
-                <span class="font-serif text-base font-bold text-brand-burgundy shrink-0">${Number(item.price).toFixed(2)} €</span>
+              <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
+                <h4 style="font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: #171513;">${title}</h4>
+                <span style="font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--color-primary);">${Number(item.price).toFixed(2)} €</span>
               </div>
-              <p class="text-xs text-stone-600 mt-1.5 leading-relaxed">${desc || ''}</p>
+              <p style="font-size: 12px; color: #57534E; margin-top: 4px;">${desc || ''}</p>
             </div>
-            <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
-              <span class="text-[10px] font-mono text-stone-400 font-semibold">${item.item_code || ''}</span>
-              ${!isAvail ? '<span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">No disponible hoy</span>' : '<span class="text-[10px] text-emerald-700 font-semibold">Disponible</span>'}
+            <div style="margin-top: 12px; padding-top: 8px; border-top: 1px solid #F5F4F0; display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 10px; font-family: monospace; color: #A8A29E; font-weight: 700;">${item.item_code || ''}</span>
+              ${!isAvail ? '<span style="font-size: 10px; font-weight: 700; color: #DC2626; background: #FEF2F2; padding: 2px 8px; border-radius: 6px;">No disponible hoy</span>' : '<span style="font-size: 10px; color: #059669; font-weight: 600;">Disponible</span>'}
             </div>
           </div>
         `;
       }).join('');
     }
 
-    btnNewDishTop.addEventListener('click', openNewDishModal);
-    fabNewDish.addEventListener('click', openNewDishModal);
+    if (btnNewDishTop) btnNewDishTop.addEventListener('click', openNewDishModal);
+    if (fabNewDish) fabNewDish.addEventListener('click', openNewDishModal);
     closeModalBtn.addEventListener('click', closeDishModal);
     btnCancelModal.addEventListener('click', closeDishModal);
     dishModal.addEventListener('click', (e) => {
@@ -1156,38 +1815,40 @@
     document.querySelectorAll('.preview-lang').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.preview-lang').forEach(b => {
-          b.className = 'px-2.5 py-1 rounded-lg text-stone-400 hover:text-white preview-lang';
+          b.style.background = 'transparent';
+          b.style.color = '#A8A29E';
         });
-        btn.className = 'px-2.5 py-1 rounded-lg bg-brand-burgundy text-white font-bold preview-lang';
+        btn.style.background = 'var(--color-primary)';
+        btn.style.color = '#FFFFFF';
         state.previewLang = btn.dataset.lang;
         renderPreview();
       });
     });
 
     tabAdminBtn.addEventListener('click', () => {
-      viewAdmin.classList.remove('hidden');
-      viewPreview.classList.add('hidden');
-      tabAdminBtn.className = 'px-3 py-1.5 rounded-lg font-semibold bg-brand-burgundy text-white shadow-sm transition-all flex items-center gap-1.5';
-      tabPreviewBtn.className = 'px-3 py-1.5 rounded-lg text-stone-400 hover:text-white transition-all flex items-center gap-1.5';
+      viewAdmin.style.display = 'flex';
+      viewPreview.style.display = 'none';
+      tabAdminBtn.classList.add('active');
+      tabPreviewBtn.classList.remove('active');
     });
 
     tabPreviewBtn.addEventListener('click', () => {
-      viewAdmin.classList.add('hidden');
-      viewPreview.classList.remove('hidden');
-      tabPreviewBtn.className = 'px-3 py-1.5 rounded-lg font-semibold bg-brand-burgundy text-white shadow-sm transition-all flex items-center gap-1.5';
-      tabAdminBtn.className = 'px-3 py-1.5 rounded-lg text-stone-400 hover:text-white transition-all flex items-center gap-1.5';
+      viewAdmin.style.display = 'none';
+      viewPreview.style.display = 'flex';
+      tabPreviewBtn.classList.add('active');
+      tabAdminBtn.classList.remove('active');
     });
 
     searchInput.addEventListener('input', (e) => {
       state.searchQuery = e.target.value.trim();
-      clearSearchBtn.classList.toggle('hidden', state.searchQuery.length === 0);
+      clearSearchBtn.style.display = state.searchQuery.length > 0 ? 'block' : 'none';
       renderItems();
     });
 
     clearSearchBtn.addEventListener('click', () => {
       searchInput.value = '';
       state.searchQuery = '';
-      clearSearchBtn.classList.add('hidden');
+      clearSearchBtn.style.display = 'none';
       renderItems();
     });
 
