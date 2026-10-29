@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
-  <style>
+  <style is:global>
     :root {
       --bg: #F7F5F0;
       --surface: #FFFFFF;
@@ -390,109 +390,76 @@
     }
 
     /* ========================================================
-       4. LISTA DE PLATOS (DISEÑO EDITORIAL MINIMALISTA)
+       4. LISTA DE PLATOS (EDITORIAL, AGRUPADA POR SECCIÓN)
        ======================================================== */
-    .menu-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-    }
-
+    .menu-card { background: transparent; border: none; box-shadow: none; overflow: visible; }
     .menu-header {
-      padding: 12px 18px;
-      background: #FAF9F6;
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 4px 4px 10px;
     }
-
     .menu-header-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #44403C;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px; font-weight: 700; color: var(--dark);
+      display: flex; align-items: center; gap: 8px; letter-spacing: -0.01em;
     }
-
+    #itemsCountBadge {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px; font-weight: 700; color: var(--burgundy);
+      background: rgba(122, 28, 40, 0.08); padding: 3px 9px; border-radius: 999px;
+    }
+    .menu-section { margin-bottom: 18px; }
+    .section-head {
+      position: sticky; top: 52px; z-index: 5;
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 4px 8px; background: var(--bg);
+    }
+    .section-head .sec-name {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--burgundy);
+    }
+    .section-head .sec-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); opacity: .6; }
+    .section-head .sec-count { font-size: 11px; color: var(--text-light); font-weight: 600; }
+    .section-list {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; overflow: hidden;
+      box-shadow: 0 1px 2px rgba(25,22,20,.03), 0 8px 24px -12px rgba(25,22,20,.08);
+    }
     .dish-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 18px;
-      background: #FFFFFF;
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px; min-height: 64px;
       border-bottom: 1px solid var(--border-subtle);
-      cursor: pointer;
-      transition: background-color 0.15s ease;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      cursor: pointer; -webkit-tap-highlight-color: transparent;
+      transition: background-color .15s ease;
+      animation: rowIn .35s ease both;
     }
-
-    .dish-row:last-child {
-      border-bottom: none;
-    }
-
-    .dish-row:hover {
-      background-color: #FAF8F5;
-    }
-
-    .dish-row:active {
-      background-color: #F3EFE9;
-    }
-
-    .dish-main {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
+    .dish-row:last-child { border-bottom: none; }
+    .dish-row:hover { background: #FBF8F3; }
+    .dish-row:active { background: #F4EEE5; }
+    @keyframes rowIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+    .dish-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
     .dish-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--dark);
-      line-height: 1.3;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 19px; font-weight: 700; line-height: 1.15; color: var(--dark);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
-
     .dish-sub {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.35;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 12.5px; color: var(--text-muted); line-height: 1.35;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
-
-    .dish-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
+    .dish-sub.empty { color: var(--text-light); font-style: italic; }
+    .dish-meta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     .dish-price {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--burgundy);
-      letter-spacing: -0.01em;
-      white-space: nowrap;
+      font-size: 14px; font-weight: 700; color: var(--burgundy);
+      background: rgba(122, 28, 40, 0.06); border: 1px solid rgba(122, 28, 40, 0.12);
+      padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
-
-    .dish-arrow {
-      display: flex;
-      align-items: center;
-      color: var(--text-light);
-      transition: transform 0.15s ease, color 0.15s ease;
-    }
-
-    .dish-row:hover .dish-arrow {
-      color: var(--burgundy);
-      transform: translateX(2px);
+    .dish-arrow { color: var(--text-light); display: flex; transition: transform .15s ease, color .15s ease; }
+    .dish-row:hover .dish-arrow { color: var(--burgundy); transform: translateX(2px); }
+    @media (min-width: 760px) {
+      .dish-row { padding: 16px 22px; }
+      .dish-name { font-size: 20px; }
+      .section-head { top: 56px; }
     }
 
     /* ========================================================
@@ -672,6 +639,25 @@
       align-items: center;
       gap: 8px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    /* ===== Ajustes móvil ===== */
+    html, body { max-width: 100%; overflow-x: hidden; }
+    .admin-container, .toolbar-card, .menu-card, #itemsList { min-width: 0; max-width: 100%; }
+    .categories-strip { scrollbar-width: none; }
+    .categories-strip::-webkit-scrollbar { display: none; }
+    @media (max-width: 600px) {
+      .admin-container { padding: 12px; }
+      .toolbar-row { flex-wrap: nowrap; }
+      .search-box { min-width: 0; }
+      .btn-add-dish { padding: 9px 12px; }
+      .btn-add-dish span { display: none; }
+      .btn-sync { padding: 6px 10px; font-size: 11px; }
+      .btn-logout span { display: none; }
+      .dish-row { padding: 13px 14px; gap: 10px; }
+      .dish-name { font-size: 18px; }
+      .dish-price { font-size: 13px; padding: 4px 9px; }
+      .dish-arrow { display: none; }
+      .categories-strip { margin: 0 -14px; padding: 2px 14px; }
     }
   </style>
 </head>
@@ -1162,34 +1148,44 @@
     function renderItems() {
       const filtered = getFilteredItems();
       itemsCountBadge.textContent = filtered.length;
-      
       const currentCatObj = state.categories.find(c => c.id === state.selectedCategory);
-      currentCategoryTitle.textContent = currentCatObj ? currentCatObj.name_es : 'Todos los Platos';
+      currentCategoryTitle.textContent = currentCatObj ? currentCatObj.name_es : 'La Carta';
 
       if (filtered.length === 0) {
-        itemsList.innerHTML = `<div style="padding: 36px; text-align: center; color: var(--text-muted); font-size: 13px;">No hay platos en esta sección.</div>`;
+        itemsList.innerHTML = `<div class="section-list" style="padding: 40px 20px; text-align: center; color: var(--text-muted); font-size: 13px;">No se ha encontrado ningún plato.</div>`;
         return;
       }
 
-      itemsList.innerHTML = filtered.map(item => `
-        <div class="dish-row" data-id="${item.id}" title="Toca para modificar este plato">
+      const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+      const row = (item, i) => `
+        <div class="dish-row" data-id="${esc(item.id)}" style="animation-delay:${Math.min(i, 12) * 18}ms">
           <div class="dish-main">
-            <span class="dish-name">${item.title_es}</span>
-            ${item.description_es ? `<span class="dish-sub">${item.description_es}</span>` : ''}
+            <span class="dish-name">${esc(item.title_es)}</span>
+            ${item.description_es ? `<span class="dish-sub">${esc(item.description_es)}</span>` : `<span class="dish-sub empty">Sin descripción</span>`}
           </div>
           <div class="dish-meta">
-            <span class="dish-price">${Number(item.price).toFixed(2)} €</span>
-            <span class="dish-arrow">
-              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            </span>
+            <span class="dish-price">${Number(item.price).toFixed(2).replace('.', ',')} €</span>
+            <span class="dish-arrow"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
           </div>
-        </div>
-      `).join('');
+        </div>`;
 
-      itemsList.querySelectorAll('.dish-row').forEach(row => {
-        row.addEventListener('click', () => {
-          openEditModal(row.dataset.id);
-        });
+      const cats = state.selectedCategory === 'all' ? state.categories : state.categories.filter(c => c.id === state.selectedCategory);
+      itemsList.innerHTML = cats.map(cat => {
+        const list = filtered.filter(it => it.category_id === cat.id);
+        if (!list.length) return '';
+        return `
+          <section class="menu-section">
+            <div class="section-head">
+              <span class="sec-name">${esc(cat.name_es)}</span>
+              <span class="sec-line"></span>
+              <span class="sec-count">${list.length}</span>
+            </div>
+            <div class="section-list">${list.map(row).join('')}</div>
+          </section>`;
+      }).join('');
+
+      itemsList.querySelectorAll('.dish-row').forEach(r => {
+        r.addEventListener('click', () => openEditModal(r.dataset.id));
       });
     }
 
