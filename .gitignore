@@ -27,3 +27,5 @@ pnpm-debug.log*
 public/assets/**/*_original*
 public/assets/*_original/
 
+testsprite_tests/tmp/
+testsprite_tests/tmp/config.json

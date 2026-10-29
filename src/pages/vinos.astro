@@ -151,12 +151,11 @@ const description = "Selección de vinos, coctelería italiana y bebidas de Buon
           Disponemos de coctelería tradicional italiana, refrescos, cervezas y combinados. Pregunte a nuestro equipo por recomendaciones de maridaje.
         </p>
 
-        <!-- Dirección física del Restaurante -->
-        <div class="footer-address">
-          <svg class="location-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-          <span>Av. de Mateo Bosch, 24 · Port d'Andratx, Mallorca</span>
+        <!-- Enlace Elegante Reservar Mesa (sin botón ni píldora, texto con flecha sutil) -->
+        <div class="footer-reserve-wrapper">
+          <a href="/reservar" class="footer-reserve-link" id="footer-reservar-link" title="Reservar mesa en Buon Appetito">
+            Reservar mesa
+          </a>
         </div>
 
         <!-- Redes Sociales Oficiales: Instagram & TripAdvisor -->
@@ -216,6 +215,7 @@ const description = "Selección de vinos, coctelería italiana y bebidas de Buon
         heroTitle: "Vinos & Bodega",
         heroSubtitle: "SELECCIÓN DE VINOS & BEBIDAS · PORT D'ANDRATX",
         btnBack: "Volver",
+        reserveTable: "Reservar mesa",
         taxIncluded: "Precios con IVA incluido (10%).",
         allergensNote: "Disponemos de coctelería tradicional italiana, refrescos, cervezas y combinados. Pregunte a nuestro equipo por recomendaciones de maridaje.",
         legalAviso: "Aviso Legal",
@@ -226,6 +226,7 @@ const description = "Selección de vinos, coctelería italiana y bebidas de Buon
         heroTitle: "Wines & Cellar",
         heroSubtitle: "WINE & BEVERAGE SELECTION · PORT D'ANDRATX",
         btnBack: "Back",
+        reserveTable: "Book a table",
         taxIncluded: "All prices include 10% VAT.",
         allergensNote: "Traditional Italian cocktails, soft drinks, beers and spirits available. Ask our team for pairing recommendations.",
         legalAviso: "Legal Notice",
@@ -236,6 +237,7 @@ const description = "Selección de vinos, coctelería italiana y bebidas de Buon
         heroTitle: "Weine & Bodega",
         heroSubtitle: "WEIN- & GETRÄNKEAUSWAHL · PORT D'ANDRATX",
         btnBack: "Zurück",
+        reserveTable: "Tisch reservieren",
         taxIncluded: "Alle Preise inklusive 10% MwSt.",
         allergensNote: "Traditionelle italienische Cocktails, alkoholfreie Getränke, Biere und Spirituosen verfügbar. Fragen Sie unser Team nach Empfehlungen.",
         legalAviso: "Impressum",
@@ -362,6 +364,8 @@ const description = "Selección de vinos, coctelería italiana y bebidas de Buon
       if (legalAvisoEl) legalAvisoEl.textContent = t.legalAviso;
       if (legalPrivacidadEl) legalPrivacidadEl.textContent = t.legalPrivacidad;
       if (legalCookiesEl) legalCookiesEl.textContent = t.legalCookies;
+      const linkReservarEl = document.getElementById('footer-reservar-link');
+      if (linkReservarEl) linkReservarEl.textContent = t.reserveTable;
 
       const nav = document.getElementById('category-nav');
       if (nav) {
@@ -852,14 +856,31 @@ body.menu-body {
   margin: 0 auto 8px;
 }
 
-.footer-address {
-  display: flex;
+/* Enlace Elegante Reservar Mesa */
+.footer-reserve-wrapper {
+  margin: 22px 0 20px;
+}
+
+.footer-reserve-link {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  font-size: 0.88rem;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
   font-weight: 600;
-  margin: 20px 0 16px;
+  color: var(--color-accent);
+  text-decoration: none;
+  padding: 8px 18px;
+  border-bottom: 1px solid rgba(158, 66, 33, 0.35);
+  transition: all 0.25s ease;
+}
+
+.footer-reserve-link:hover {
+  color: var(--color-accent-hover);
+  border-bottom-color: var(--color-accent);
+  transform: translateY(-1px);
 }
 
 .footer-social-row {
