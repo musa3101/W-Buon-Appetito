@@ -12,15 +12,19 @@
 - [x] Backend cloud en InsForge configurado permanentemente sin apagado por inactividad.
 - [x] Migración SQL de tablas de carta, categorías y vinos con políticas RLS de seguridad.
 - [x] Carga de 8 categorías y 105 platos en 3 idiomas (ES, EN, DE).
-- [x] Panel de administración minimalista `/admin` integrado con login, Bento metrics y diseño full mobile.
+- [x] Rediseño ultra-minimalista del panel `/admin` (estilo Apple / Shopify, sin sobrecarga ni tecnicismos).
+- [x] Estados directos simplificados: únicamente «Disponible» y «No disponible».
+- [x] Botón visual de sincronización instantánea (`🔄 Sincronizado ✓`).
+- [x] Corrección integral del login para evitar desbordes visuales.
 - [x] Asistente de traducción automática por IA con edición manual libre multiidioma.
 - [x] Sincronización en tiempo real de `/carta` y `/vinos` con la base de datos y fallback offline.
+- [x] Sincronización completa entre `X/INSFORGE/index.html` y `web/src/pages/admin.astro`.
 
 ---
 
 ## Tareas en progreso
-- [ ] Pruebas en móvil del panel de administración en `/admin` con las credenciales asignadas.
-- [ ] Validación de la experiencia de añadir un plato nuevo y modificar precios desde el smartphone.
+- [ ] Comprobación por parte de Musa en su teléfono móvil con las credenciales (`buonappetitoandratx@gmail.com` / `admin`).
+- [ ] Prueba de añadir o modificar un plato desde el móvil y verificar su reflejo instantáneo en la carta web.
 
 ---
 
