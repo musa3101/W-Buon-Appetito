@@ -21,7 +21,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     hero_btn_menu: "VER MENÚ",
     
     // Sobre Nosotros
-    about_eyebrow: "Nuestra Esencia",
+    about_eyebrow: "Sobre nosotros",
     about_title: "El placer de compartir una buena mesa",
     about_location: "Port d’Andratx · Mallorca",
     about_p1: "Buon Appetito nace como un lugar para reunirse alrededor de la mesa y disfrutar de la gastronomía en un ambiente cercano, en pleno Port d’Andratx. Nuestra propuesta une sabores de la cocina italiana y mediterránea, con una carta variada pensada para que cada persona encuentre su manera de disfrutar.",
@@ -29,7 +29,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     about_p3: "Nos gustan los momentos sencillos: una mesa compartida, una buena conversación y el placer de disfrutar sin mirar el reloj. Esa es la esencia que queremos transmitir en Buon Appetito.",
     about_stat1_desc: "Pescado fresco de lonja",
     about_stat2_desc: "Línea frente al puerto",
-    about_stat3_desc: "Esencia mediterránea",
+    about_stat3_desc: "Sabor mediterráneo",
 
     // La Nostra Pizza (Il Nostro Calzone)
     pizza_eyebrow: "Especialidad • Tradición Italiana",
@@ -83,7 +83,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     contact_btn_maps: "Abrir en Google Maps",
     
     // Footer
-    footer_desc: "Cocina mediterránea tradicional, pastas artesanales y pizzería en horno de leña en primera línea de Port d'Andratx.",
+    footer_desc: "Sabor mediterráneo con alma italiana",
     footer_nav_title: "Enlaces Rápidos",
     footer_legal_title: "Avisos Legales",
     footer_legal_aviso: "Aviso legal",
@@ -119,7 +119,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     hero_btn_menu: "VIEW MENU",
     
     // Sobre Nosotros
-    about_eyebrow: "Our Essence",
+    about_eyebrow: "About us",
     about_title: "The pleasure of sharing a fine table",
     about_location: "Port d’Andratx · Mallorca",
     about_p1: "Buon Appetito was born as a gathering place to share food and conversation in a warm, welcoming atmosphere right in Port d'Andratx. Our kitchen blends the authentic flavors of Italian and Mediterranean cuisine, offering a varied menu crafted so everyone finds their perfect taste.",
@@ -127,7 +127,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     about_p3: "We believe in life's simple pleasures: a shared table, great conversation, and the joy of dining without watching the clock. That is the soul we share with you at Buon Appetito.",
     about_stat1_desc: "Fresh harbor fish",
     about_stat2_desc: "Front harbor line",
-    about_stat3_desc: "Mediterranean essence",
+    about_stat3_desc: "Mediterranean taste",
 
     // La Nostra Pizza (Il Nostro Calzone)
     pizza_eyebrow: "Specialty • Italian Tradition",
@@ -181,7 +181,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     contact_btn_maps: "Open in Google Maps",
     
     // Footer
-    footer_desc: "Traditional Mediterranean cuisine, artisanal pasta, and wood-fired pizzeria on the front line of Port d'Andratx.",
+    footer_desc: "Mediterranean flavor with an Italian soul",
     footer_nav_title: "Quick Links",
     footer_legal_title: "Legal Information",
     footer_legal_aviso: "Legal notice",
@@ -217,7 +217,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     hero_btn_menu: "SPEISEKARTE",
     
     // Sobre Nosotros
-    about_eyebrow: "Unsere Essenz",
+    about_eyebrow: "Über uns",
     about_title: "Die Freude an einem guten Tisch",
     about_location: "Port d’Andratx · Mallorca",
     about_p1: "Buon Appetito entstand als herzlicher Treffpunkt, um gemeinsam an einem Tisch gutes Essen und beste Gesellschaft zu genießen – mitten in Port d'Andratx. Unsere Küche vereint italienische und mediterrane Aromen in einer vielseitigen Karte.",
@@ -225,7 +225,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     about_p3: "Wir schätzen die einfachen Momente: eine geteilte Tafel, anregende Gespräche und Genuss ohne Blick auf die Uhr. Das ist das Lebensgefühl von Buon Appetito.",
     about_stat1_desc: "Frischer Fisch vom Hafen",
     about_stat2_desc: "Erste Meereslinie am Hafen",
-    about_stat3_desc: "Mediterrane Lebensart",
+    about_stat3_desc: "Mediterraner Geschmack",
 
     // La Nostra Pizza (Il Nostro Calzone)
     pizza_eyebrow: "Spezialität • Italienische Tradition",
@@ -279,7 +279,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     contact_btn_maps: "In Google Maps öffnen",
     
     // Footer
-    footer_desc: "Traditionelle mediterrane Küche, hausgemachte Pasta und Holzofenpizzeria in erster Meereslinie von Port d'Andratx.",
+    footer_desc: "Mediterraner Geschmack mit italienischer Seele",
     footer_nav_title: "Schnelllinks",
     footer_legal_title: "Rechtliche Hinweise",
     footer_legal_aviso: "Impressum",

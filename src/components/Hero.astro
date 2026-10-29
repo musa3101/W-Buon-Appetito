@@ -15,23 +15,17 @@ import HeroActions from './ui/HeroActions';
     muted
     playsinline
     preload="auto"
-    poster="/assets/hero/hero_poster.webp"
     class="absolute inset-0 w-full h-full object-cover object-center brightness-[0.88]"
   >
     <!-- MP4 como fuente principal (1080p nativo, optimizado y menor peso) -->
     <source src="/assets/hero/Hero_Andratx_Final.mp4" type="video/mp4" />
-    <!-- Imagen de respaldo por si el navegador o dispositivo restringe vídeo -->
-    <img 
-      src="/assets/hero/hero_poster.webp" 
-      alt="Buon Appetito Port d'Andratx" 
-      class="absolute inset-0 w-full h-full object-cover object-center brightness-[0.88]"
-    />
   </video>
 
-  <!-- Cinematic Gradients estilo Arko para máxima legibilidad sin tapar el vídeo -->
-  <div aria-hidden="true" class="absolute inset-0 bg-black/25 pointer-events-none"></div>
-  <div aria-hidden="true" class="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none"></div>
-  <!-- Efecto ambiental verde oliva #183321 a la altura de la barra de cristal de Safari (nace por debajo de los botones) -->
+  <!-- Cinematic Gradients estilo Arko: velo sutil general para contraste sin comerse el vídeo -->
+  <div aria-hidden="true" class="absolute inset-0 bg-black/20 pointer-events-none"></div>
+  <!-- Sombra superior muy recortada (solo bajo el header para contraste fino de logo y menú) -->
+  <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 via-black/10 to-transparent pointer-events-none"></div>
+  <!-- Efecto ambiental inferior verde oliva: sutil y compacto bajo la barra de Safari -->
   <div 
     aria-hidden="true" 
     class="hero-bottom-fade absolute inset-x-0 bottom-0 pointer-events-none" 
@@ -51,7 +45,7 @@ import HeroActions from './ui/HeroActions';
     </h1>
 
     <!-- 2 Rounded Pill CTAs con efecto Liquid Glass (21st.dev) con holgura para respirar -->
-    <div class="pt-1 sm:pt-4">
+    <div id="hero-action-buttons" class="pt-1 sm:pt-4">
       <HeroActions client:load />
     </div>
 
@@ -59,44 +53,73 @@ import HeroActions from './ui/HeroActions';
 </section>
 
 <style>
-  /* Altura: viewport grande (lvh) para que el vídeo se extienda bajo la barra de cristal de Safari iOS */
+  /* Altura: asegura que el Hero cubra toda la pantalla móvil sin que asome 'Nuestra Esencia' por debajo */
   .hero-fullscreen {
     height: 100vh;
     height: 100lvh;
-    min-height: 600px;
-    /* Bajamos el contenido en móvil hacia la base para darle más aire y protagonismo al vídeo */
-    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 3.8rem);
+    min-height: 100vh;
+    min-height: calc(100svh + env(safe-area-inset-bottom, 0px) + 80px);
+    /* Posición de los botones: descansan con holgura por encima de la barra de navegación de Safari */
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
   }
 
-  /* Degradado verde que cubre la zona de la barra de Safari y se funde hacia arriba */
+  /* Degradado verde ambiental inferior: difuminación suave idéntica al header pero invertida */
   .hero-bottom-fade {
-    height: calc(env(safe-area-inset-bottom, 0px) + 72px);
-    background: linear-gradient(to top, #183321 0%, rgba(24, 51, 33, 0.85) 30%, rgba(24, 51, 33, 0.35) 65%, transparent 100%);
+    height: calc(env(safe-area-inset-bottom, 0px) + 90px);
+    background: linear-gradient(to top, rgba(24, 51, 33, 0.70) 0%, rgba(24, 51, 33, 0.30) 50%, transparent 100%);
   }
 
   @media (min-width: 640px) {
-    .hero-fullscreen { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5rem); }
-    .hero-bottom-fade { height: 3.5rem; }
+    .hero-fullscreen { 
+      min-height: 600px;
+      padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 4rem); 
+    }
+    .hero-bottom-fade { height: 4rem; }
   }
 
   @media (min-width: 768px) {
-    .hero-fullscreen { padding-bottom: 6rem; }
+    .hero-fullscreen { padding-bottom: 5.5rem; }
   }
 </style>
 
 <script>
-  // Garantizar reproducción continua sin cortes en Safari iOS / ahorro de batería
+  // Garantizar reproducción continua sin cortes ni congelaciones en Safari iOS
   const heroVideo = document.getElementById('hero-bg-video') as HTMLVideoElement | null;
   if (heroVideo) {
-    const ensurePlay = () => {
+    // Asegurar atributos nativos a nivel de propiedad DOM para WebKit
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    (heroVideo as any).playsInline = true;
+
+    const playVideo = () => {
       if (heroVideo.paused) {
-        heroVideo.play().catch(() => {});
+        const promise = heroVideo.play();
+        if (promise !== undefined) {
+          promise.catch(() => {
+            // Reintento automático en caso de que Safari requiera interacción de pantalla
+            const unlockTouch = () => {
+              heroVideo.play().catch(() => {});
+              window.removeEventListener('touchstart', unlockTouch);
+              window.removeEventListener('scroll', unlockTouch);
+              window.removeEventListener('pointerdown', unlockTouch);
+            };
+            window.addEventListener('touchstart', unlockTouch, { passive: true, once: true });
+            window.addEventListener('scroll', unlockTouch, { passive: true, once: true });
+            window.addEventListener('pointerdown', unlockTouch, { passive: true, once: true });
+          });
+        }
       }
     };
-    heroVideo.addEventListener('ended', ensurePlay);
+
+    // Intentar reproducción inmediata
+    playVideo();
+    heroVideo.addEventListener('loadedmetadata', playVideo, { once: true });
+    heroVideo.addEventListener('canplay', playVideo, { once: true });
+    heroVideo.addEventListener('ended', playVideo);
+
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) ensurePlay();
+      if (!document.hidden) playVideo();
     });
-    window.addEventListener('pageshow', ensurePlay);
+    window.addEventListener('pageshow', playVideo);
   }
 </script>

@@ -64,6 +64,11 @@ p {
 
 html {
   scroll-behavior: smooth;
+  background-color: #183321 !important;
+}
+
+body {
+  background-color: #183321;
 }
 
 /* Custom subtle scrollbar */

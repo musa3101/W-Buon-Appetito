@@ -122,10 +122,11 @@
       window.removeEventListener('touchmove', preventScrollAndTouch, { capture: true });
       window.removeEventListener('wheel', preventScrollAndTouch, { capture: true });
       rootEl.classList.remove('preloader-lock');
-      rootEl.style.backgroundColor = '';
+      // Preservar siempre el verde oliva #183321 de base para evitar que Safari iOS exponga fondos claros al rebotar
+      rootEl.style.backgroundColor = '#183321';
       if (document.body) {
         document.body.classList.remove('preloader-lock');
-        document.body.style.backgroundColor = '';
+        document.body.style.backgroundColor = '#183321';
       }
     }
 

@@ -21,7 +21,9 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
     <!-- Barra superior de Safari / navegador en verde oliva corporativo (estilo Arko) -->
     <meta name="theme-color" content="#183321" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -104,20 +106,24 @@ const {
           const btnLang = btn.getAttribute('data-lang-btn');
           const isActive = btnLang === lang;
           const isLightBg = !!btn.closest('footer') || !!btn.closest('.lang-selector-light');
+          const isMobileMenu = !!btn.closest('#mobile-menu-drawer');
           btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
           
           if (isActive) {
             btn.classList.add('font-bold', 'opacity-100');
             btn.classList.remove('opacity-60', 'font-normal');
-            if (isLightBg) {
+            if (isMobileMenu) {
+              btn.classList.add('text-[#C45E3B]');
+              btn.classList.remove('text-white', 'text-[#183321]');
+            } else if (isLightBg) {
               btn.classList.add('text-[#183321]');
-              btn.classList.remove('text-white');
+              btn.classList.remove('text-white', 'text-[#C45E3B]');
             } else {
               btn.classList.add('text-white');
-              btn.classList.remove('text-[#183321]');
+              btn.classList.remove('text-[#183321]', 'text-[#C45E3B]');
             }
           } else {
-            btn.classList.remove('font-bold', 'opacity-100', 'text-white');
+            btn.classList.remove('font-bold', 'opacity-100', 'text-white', 'text-[#C45E3B]');
             btn.classList.add('opacity-60', 'font-normal');
             if (isLightBg) {
               btn.classList.remove('text-[#183321]');

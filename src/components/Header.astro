@@ -9,7 +9,7 @@
   class="fixed top-0 inset-x-0 z-[80] w-full header-hero"
 >
   <div 
-    class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 flex items-center justify-between transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] py-5 sm:py-6" 
+    class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12 flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] py-5 sm:py-6" 
     id="header-inner"
   >
     
@@ -59,23 +59,13 @@
           stroke-linecap="round" 
           stroke-linejoin="round" 
           stroke-width="2" 
-          class="w-6 h-6 transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+          class="w-6 h-6 menu-icon-svg transition-transform group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
           aria-hidden="true"
         >
-          <g>
-            <path stroke-dasharray="16" d="M20 5h-13">
-              <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="16;0" />
-            </path>
-            <path stroke-dasharray="12" stroke-dashoffset="12" d="M20 10h-10">
-              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.3s" dur="0.2s" to="0" />
-            </path>
-            <path stroke-dasharray="18" stroke-dashoffset="18" d="M20 15h-16">
-              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.3s" to="0" />
-            </path>
-            <path stroke-dasharray="16" stroke-dashoffset="16" d="M20 20h-13">
-              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.3s" to="0" />
-            </path>
-          </g>
+          <line x1="4" y1="5" x2="20" y2="5" class="menu-line menu-line-1" />
+          <line x1="7" y1="10" x2="20" y2="10" class="menu-line menu-line-2" />
+          <line x1="4" y1="15" x2="20" y2="15" class="menu-line menu-line-3" />
+          <line x1="7" y1="20" x2="20" y2="20" class="menu-line menu-line-4" />
         </svg>
       </button>
     </div>
@@ -85,10 +75,10 @@
 
 <style>
   #main-header {
-    transition: background 400ms cubic-bezier(0.32, 0.72, 0, 1),
-                backdrop-filter 400ms cubic-bezier(0.32, 0.72, 0, 1),
-                -webkit-backdrop-filter 400ms cubic-bezier(0.32, 0.72, 0, 1),
-                box-shadow 400ms ease;
+    transition: background 650ms cubic-bezier(0.25, 1, 0.5, 1),
+                backdrop-filter 650ms cubic-bezier(0.25, 1, 0.5, 1),
+                -webkit-backdrop-filter 650ms cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 650ms cubic-bezier(0.25, 1, 0.5, 1);
     border: none !important;
     border-bottom: none !important;
     /* Respeta el notch / Dynamic Island con viewport-fit=cover */
@@ -106,10 +96,10 @@
     pointer-events: none;
   }
 
-  /* Estado inicial en Hero: Degradado ambiente verde oliva estilo Arko que se funde con el vídeo (sin líneas) */
+  /* Estado inicial en Hero: Degradado sutil Arko que apenas roza el header y se desvanece de inmediato hacia el vídeo */
   .header-hero {
-    /* Arranca en verde oliva fuerte (Safari toma este color para la barra superior) y se funde con el vídeo */
-    background: linear-gradient(to bottom, rgba(24, 51, 33, 0.95) 0%, rgba(24, 51, 33, 0.50) 40%, rgba(24, 51, 33, 0.15) 75%, transparent 100%);
+    /* Degradado muy sutil y compacto: solo da contraste al logo y menú, sin oscurecer el vídeo */
+    background: linear-gradient(to bottom, rgba(24, 51, 33, 0.65) 0%, rgba(24, 51, 33, 0.25) 50%, transparent 100%);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     border: none !important;
@@ -142,6 +132,7 @@
 
   .header-scrolled #header-logo {
     height: 1.75rem !important; /* 28px en móvil */
+    transition: height 650ms cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   @media (min-width: 640px) {
@@ -154,6 +145,41 @@
     width: 2.25rem !important; /* 36px */
     height: 2.25rem !important;
     padding: 0.25rem !important;
+    transition: all 650ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Animación CSS Fluida y Confiable para WebKit/Safari iOS */
+  .menu-line {
+    transform-origin: right center;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+  
+  @keyframes menuLineIn {
+    0% {
+      stroke-dashoffset: 20;
+      opacity: 0;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+
+  .menu-line-1 {
+    stroke-dasharray: 16;
+    animation: menuLineIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+  }
+  .menu-line-2 {
+    stroke-dasharray: 13;
+    animation: menuLineIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+  .menu-line-3 {
+    stroke-dasharray: 16;
+    animation: menuLineIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  }
+  .menu-line-4 {
+    stroke-dasharray: 13;
+    animation: menuLineIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
   }
 
   @media (min-width: 640px) {
@@ -166,12 +192,25 @@
 </style>
 
 <script>
-  // Control de scroll idéntico a Arko: cambia suavemente al bajar > 60px
+  // Control de scroll: en móvil se activa cuando los botones del hero suben a la altura del header
   const header = document.getElementById('main-header');
 
   function updateHeaderOnScroll() {
     if (!header) return;
-    const isScrolled = window.scrollY > 60;
+    
+    let isScrolled = false;
+    const heroButtons = document.getElementById('hero-action-buttons');
+    
+    // En pantallas táctiles / móviles (o cuando existe el bloque de botones del hero)
+    if (window.innerWidth < 1024 && heroButtons) {
+      const headerHeight = header.offsetHeight || 64;
+      const rect = heroButtons.getBoundingClientRect();
+      // Se activa justo cuando el bloque de botones del hero alcanza o supera la base del header
+      isScrolled = rect.top <= headerHeight;
+    } else {
+      // En escritorio se mantiene el comportamiento sutil estándar
+      isScrolled = window.scrollY > 60;
+    }
 
     if (isScrolled) {
       if (!header.classList.contains('header-scrolled')) {
@@ -187,5 +226,6 @@
   }
 
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+  window.addEventListener('resize', updateHeaderOnScroll, { passive: true });
   updateHeaderOnScroll();
 </script>
