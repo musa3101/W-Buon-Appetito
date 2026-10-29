@@ -1,0 +1,1075 @@
+/* ========================================================
+   CARTA DIGITAL OFICIAL · BUON APPETITO (PORT D'ANDRATX)
+   Diseño Editorial de Alta Gama, Tipografía Nítida y Rítmica
+   Inspirado en gpt-taste e impeccable
+   ======================================================== */
+
+:root {
+  /* Paleta cromática mediterránea refinada */
+  --bg-page: #FBF8F1;               /* Pergamino suave y cálido idéntico a la referencia */
+  --bg-surface: #FBF8F1;
+  --bg-surface-subtle: #F2ECE0;
+
+  --color-primary: #183321;         /* Verde ciprés profundo mediterráneo */
+  --color-primary-light: #2A4F36;
+  --color-accent: #9E4221;          /* Terracota cálido artesanal (rojito) */
+  --color-accent-soft: rgba(158, 66, 33, 0.08);
+  --color-accent-hover: #833519;
+
+  --color-text: #191C19;            /* Carbón suave de alto contraste y legibilidad */
+  --color-text-muted: #5A655C;      /* Verde grisáceo para ingredientes y descripciones */
+  --color-text-faint: #8F998F;
+
+  --color-border: #E8ECE6;
+  --color-border-subtle: #F1F4EE;
+  --color-dots: #B0B7AC;            /* Puntos líderes de alta definición */
+
+  /* Footer Sage Mist */
+  --footer-bg: linear-gradient(180deg, #E2EAE3 0%, #D8E3DA 50%, #CDDCD0 100%);
+  --footer-border: #B8CEBC;
+  --footer-text: #183321;
+  --footer-muted: #2C4132;
+
+  /* Tipografías Oficiales */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Dimensiones y radios */
+  --max-width: 980px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-pill: 9999px;
+
+  /* Sombras sutiles */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* ========================================================
+   RESETEO Y BASES TIPOGRÁFICAS
+   ======================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+  position: relative;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ========================================================
+   1. SITE HEADER: VERDE CIPRÉS + LOGO COLORIDO + ACCIONES
+   ======================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(24, 51, 33, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand-logo-link {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Contenedor de Idioma: Selector Lateral Horizontal dentro del verde del header */
+.lang-nav-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Botón disparador compacto (un pelín más pequeño) */
+.lang-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lang-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.lang-chevron {
+  stroke: rgba(255, 255, 255, 0.8);
+  transition: transform 0.2s ease;
+}
+
+/* Menú Lateral Horizontal: Ocupa el verde del header hacia la izquierda */
+.lang-lateral-menu {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  transform-origin: right center;
+  opacity: 0;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(16, 36, 22, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-pill);
+  padding: 3px 6px 3px 8px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  z-index: 15;
+  transition: opacity 0.2s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.lang-nav-container.open .lang-lateral-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+.lang-nav-container.open .lang-pill-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lang-opt-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 7px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.lang-opt-btn:hover {
+  color: #FFFFFF;
+}
+
+.lang-opt-btn.active {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(158, 66, 33, 0.4);
+}
+
+.lang-opt-sep {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.7rem;
+  user-select: none;
+}
+
+.lang-opt-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.lang-opt-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+/* Botón Volver Atrás: Un pelín más gordito en terracota a la extrema derecha */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--color-accent);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  box-shadow: 0 3px 10px rgba(158, 66, 33, 0.45);
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 5px 14px rgba(158, 66, 33, 0.55);
+  transform: translateY(-1px);
+}
+
+.back-icon {
+  stroke: #FFFFFF;
+  transition: transform 0.2s ease;
+}
+
+.btn-back:hover .back-icon {
+  transform: translateX(-2px);
+}
+
+/* ========================================================
+   2. HERO EDITORIAL ELEGANTE: PLAYFAIR DISPLAY + SUBTÍTULO
+   ======================================================== */
+.menu-hero {
+  padding: 38px 0 24px;
+  text-align: center;
+  background: transparent;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.35rem, 6vw, 3.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+}
+
+.hero-subtitle {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-top: 9px;
+}
+
+/* ========================================================
+   3. BARRA DE CATEGORÍAS NAVBAR PLANA CON SUBRAYADO ACTIVO
+   ======================================================== */
+.category-nav-bar {
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  background: rgba(250, 249, 246, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.nav-container {
+  padding: 0 12px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.category-nav-track {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+  scroll-behavior: smooth;
+  touch-action: pan-x pan-y;
+}
+
+.category-nav-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pestañas planas de navegación estilo tab continuo (SIN cápsulas) */
+.cat-nav-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  border-radius: 0;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+
+/* Iconos SVG Terracota */
+.cat-svg-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  transition: transform 0.2s ease;
+}
+
+.cat-nav-link:hover {
+  color: var(--color-text);
+}
+
+.cat-nav-link:hover .cat-svg-box {
+  transform: translateY(-1px);
+}
+
+/* Estado activo: línea inferior sólida terracota */
+.cat-nav-link.active {
+  color: var(--color-text);
+  font-weight: 700;
+  border-bottom-color: var(--color-accent);
+}
+
+.cat-nav-link.active .cat-svg-box {
+  transform: scale(1.08);
+}
+
+/* ========================================================
+   4. LISTA EDITORIAL DE PLATOS (LIMPIA, SIN NÚMEROS)
+   ======================================================== */
+.main-content {
+  flex-grow: 1;
+  padding-top: 28px;
+  padding-bottom: 32px;
+}
+
+/* ========================================================
+   CIERRE EDITORIAL: GRABADO DE PORT D'ANDRATX
+   ======================================================== */
+.menu-finale-engraving {
+  margin-top: 32px;
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.finale-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+  margin-bottom: 20px;
+  color: var(--color-accent);
+  opacity: 0.45;
+}
+
+.finale-divider-footer {
+  margin-top: 26px;
+  margin-bottom: 6px;
+  max-width: 320px;
+  opacity: 0.55;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+
+.divider-diamond {
+  font-size: 0.65rem;
+}
+
+.finale-engraving-img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  opacity: 0.72;
+  mix-blend-mode: multiply;
+  filter: contrast(1.06) sepia(0.12);
+  transition: opacity 0.3s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .finale-engraving-img {
+    max-width: 330px;
+    opacity: 0.68;
+  }
+}
+
+/* Grabado de Vino Panorámico y Alargado (Orgánico, sin cortes cuadrados) */
+.menu-finale-wine-expanded {
+  margin-top: 28px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.finale-wine-expanded-img {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  opacity: 0.74;
+  mix-blend-mode: multiply;
+  filter: contrast(1.08) sepia(0.14);
+  transition: opacity 0.3s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .finale-wine-expanded-img {
+    max-width: 100%;
+    transform: scale(1.04);
+    opacity: 0.70;
+  }
+}
+
+.finale-caption {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+}
+
+.finale-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
+}
+
+.finale-sub {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.menu-category-section {
+  margin-bottom: 44px;
+  scroll-margin-top: 125px;
+}
+
+.menu-category-header {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.menu-category-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 40px;
+  height: 2.5px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.category-heading {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.015em;
+}
+
+/* Grilla Editorial de Platos: 1 col móvil, 2 cols desktop */
+.menu-editorial-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2px;
+}
+
+@media (min-width: 860px) {
+  .menu-editorial-list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 44px;
+  }
+}
+
+.menu-item-row {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+  transition: background-color 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.menu-item-row:hover {
+  background-color: rgba(158, 66, 33, 0.025);
+}
+
+.menu-item-top {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.menu-item-title-group {
+  display: inline-flex;
+  align-items: baseline;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: calc(100% - 85px);
+}
+
+.menu-item-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Puntos líderes de alta definición radial-gradient */
+.menu-item-dots {
+  flex: 1 1 12px;
+  min-width: 8px;
+  margin: 0 8px;
+  height: 12px;
+  background-image: radial-gradient(circle, var(--color-dots) 1.2px, transparent 1.2px);
+  background-size: 8px 3px;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  align-self: baseline;
+  opacity: 0.85;
+}
+
+/* Precio en Terracota */
+.menu-item-price {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+  margin-left: auto;
+}
+
+/* Ingredientes y Descripción: Peso regular 400 (no itálico, no grueso) */
+.menu-item-desc {
+  font-size: 0.85rem;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  margin-top: 4px;
+  max-width: 92%;
+  overflow-wrap: break-word;
+}
+
+/* ========================================================
+   5. SITE FOOTER SAGE MIST (VERDE SALVIA REFINADO)
+   ======================================================== */
+.site-footer {
+  background: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
+  color: var(--footer-text);
+  padding: 38px 0 30px;
+  margin-top: auto;
+}
+
+.footer-card {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.tax-note {
+  font-weight: 700;
+  color: var(--footer-text);
+  font-size: 0.92rem;
+  margin-bottom: 8px;
+}
+
+.allergen-note {
+  font-size: 0.84rem;
+  font-weight: 400;
+  color: var(--footer-muted);
+  line-height: 1.55;
+  margin-bottom: 22px;
+  padding: 0 10px;
+}
+
+.footer-reserve-wrapper {
+  margin: 10px 0 24px;
+  text-align: center;
+}
+
+.footer-reserve-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+  text-decoration-color: rgba(158, 66, 33, 0.45);
+  transition: all 0.22s ease;
+  letter-spacing: 0.01em;
+}
+
+.footer-reserve-link::after {
+  content: "→";
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 1.05rem;
+  transition: transform 0.22s ease;
+}
+
+.footer-reserve-link:hover {
+  color: var(--color-accent-hover);
+  text-decoration-color: var(--color-accent-hover);
+}
+
+.footer-reserve-link:hover::after {
+  transform: translateX(4px);
+}
+
+/* Redes Sociales Oficiales: Instagram & TripAdvisor */
+.footer-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--footer-border);
+  background: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(24, 51, 33, 0.08);
+  transition: all 0.22s ease;
+}
+
+.social-btn.instagram-btn {
+  color: #E1306C;
+}
+
+.social-btn.instagram-btn:hover {
+  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+  color: #FFFFFF;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 39, 67, 0.28);
+}
+
+.social-btn.tripadvisor-btn {
+  color: #00AA6C;
+}
+
+.social-btn.tripadvisor-btn:hover {
+  background: #00AA6C;
+  color: #FFFFFF;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 170, 108, 0.28);
+}
+
+/* Enlaces Legales Horizontales en Verde Muted */
+.footer-legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  margin-bottom: 14px;
+}
+
+.legal-link {
+  color: var(--footer-muted);
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.legal-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.legal-divider {
+  color: #7A9180;
+  font-size: 0.75rem;
+}
+
+.footer-copyright {
+  font-size: 0.78rem;
+  color: #4B6352;
+}
+
+/* ========================================================
+   6. RESPONSIVE COMPACTO MÓVIL
+   ======================================================== */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .header-container {
+    height: 58px;
+    padding: 0 8px;
+  }
+
+  .brand-logo {
+    height: 33px;
+  }
+
+  .header-actions {
+    gap: 7px;
+  }
+
+  .lang-pill-btn {
+    padding: 4px 8px;
+    font-size: 0.74rem;
+  }
+
+  .btn-back {
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    gap: 4px;
+  }
+
+  .category-nav-bar {
+    top: 58px;
+  }
+
+  .cat-nav-link {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+
+  .hero-title {
+    font-size: 2.15rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .category-heading {
+    font-size: 1.3rem;
+  }
+
+  .menu-item-row {
+    padding: 9px 4px;
+  }
+
+  .menu-item-title-group {
+    max-width: calc(100% - 75px);
+  }
+
+  .menu-item-title {
+    font-size: 0.96rem;
+  }
+
+  .menu-item-dots {
+    margin: 0 6px;
+    min-width: 6px;
+  }
+
+  .menu-item-price {
+    font-size: 0.98rem;
+  }
+
+  .menu-item-desc {
+    font-size: 0.82rem;
+    max-width: 98%;
+  }
+
+  .footer-address {
+    font-size: 0.82rem;
+  }
+}
+
+/* ========================================================
+   PIZZA MENU LOADER · EXCLUSIVO PARA LA CARTA DE BUON APPETITO
+   ======================================================== */
+
+/* Bloqueo estricto del scroll para que NADA se filtre por debajo */
+html.pizza-loading-active,
+body.pizza-loading-active {
+  overflow: hidden !important;
+  height: 100% !important;
+  max-height: 100vh !important;
+  max-height: 100dvh !important;
+  touch-action: none !important;
+  -webkit-overflow-scrolling: auto !important;
+}
+
+.pizza-menu-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Fondo 100% OPACO Verde Ciprés sin transparencia para que no se filtre ningún plato */
+  background: #0E2015 !important;
+  background-color: #0E2015 !important;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pizza-menu-loader.pizza-loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.pizza-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  animation: pizzaLoaderPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pizzaLoaderPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Proporción de la pizza: Un pelín más grande y generosa */
+.pizza-svg-wrap {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.65));
+}
+
+.pizza-loading-animation {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pizza.part1 { animation: pizzaPart1 2s infinite alternate ease-in-out; }
+.pizza.part2 { animation: pizzaPart2 2s infinite alternate ease-in-out; }
+.pizza.part3 { animation: pizzaPart3 2s infinite alternate ease-in-out; }
+.pizza.part4 { animation: pizzaPart4 2s infinite alternate ease-in-out; }
+.pizza.part5 { animation: pizzaPart5 2s infinite alternate ease-in-out; }
+.pizza.part6 { animation: pizzaPart6 2s infinite alternate ease-in-out; }
+
+@keyframes pizzaPart1 {
+  0% { opacity: 1; }
+  15%, 100% { opacity: 0; }
+}
+@keyframes pizzaPart2 {
+  0%, 15% { opacity: 1; }
+  30%, 100% { opacity: 0; }
+}
+@keyframes pizzaPart3 {
+  0%, 30% { opacity: 1; }
+  45%, 100% { opacity: 0; }
+}
+@keyframes pizzaPart4 {
+  0%, 45% { opacity: 1; }
+  60%, 100% { opacity: 0; }
+}
+@keyframes pizzaPart5 {
+  0%, 60% { opacity: 1; }
+  75%, 100% { opacity: 0; }
+}
+@keyframes pizzaPart6 {
+  0%, 75% { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+
+/* Tipografía */
+.pizza-loader-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.pizza-loader-brand {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.95rem;
+  font-weight: 700;
+  color: #FAF7F2;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.pizza-loader-status {
+  font-family: "Plus Jakarta Sans", "Outfit", -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #F4AC1B;
+  opacity: 0.95;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 640px) {
+  .pizza-svg-wrap {
+    width: 195px;
+    height: 195px;
+    margin-bottom: 16px;
+  }
+  .pizza-loader-brand {
+    font-size: 1.65rem;
+  }
+  .pizza-loader-status {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+  }
+}

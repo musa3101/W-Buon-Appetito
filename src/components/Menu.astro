@@ -46,57 +46,26 @@ import { ShimmerButton } from './ui/shimmer-button';
         <span data-i18n="menu_btn_food">Carta de Comida</span>
       </ShimmerButton>
 
-      <!-- Button 2: Carta de Vinos y Bodega (Disponible en sala) -->
-      <div class="relative group w-full sm:w-auto">
-        <ShimmerButton 
-          client:load
-          id="btn-bodega-info"
-          background="#9E4221"
-          shimmerColor="#FED7AA"
-          shimmerDuration="3s"
-          borderRadius="100px"
-          className="shadow-xl shadow-[#9E4221]/20 w-full sm:w-auto"
-          title="Carta de bodega y vinos disponible directamente en mesa"
-        >
-          <svg class="w-4 h-4 text-white/95" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 22h8"/>
-            <path d="M7 10h10"/>
-            <path d="M12 15v7"/>
-            <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/>
-          </svg>
-          <span data-i18n="menu_btn_wine">Vinos y Bodega</span>
-          <span data-i18n="menu_wine_badge" class="text-[9px] uppercase tracking-wider bg-white/20 text-white px-2 py-0.5 rounded-full font-medium ml-1">En sala</span>
-        </ShimmerButton>
-
-        <!-- Mensaje informativo flotante al pulsar -->
-        <div 
-          id="bodega-toast"
-          data-i18n="menu_wine_toast"
-          class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-max max-w-[280px] bg-[#183321] text-[#FAF7F2] text-[11px] font-medium py-2 px-3.5 rounded-xl shadow-2xl border border-white/10 opacity-0 pointer-events-none transition-all duration-300 transform translate-y-1 text-center z-30"
-          role="status"
-        >
-          🍷 Nuestra carta de vinos y bodega se presenta directamente en sala
-        </div>
-      </div>
+      <!-- Button 2: Carta de Vinos y Bodega (Abre la carta digital de vinos y bebidas) -->
+      <ShimmerButton 
+        client:load
+        href="/vinos"
+        background="#9E4221"
+        shimmerColor="#FED7AA"
+        shimmerDuration="3s"
+        borderRadius="100px"
+        className="shadow-xl shadow-[#9E4221]/20 w-full sm:w-auto"
+        title="Ver carta de vinos, coctelería y bebidas"
+      >
+        <svg class="w-4 h-4 text-white/95" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 22h8"/>
+          <path d="M7 10h10"/>
+          <path d="M12 15v7"/>
+          <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/>
+        </svg>
+        <span data-i18n="menu_btn_wine">Vinos y Bodega</span>
+      </ShimmerButton>
     </div>
-
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
-        const wineBtn = document.getElementById('btn-bodega-info');
-        const wineToast = document.getElementById('bodega-toast');
-        if (wineBtn && wineToast) {
-          wineBtn.addEventListener('click', () => {
-            wineToast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-1');
-            wineToast.classList.add('opacity-100', 'translate-y-0');
-            clearTimeout(window.__wineToastTimeout);
-            window.__wineToastTimeout = setTimeout(() => {
-              wineToast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-1');
-              wineToast.classList.remove('opacity-100', 'translate-y-0');
-            }, 3000);
-          });
-        }
-      });
-    </script>
 
   </div>
 </section>
