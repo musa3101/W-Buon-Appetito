@@ -640,6 +640,30 @@
       gap: 8px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
+    /* ===== Registro de cambios ===== */
+    .logs-sheet {
+      background: var(--surface); width: 100%; max-width: 560px; max-height: 85vh;
+      border-radius: 22px 22px 0 0; display: flex; flex-direction: column; overflow: hidden;
+      box-shadow: 0 -10px 40px rgba(0,0,0,.2); align-self: flex-end;
+    }
+    @media (min-width: 640px) { .logs-sheet { border-radius: 22px; align-self: center; } }
+    .logs-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 12px; border-bottom: 1px solid var(--border-subtle); }
+    .logs-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--burgundy); }
+    .logs-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 700; color: var(--dark); }
+    .logs-close { width: 34px; height: 34px; border-radius: 50%; border: none; background: #F3F1EC; cursor: pointer; font-size: 13px; }
+    .logs-list { overflow-y: auto; padding: 6px 20px 24px; }
+    .logs-day { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); margin: 16px 0 6px; }
+    .log-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border-subtle); }
+    .log-item:last-child { border-bottom: none; }
+    .log-dot { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .log-dot.create { background: #ECFDF5; } .log-dot.update { background: #EFF6FF; }
+    .log-dot.price { background: #FEF7EC; } .log-dot.delete { background: #FEF2F2; }
+    .log-body { flex: 1; min-width: 0; }
+    .log-line { font-size: 13.5px; color: var(--dark); line-height: 1.35; }
+    .log-line b { font-weight: 700; }
+    .log-details { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .log-time { font-size: 11px; color: var(--text-light); white-space: nowrap; padding-top: 2px; }
+
     /* ===== Ajustes móvil ===== */
     html, body { max-width: 100%; overflow-x: hidden; }
     .admin-container, .toolbar-card, .menu-card, #itemsList { min-width: 0; max-width: 100%; }
@@ -730,6 +754,11 @@
           </button>
 
           <!-- Botón Salir -->
+          <button id="btnLogs" class="btn-logout" title="Ver registro de cambios">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span style="font-size: 11px;">Registro</span>
+          </button>
+
           <button id="btnLogout" class="btn-logout" title="Cerrar sesión">
             <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
             <span style="font-size: 11px;">Salir</span>
@@ -896,9 +925,23 @@
     </div>
   </div>
 
+  <!-- REGISTRO DE CAMBIOS -->
+  <div id="logsModal" class="modal-overlay" style="display: none;">
+    <div class="logs-sheet">
+      <div class="logs-head">
+        <div>
+          <div class="logs-eyebrow">Historial</div>
+          <h3 class="logs-title">Registro de cambios</h3>
+        </div>
+        <button id="closeLogsBtn" class="logs-close" aria-label="Cerrar">✕</button>
+      </div>
+      <div id="logsList" class="logs-list"></div>
+    </div>
+  </div>
+
   <!-- SCRIPT DE CONTROL -->
   <script is:inline type="module">
-    import { createClient, createAdminClient } from 'https://esm.sh/@insforge/sdk@latest';
+    import { createClient, createAdminClient } from 'https://esm.sh/@insforge/sdk@1.5.2';
 
     const INSFORGE_URL = 'https://pz3qiueg.eu-central.insforge.app';
     const ANON_KEY = 'anon_64c904f7d36d64a81882dd8b41b193c03240d144f6de6a656b1d85ba0683ccec';
@@ -1019,6 +1062,69 @@
     // ========================================================
     // TOAST
     // ========================================================
+    // ========================================================
+    // REGISTRO DE CAMBIOS
+    // ========================================================
+    const fmtEUR = n => Number(n).toFixed(2).replace('.', ',') + ' €';
+    async function logAction(action, item_id, item_title, details = '') {
+      try {
+        await adminClient.database.from('menu_logs').insert([{ action, item_id, item_title, details }]);
+      } catch (e) { console.warn('No se pudo registrar la acción', e); }
+    }
+    function describeChanges(before, after) {
+      const out = [];
+      if (Number(before.price) !== Number(after.price)) out.push(`Precio ${fmtEUR(before.price)} → ${fmtEUR(after.price)}`);
+      if (before.category_id !== after.category_id) {
+        const n = id => (state.categories.find(c => c.id === id) || {}).name_es || id;
+        out.push(`Sección ${n(before.category_id)} → ${n(after.category_id)}`);
+      }
+      if ((before.title_es || '') !== after.title_es) out.push(`Nombre: "${before.title_es}" → "${after.title_es}"`);
+      if ((before.description_es || '') !== after.description_es) out.push('Descripción modificada');
+      const tr = ['title_en','title_de','description_en','description_de'].some(k => (before[k] || '') !== after[k]);
+      if (tr) out.push('Traducciones EN/DE modificadas');
+      return out;
+    }
+    const logsModal = document.getElementById('logsModal');
+    const logsList = document.getElementById('logsList');
+    async function openLogs() {
+      logsModal.style.display = 'flex';
+      logsList.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--text-muted); font-size: 13px;">Cargando…</div>';
+      try {
+        const { data, error } = await adminClient.database.from('menu_logs').select().order('created_at', { ascending: false }).limit(100);
+        if (error) throw error;
+        if (!data || !data.length) {
+          logsList.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--text-muted); font-size: 13px;">Todavía no hay cambios registrados.</div>';
+          return;
+        }
+        const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+        const icons = { create: '➕', update: '✏️', price: '💶', delete: '🗑️' };
+        const verbs = { create: 'Añadido', update: 'Modificado', price: 'Precio cambiado', delete: 'Eliminado' };
+        const today = new Date().toDateString();
+        const yest = new Date(Date.now() - 864e5).toDateString();
+        let html = '', lastDay = '';
+        data.forEach(l => {
+          const d = new Date(l.created_at);
+          const ds = d.toDateString();
+          const label = ds === today ? 'Hoy' : ds === yest ? 'Ayer' : d.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+          if (ds !== lastDay) { html += `<div class="logs-day">${label}</div>`; lastDay = ds; }
+          html += `<div class="log-item">
+            <div class="log-dot ${esc(l.action)}">${icons[l.action] || '•'}</div>
+            <div class="log-body">
+              <div class="log-line">${verbs[l.action] || esc(l.action)}: <b>${esc(l.item_title)}</b></div>
+              ${l.details ? `<div class="log-details">${esc(l.details)}</div>` : ''}
+            </div>
+            <div class="log-time">${d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</div>
+          </div>`;
+        });
+        logsList.innerHTML = html;
+      } catch (e) {
+        logsList.innerHTML = '<div style="padding: 30px; text-align: center; color: #B91C1C; font-size: 13px;">No se pudo cargar el registro.</div>';
+      }
+    }
+    document.getElementById('btnLogs').addEventListener('click', openLogs);
+    document.getElementById('closeLogsBtn').addEventListener('click', () => logsModal.style.display = 'none');
+    logsModal.addEventListener('click', e => { if (e.target === logsModal) logsModal.style.display = 'none'; });
+
     function showToast(message, isError = false) {
       toastMsg.textContent = message;
       toastIcon.textContent = isError ? '✕' : '✓';
@@ -1354,6 +1460,7 @@
 
           if (error) throw error;
           if (data && data[0]) state.items.push(data[0]);
+          logAction('create', newPayload.id, t_es, `${fmtEUR(price)} · ${(state.categories.find(c => c.id === category_id) || {}).name_es || category_id}`);
           showToast('Plato añadido a la carta');
         } else {
           const updatePayload = {
@@ -1377,7 +1484,14 @@
           if (error) throw error;
 
           const item = state.items.find(i => i.id === id);
-          if (item) Object.assign(item, updatePayload);
+          if (item) {
+            const changes = describeChanges(item, updatePayload);
+            if (changes.length) {
+              const onlyPrice = changes.length === 1 && changes[0].startsWith('Precio');
+              logAction(onlyPrice ? 'price' : 'update', id, t_es, changes.join(' · '));
+            }
+            Object.assign(item, updatePayload);
+          }
           showToast('Plato guardado');
         }
 
@@ -1410,6 +1524,7 @@
 
         if (error) throw error;
 
+        logAction('delete', id, item?.title_es || id, item ? fmtEUR(item.price) : '');
         state.items = state.items.filter(i => i.id !== id);
         closeDishModal();
         renderCategoriesBar();

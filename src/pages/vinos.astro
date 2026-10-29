@@ -252,7 +252,7 @@ const description = "Selección de vinos, coctelería italiana y bebidas de Buon
     async function initVinos() {
       // 1. Sincronización en vivo con base de datos
       try {
-        const { createClient } = await import('https://esm.sh/@insforge/sdk@latest');
+        const { createClient } = await import('https://esm.sh/@insforge/sdk@1.5.2');
         const liveClient = createClient({
           baseUrl: 'https://pz3qiueg.eu-central.insforge.app',
           anonKey: 'anon_64c904f7d36d64a81882dd8b41b193c03240d144f6de6a656b1d85ba0683ccec'
