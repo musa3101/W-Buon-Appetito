@@ -390,14 +390,14 @@
     }
 
     /* ========================================================
-       4. LISTA COMPACTA DE PLATOS (DISEÑO LIMPIO)
+       4. LISTA DE PLATOS (DISEÑO EDITORIAL MINIMALISTA)
        ======================================================== */
     .menu-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     }
 
     .menu-header {
@@ -419,22 +419,17 @@
     }
 
     .dish-row {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-subtle);
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-      transition: background 0.15s ease;
-    }
-
-    @media (min-width: 580px) {
-      .dish-row {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        padding: 12px 18px;
-      }
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 18px;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .dish-row:last-child {
@@ -442,125 +437,62 @@
     }
 
     .dish-row:hover {
-      background-color: #FAFAF8;
+      background-color: #FAF8F5;
     }
 
-    .dish-row.is-unavailable {
-      background-color: #FDFCFB;
-      opacity: 0.65;
+    .dish-row:active {
+      background-color: #F3EFE9;
     }
 
-    .dish-info {
+    .dish-main {
       flex: 1;
-      cursor: pointer;
       min-width: 0;
-    }
-
-    .dish-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--dark);
       display: flex;
-      align-items: center;
-      gap: 6px;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .dish-desc {
-      font-size: 12px;
+    .dish-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .dish-sub {
+      font-size: 13px;
       color: var(--text-muted);
-      margin-top: 2px;
+      line-height: 1.35;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 500px;
     }
 
-    .dish-controls {
+    .dish-meta {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      shrink-0: 0;
+      gap: 12px;
+      flex-shrink: 0;
     }
 
-    @media (min-width: 580px) {
-      .dish-controls {
-        justify-content: flex-end;
-      }
-    }
-
-    /* Píldora de Precio */
-    .price-pill {
-      background: #F3F1EC;
-      border: 1px solid var(--border);
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 13px;
+    .dish-price {
+      font-size: 15px;
       font-weight: 700;
-      color: var(--dark);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.15s ease;
-    }
-
-    .price-pill:hover {
-      background: #E8E5DF;
       color: var(--burgundy);
-    }
-
-    /* Botón de Estado: Disponible / No disponible */
-    .status-toggle-btn {
-      padding: 6px 12px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid transparent;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      letter-spacing: -0.01em;
       white-space: nowrap;
-      transition: all 0.15s ease;
     }
 
-    .status-toggle-btn.avail {
-      background: #ECFDF5;
-      color: #065F46;
-      border-color: #A7F3D0;
-    }
-
-    .status-toggle-btn.avail:hover {
-      background: #D1FAE5;
-    }
-
-    .status-toggle-btn.unavail {
-      background: #FEF2F2;
-      color: #991B1B;
-      border-color: #FECACA;
-    }
-
-    .status-toggle-btn.unavail:hover {
-      background: #FEE2E2;
-    }
-
-    .btn-edit-pencil {
-      background: none;
-      border: none;
-      color: var(--text-light);
-      padding: 6px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
+    .dish-arrow {
       display: flex;
       align-items: center;
-      justify-content: center;
+      color: var(--text-light);
+      transition: transform 0.15s ease, color 0.15s ease;
     }
 
-    .btn-edit-pencil:hover {
+    .dish-row:hover .dish-arrow {
       color: var(--burgundy);
-      background: #F3F1EC;
+      transform: translateX(2px);
     }
 
     /* ========================================================
@@ -834,11 +766,7 @@
             <svg width="14" height="14" fill="none" stroke="#A8A29E" viewBox="0 0 24 24" style="position: absolute; left: 11px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
           </div>
 
-          <select id="availabilityFilter" class="filter-select">
-            <option value="all">Todos los platos</option>
-            <option value="available">🟢 Disponibles</option>
-            <option value="unavailable">🔴 No disponibles</option>
-          </select>
+
 
           <button id="btnNewDish" class="btn-add-dish">
             <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
@@ -909,14 +837,7 @@
           </div>
         </div>
 
-        <!-- Selector de Disponibilidad -->
-        <div class="form-group">
-          <label class="form-label">Estado del Plato</label>
-          <select id="dishAvailable" class="form-input" style="font-weight: 700;">
-            <option value="true">🟢 Disponible</option>
-            <option value="false">🔴 No disponible</option>
-          </select>
-        </div>
+
 
         <!-- Pestañas de Idioma con Botón de Auto-traducción integrado -->
         <div>
@@ -1009,8 +930,7 @@
       items: [],
       selectedCategory: 'all',
       searchQuery: '',
-      availabilityFilter: 'all',
-      activeModalLangTab: 'es',
+            activeModalLangTab: 'es',
       isSyncing: false
     };
 
@@ -1034,8 +954,7 @@
     const itemsCountBadge = document.getElementById('itemsCountBadge');
     const currentCategoryTitle = document.getElementById('currentCategoryTitle');
     const searchInput = document.getElementById('searchInput');
-    const availabilityFilter = document.getElementById('availabilityFilter');
-    const btnNewDish = document.getElementById('btnNewDish');
+        const btnNewDish = document.getElementById('btnNewDish');
     const toast = document.getElementById('toast');
     const toastMsg = document.getElementById('toastMsg');
     const toastIcon = document.getElementById('toastIcon');
@@ -1048,8 +967,7 @@
     const dishOrder = document.getElementById('dishOrder');
     const dishCategory = document.getElementById('dishCategory');
     const dishPrice = document.getElementById('dishPrice');
-    const dishAvailable = document.getElementById('dishAvailable');
-    const title_es = document.getElementById('title_es');
+        const title_es = document.getElementById('title_es');
     const desc_es = document.getElementById('desc_es');
     const title_en = document.getElementById('title_en');
     const desc_en = document.getElementById('desc_en');
@@ -1225,8 +1143,6 @@
     function getFilteredItems() {
       return state.items.filter(item => {
         if (state.selectedCategory !== 'all' && item.category_id !== state.selectedCategory) return false;
-        if (state.availabilityFilter === 'available' && !item.is_available) return false;
-        if (state.availabilityFilter === 'unavailable' && item.is_available) return false;
         
         if (state.searchQuery) {
           const q = state.searchQuery.toLowerCase();
@@ -1241,7 +1157,7 @@
     }
 
     // ========================================================
-    // RENDERIZADO DE PLATOS (LISTA LIMPIA Y COMPACTA)
+    // RENDERIZADO DE PLATOS (LISTA EDITORIAL LIMPIA)
     // ========================================================
     function renderItems() {
       const filtered = getFilteredItems();
@@ -1251,143 +1167,30 @@
       currentCategoryTitle.textContent = currentCatObj ? currentCatObj.name_es : 'Todos los Platos';
 
       if (filtered.length === 0) {
-        itemsList.innerHTML = `<div style="padding: 36px; text-align: center; color: var(--text-muted); font-size: 13px;">No hay platos con los filtros seleccionados.</div>`;
+        itemsList.innerHTML = `<div style="padding: 36px; text-align: center; color: var(--text-muted); font-size: 13px;">No hay platos en esta sección.</div>`;
         return;
       }
 
-      itemsList.innerHTML = filtered.map(item => {
-        const isAvail = item.is_available;
-
-        return `
-          <div class="dish-row ${!isAvail ? 'is-unavailable' : ''}" data-id="${item.id}">
-            
-            <div class="dish-info dish-row-click" data-id="${item.id}">
-              <div class="dish-title">
-                <span>${item.title_es}</span>
-              </div>
-              ${item.description_es ? `<p class="dish-desc">${item.description_es}</p>` : ''}
-            </div>
-
-            <div class="dish-controls">
-              
-              <!-- Precio Editable -->
-              <button class="price-pill btn-quick-price" data-id="${item.id}" data-price="${item.price}" title="Toca para cambiar precio">
-                <span>${Number(item.price).toFixed(2)} €</span>
-                <span style="font-size: 10px; color: var(--text-light);">✎</span>
-              </button>
-
-              <!-- Conmutador: Disponible / No disponible -->
-              <button class="status-toggle-btn ${isAvail ? 'avail' : 'unavail'} btn-toggle-avail" data-id="${item.id}" data-avail="${isAvail}">
-                ${isAvail ? '🟢 Disponible' : '🔴 No disponible'}
-              </button>
-
-              <!-- Botón Editar Detalles -->
-              <button class="btn-edit-pencil" data-id="${item.id}" title="Editar texto y traducciones">
-                ✎
-              </button>
-
-            </div>
-
+      itemsList.innerHTML = filtered.map(item => `
+        <div class="dish-row" data-id="${item.id}" title="Toca para modificar este plato">
+          <div class="dish-main">
+            <span class="dish-name">${item.title_es}</span>
+            ${item.description_es ? `<span class="dish-sub">${item.description_es}</span>` : ''}
           </div>
-        `;
-      }).join('');
+          <div class="dish-meta">
+            <span class="dish-price">${Number(item.price).toFixed(2)} €</span>
+            <span class="dish-arrow">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </span>
+          </div>
+        </div>
+      `).join('');
 
-      // Listeners
-      itemsList.querySelectorAll('.btn-toggle-avail').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-          e.stopPropagation();
-          const id = btn.dataset.id;
-          const currentAvail = btn.dataset.avail === 'true';
-          await updateItemAvailability(id, !currentAvail);
+      itemsList.querySelectorAll('.dish-row').forEach(row => {
+        row.addEventListener('click', () => {
+          openEditModal(row.dataset.id);
         });
       });
-
-      itemsList.querySelectorAll('.btn-quick-price').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-          e.stopPropagation();
-          const id = btn.dataset.id;
-          const currentPrice = btn.dataset.price;
-          const val = prompt(`Nuevo precio (€) para este plato:`, currentPrice);
-          if (val !== null && val.trim() !== '') {
-            const num = parseFloat(val.replace(',', '.'));
-            if (!isNaN(num) && num >= 0) {
-              await updateItemPrice(id, num);
-            }
-          }
-        });
-      });
-
-      itemsList.querySelectorAll('.btn-edit-pencil, .dish-row-click').forEach(el => {
-        el.addEventListener('click', () => {
-          const id = el.dataset.id;
-          openEditModal(id);
-        });
-      });
-    }
-
-    // ========================================================
-    // ACTUALIZACIONES INSTANTÁNEAS
-    // ========================================================
-    async function updateItemAvailability(id, is_available) {
-      const item = state.items.find(i => i.id === id);
-      const original = item ? item.is_available : null;
-      if (item) item.is_available = is_available;
-      
-      renderItems();
-      btnSync.className = 'btn-sync syncing';
-      syncIcon.classList.add('spin-icon');
-      syncText.textContent = 'Guardando...';
-
-      try {
-        const { error } = await adminClient.database
-          .from('menu_items')
-          .update({ is_available, updated_at: new Date().toISOString() })
-          .eq('id', id);
-
-        if (error) throw error;
-        btnSync.className = 'btn-sync synced';
-        syncText.textContent = 'Sincronizado ✓';
-        showToast(is_available ? 'Marcado como Disponible' : 'Marcado como No disponible');
-      } catch (err) {
-        if (item) item.is_available = original;
-        renderItems();
-        btnSync.className = 'btn-sync';
-        syncText.textContent = 'Error al guardar';
-        showToast('Error al actualizar disponibilidad', true);
-      } finally {
-        syncIcon.classList.remove('spin-icon');
-      }
-    }
-
-    async function updateItemPrice(id, price) {
-      const item = state.items.find(i => i.id === id);
-      const originalPrice = item ? item.price : null;
-      if (item) item.price = price;
-      
-      renderItems();
-      btnSync.className = 'btn-sync syncing';
-      syncIcon.classList.add('spin-icon');
-      syncText.textContent = 'Guardando...';
-
-      try {
-        const { error } = await adminClient.database
-          .from('menu_items')
-          .update({ price, updated_at: new Date().toISOString() })
-          .eq('id', id);
-
-        if (error) throw error;
-        btnSync.className = 'btn-sync synced';
-        syncText.textContent = 'Sincronizado ✓';
-        showToast(`Precio: ${price.toFixed(2)} €`);
-      } catch (err) {
-        if (item) item.price = originalPrice;
-        renderItems();
-        btnSync.className = 'btn-sync';
-        syncText.textContent = 'Error al guardar';
-        showToast('Error al actualizar precio', true);
-      } finally {
-        syncIcon.classList.remove('spin-icon');
-      }
     }
 
     // ========================================================
@@ -1403,8 +1206,7 @@
       
       dishCategory.value = item.category_id;
       dishPrice.value = item.price;
-      dishAvailable.value = item.is_available ? 'true' : 'false';
-
+      
       title_es.value = item.title_es || '';
       desc_es.value = item.description_es || '';
       title_en.value = item.title_en || '';
@@ -1424,8 +1226,7 @@
       
       dishCategory.value = state.selectedCategory !== 'all' ? state.selectedCategory : (state.categories[0]?.id || 'entrantes');
       dishPrice.value = '';
-      dishAvailable.value = 'true';
-
+      
       title_es.value = '';
       desc_es.value = '';
       title_en.value = '';
@@ -1520,7 +1321,7 @@
       const isNew = !id;
       const category_id = dishCategory.value;
       const price = parseFloat(dishPrice.value);
-      const is_available = dishAvailable.value === 'true';
+      const is_available = true;
 
       const t_es = title_es.value.trim();
       const d_es = desc_es.value.trim();
@@ -1635,11 +1436,7 @@
       renderItems();
     });
 
-    availabilityFilter.addEventListener('change', (e) => {
-      state.availabilityFilter = e.target.value;
-      renderItems();
-    });
-
+    
     checkAuth();
   </script>
 </body>
