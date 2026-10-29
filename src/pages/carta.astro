@@ -152,12 +152,11 @@ const description = "Carta digital interactiva de Buon Appetito en Port d'Andrat
           Disponemos de opciones sin gluten (pastas y pizzas artesanales). Si tiene alguna alergia o intolerancia alimentaria, por favor comuníqueselo a nuestro equipo antes de realizar su comanda.
         </p>
 
-        <!-- Dirección física del Restaurante -->
-        <div class="footer-address">
-          <svg class="location-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-          <span>Av. de Mateo Bosch, 24 · Port d'Andratx, Mallorca</span>
+        <!-- Enlace Elegante Reservar Mesa (sin botón ni píldora, texto con flecha sutil) -->
+        <div class="footer-reserve-wrapper">
+          <a href="/reservar" class="footer-reserve-link" id="footer-reservar-link" title="Reservar mesa en Buon Appetito">
+            Reservar mesa
+          </a>
         </div>
 
         <!-- Redes Sociales Oficiales: Instagram & TripAdvisor -->
@@ -216,6 +215,7 @@ const description = "Carta digital interactiva de Buon Appetito en Port d'Andrat
       es: {
         heroTitle: "Nuestra Carta",
         btnBack: "Volver",
+        reserveTable: "Reservar mesa",
         taxIncluded: "Precios con IVA incluido (10%).",
         allergensNote: "Disponemos de opciones sin gluten (pastas y pizzas artesanales). Si tiene alguna alergia o intolerancia alimentaria, por favor comuníqueselo a nuestro equipo antes de realizar su comanda.",
         legalAviso: "Aviso Legal",
@@ -225,6 +225,7 @@ const description = "Carta digital interactiva de Buon Appetito en Port d'Andrat
       en: {
         heroTitle: "Our Menu",
         btnBack: "Back",
+        reserveTable: "Book a table",
         taxIncluded: "All prices include 10% VAT.",
         allergensNote: "Gluten-free options available (artisanal pasta and pizzas). If you have any food allergy or intolerance, please inform our team before ordering.",
         legalAviso: "Legal Notice",
@@ -234,6 +235,7 @@ const description = "Carta digital interactiva de Buon Appetito en Port d'Andrat
       de: {
         heroTitle: "Unsere Speisekarte",
         btnBack: "Zurück",
+        reserveTable: "Tisch reservieren",
         taxIncluded: "Alle Preise inklusive 10% MwSt.",
         allergensNote: "Glutenfreie Optionen verfügbar (hausgemachte Pasta und Pizzen). Bitte informieren Sie unser Team vor Ihrer Bestellung über eventuelle Allergien oder Unverträglichkeiten.",
         legalAviso: "Impressum",
@@ -370,11 +372,16 @@ const description = "Carta digital interactiva de Buon Appetito en Port d'Andrat
       if (legalAvisoEl) legalAvisoEl.textContent = t.legalAviso;
       if (legalPrivacidadEl) legalPrivacidadEl.textContent = t.legalPrivacidad;
       if (legalCookiesEl) legalCookiesEl.textContent = t.legalCookies;
+      const linkReservarEl = document.getElementById('footer-reservar-link');
+      if (linkReservarEl) linkReservarEl.textContent = t.reserveTable;
 
       if (menuData && menuData.categories) {
         const nav = document.getElementById('category-nav');
         if (nav) {
-          nav.innerHTML = menuData.categories.map((cat, idx) => `
+          // Filtrar Bebidas para la carta de vinos y bodega (/vinos)
+          const activeCategories = menuData.categories.filter(cat => cat.id !== 'bebidas');
+
+          nav.innerHTML = activeCategories.map((cat, idx) => `
             <button type="button" class="cat-nav-link ${idx === 0 ? 'active' : ''}" data-cat="${cat.id}">
               <span class="cat-svg-box">${CATEGORY_SVGS[cat.id] || ''}</span>
               <span class="cat-text">${cat[currentLang] || cat.es}</span>
@@ -409,7 +416,8 @@ const description = "Carta digital interactiva de Buon Appetito en Port d'Andrat
       if (!contentArea) return;
 
       const items = menuData.items;
-      const categories = menuData.categories;
+      // Filtrar categorías: la carta digital de comida termina en Pizzas (bebidas en /vinos)
+      const categories = menuData.categories.filter(c => c.id !== 'bebidas');
 
       let html = '';
       categories.forEach(cat => {
@@ -446,6 +454,27 @@ const description = "Carta digital interactiva de Buon Appetito en Port d'Andrat
           </section>
         `;
       });
+
+      // Cierre editorial integrado: Grabado tradicional de Port d'Andratx al final de los platos
+      html += `
+        <div class="menu-finale-engraving" aria-hidden="true">
+          <img 
+            src="/assets/decorations/grabado_puerto_faded.png" 
+            alt="Port d'Andratx · Barcas tradicionales en el puerto"
+            class="finale-engraving-img" 
+            loading="lazy"
+          />
+          <div class="finale-caption">
+            <span class="finale-title">Port d'Andratx</span>
+            <span class="finale-sub">TRADICIÓN & COCINA MEDITERRÁNEA</span>
+          </div>
+          <div class="finale-divider finale-divider-footer">
+            <span class="divider-line"></span>
+            <span class="divider-diamond">◆</span>
+            <span class="divider-line"></span>
+          </div>
+        </div>
+      `;
 
       contentArea.innerHTML = html;
       setupScrollSpy();
@@ -1004,6 +1033,80 @@ html {
   overflow-wrap: break-word;
 }
 
+/* Grabado de cierre editorial */
+.menu-finale-engraving {
+  margin: 48px auto 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.finale-engraving-img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.88;
+  filter: drop-shadow(0 2px 8px rgba(24, 51, 33, 0.08));
+}
+
+.finale-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-top: 12px;
+}
+
+.finale-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
+}
+
+.finale-sub {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.finale-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+  margin-bottom: 20px;
+  color: var(--color-accent);
+  opacity: 0.45;
+}
+
+.finale-divider-footer {
+  margin-top: 26px;
+  margin-bottom: 6px;
+  max-width: 320px;
+  opacity: 0.55;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+
+.divider-diamond {
+  font-size: 0.65rem;
+  line-height: 1;
+}
+
 /* Footer */
 .site-footer {
   background: var(--footer-bg);
@@ -1035,19 +1138,31 @@ html {
   padding: 0 10px;
 }
 
-.footer-address {
+/* Enlace Elegante Reservar Mesa */
+.footer-reserve-wrapper {
+  margin-bottom: 24px;
+}
+
+.footer-reserve-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  font-size: 0.86rem;
-  color: var(--footer-text);
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
   font-weight: 600;
-  margin-bottom: 20px;
+  color: var(--color-accent);
+  text-decoration: none;
+  padding: 8px 18px;
+  border-bottom: 1px solid rgba(158, 66, 33, 0.35);
+  transition: all 0.25s ease;
 }
 
-.location-icon {
-  stroke: var(--color-accent);
+.footer-reserve-link:hover {
+  color: var(--color-accent-hover);
+  border-bottom-color: var(--color-accent);
+  transform: translateY(-1px);
 }
 
 .footer-social-row {
@@ -1204,8 +1319,9 @@ html {
     max-width: 98%;
   }
 
-  .footer-address {
-    font-size: 0.82rem;
+  .footer-reserve-link {
+    font-size: 1.05rem;
+    padding: 6px 14px;
   }
 }
 </style>
