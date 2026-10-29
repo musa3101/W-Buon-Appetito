@@ -5,44 +5,43 @@
 ---
 
 ## 1. Qué se ha hecho hoy
-1. **Rediseño Minimalista y Limpio del Panel de Gestión (`/admin` y `X/INSFORGE`)**:
-   - Se eliminaron todos los elementos técnicos, códigos repetitivos (`ENTRANTES-01`), etiquetas redundantes (`EN CARTA`, `En directo`) y botones innecesarios que saturaban la pantalla.
-   - **Encabezado ultra-limpio**: Únicamente el logotipo oficial de Buon Appetito, un botón indicador de sincronización (`🔄 Sincronizado ✓` / `Sincronizando...`) y el botón `Salir`.
-   - **Estados simplificados**: Se unificó el estado de cada plato exclusivamente en dos opciones claras: **"🟢 Disponible"** y **"🔴 No disponible"**.
-   - **Edición táctil rápida**: Edición directa de precio al pulsar sobre el importe y selector instantáneo de disponibilidad con un solo toque.
-   - **Listado compacto tipo iOS**: Lista clara, legible y optimizada para pantallas móviles, con títulos en tipografía editorial y descripciones legibles.
-   - **Corrección de pantalla de acceso (Login)**: Se corrigió el desborde y elementos superpuestos; el formulario ahora aparece centrado, limpio y seguro.
-   - **Sincronización de carpetas**: Se igualó el código de `X/INSFORGE/index.html` con `web/src/pages/admin.astro` para que ambas vistas ofrezcan exactamente la misma experiencia depurada.
+1. **Rediseño Editorial y Minimalista de la Lista de Platos (`/admin` y `X/INSFORGE`)**:
+   - **Eliminación total del concepto "Disponible":** Se han suprimido al 100% las insignias, botones, textos y filtros de "Disponible / No disponible", dejando el panel como un catálogo limpio y profesional de carta.
+   - **Nueva distribución en lista compacta (estilo iOS / Shopify):**
+     - Cada plato se presenta en una fila horizontal clara dentro de una tarjeta blanca con separadores finos de 1px.
+     - A la izquierda: nombre del plato en tipografía destacada y descripción en gris sutil (con puntos suspensivos si es extensa).
+     - A la derecha: precio formateado con claridad (`7,50 €`) junto a una flecha sutil `›` indicando que la fila es interactiva.
+   - **Pulsar para modificar:** Al hacer clic o tocar con el dedo cualquier parte de la fila de un plato, se abre directamente la ventana modal (u hoja deslizante inferior en móvil) para editar nombre, ingredientes, precio o categoría.
+   - **Barra de herramientas simplificada:** Se eliminó el menú desplegable de estados; ahora solo quedan el buscador rápido `🔍 Buscar plato o ingrediente...`, el botón `+ Nuevo Plato` y las píldoras de categorías horizontales.
+   - **Full Responsive:** Altura táctil cómoda ($\ge 52\text{ px}$) para navegación ágil en smartphones y visualización espaciosa y pulcra en ordenadores.
+   - **Sincronización exacta:** Se sincronizó [`X/INSFORGE/index.html`](file:///Users/musa/Documents/W-boun%20apeptito%20v1/X/INSFORGE/index.html) con [`web/src/pages/admin.astro`](file:///Users/musa/Documents/W-boun%20apeptito%20v1/web/src/pages/admin.astro).
 2. **Puesta en marcha del Backend de Carta en la Nube (InsForge)**:
-   - Configuración del proyecto en la nube en Frankfurt (`eu-central`), activo 24/7 sin riesgo de apagarse por inactividad.
-   - Migración de tablas SQL: `menu_categories` (8 categorías) y `menu_items` (105 platos y bebidas) con traducciones completas en español, inglés y alemán.
-   - Políticas RLS configuradas: lectura pública rápida para clientes y escritura autenticada para el panel de gestión.
-3. **Conexión en Vivo con la Web (`/carta` y `/vinos`)**:
-   - La carta pública consume los datos actualizados al instante desde la base de datos.
-   - Si no hay conexión o falla la red, el sistema recurre automáticamente a los datos locales sin romper la web.
-   - Los platos marcados como "No disponible" muestran discretamente la etiqueta "Agotado hoy".
+   - Configuración del proyecto `buon-appetito` en Frankfurt (`eu-central`), activo 24/7 sin riesgo de suspensión por inactividad.
+   - Carga inicial de las 8 categorías y los 105 platos en 3 idiomas (ES, EN, DE).
+   - Políticas de seguridad RLS: lectura pública para clientes y operaciones seguras para administración.
+3. **Integración con la Carta Web (`/carta` y `/vinos`)**:
+   - Las cartas consumen en tiempo real los platos modificados desde el panel.
+   - Fallback de seguridad transparente hacia el archivo local si no hay conexión a internet.
 
 ---
 
 ## 2. Archivos modificados y creados
-- `web/src/pages/admin.astro` (panel de gestión ultra-minimalista, responsive y limpio)
-- `X/INSFORGE/index.html` (versión sincronizada del panel con diseño corregido)
-- `web/src/pages/carta.astro` (conexión en vivo con InsForge y fallback seguro)
-- `web/src/pages/vinos.astro` (conexión en vivo con InsForge y fallback seguro)
-- `web/docs/SESSION_LATEST_ES.md` (documentación de la sesión actualizada)
+- `web/src/pages/admin.astro` (panel con nueva lista editorial interactiva)
+- `X/INSFORGE/index.html` (versión estática sincronizada)
+- `web/src/pages/carta.astro` (sincronización con backend)
+- `web/src/pages/vinos.astro` (sincronización con backend)
+- `web/docs/SESSION_LATEST_ES.md` (registro de sesión actualizado)
 - `web/docs/ROADMAP.md` (hoja de ruta actualizada)
 
 ---
 
 ## 3. Problemas solucionados
-- **Interfaz recargada**: Eliminado el exceso de texto, insignias duplicadas y botones confusos en la cabecera.
-- **Error visual en login**: Corregido el contenedor y los estilos del formulario de login que producían solapamientos visuales.
-- **Terminología confusa**: Se reemplazaron términos técnicos por botones directos de "Disponible" y "No disponible".
-- **Disparidad de carpetas**: Se sincronizó la carpeta de trabajo `X/INSFORGE` con la versión integrada en `web/`.
+- **Diseño flotante y desordenado:** Sustituido por una lista contenida y elegante con bordes y líneas divisorias nítidas.
+- **Sobrecarga de estados:** Eliminado cualquier rastro de la palabra "disponible" a petición directa de Musa.
+- **Edición fragmentada:** Ahora se pulsa directamente en cualquier fila para abrir la edición completa del plato.
 
 ---
 
 ## 4. Qué queda pendiente
-- Prueba final por parte del usuario desde su móvil en la red local (`http://192.168.1.26:4321/admin` o `http://localhost:8080`).
-- Validación de añadir un plato nuevo y comprobar que se traduce y se guarda correctamente.
-- Fusión de la rama `dev` a `main` cuando el usuario dé su visto bueno.
+- Comprobación por parte de Musa en su teléfono móvil o en el navegador.
+- Fusión de la rama `dev` a `main` cuando esté listo para producción.
