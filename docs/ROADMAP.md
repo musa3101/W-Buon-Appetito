@@ -5,12 +5,13 @@
 - [x] Sincronización en vivo de `/carta` y `/vinos` con la base de datos.
 - [x] Panel de administración `/admin` con lista editorial por categorías y sin etiquetas de "disponible".
 - [x] Minipanel de auditoría y registro de cambios (`menu_logs`).
-- [x] Merge de `dev` a `main` y despliegue exitoso en Cloudflare Pages verificado por Musa.
+- [x] Despliegue exitoso en Cloudflare Pages verificado por Musa.
+- [x] Migración limpia del proyecto a su nueva carpeta raíz `W-BuonAppetitoV2`.
 
 ---
 
 ## Tareas en progreso
-- [ ] Ninguna tarea activa en este momento.
+- [ ] Transición al nuevo espacio de trabajo `W-BuonAppetitoV2`.
 
 ---
 
