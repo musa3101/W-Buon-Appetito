@@ -1,40 +1,32 @@
 # Registro de Sesión - Buon Appetito Web
-**Fecha:** 29 de Octubre de 2026  
-**Rama:** `dev` (desplegado en `main`)
+**Fecha:** 30 de Octubre de 2026  
+**Rama:** `dev`
 
 ---
 
 ## 1. Qué se ha hecho hoy
-1. **Panel de Gestión de Carta (`/admin`)**:
-   - Rediseño editorial y minimalista agrupado por categorías de la carta.
-   - Eliminadas completamente las etiquetas y referencias a "Disponible".
-   - Al tocar cualquier plato se abre la ventana de edición rápida.
-   - Minipanel deslizante de **"Registro de cambios"** (`menu_logs`) con fecha, hora y detalle de cada modificación.
-2. **Backend en la Nube (InsForge)**:
-   - Base de datos permanente con 105 platos verificados al 100% en español, inglés y alemán.
-   - Sincronización en tiempo real con `/carta` y `/vinos` sin necesidad de re-desplegar la web.
-3. **Pase a Producción en Cloudflare**:
-   - Fusión limpia de `dev` a `main` y subida a GitHub (`musa3101/W-baa`).
-   - Verificado y probado con éxito en producción por el usuario en Cloudflare Pages.
+1. **Migración a V2 (`W-BuonAppetitoV2`)**:
+   - Se migró el proyecto web limpio desde la subcarpeta `web/` hacia la nueva raíz independiente `/Users/musa/Documents/W-BuonAppetitoV2`.
+   - Se conservó todo el repositorio Git (ramas `dev`, `main` y conexión con `musa3101/W-baa.git`).
+   - Se verificó la compilación con `npm run build` en V2 (9 páginas estáticas generadas con 0 errores).
+   - Se abrió la nueva ventana del espacio de trabajo V2 en Antigravity IDE.
+2. **Copia de seguridad V1 intacta**:
+   - La carpeta `W-boun apeptito v1` queda preservada como archivo histórico de notas, borradores y material original.
 
 ---
 
 ## 2. Archivos modificados y creados
-- `web/src/pages/admin.astro` (panel de gestión con visor de logs y lista agrupada)
-- `web/src/pages/carta.astro` (conexión en vivo con backend)
-- `web/src/pages/vinos.astro` (conexión en vivo con backend)
-- `X/INSFORGE/index.html` (versión sincronizada)
-- `web/docs/SESSION_LATEST_ES.md` (registro de sesión)
-- `web/docs/ROADMAP.md` (hoja de ruta)
+- `W-BuonAppetitoV2/` (nuevo directorio de trabajo independiente)
+- `web/docs/SESSION_LATEST_ES.md` (actualizado)
+- `web/docs/ROADMAP.md` (actualizado)
 
 ---
 
 ## 3. Problemas solucionados
-- Corregido el diseño desbordado de móvil mediante estilos globales e imágenes contenidas.
-- Eliminada toda jerga técnica y códigos innecesarios en la interfaz.
-- Trazabilidad total de cambios con la nueva tabla `menu_logs`.
+- Eliminado el anidamiento innecesario de carpetas y los archivos temporales de pruebas de la versión 1.
+- Espacio de trabajo limpio, enfocado y directo en V2.
 
 ---
 
 ## 4. Qué queda pendiente
-- Pruebas operativas en sala por el personal del restaurante.
+- Continuar el desarrollo directamente desde el nuevo espacio de trabajo `W-BuonAppetitoV2`.
