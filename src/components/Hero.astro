@@ -7,9 +7,9 @@ import HeroActions from './ui/HeroActions';
 <!-- ======================================================== -->
 <section id="inicio" class="hero-fullscreen relative w-full flex flex-col justify-end items-center overflow-hidden">
   
-  <!-- Background Video Responsive: Móvil (<768px) vertical nativo, Desktop/Tablet (>=768px) panorámico con fondo atmosférico -->
+  <!-- Background Video Unificado con Fuentes Responsivas (1 solo reproductor para evitar bloqueo nativo de Safari) -->
   <video
-    id="hero-bg-video-mobile"
+    id="hero-bg-video"
     autoplay
     loop
     muted
@@ -18,26 +18,12 @@ import HeroActions from './ui/HeroActions';
     disablePictureInPicture
     disableremoteplayback
     preload="auto"
-    class="block md:hidden absolute inset-0 w-full h-full object-cover object-center brightness-[0.88] pointer-events-none"
+    class="absolute inset-0 w-full h-full object-cover object-center brightness-[0.9] pointer-events-none"
   >
-    <!-- Vídeo vertical optimizado nativo para smartphones -->
+    <!-- Desktop y Tablets (>=768px): Vídeo panorámico 16:9 con fondo atmosférico suave -->
+    <source src="/assets/hero/Hero_Andratx_Desktop.mp4" type="video/mp4" media="(min-width: 768px)" />
+    <!-- Móviles (<768px): Vídeo vertical original nativo sin pérdida -->
     <source src="/assets/hero/Hero_Andratx_Final.mp4" type="video/mp4" />
-  </video>
-
-  <video
-    id="hero-bg-video-desktop"
-    autoplay
-    loop
-    muted
-    playsinline
-    webkit-playsinline
-    disablePictureInPicture
-    disableremoteplayback
-    preload="auto"
-    class="hidden md:block absolute inset-0 w-full h-full object-cover object-center brightness-[0.92] pointer-events-none"
-  >
-    <!-- Vídeo panorámico 16:9 con fondo atmosférico suave para Desktop y Tablets -->
-    <source src="/assets/hero/Hero_Andratx_Desktop.mp4" type="video/mp4" />
   </video>
 
   <!-- Cinematic Gradients estilo Arko: velo sutil general para contraste sin comerse el vídeo -->
@@ -99,16 +85,26 @@ import HeroActions from './ui/HeroActions';
   @media (min-width: 768px) {
     .hero-fullscreen { padding-bottom: 5.5rem; }
   }
+
+  /* Ocultación radical de cualquier control o botón de reproducción nativo de WebKit/Safari */
+  #hero-bg-video::-webkit-media-controls,
+  #hero-bg-video::-webkit-media-controls-panel,
+  #hero-bg-video::-webkit-media-controls-play-button,
+  #hero-bg-video::-webkit-media-controls-start-playback-button,
+  #hero-bg-video::-webkit-media-controls-overlay-play-button,
+  #hero-bg-video::-webkit-media-controls-enclosure {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 </style>
 
 <script>
-  // Garantizar reproducción continua sin cortes en Safari iOS y Desktop
-  const videos = [
-    document.getElementById('hero-bg-video-mobile') as HTMLVideoElement | null,
-    document.getElementById('hero-bg-video-desktop') as HTMLVideoElement | null,
-  ].filter(Boolean) as HTMLVideoElement[];
-
-  videos.forEach(heroVideo => {
+  // Garantizar reproducción continua e incondicional en Safari y Chromium
+  const heroVideo = document.getElementById('hero-bg-video') as HTMLVideoElement | null;
+  if (heroVideo) {
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
     (heroVideo as any).playsInline = true;
@@ -141,5 +137,5 @@ import HeroActions from './ui/HeroActions';
       if (!document.hidden) playVideo();
     });
     window.addEventListener('pageshow', playVideo);
-  });
+  }
 </script>
