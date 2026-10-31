@@ -389,7 +389,7 @@ const googleWriteReviewUrl = "https://search.google.com/local/writereview?placei
         <div class="flex flex-col items-center justify-center gap-3.5 w-full max-w-sm sm:max-w-md mx-auto">
           <!-- Botón 1: Escribir reseña (Estilo Carta de Comida en Verde Bosque con Shimmer) -->
           <ShimmerButton 
-            client:load
+            client:visible
             href={googleWriteReviewUrl} 
             target="_blank" 
             rel="noopener noreferrer" 
@@ -411,7 +411,7 @@ const googleWriteReviewUrl = "https://search.google.com/local/writereview?placei
 
           <!-- Botón 2: Ver reseñas (Estilo Vinos y Bodega en Terracota con Shimmer) -->
           <ShimmerButton 
-            client:load
+            client:visible
             href={googleMapsUrl} 
             target="_blank" 
             rel="noopener noreferrer" 

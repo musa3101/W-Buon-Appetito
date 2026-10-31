@@ -4,18 +4,22 @@ import React, { useState, useEffect } from "react";
 import { LiquidButton } from "./liquid-glass-button";
 
 export function HeroActions() {
-  const [lang, setLang] = useState("es");
+  // Regla Vercel: rerender-lazy-state-init (Inicialización inmediata sin doble render ni parpadeo)
+  const [lang, setLang] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        return localStorage.getItem("buon_appetito_lang") || "es";
+      } catch (e) {}
+    }
+    return "es";
+  });
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("buon_appetito_lang") || "es";
-      setLang(saved);
-    } catch (e) { }
-
     const handler = (e: any) => {
       if (e.detail?.lang) setLang(e.detail.lang);
     };
-    window.addEventListener("buon:languageChange", handler);
+    // Regla Vercel: client-passive-event-listeners
+    window.addEventListener("buon:languageChange", handler, { passive: true });
     return () => window.removeEventListener("buon:languageChange", handler);
   }, []);
 

@@ -22,14 +22,14 @@ import { ShimmerButton } from './ui/shimmer-button';
 
     <!-- Polaroid Line Carousel: Instant photos on hanging sagging line with physics swing -->
     <div class="relative w-full mb-6 sm:mb-10 overflow-hidden">
-      <PolaroidLineCarousel client:load />
+      <PolaroidLineCarousel client:visible />
     </div>
 
     <!-- Buttons: Food Menu & Wine Cellar with ShimmerButton (21st.dev) -->
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-4">
       <!-- Button 1: Carta de Comida (Activo -> /carta) -->
       <ShimmerButton 
-        client:load
+        client:visible
         href="/carta"
         background="#183321"
         shimmerColor="#FFFFFF"
@@ -48,7 +48,7 @@ import { ShimmerButton } from './ui/shimmer-button';
 
       <!-- Button 2: Carta de Vinos y Bodega (Abre la carta digital de vinos y bebidas) -->
       <ShimmerButton 
-        client:load
+        client:visible
         href="/vinos"
         background="#9E4221"
         shimmerColor="#FED7AA"
