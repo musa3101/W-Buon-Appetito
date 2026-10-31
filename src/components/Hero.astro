@@ -7,18 +7,31 @@ import HeroActions from './ui/HeroActions';
 <!-- ======================================================== -->
 <section id="inicio" class="hero-fullscreen relative w-full flex flex-col justify-end items-center overflow-hidden">
   
-  <!-- Background Video en Bucle Continuo (Autoplay, Muted, Loop) -->
+  <!-- Background Video Responsive: Móvil (<768px) vertical nativo, Desktop/Tablet (>=768px) panorámico con fondo atmosférico -->
   <video
-    id="hero-bg-video"
+    id="hero-bg-video-mobile"
     autoplay
     loop
     muted
     playsinline
     preload="auto"
-    class="absolute inset-0 w-full h-full object-cover object-center brightness-[0.88]"
+    class="block md:hidden absolute inset-0 w-full h-full object-cover object-center brightness-[0.88]"
   >
-    <!-- MP4 como fuente principal (1080p nativo, optimizado y menor peso) -->
+    <!-- Vídeo vertical optimizado nativo para smartphones -->
     <source src="/assets/hero/Hero_Andratx_Final.mp4" type="video/mp4" />
+  </video>
+
+  <video
+    id="hero-bg-video-desktop"
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="auto"
+    class="hidden md:block absolute inset-0 w-full h-full object-cover object-center brightness-[0.92]"
+  >
+    <!-- Vídeo panorámico 16:9 con fondo atmosférico suave para Desktop y Tablets -->
+    <source src="/assets/hero/Hero_Andratx_Desktop.mp4" type="video/mp4" />
   </video>
 
   <!-- Cinematic Gradients estilo Arko: velo sutil general para contraste sin comerse el vídeo -->
@@ -83,10 +96,13 @@ import HeroActions from './ui/HeroActions';
 </style>
 
 <script>
-  // Garantizar reproducción continua sin cortes ni congelaciones en Safari iOS
-  const heroVideo = document.getElementById('hero-bg-video') as HTMLVideoElement | null;
-  if (heroVideo) {
-    // Asegurar atributos nativos a nivel de propiedad DOM para WebKit
+  // Garantizar reproducción continua sin cortes en Safari iOS y Desktop
+  const videos = [
+    document.getElementById('hero-bg-video-mobile') as HTMLVideoElement | null,
+    document.getElementById('hero-bg-video-desktop') as HTMLVideoElement | null,
+  ].filter(Boolean) as HTMLVideoElement[];
+
+  videos.forEach(heroVideo => {
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
     (heroVideo as any).playsInline = true;
@@ -96,7 +112,6 @@ import HeroActions from './ui/HeroActions';
         const promise = heroVideo.play();
         if (promise !== undefined) {
           promise.catch(() => {
-            // Reintento automático en caso de que Safari requiera interacción de pantalla
             const unlockTouch = () => {
               heroVideo.play().catch(() => {});
               window.removeEventListener('touchstart', unlockTouch);
@@ -111,7 +126,6 @@ import HeroActions from './ui/HeroActions';
       }
     };
 
-    // Intentar reproducción inmediata
     playVideo();
     heroVideo.addEventListener('loadedmetadata', playVideo, { once: true });
     heroVideo.addEventListener('canplay', playVideo, { once: true });
@@ -121,5 +135,5 @@ import HeroActions from './ui/HeroActions';
       if (!document.hidden) playVideo();
     });
     window.addEventListener('pageshow', playVideo);
-  }
+  });
 </script>
