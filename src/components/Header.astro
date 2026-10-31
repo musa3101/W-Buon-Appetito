@@ -25,23 +25,71 @@
       />
     </a>
 
-    <!-- Desktop Navigation Links: Clean 4 sections -->
-    <nav class="hidden lg:flex items-center space-x-8 xl:space-x-10" aria-label="Navegación principal">
-      <a href="/" data-i18n="nav_inicio" class="text-white/85 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Inicio</a>
-      <a href="/#sobre-nosotros" data-i18n="nav_sobre_nosotros" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Sobre nosotros</a>
-      <a href="/carta" data-i18n="nav_menu" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Menú</a>
-      <a href="/#donde-estamos" data-i18n="nav_donde_estamos" class="text-white/75 hover:text-white text-xs sm:text-sm font-medium uppercase tracking-[0.18em] transition-colors drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">Dónde estamos</a>
+    <!-- Desktop Navigation Links: Clean 4 sections con estilo marfil cálido y hover dorado italiano -->
+    <nav class="hidden lg:flex items-center space-x-7 xl:space-x-9" aria-label="Navegación principal">
+      <a href="/" data-i18n="nav_inicio" class="nav-desktop-link text-[#FBF9F5]/90 hover:text-[#E8C547] text-[13px] font-medium uppercase tracking-[0.2em] transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] relative py-1">
+        Inicio
+      </a>
+      <a href="/#sobre-nosotros" data-i18n="nav_sobre_nosotros" class="nav-desktop-link text-[#FBF9F5]/80 hover:text-[#E8C547] text-[13px] font-medium uppercase tracking-[0.2em] transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] relative py-1">
+        Sobre nosotros
+      </a>
+      <a href="/carta" data-i18n="nav_menu" class="nav-desktop-link text-[#FBF9F5]/80 hover:text-[#E8C547] text-[13px] font-medium uppercase tracking-[0.2em] transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] relative py-1">
+        Menú
+      </a>
+      <a href="/#donde-estamos" data-i18n="nav_donde_estamos" class="nav-desktop-link text-[#FBF9F5]/80 hover:text-[#E8C547] text-[13px] font-medium uppercase tracking-[0.2em] transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] relative py-1">
+        Dónde estamos
+      </a>
     </nav>
 
-    <!-- Right Actions: Language Selector ONLY + Animated AlignRightIcon -->
+    <!-- Right Actions: Language Selector Expandible a la izquierda + Animated AlignRightIcon -->
     <div class="flex items-center gap-3 sm:gap-4">
-      <!-- Language Switcher Pill (Desktop Only; en móvil y tablet se encuentra dentro del menú drawer) -->
-      <div class="hidden lg:inline-flex items-center space-x-1.5 bg-black/25 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs text-white/90 shadow-sm" role="group" aria-label="Selector de idioma">
-        <button type="button" data-lang-btn="es" onclick="window.setBuonLanguage('es')" class="text-white font-bold hover:text-white transition-colors cursor-pointer" title="Español">ES</button>
-        <span class="text-white/40">·</span>
-        <button type="button" data-lang-btn="en" onclick="window.setBuonLanguage('en')" class="hover:text-white transition-colors cursor-pointer opacity-60" title="English">EN</button>
-        <span class="text-white/40">·</span>
-        <button type="button" data-lang-btn="de" onclick="window.setBuonLanguage('de')" class="hover:text-white transition-colors cursor-pointer opacity-60" title="Deutsch">DE</button>
+      
+      <!-- Selector de Idioma Elegante (Desktop & Tablet horizontal >= 1024px) -->
+      <!-- Se despliega suavemente hacia la izquierda al tocar o pasar el cursor -->
+      <div id="desktop-lang-container" class="hidden lg:relative lg:inline-flex items-center">
+        <!-- Cápsula expandible hacia la izquierda -->
+        <div 
+          id="lang-expand-pill" 
+          class="flex items-center bg-black/35 hover:bg-black/50 backdrop-blur-md px-2 py-1 rounded-full border border-white/20 hover:border-[#E8C547]/50 shadow-md transition-all duration-300 overflow-hidden"
+        >
+          <!-- Opciones ocultas que emergen hacia la izquierda -->
+          <div id="lang-options-drawer" class="flex items-center gap-1.5 max-w-0 opacity-0 overflow-hidden transition-all duration-300 ease-out pr-0">
+            <button 
+              type="button" 
+              data-lang-btn="de" 
+              onclick="window.setBuonLanguage('de')" 
+              class="lang-option-btn text-[11px] font-medium text-white/70 hover:text-white px-2 py-0.5 rounded-full hover:bg-white/10 transition-colors cursor-pointer" 
+              title="Deutsch"
+            >DE</button>
+            <span class="text-white/30 text-[10px]">&bull;</span>
+            <button 
+              type="button" 
+              data-lang-btn="en" 
+              onclick="window.setBuonLanguage('en')" 
+              class="lang-option-btn text-[11px] font-medium text-white/70 hover:text-white px-2 py-0.5 rounded-full hover:bg-white/10 transition-colors cursor-pointer" 
+              title="English"
+            >EN</button>
+            <span class="text-white/30 text-[10px]">&bull;</span>
+          </div>
+
+          <!-- Botón Gatillo (muestra el idioma activo actual) -->
+          <button 
+            type="button" 
+            id="lang-trigger-btn" 
+            class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold text-white cursor-pointer select-none"
+            aria-label="Cambiar idioma"
+          >
+            <svg class="w-3.5 h-3.5 text-[#E8C547] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span id="current-lang-label" class="tracking-wider">ES</span>
+            <svg id="lang-chevron-icon" class="w-3 h-3 text-white/60 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <!-- Botón Menú Móvil Animado (Para móvil y tablets < 1024px) -->
@@ -230,4 +278,75 @@
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
   window.addEventListener('resize', updateHeaderOnScroll, { passive: true });
   updateHeaderOnScroll();
+
+  // Control interactivo del selector de idioma desplegable hacia la izquierda
+  const langContainer = document.getElementById('desktop-lang-container');
+  const langOptionsDrawer = document.getElementById('lang-options-drawer');
+  const langTriggerBtn = document.getElementById('lang-trigger-btn');
+  const currentLangLabel = document.getElementById('current-lang-label');
+  const langChevron = document.getElementById('lang-chevron-icon');
+
+  let isLangOpen = false;
+
+  function toggleLangDrawer(open?: boolean) {
+    isLangOpen = typeof open === 'boolean' ? open : !isLangOpen;
+    if (langOptionsDrawer) {
+      if (isLangOpen) {
+        langOptionsDrawer.classList.remove('max-w-0', 'opacity-0');
+        langOptionsDrawer.classList.add('max-w-[140px]', 'opacity-100');
+        if (langChevron) langChevron.style.transform = 'rotate(180deg)';
+      } else {
+        langOptionsDrawer.classList.remove('max-w-[140px]', 'opacity-100');
+        langOptionsDrawer.classList.add('max-w-0', 'opacity-0');
+        if (langChevron) langChevron.style.transform = 'rotate(0deg)';
+      }
+    }
+  }
+
+  if (langTriggerBtn) {
+    langTriggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleLangDrawer();
+    });
+  }
+
+  if (langContainer) {
+    langContainer.addEventListener('mouseenter', () => toggleLangDrawer(true));
+    langContainer.addEventListener('mouseleave', () => toggleLangDrawer(false));
+  }
+
+  document.addEventListener('click', (e) => {
+    if (langContainer && !langContainer.contains(e.target as Node)) {
+      toggleLangDrawer(false);
+    }
+  });
+
+  // Actualizar etiqueta del botón activo al cambiar idioma
+  function syncDesktopLangLabel(lang: string) {
+    if (currentLangLabel) {
+      currentLangLabel.textContent = (lang || 'es').toUpperCase();
+    }
+    // Reordenar opciones para mostrar los idiomas alternativos
+    const allBtns = document.querySelectorAll('.lang-option-btn');
+    allBtns.forEach(b => {
+      const bLang = b.getAttribute('data-lang-btn');
+      if (bLang === lang) {
+        b.classList.add('hidden');
+      } else {
+        b.classList.remove('hidden');
+      }
+    });
+  }
+
+  try {
+    const initialLang = localStorage.getItem('buon_appetito_lang') || 'es';
+    syncDesktopLangLabel(initialLang);
+  } catch (e) {}
+
+  window.addEventListener('buon:languageChange', (e: any) => {
+    if (e.detail?.lang) {
+      syncDesktopLangLabel(e.detail.lang);
+      toggleLangDrawer(false);
+    }
+  }, { passive: true });
 </script>
