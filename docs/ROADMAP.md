@@ -9,26 +9,31 @@
 - [x] Configuración Web App instalable (PWA) para iPhone y Android (`manifest.webmanifest`).
 - [x] Separación de la carta en 3 cartas independientes: Comida (71), Bebidas (34) y Bodega de Vinos.
 - [x] Barra de navegación inferior móvil táctil (Bottom Navigation Bar) adaptada al uso con el pulgar.
-- [x] Cajón de Perfil & Ajustes Obsidian Luxury Sheet (`#0B0E14`) con pantalla completa en móvil y safe areas en iPhone.
-- [x] Rediseño integral del panel de administración a **Opción 2: Vibrant Neo-Bento Light** (`#F8FAFC` titanium), abandonando los tonos crema antiguos y el fondo negro pesado.
-- [x] Código de colores Bento por secciones ("cuadros de cada color"): Menta Fresco (Comida / Precios), Ámbar Solar (Bebidas / Disponibilidad), Violeta Eléctrico (Bodega / Textos e IA) y Cielo Azul (Categorías / Perfil).
-- [x] Nuevo **Neo-Bento Studio** para Añadir y Editar Platos:
-  - Sin el bloque de foto grande intrusivo.
-  - Cuadro 1 (Precio Hero Esmeralda) con píldoras de ajuste rápido (+0.50€, +1.00€, etc.).
-  - Cuadro 2 (Categoría Zafiro) con selector de chips táctiles dinámicos.
-  - Cuadro 3 (Disponibilidad en Cocina Ámbar/Neón) con switch iOS grande y badge explicativo.
-  - Cuadro 4 (Textos & IA Violeta) con selector de idiomas segmentado y traducción automática.
-  - Guardado rápido dual (cabecera superior y barra fija inferior).
-- [x] Paneles a **pantalla completa real** en móviles (`<= 768px`, 100% width, 100dvh, border-radius: 0) sin efecto "mini-ventana".
-- [x] Bloqueo total de desplazamiento del fondo (`lockBackgroundScroll`) evitando cualquier movimiento de la carta al abrir paneles.
-- [x] Corrección de excepción en listeners de JavaScript (`btnCancelModal`) y optimización táctil a latencia cero (0 ms).
-
-- [x] Fusión de rama `dev` a `main` y despliegue automatizado en Cloudflare Pages.
+- [x] Rediseño V2 Mobile-First del panel de administración (`/admin`):
+  - Tarjetas limpias en lista sin conmutadores de disponibilidad en primer plano.
+  - Bloqueo de doble toque zoom en iOS Safari (`touch-action: manipulation`).
+  - Modal para añadir comida, bebidas o vinos con selector de carta segmentado y categorías dinámicas.
+  - Pantalla completa de Ajustes con guía PWA visual e historial de cambios con fecha y hora exacta.
+- [x] Auditoría técnica completa Mobile-First: 0 desbordamientos horizontales en todas las rutas y base de datos protegida.
+- [x] Integración de reservas con Bavoli:
+  - Enlaces de "Ver Menú" y "Reservar Mesa" del Hero con scroll suave a `#menu` y `#donde-estamos`.
+  - Botón oficial en Dónde Estamos conectado a `https://www.bavoli.com/book/buon-appetito` en pestaña independiente.
+- [x] Optimización de rendimiento con principios Vercel React Best Practices (`client:visible`, `lazy state init`, `passive listeners`).
+- [x] Solución integral de vídeo Hero para Desktop y Tablet:
+  - Vídeo 16:9 con fondo atmosférico panorámico nítido al 100% en ordenadores y tablets.
+  - Unificación de fuente única que elimina el botón de play nativo de Safari.
+  - Vídeo vertical nativo 9:16 preservado intacto en móviles.
+- [x] Barra de navegación editorial refinada en Desktop:
+  - Eliminación de cápsulas y píldoras artificiales.
+  - Subrayado dinámico scroll-spy en dorado italiano `#E8C547`.
+  - Selector de idioma en texto plano desplegable suavemente hacia la izquierda.
+- [x] Perfeccionamiento de la infografía "Il Nostro Calzone": arcos simétricos y orientados con precisión en escritorio y tablet sin tocar móvil.
+- [x] Fusión autorizada de rama `dev` a `main` y sincronización con GitHub.
 
 ---
 
 ## Tareas en progreso
-- [ ] Verificación de despliegue en producción (`https://restaurantebuonappetito.pages.dev/admin`).
+- [ ] Verificación de despliegue en producción (`https://restaurantebuonappetito.pages.dev`).
 
 ---
 
