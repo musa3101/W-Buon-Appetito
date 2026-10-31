@@ -70,16 +70,18 @@ import SectionDivider from './ui/SectionDivider.astro';
       <button type="button" data-lang-btn="de" onclick="window.setBuonLanguage('de')" class="hover:text-white cursor-pointer transition-colors opacity-60 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-md active:scale-95">DE</button>
     </div>
 
-    <!-- Call to Action Reservar Mesa con FlowButton de 21st.dev -->
-    <FlowButton 
-      client:load
-      text="Reservar Mesa"
-      dataI18n="nav_reservar"
-      href="/reservar"
-      variant="mobile-dark"
-      fullWidth={true}
-      title="Reservar mesa en Buon Appetito"
-    />
+    <!-- Call to Action Reservar Mesa con FlowButton de 21st.dev (Scroll suave a #donde-estamos) -->
+    <div id="mobile-reservar-btn-wrapper" class="w-full">
+      <FlowButton 
+        client:load
+        text="Reservar Mesa"
+        dataI18n="nav_reservar"
+        href="/#donde-estamos"
+        variant="mobile-dark"
+        fullWidth={true}
+        title="Reservar mesa en Buon Appetito"
+      />
+    </div>
   </div>
 </div>
 
@@ -88,6 +90,7 @@ import SectionDivider from './ui/SectionDivider.astro';
   const toggleBtn = document.getElementById('menu-toggle-btn');
   const closeBtn = document.getElementById('close-mobile-menu-btn');
   const navLinks = document.querySelectorAll('.mobile-nav-link');
+  const mobileReservarBtn = document.getElementById('mobile-reservar-btn-wrapper');
 
   function openMenu() {
     if (mobileMenu) {
@@ -120,4 +123,18 @@ import SectionDivider from './ui/SectionDivider.astro';
   navLinks.forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
+
+  if (mobileReservarBtn) {
+    mobileReservarBtn.addEventListener('click', (e) => {
+      closeMenu();
+      const targetElem = document.getElementById('donde-estamos');
+      if (targetElem) {
+        e.preventDefault();
+        setTimeout(() => {
+          targetElem.scrollIntoView({ behavior: 'smooth' });
+          try { history.pushState(null, '', '#donde-estamos'); } catch (err) {}
+        }, 150);
+      }
+    });
+  }
 </script>

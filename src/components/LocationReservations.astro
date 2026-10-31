@@ -37,16 +37,18 @@ import { ShimmerButton } from './ui/shimmer-button';
           </p>
         </div>
         
-        <!-- Botón Reservar Mesa (Estilo ShimmerButton de Menú y Carta) -->
+        <!-- Botón Reservar Mesa (Abre pasarela oficial de Bavoli en pestaña nueva) -->
         <ShimmerButton 
           client:load
-          href="/reservar" 
+          href="https://www.bavoli.com/book/buon-appetito"
+          target="_blank"
+          rel="noopener noreferrer"
           background="#183321"
           shimmerColor="#FFFFFF"
           shimmerDuration="3s"
           borderRadius="100px"
           className="shadow-xl shadow-[#183321]/20 w-full sm:w-auto shrink-0"
-          title="Reservar mesa oficial en Buon Appetito"
+          title="Reservar mesa en Buon Appetito a través de Bavoli"
         >
           <svg class="w-4 h-4 text-white/95 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -56,7 +58,7 @@ import { ShimmerButton } from './ui/shimmer-button';
           </svg>
           <span data-i18n="contact_btn_reservar">Reservar Mesa</span>
           <svg class="w-3.5 h-3.5 text-white/80 shrink-0 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
           </svg>
         </ShimmerButton>
       </div>

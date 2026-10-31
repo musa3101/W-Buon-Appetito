@@ -192,9 +192,9 @@
       hidePreloader(true);
     }
 
-    // Interceptar clics en botones de "Reservar Mesa" (pero NUNCA en la Carta/Menú)
+    // Interceptar clics en botones de "Reservar Mesa" legacy (solo enlaces directos a /reservar que no sean anclas)
     function bindReservarButtons() {
-      const reservarLinks = document.querySelectorAll('a[href*="/reservar"], button[data-action="reservar"]');
+      const reservarLinks = document.querySelectorAll('a[href^="/reservar"]:not([href*="#"])');
       
       reservarLinks.forEach(link => {
         if (link.hasAttribute('data-preloader-bound')) return;
