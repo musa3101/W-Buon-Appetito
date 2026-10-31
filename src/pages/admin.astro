@@ -1,5 +1,6 @@
 ---
 // Página de Administración Privada de Carta - Buon Appetito
+// Versión 2.0: Mobile-First Luxury, Shadcn & 21st.dev UI
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -22,54 +23,83 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  
   <style is:global>
     :root {
       --bg: #F8FAFC;
-      --surface: #FFFFFF;
-      --surface-elevated: #FFFFFF;
-      --surface-hover: #F1F5F9;
-      --dark: #0F172A;
-      --dark-card: #1E293B;
-      --accent-emerald: #10B981;
-      --accent-amber: #F59E0B;
-      --accent-violet: #8B5CF6;
-      --accent-blue: #3B82F6;
-      --burgundy: #10B981;
-      --burgundy-hover: #059669;
-      --gold: #F59E0B;
-      --gold-dark: #D97706;
+      --card: #FFFFFF;
       --border: #E2E8F0;
       --border-subtle: #F1F5F9;
-      --text: #0F172A;
+      --text-main: #0F172A;
       --text-muted: #64748B;
-      --text-light: #94A3B8;
+      --text-subtle: #94A3B8;
+      
+      --brand-header: #14281B;
+      --brand-primary: #183321;
+      --brand-hover: #102417;
+      --brand-light: #EBF3ED;
+      --brand-gold: #C5A880;
+      --brand-gold-light: #F7F3EC;
+
+      --emerald: #10B981;
+      --emerald-bg: #ECFDF5;
+      --emerald-border: #A7F3D0;
+      --emerald-text: #065F46;
+
+      --amber: #F59E0B;
+      --amber-bg: #FFFBEB;
+      --amber-border: #FDE68A;
+      --amber-text: #92400E;
+
+      --blue: #2563EB;
+      --blue-bg: #EFF6FF;
+      --blue-border: #BFDBFE;
+      --blue-text: #1E40AF;
+
+      --purple: #7C3AED;
+      --purple-bg: #F5F3FF;
+      --purple-border: #DDD6FE;
+      --purple-text: #5B21B6;
+
+      --radius-xl: 20px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+      --shadow-float: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
+      --shadow-sheet: 0 -12px 35px -8px rgba(15, 23, 42, 0.22);
+
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    /* PREVENCIÓN ESTRICTA DE DOBLE CLIC ZOOM EN IPHONE */
+    html, body, button, a, input, textarea, select, .dish-row, .modal-window, .dish-studio-window {
+      touch-action: manipulation;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
-      background-color: #F8FAFC;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 40%),
-        radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 40%),
-        radial-gradient(at 50% 100%, rgba(139, 92, 246, 0.04) 0px, transparent 40%);
-      color: var(--text);
+      background-color: var(--bg);
+      color: var(--text-main);
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       -webkit-tap-highlight-color: transparent;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       font-size: 14px;
-      line-height: 1.4;
+      line-height: 1.45;
       padding-top: var(--safe-top);
       padding-bottom: var(--safe-bottom);
+      -webkit-font-smoothing: antialiased;
     }
 
     button, input, select, textarea {
       font-family: inherit;
-      touch-action: manipulation;
     }
 
     img { max-width: 100%; height: auto; display: block; }
@@ -77,12 +107,12 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
     /* ========================================================
-       1. PANTALLA DE ACCESO (LOGIN EDITORIAL MOBILE-FIRST)
+       1. LOGIN
        ======================================================== */
     .login-wrapper {
       position: fixed;
       inset: 0;
-      z-index: 50;
+      z-index: 150;
       background: radial-gradient(ellipse at 50% 25%, #1F3F2B 0%, #112418 55%, #08110B 100%);
       display: flex;
       align-items: center;
@@ -93,68 +123,56 @@
 
     .login-card {
       width: 100%;
-      max-width: 400px;
-      background: rgba(25, 22, 20, 0.90);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 28px;
+      max-width: 390px;
+      background: rgba(25, 22, 20, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 24px;
       border: 1px solid rgba(197, 168, 128, 0.25);
       box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 45px -10px rgba(24, 51, 33, 0.6);
-      padding: 34px 26px;
+      padding: 32px 24px;
       text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      animation: loginCardIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+      gap: 18px;
+      animation: loginIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
-    @keyframes loginCardIn {
+    @keyframes loginIn {
       from { opacity: 0; transform: translateY(12px) scale(0.98); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    .login-card.shake {
-      animation: shakeCard 0.45s ease-in-out;
-    }
-
+    .login-card.shake { animation: shakeCard 0.4s ease-in-out; }
     @keyframes shakeCard {
       0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-8px); }
-      40%, 80% { transform: translateX(8px); }
+      20%, 60% { transform: translateX(-7px); }
+      40%, 80% { transform: translateX(7px); }
     }
 
     .login-logo-box {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(197, 168, 128, 0.3);
       padding: 10px 18px;
-      border-radius: 16px;
+      border-radius: 14px;
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
       margin: 0 auto;
     }
-
-    .login-logo-box img {
-      height: 30px;
-      width: auto;
-      object-fit: contain;
-    }
+    .login-logo-box img { height: 28px; width: auto; object-fit: contain; }
 
     .login-heading {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 28px;
+      font-size: 27px;
       font-weight: 700;
       color: #FAF8F5;
-      margin-top: 10px;
+      margin-top: 8px;
       line-height: 1.1;
-      letter-spacing: -0.01em;
     }
 
     .login-subhead {
-      font-size: 12px;
-      color: rgba(250, 248, 245, 0.6);
-      margin-top: 4px;
-      letter-spacing: 0.02em;
+      font-size: 12.5px;
+      color: rgba(250, 248, 245, 0.7);
+      margin-top: 2px;
     }
 
     .form-group {
@@ -165,1329 +183,681 @@
     }
 
     .form-label {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.06em;
+      font-size: 12px;
+      font-weight: 600;
+      color: #FAF8F5;
       text-transform: uppercase;
-    }
-
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
+      letter-spacing: 0.04em;
     }
 
     .form-input-login {
       width: 100%;
-      padding: 13px 16px;
-      font-size: 16px; /* 16px evita zoom automático en Safari iOS */
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(197, 168, 128, 0.3);
+      border-radius: 12px;
+      padding: 0 14px;
+      font-size: 14px;
       color: #FAF8F5;
-      outline: none;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
-
-    .form-input-login::placeholder {
-      color: rgba(255, 255, 255, 0.35);
-    }
-
     .form-input-login:focus {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.2);
+      outline: none;
+      border-color: #10B981;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
     }
 
+    .input-wrapper { position: relative; width: 100%; }
     .btn-toggle-pass {
       position: absolute;
       right: 12px;
-      background: none;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
       border: none;
-      color: rgba(255, 255, 255, 0.55);
+      color: rgba(250, 248, 245, 0.6);
       cursor: pointer;
-      padding: 6px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      transition: color 0.15s ease;
+      padding: 4px;
     }
 
-    .btn-toggle-pass:hover {
-      color: #FAF8F5;
-    }
-
-    /* Checkbox táctil "Recordar sesión" */
     .remember-row {
       display: flex;
       align-items: center;
       gap: 10px;
+      text-align: left;
       cursor: pointer;
       user-select: none;
-      text-align: left;
-      padding: 4px 2px;
+      padding: 6px 0;
     }
-
     .remember-check {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
-      border: 1.5px solid rgba(197, 168, 128, 0.5);
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.04);
+      width: 18px;
+      height: 18px;
+      accent-color: #10B981;
       cursor: pointer;
-      position: relative;
-      flex-shrink: 0;
-      transition: all 0.15s ease;
     }
-
-    .remember-check:checked {
-      background: var(--burgundy);
-      border-color: var(--burgundy);
-    }
-
-    .remember-check:checked::after {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 2px;
-      width: 5px;
-      height: 10px;
-      border: solid #FFFFFF;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
-
-    .remember-text {
-      display: flex;
-      flex-direction: column;
-    }
-
     .remember-title {
       font-size: 12.5px;
       font-weight: 600;
       color: #FAF8F5;
+      display: block;
     }
-
     .remember-desc {
       font-size: 11px;
-      color: rgba(250, 248, 245, 0.55);
-      margin-top: 1px;
+      color: rgba(250, 248, 245, 0.6);
+      display: block;
+    }
+
+    .login-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #FCA5A5;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 12.5px;
     }
 
     .btn-login {
-      width: 100%;
-      padding: 14px;
-      background: var(--burgundy);
+      height: 46px;
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
       color: #FFFFFF;
+      font-weight: 700;
+      font-size: 14.5px;
       border: none;
-      border-radius: 14px;
-      font-size: 13.5px;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      border-radius: 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      box-shadow: 0 6px 20px rgba(122, 28, 40, 0.35);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      transition: transform 0.15s, opacity 0.15s;
     }
-
-    .btn-login:hover {
-      background: var(--burgundy-hover);
-      box-shadow: 0 8px 25px rgba(122, 28, 40, 0.45);
-    }
-
-    .btn-login:active {
-      transform: scale(0.98);
-    }
-
-    .login-error {
-      background: rgba(185, 28, 28, 0.15);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      color: #FCA5A5;
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 500;
-      text-align: left;
-    }
+    .btn-login:active { transform: scale(0.98); }
 
     /* ========================================================
-       2. HEADER DEL PANEL (NEO-BENTO TITANIUM LIGHT)
+       2. CABECERA PREMIUM (VERDE BOSQUE ITALIANO & CONTRASTE)
        ======================================================== */
+    .app-shell {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: var(--bg);
+    }
+
     .top-header {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      color: #0F172A;
-      border-bottom: 1.5px solid #E2E8F0;
       position: sticky;
       top: 0;
       z-index: 40;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+      background: linear-gradient(135deg, #183321 0%, #112518 100%);
+      border-bottom: 1px solid rgba(197, 168, 128, 0.25);
+      height: 58px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      box-shadow: 0 4px 20px -5px rgba(24, 51, 33, 0.35);
     }
 
     .header-bar {
-      max-width: 1000px;
+      width: 100%;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
     }
 
     .header-logo-link {
       display: flex;
       align-items: center;
       text-decoration: none;
+      gap: 8px;
     }
-
-    .header-logo-link img {
-      height: 28px;
+    .header-logo-img {
+      height: 24px;
       width: auto;
       object-fit: contain;
+      filter: brightness(0) invert(1); /* Logo blanco nítido sobre verde bosque */
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    /* Botón de Publicación / Sincronización */
     .btn-sync {
-      background: #F8FAFC;
-      color: #0F172A;
-      border: 1.5px solid #E2E8F0;
-      padding: 7px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
       border-radius: 9999px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.12);
+      color: #FAF8F5;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      transition: all 0.2s ease;
-      touch-action: manipulation;
+      transition: all 0.2s;
     }
-
-    .btn-sync:hover {
-      background: #F1F5F9;
-      border-color: #CBD5E1;
-    }
-
-    .btn-sync.synced {
-      background: #ECFDF5;
-      border-color: #A7F3D0;
-      color: #047857;
-    }
-
-    .btn-sync.needs-sync {
-      background: #FFFBEB;
-      border-color: #FDE68A;
-      color: #B45309;
-    }
-
-    .btn-sync.syncing {
-      background: #EFF6FF;
-      border-color: #BFDBFE;
-      color: #1D4ED8;
-    }
-
+    .btn-sync:hover { background: rgba(255, 255, 255, 0.2); }
     .sync-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: currentColor;
+      background: #34D399;
+      box-shadow: 0 0 8px #34D399;
     }
-
-    .spin-icon {
-      animation: spin 1s linear infinite;
+    .btn-sync.syncing .sync-dot {
+      background: #60A5FA;
+      animation: pulseDot 1s infinite;
     }
+    @keyframes pulseDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
 
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* Botón de Perfil & Gerente */
     .btn-profile {
-      background: #F8FAFC;
-      border: 1.5px solid #E2E8F0;
-      color: #0F172A;
-      padding: 4px 12px 4px 5px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 7px;
-      transition: all 0.2s ease;
-      touch-action: manipulation;
+      gap: 6px;
+      padding: 4px 10px 4px 4px;
+      border-radius: 9999px;
+      border: 1px solid rgba(197, 168, 128, 0.35);
+      background: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      color: #FAF8F5;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: background 0.15s;
     }
-
-    .btn-profile:hover {
-      background: #F1F5F9;
-      border-color: #CBD5E1;
-    }
-
+    .btn-profile:hover { background: rgba(255, 255, 255, 0.2); }
     .avatar-badge {
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: #2563EB;
-      color: #FFFFFF;
+      background: #C5A880;
+      color: #183321;
       font-size: 11px;
       font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      letter-spacing: -0.02em;
-    }
-
-    .profile-label {
-      font-size: 12px;
-    }
-
-    @media (max-width: 480px) {
-      .profile-label { display: none; }
-      .btn-profile { padding: 4px; border-radius: 50%; }
     }
 
     /* ========================================================
-       3. CONTENIDO PRINCIPAL & SELECTOR DE 3 CARTAS
+       3. TOP TABS SELECTOR (SOLO DESKTOP)
        ======================================================== */
-    .admin-container {
-      max-width: 1000px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 16px;
-      padding-bottom: 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    /* Conmutador de 3 Cartas (Comida, Bebidas, Vinos) - Neo-Bento */
     .menu-type-selector {
       display: flex;
-      gap: 6px;
       background: #FFFFFF;
-      padding: 6px;
-      border-radius: 16px;
-      border: 1.5px solid #E2E8F0;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .menu-type-selector {
+        display: none !important; /* ELIMINA DUPLICACIÓN EN IPHONE */
+      }
     }
 
     .menu-tab-btn {
       flex: 1;
+      height: 42px;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-md);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1.5px solid transparent;
-      background: #F8FAFC;
-      font-size: 13px;
-      font-weight: 600;
-      color: #64748B;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      user-select: none;
-      touch-action: manipulation;
+      gap: 8px;
+      transition: all 0.15s;
     }
-
-    .menu-tab-btn:hover {
-      color: #0F172A;
-      background: #F1F5F9;
-    }
-
-    .menu-tab-btn[data-type="comida"].active {
-      background: #ECFDF5;
-      color: #065F46;
-      border-color: #A7F3D0;
-      font-weight: 800;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15);
-    }
-    .menu-tab-btn[data-type="comida"].active .tab-badge {
-      background: #10B981;
+    .menu-tab-btn:hover { color: var(--text-main); background: var(--border-subtle); }
+    .menu-tab-btn.active {
+      background: var(--brand-primary);
       color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(24, 51, 33, 0.2);
     }
-
-    .menu-tab-btn[data-type="bebidas"].active {
-      background: #FFFBEB;
-      color: #92400E;
-      border-color: #FDE68A;
-      font-weight: 800;
-      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
-    }
-    .menu-tab-btn[data-type="bebidas"].active .tab-badge {
-      background: #F59E0B;
-      color: #FFFFFF;
-    }
-
-    .menu-tab-btn[data-type="vinos"].active {
-      background: #F5F3FF;
-      color: #5B21B6;
-      border-color: #DDD6FE;
-      font-weight: 800;
-      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.15);
-    }
-    .menu-tab-btn[data-type="vinos"].active .tab-badge {
-      background: #8B5CF6;
-      color: #FFFFFF;
-    }
-
     .tab-badge {
       font-size: 11px;
-      font-weight: 700;
       padding: 2px 7px;
-      border-radius: 999px;
-      background: #E2E8F0;
-      color: #475569;
-      transition: all 0.15s ease;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.08);
+      color: inherit;
     }
-
-    /* Barra inferior fija para móvil */
-    .mobile-bottom-nav {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      #menuTypeSelector {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-        background: #FFFFFF;
-        padding: 5px;
-        border-radius: 16px;
-        border: 1.5px solid #E2E8F0;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-        margin-bottom: 6px;
-      }
-
-      .menu-header {
-        display: none !important;
-      }
-
-      .admin-container {
-        padding: 10px 12px calc(115px + var(--safe-bottom)) !important;
-        gap: 8px !important;
-      }
-
-      .mobile-bottom-nav {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 70;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-top: 1.5px solid #E2E8F0;
-        padding-top: 8px;
-        padding-bottom: max(30px, env(safe-area-inset-bottom, 30px));
-        padding-left: 10px;
-        padding-right: 10px;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 -6px 25px rgba(0, 0, 0, 0.05);
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-      }
-
-      .bottom-nav-item {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        border: none;
-        color: #94A3B8;
-        cursor: pointer;
-        padding: 6px 4px 8px;
-        min-height: 52px;
-        border-radius: 12px;
-        transition: color 0.15s ease, background 0.15s ease, transform 0.1s ease;
-        touch-action: manipulation;
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .bottom-nav-item * {
-        pointer-events: none;
-      }
-
-      .bottom-nav-item:active {
-        background: #F1F5F9;
-        transform: scale(0.92);
-        color: #0F172A;
-      }
-
-      .bottom-nav-item[data-nav="comida"].active {
-        color: #059669;
-      }
-      .bottom-nav-item[data-nav="bebidas"].active {
-        color: #D97706;
-      }
-      .bottom-nav-item[data-nav="vinos"].active {
-        color: #7C3AED;
-      }
-      .bottom-nav-item[data-nav="perfil"].active {
-        color: #2563EB;
-      }
-
-      .bottom-nav-item.active .b-icon {
-        transform: translateY(-2px);
-        filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
-      }
-
-      .bottom-nav-item .b-icon {
-        font-size: 21px;
-        line-height: 1;
-        transition: transform 0.15s ease;
-      }
-
-      .bottom-nav-item .b-label {
-        font-size: 11px;
-        font-weight: 700;
-        margin-top: 3.5px;
-        letter-spacing: 0.02em;
-      }
+    .menu-tab-btn.active .tab-badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
     }
 
     /* ========================================================
-       CAJÓN DE PERFIL & AJUSTES (NEO-BENTO LIGHT SHEET)
-       ======================================================== */
-    .profile-drawer-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 85;
-      background: rgba(15, 23, 42, 0.45);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: flex-end;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      overscroll-behavior: contain;
-    }
-
-    .profile-drawer-sheet {
-      width: 100%;
-      max-width: 440px;
-      height: 100%;
-      background: #FFFFFF;
-      color: #0F172A;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      border-left: 1.5px solid #E2E8F0;
-      box-shadow: -15px 0 50px rgba(0, 0, 0, 0.08);
-      animation: drawerSlide 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
-      cursor: default;
-    }
-
-    @keyframes drawerSlide {
-      from { transform: translateX(100%); }
-      to { transform: translateX(0); }
-    }
-
-    .drawer-grabber {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .profile-drawer-overlay {
-        align-items: stretch !important;
-        justify-content: stretch !important;
-        background: #FFFFFF !important;
-        padding: 0 !important;
-      }
-      .profile-drawer-sheet {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 100% !important;
-        height: 100dvh !important;
-        max-height: 100dvh !important;
-        border-radius: 0 !important;
-        border: none !important;
-        margin: 0 !important;
-        animation: screenSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
-        padding-top: var(--safe-top);
-        padding-bottom: max(28px, env(safe-area-inset-bottom, 28px));
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-      }
-      .drawer-grabber {
-        display: none;
-      }
-      .drawer-header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-      }
-    }
-
-    @keyframes screenSlideUp {
-      from { transform: translateY(100%); opacity: 0.95; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    /* Feedback táctil instantáneo (0ms) para botones */
-    button:active, 
-    .menu-tab-btn:active, 
-    .ios-menu-item:active, 
-    .btn-sync-action:active, 
-    .btn-logout-drawer:active,
-    .modal-close-btn:active,
-    .btn-quick-edit:active,
-    .btn-add-dish:active {
-      transform: scale(0.96);
-      opacity: 0.88;
-      transition: transform 0.05s ease, opacity 0.05s ease;
-    }
-
-    .drawer-header {
-      background: #FFFFFF;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1.5px solid #E2E8F0;
-    }
-
-    .drawer-user-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .drawer-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #2563EB;
-      color: #FFFFFF;
-      font-size: 16px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
-    }
-
-    .drawer-body {
-      padding: 18px 18px calc(24px + var(--safe-bottom));
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      flex: 1;
-      background: #F8FAFC;
-    }
-
-    /* Tarjeta Bento Sincronización en Drawer: Menta */
-    .bento-card-dark {
-      background: #ECFDF5;
-      border: 1.5px solid #A7F3D0;
-      border-radius: 20px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.08);
-    }
-
-    .bento-card-dark:hover {
-      background: #D1FAE5;
-      border-color: #6EE7B7;
-    }
-
-    .bento-head-dark {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .bento-title-dark {
-      font-size: 14px;
-      font-weight: 800;
-      color: #065F46;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .bento-desc-dark {
-      font-size: 12px;
-      color: #047857;
-      line-height: 1.45;
-    }
-
-    .btn-sync-action {
-      width: 100%;
-      padding: 13px;
-      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-      color: #FFFFFF;
-      border: none;
-      border-radius: 14px;
-      font-size: 13.5px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-      transition: all 0.2s ease;
-    }
-
-    .btn-sync-action:hover {
-      background: #047857;
-    }
-
-    .btn-sync-action:active {
-      transform: scale(0.98);
-    }
-
-    /* Lista agrupada iOS en drawer */
-    .ios-menu-group {
-      background: #FFFFFF;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-
-    .ios-menu-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 16px;
-      border-bottom: 1px solid #F1F5F9;
-      background: transparent;
-      border-left: none;
-      border-right: none;
-      border-top: none;
-      color: #0F172A;
-      cursor: pointer;
-      text-align: left;
-      width: 100%;
-      transition: background 0.15s ease, transform 0.1s ease;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .ios-menu-item * {
-      pointer-events: none;
-    }
-
-    .ios-menu-item:last-child {
-      border-bottom: none;
-    }
-
-    .ios-menu-item:hover,
-    .ios-menu-item:active {
-      background: #F8FAFC;
-    }
-
-    .ios-item-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .ios-icon-circle {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-
-    .ios-icon-circle.gold {
-      background: #FEF3C7;
-      border: 1px solid #FDE68A;
-      color: #B45309;
-    }
-
-    .ios-icon-circle.blue {
-      background: #DBEAFE;
-      border: 1px solid #BFDBFE;
-      color: #1D4ED8;
-    }
-
-    .ios-icon-circle.green {
-      background: #D1FAE5;
-      border: 1px solid #A7F3D0;
-      color: #047857;
-    }
-
-    .ios-item-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .ios-item-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #0F172A;
-    }
-
-    .ios-item-sub {
-      font-size: 11.5px;
-      color: #64748B;
-      margin-top: 1px;
-    }
-
-    .ios-chevron {
-      color: #94A3B8;
-      font-size: 18px;
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-    }
-
-    .btn-logout-drawer {
-      margin-top: 6px;
-      padding: 13px;
-      background: #FEF2F2;
-      border: 1.5px solid #FECACA;
-      border-radius: 16px;
-      color: #DC2626;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      touch-action: manipulation;
-    }
-
-    .btn-logout-drawer:hover {
-      background: #FEE2E2;
-    }
-
-    /* ========================================================
-       3. CONTENIDO PRINCIPAL
+       4. MAIN CONTAINER & TOOLBAR (SHADCN STYLE)
        ======================================================== */
     .admin-container {
-      max-width: 1000px;
       width: 100%;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 16px;
-      padding-bottom: 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      padding: 14px 16px 100px;
+      flex: 1;
     }
 
-    /* Barra Superior de Herramientas */
     .toolbar-card {
       background: #FFFFFF;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 18px;
-      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 12px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      gap: 10px;
     }
 
     .toolbar-row {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .search-box {
-      flex: 1;
-      min-width: 200px;
       position: relative;
+      flex: 1;
+      width: 100%;
       display: flex;
       align-items: center;
     }
-
     .search-input {
       width: 100%;
-      padding: 10px 14px 10px 36px;
-      font-size: 13.5px;
-      background: #F8FAFC;
-      border: 1.5px solid #E2E8F0;
+      height: 42px;
+      background: var(--border-subtle);
+      border: 1px solid transparent;
       border-radius: 12px;
-      outline: none;
-      color: #0F172A;
-      transition: all 0.15s ease;
+      padding: 0 12px 0 38px;
+      font-size: 14px;
+      color: var(--text-main);
+      transition: all 0.15s;
     }
-
-    .search-input::placeholder {
-      color: #94A3B8;
-    }
-
     .search-input:focus {
-      background: #FFFFFF;
-      border-color: #2563EB;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-    }
-
-    .filter-select {
-      padding: 9px 12px;
-      font-size: 13px;
-      font-weight: 600;
-      background: #F8FAFC;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 10px;
-      color: #0F172A;
-      cursor: pointer;
       outline: none;
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px var(--brand-ring);
     }
 
     .btn-add-dish {
-      padding: 10px 18px;
-      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      height: 42px;
+      padding: 0 16px;
+      background: var(--brand-primary);
       color: #FFFFFF;
       border: none;
       border-radius: 12px;
-      font-size: 13px;
-      font-weight: 800;
+      font-size: 13.5px;
+      font-weight: 600;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
       white-space: nowrap;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
-      transition: all 0.15s ease;
-      touch-action: manipulation;
+      transition: background 0.15s;
+    }
+    .btn-add-dish:hover { background: var(--brand-hover); }
+    .btn-add-dish:active { transform: scale(0.98); }
+
+    @media (max-width: 768px) {
+      .btn-add-dish { display: none !important; } /* EN MÓVIL SE USA EL FAB FLOTANTE */
     }
 
-    .btn-add-dish:active {
-      transform: scale(0.96);
-      opacity: 0.92;
-    }
-
-    /* Píldoras de Categorías */
+    /* Category Chips Carousel */
     .categories-strip {
       display: flex;
       align-items: center;
       gap: 6px;
       overflow-x: auto;
-      padding-top: 2px;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .cat-btn {
-      padding: 6px 14px;
-      border-radius: 9999px;
-      font-size: 12px;
+    .cat-chip {
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 10px;
+      font-size: 13px;
       font-weight: 600;
-      white-space: nowrap;
-      border: 1px solid #E2E8F0;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: var(--text-muted);
       cursor: pointer;
-      background: #F1F5F9;
-      color: #475569;
-      transition: all 0.15s ease;
-      touch-action: manipulation;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+      flex-shrink: 0;
     }
-
-    .cat-btn:hover {
-      color: #0F172A;
-      background: #E2E8F0;
+    .cat-chip:hover {
+      background: var(--border-subtle);
+      color: var(--text-main);
     }
-
-    .cat-btn.active {
-      background: #2563EB;
+    .cat-chip.active {
+      background: var(--brand-primary);
+      border-color: var(--brand-primary);
       color: #FFFFFF;
-      border-color: #1D4ED8;
-      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
-      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(24, 51, 33, 0.25);
+    }
+    .cat-chip-count {
+      font-size: 11px;
+      opacity: 0.85;
+      font-variant-numeric: tabular-nums;
     }
 
-    /* ========================================================
-       4. LISTA DE PLATOS (BENTO STUDIO POS)
-       ======================================================== */
-    .menu-card { background: transparent; border: none; box-shadow: none; overflow: visible; }
-    .menu-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 4px 4px 10px;
-    }
-    .menu-header-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 20px; font-weight: 800; color: #0F172A;
-      display: flex; align-items: center; gap: 8px; letter-spacing: -0.01em;
-    }
-    #itemsCountBadge {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px; font-weight: 700; color: #475569;
-      background: #E2E8F0; padding: 3px 9px; border-radius: 999px;
-    }
-    .menu-section { margin-bottom: 20px; }
-    .section-head {
-      position: sticky; top: 52px; z-index: 5;
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 4px 8px; 
-      background: rgba(248, 250, 252, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .section-head .sec-name {
-      font-size: 11px; font-weight: 800; letter-spacing: 0.14em;
-      text-transform: uppercase; color: #2563EB;
-    }
-    .section-head .sec-line { flex: 1; height: 1.5px; background: linear-gradient(90deg, rgba(37, 99, 235, 0.25), transparent); }
-    .section-head .sec-count { font-size: 11px; color: #64748B; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 2px 7px; border-radius: 999px; font-weight: 600; }
-    .section-list {
-      background: #FFFFFF; border: 1.5px solid #E2E8F0;
-      border-radius: 20px; overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-    }
-    /* Barra de Resumen Operativo / Kitchen POS Status */
+    /* KPI Bar */
     .ops-kpi-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 8px 12px;
+      padding: 10px 14px;
       background: #FFFFFF;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 14px;
-      margin-bottom: 6px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 14px;
+      font-size: 12.5px;
     }
-
     .ops-kpi-left {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-
     .ops-kpi-item {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 12px;
-      color: #64748B;
+      color: var(--text-muted);
     }
-
     .kpi-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
     }
-
-    .kpi-dot.live {
-      background: #10B981;
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
-    }
-
-    .kpi-dot.out {
-      background: #EF4444;
-      box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
-    }
-
-    .kpi-val {
-      font-weight: 800;
-      color: #0F172A;
-    }
-
-    .ops-kpi-divider {
-      width: 1px;
-      height: 12px;
-      background: #E2E8F0;
-    }
-
+    .kpi-dot.live { background: var(--emerald); }
+    .kpi-dot.out { background: var(--amber); }
+    .kpi-val { font-weight: 700; color: var(--text-main); font-variant-numeric: tabular-nums; }
+    .ops-kpi-divider { width: 1px; height: 12px; background: var(--border); }
     .ops-kpi-link {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #2563EB;
-      text-decoration: none;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 4px;
-      transition: color 0.15s ease;
+      color: var(--brand-primary);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 12px;
     }
 
-    .ops-kpi-link:hover {
-      color: #1D4ED8;
+    /* Section Headings */
+    .menu-section {
+      margin-bottom: 20px;
     }
-
-    /* Filas Operativas de Platos (Ergonomía POS Mobile-First) */
-    .dish-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 13px 14px;
-      border-bottom: 1px solid #F1F5F9;
-      background: #FFFFFF;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      transition: background-color 0.15s ease;
-      animation: rowIn 0.3s ease both;
-    }
-
-    .dish-row:last-child {
-      border-bottom: none;
-    }
-
-    .dish-row:hover {
-      background: #F8FAFC;
-    }
-
-    .dish-row:active {
-      background: #F1F5F9;
-    }
-
-    .dish-row.out-of-stock {
-      background: #FAF8F5;
-      opacity: 0.65;
-    }
-
-    .dish-row.out-of-stock .dish-name {
-      color: #94A3B8;
-      text-decoration: line-through rgba(148, 163, 184, 0.7);
-    }
-
-    .dish-row.out-of-stock .dish-thumb {
-      filter: grayscale(0.85);
-      opacity: 0.6;
-    }
-
-    /* Miniatura visual */
-    .dish-thumb {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #F1F5F9;
-      border: 1px solid #E2E8F0;
+    .section-head {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 0 4px;
+    }
+    .sec-name {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+    .sec-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .sec-count {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-subtle);
+      background: var(--border-subtle);
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-variant-numeric: tabular-nums;
     }
 
-    .dish-thumb-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    /* ========================================================
+       5. DISH CARDS (REDISEÑO LIMPIO - SIN SWITCH EN LA LISTA)
+       ======================================================== */
+    .section-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .dish-thumb-icon {
-      font-size: 22px;
-      line-height: 1;
+    @media (min-width: 769px) {
+      .section-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
     }
 
-    /* Contenedor de contenido expandido */
+    .dish-row {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s;
+      position: relative;
+    }
+    .dish-row:hover {
+      border-color: #CBD5E1;
+      box-shadow: var(--shadow-sm);
+    }
+    .dish-row:active {
+      transform: scale(0.995);
+    }
+    .dish-row.out-of-stock {
+      background: #F8FAFC;
+      border-color: #E2E8F0;
+      opacity: 0.85;
+    }
+
     .dish-content {
       flex: 1;
       min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 3px;
     }
 
-    /* Fila 1: Título y Precio */
     .dish-top-row {
       display: flex;
-      align-items: flex-start;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
     }
 
     .dish-name {
-      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 15px;
       font-weight: 700;
-      line-height: 1.3;
-      color: #0F172A;
-      word-break: break-word;
-      flex: 1;
-      min-width: 0;
+      color: var(--text-main);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    .dish-row.out-of-stock .dish-name {
+      color: #64748B;
     }
 
     .dish-price {
-      font-size: 13.5px;
-      font-weight: 800;
-      color: #065F46;
-      background: #ECFDF5;
-      border: 1.5px solid #A7F3D0;
-      padding: 2.5px 8px;
-      border-radius: 999px;
-      white-space: nowrap;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
       font-variant-numeric: tabular-nums;
-      flex-shrink: 0;
+      white-space: nowrap;
     }
 
-    /* Fila 2: Descripción */
     .dish-desc {
-      font-size: 12px;
-      color: #64748B;
-      line-height: 1.35;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      margin-top: -1px;
     }
 
-    /* Fila 3: Controles Operativos */
-    .dish-bottom-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 2px;
-    }
-
-    .dish-status-left {
+    .dish-meta-row {
       display: flex;
       align-items: center;
       gap: 8px;
+      margin-top: 4px;
+      font-size: 11.5px;
+      color: var(--text-subtle);
     }
 
-    .badge-stock {
+    .dish-badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1px 7px;
+      border-radius: 999px;
       font-size: 10.5px;
       font-weight: 700;
-      padding: 2.5px 8px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 3.5px;
-      letter-spacing: 0.02em;
+    }
+    .dish-badge-status.in {
+      background: var(--emerald-bg);
+      color: var(--emerald-text);
+    }
+    .dish-badge-status.out {
+      background: var(--amber-bg);
+      color: var(--amber-text);
     }
 
-    .badge-stock.in {
-      background: #ECFDF5;
-      color: #047857;
-      border: 1px solid #A7F3D0;
-    }
-
-    .badge-stock.out {
-      background: #FEF2F2;
-      color: #DC2626;
-      border: 1px solid #FECACA;
-    }
-
-    .btn-quick-edit {
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      color: #475569;
-      font-size: 11.5px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      cursor: pointer;
-      padding: 3px 8px;
-      border-radius: 8px;
-      transition: all 0.15s ease;
-    }
-
-    .btn-quick-edit:hover, .btn-quick-edit:active {
-      color: #0F172A;
-      background: #F1F5F9;
-      border-color: #CBD5E1;
-    }
-
-    .dish-switch-wrap {
+    .dish-row-arrow {
+      color: var(--text-subtle);
+      flex-shrink: 0;
       display: flex;
       align-items: center;
-      flex-shrink: 0;
-    }
-
-    /* Toggle switch iOS para disponibilidad instantánea */
-    .ios-switch {
-      position: relative;
-      display: inline-block;
-      width: 44px;
-      height: 26px;
-      flex-shrink: 0;
-      cursor: pointer;
-      user-select: none;
-      touch-action: manipulation;
-    }
-
-    .ios-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-      position: absolute;
-    }
-
-    .ios-slider {
-      position: absolute;
-      inset: 0;
-      background-color: #E2E8F0;
-      transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      border-radius: 999px;
-    }
-
-    .ios-slider:before {
-      position: absolute;
-      content: "";
-      height: 20px;
-      width: 20px;
-      left: 3px;
-      bottom: 3px;
-      background-color: #FFFFFF;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      border-radius: 50%;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    }
-
-    .ios-switch input:checked + .ios-slider {
-      background-color: #10B981;
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-    }
-
-    .ios-switch input:checked + .ios-slider:before {
-      transform: translateX(18px);
     }
 
     /* ========================================================
-       5. MODAL BOTTOM SHEET & FULLSCREEN MOBILE (NEO-BENTO)
+       6. FLOATING ACTION BUTTON (FAB) EN MÓVIL
+       ======================================================== */
+    .mobile-fab-btn {
+      position: fixed;
+      right: 18px;
+      bottom: calc(72px + var(--safe-bottom));
+      z-index: 35;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      height: 48px;
+      padding: 0 20px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      box-shadow: 0 10px 25px -4px rgba(24, 51, 33, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .mobile-fab-btn:active { transform: scale(0.96); }
+
+    @media (min-width: 769px) {
+      .mobile-fab-btn { display: none !important; }
+    }
+
+    /* ========================================================
+       7. MOBILE BOTTOM NAV (LUCIDE ICONS)
+       ======================================================== */
+    .mobile-bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      height: calc(58px + var(--safe-bottom));
+      padding-bottom: var(--safe-bottom);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    @media (min-width: 769px) {
+      .mobile-bottom-nav { display: none !important; }
+    }
+
+    .bottom-nav-item {
+      flex: 1;
+      height: 100%;
+      border: none;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding-top: 4px;
+      transition: color 0.15s;
+    }
+    .bottom-nav-item svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+    .bottom-nav-item .b-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .bottom-nav-item.active {
+      color: var(--brand-primary);
+    }
+    .bottom-nav-item.active svg {
+      stroke-width: 2.4;
+    }
+
+    /* ========================================================
+       8. MODAL / BOTTOM SHEET (CON SELECTOR DE CARTA EN AÑADIR)
        ======================================================== */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      z-index: 90;
+      z-index: 100;
       background: rgba(15, 23, 42, 0.45);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      overscroll-behavior: contain;
+      animation: fadeInOverlay 0.2s ease-out;
+    }
+
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @media (min-width: 769px) {
@@ -1497,285 +867,193 @@
       }
     }
 
-    .modal-window {
+    .dish-studio-window {
       width: 100%;
-      max-width: 520px;
+      max-width: 580px;
+      max-height: 92vh;
+      max-height: 92dvh;
+      height: 92dvh;
       background: #FFFFFF;
-      color: #0F172A;
-      border: 1.5px solid #E2E8F0;
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
-      max-height: 90vh;
+      border-radius: 24px 24px 0 0;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.12);
-      cursor: default;
+      box-shadow: var(--shadow-sheet);
+      animation: slideUpSheet 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     @media (min-width: 769px) {
-      .modal-window {
-        border-radius: 24px;
+      .dish-studio-window {
+        border-radius: 20px;
+        height: auto;
         max-height: 85vh;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        animation: scaleInModal 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
       }
     }
 
-    @media (max-width: 768px) {
-      .modal-overlay {
-        align-items: stretch !important;
-        justify-content: stretch !important;
-        padding: 0 !important;
-        background: #F8FAFC !important;
-      }
-      .modal-window {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 100% !important;
-        height: 100dvh !important;
-        max-height: 100dvh !important;
-        border-radius: 0 !important;
-        border: none !important;
-        margin: 0 !important;
-        background: #F8FAFC !important;
-        animation: screenSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
-        display: flex !important;
-        flex-direction: column !important;
-      }
-      .modal-head {
-        padding-top: calc(14px + var(--safe-top)) !important;
-        padding-bottom: 14px !important;
-        flex-shrink: 0;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: #FFFFFF !important;
-        border-bottom: 1.5px solid #E2E8F0;
-      }
-      .modal-body-scroll {
-        flex: 1;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-        background: #F8FAFC !important;
-      }
-      .modal-foot {
-        padding-bottom: max(18px, env(safe-area-inset-bottom, 18px)) !important;
-        flex-shrink: 0;
-        position: sticky;
-        bottom: 0;
-        z-index: 10;
-        background: #FFFFFF !important;
-      }
+    @keyframes slideUpSheet {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    @keyframes scaleInModal {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
     }
 
-    .modal-head {
-      background: #FFFFFF;
-      color: #0F172A;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1.5px solid #E2E8F0;
+    .drawer-grabber {
+      width: 38px;
+      height: 4.5px;
+      background: #CBD5E1;
+      border-radius: 9999px;
+      margin: 10px auto 4px;
+      flex-shrink: 0;
     }
-
-    .modal-title {
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      color: #0F172A;
-    }
-
-    .modal-close-btn {
-      background: #F1F5F9;
-      border: 1px solid #E2E8F0;
-      color: #475569;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s ease;
-    }
-
-    .modal-close-btn:hover {
-      background: #E2E8F0;
-      color: #0F172A;
-    }
-
-    .modal-body-scroll {
-      padding: 18px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    /* ========================================================
-       NEO-BENTO STUDIO: EDITOR DE PLATO (VIBRANT NEO-BENTO LIGHT)
-       ======================================================== */
-    .dish-studio-window {
-      background: #F8FAFC !important;
-      color: #0F172A !important;
+    @media (min-width: 769px) {
+      .drawer-grabber { display: none; }
     }
 
     .studio-head {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: calc(14px + var(--safe-top)) 18px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1.5px solid #E2E8F0;
-      position: sticky;
-      top: 0;
-      z-index: 25;
+      padding: 10px 18px 12px;
+      border-bottom: 1px solid var(--border-subtle);
       flex-shrink: 0;
+    }
+
+    .studio-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
     }
 
     .studio-btn-cancel {
       background: transparent;
       border: none;
-      color: #64748B;
+      color: var(--text-muted);
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      padding: 6px 10px;
-      border-radius: 8px;
-      touch-action: manipulation;
+      padding: 6px 4px;
     }
-
-    .studio-btn-cancel:hover {
-      color: #0F172A;
-    }
-
-    .studio-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 17px;
-      font-weight: 800;
-      color: #0F172A;
-      letter-spacing: -0.01em;
-    }
+    .studio-btn-cancel:hover { color: var(--text-main); }
 
     .studio-btn-save-head {
-      background: #10B981;
+      background: var(--brand-primary);
       color: #FFFFFF;
-      font-weight: 800;
-      font-size: 13px;
-      padding: 7px 16px;
-      border-radius: 999px;
       border: none;
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25);
-      transition: all 0.15s ease;
-      touch-action: manipulation;
     }
+    .studio-btn-save-head:active { transform: scale(0.97); }
 
-    .studio-btn-save-head:active {
-      transform: scale(0.95);
-      opacity: 0.9;
-    }
-
+    /* FORM SCROLLABLE BODY */
     .studio-body-scroll {
-      padding: 16px;
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px 18px 30px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      -webkit-overflow-scrolling: touch;
-      flex: 1;
-      background: #F8FAFC;
     }
 
-    /* Bento Box Base */
-    .bento-box {
-      border-radius: 20px;
-      padding: 16px 18px;
+    .form-card-section {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.15s ease, border-color 0.15s ease;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
     }
 
-    .bento-badge-row {
+    .section-title-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
     }
-
-    .bento-tag {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
       text-transform: uppercase;
-      padding: 3.5px 10px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+    .section-helper {
+      font-size: 11.5px;
+      color: var(--text-subtle);
     }
 
-    .bento-subtag {
-      font-size: 11px;
-      font-weight: 600;
-      color: #64748B;
-    }
-
-    /* 1. Bento Card: PRECIO (Menta Fresco) */
-    .bento-price {
-      background: #ECFDF5;
-      border: 1.5px solid #A7F3D0;
-      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.08);
-    }
-
-    .tag-emerald {
-      background: #D1FAE5;
-      color: #065F46;
-      border: 1px solid #6EE7B7;
-    }
-
-    .price-input-hero {
+    /* Modal Menu Type Selector (Comida / Bebidas / Bodega) */
+    .modal-menu-type-tabs {
       display: flex;
-      align-items: baseline;
-      gap: 6px;
-      background: #FFFFFF;
-      border: 1.5px solid #A7F3D0;
-      border-radius: 16px;
-      padding: 6px 16px;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
+      background: var(--border-subtle);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
+      margin-bottom: 8px;
     }
-
-    .hero-price-field {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 36px;
-      font-weight: 800;
-      color: #065F46;
-      background: transparent;
+    .modal-type-btn {
+      flex: 1;
+      height: 34px;
       border: none;
+      background: transparent;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .modal-type-btn.active {
+      background: #FFFFFF;
+      color: var(--text-main);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+
+    /* Price Section */
+    .price-input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .price-field-wrap {
+      position: relative;
+      flex: 1;
+    }
+    .hero-price-field {
       width: 100%;
-      outline: none;
+      height: 48px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 34px 0 14px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-main);
       font-variant-numeric: tabular-nums;
+      transition: all 0.15s;
     }
-
-    .hero-price-field::placeholder {
-      color: #A7F3D0;
+    .hero-price-field:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px var(--brand-ring);
     }
-
     .currency-symbol {
-      font-size: 28px;
-      font-weight: 800;
-      color: #059669;
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-muted);
     }
 
     .quick-price-chips {
@@ -1783,524 +1061,602 @@
       flex-wrap: wrap;
       gap: 6px;
     }
-
     .btn-q-price {
-      background: #FFFFFF;
-      color: #047857;
-      border: 1.5px solid #A7F3D0;
-      border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 700;
-      padding: 5px 11px;
-      cursor: pointer;
-      touch-action: manipulation;
-      transition: all 0.12s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-    }
-
-    .btn-q-price:hover {
-      background: #D1FAE5;
-    }
-
-    .btn-q-price:active {
-      transform: scale(0.92);
-      background: #10B981;
-      color: #FFFFFF;
-    }
-
-    /* 2. Bento Card: CATEGORÍA (Cielo Azul) */
-    .bento-category {
-      background: #EFF6FF;
-      border: 1.5px solid #BFDBFE;
-      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
-    }
-
-    .tag-blue {
-      background: #DBEAFE;
-      color: #1E40AF;
-      border: 1px solid #93C5FD;
-    }
-
-    .category-chips-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-
-    .cat-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #FFFFFF;
-      color: #1E293B;
-      border: 1.5px solid #BFDBFE;
-      border-radius: 12px;
-      padding: 8px 13px;
-      font-size: 12.5px;
+      height: 30px;
+      padding: 0 10px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12px;
       font-weight: 600;
+      color: var(--text-main);
       cursor: pointer;
-      transition: all 0.15s ease;
-      touch-action: manipulation;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: background 0.15s;
     }
+    .btn-q-price:hover { background: #E2E8F0; }
+    .btn-q-price:active { transform: scale(0.97); }
 
-    .cat-chip:hover {
-      background: #DBEAFE;
-    }
-
-    .cat-chip.active {
-      background: #2563EB;
-      color: #FFFFFF;
-      border-color: #1D4ED8;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
-      font-weight: 700;
-      transform: translateY(-1px);
-    }
-
-    /* 3. Bento Card: DISPONIBILIDAD (Melocotón Cálido) */
-    .bento-availability {
-      background: #FFFBEB;
-      border: 1.5px solid #FDE68A;
-      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.08);
-    }
-
-    .tag-amber {
-      background: #FEF3C7;
-      color: #92400E;
-      border: 1px solid #FCD34D;
-    }
-
-    .tag-ruby {
-      background: #FEE2E2;
-      color: #991B1B;
-      border: 1px solid #FCA5A5;
-    }
-
-    .availability-flex {
+    /* Kitchen Switch inside Modal */
+    .kitchen-switch-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
     }
-
+    .kitchen-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .kitchen-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
     .stock-explainer {
       font-size: 12px;
-      color: #78350F;
+      color: var(--text-muted);
       line-height: 1.35;
-      margin-top: 2px;
     }
 
-    .ios-switch-large {
+    .ios-switch {
       position: relative;
       display: inline-block;
-      width: 52px;
-      height: 30px;
+      width: 44px;
+      height: 26px;
+      cursor: pointer;
       flex-shrink: 0;
     }
-
-    .ios-switch-large input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .ios-slider-large {
+    .ios-switch input { opacity: 0; width: 0; height: 0; }
+    .ios-slider {
       position: absolute;
-      cursor: pointer;
       inset: 0;
-      background-color: #E2E8F0;
-      transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      border-radius: 999px;
+      background-color: #CBD5E1;
+      border-radius: 9999px;
+      transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    .ios-slider-large:before {
+    .ios-slider:before {
       position: absolute;
       content: "";
-      height: 24px;
-      width: 24px;
+      height: 20px;
+      width: 20px;
       left: 3px;
       bottom: 3px;
-      background-color: #FFFFFF;
-      transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      background-color: white;
       border-radius: 50%;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ios-switch input:checked + .ios-slider {
+      background-color: var(--emerald);
+    }
+    .ios-switch input:checked + .ios-slider:before {
+      transform: translateX(18px);
     }
 
-    .ios-switch-large input:checked + .ios-slider-large {
-      background-color: #10B981;
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+    /* Category Chips Grid */
+    .category-chips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    @media (max-width: 480px) {
+      .category-chips-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .modal-cat-chip {
+      height: 36px;
+      padding: 0 10px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .modal-cat-chip.active {
+      background: var(--brand-primary);
+      border-color: var(--brand-primary);
+      color: #FFFFFF;
+      font-weight: 700;
     }
 
-    .ios-switch-large input:checked + .ios-slider-large:before {
-      transform: translateX(22px);
+    /* Language Tabs */
+    .studio-lang-selector {
+      display: flex;
+      background: var(--border-subtle);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
     }
-
-    /* 4. Bento Card: TEXTOS & IA (Lavanda / Violeta) */
-    .bento-content {
-      background: #F5F3FF;
-      border: 1.5px solid #DDD6FE;
-      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.08);
+    .studio-lang-tab {
+      flex: 1;
+      height: 32px;
+      border: none;
+      background: transparent;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
     }
-
-    .tag-purple {
-      background: #EDE9FE;
-      color: #5B21B6;
-      border: 1px solid #C4B5FD;
+    .studio-lang-tab.active {
+      background: #FFFFFF;
+      color: var(--text-main);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     }
 
     .btn-ai-magic {
-      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
-      color: #FFFFFF;
-      font-size: 11.5px;
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.3);
-      transition: all 0.15s ease;
-      touch-action: manipulation;
-    }
-
-    .btn-ai-magic:active {
-      transform: scale(0.95);
-      opacity: 0.9;
-    }
-
-    .studio-lang-selector {
-      display: flex;
-      gap: 6px;
-      background: #FFFFFF;
-      padding: 4px;
-      border-radius: 12px;
-      border: 1.5px solid #DDD6FE;
-    }
-
-    .studio-lang-tab {
-      flex: 1;
-      padding: 6px 8px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #64748B;
-      background: transparent;
-      border: none;
+      padding: 5px 10px;
+      background: var(--purple-bg);
+      border: 1px solid var(--purple-border);
       border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--purple-text);
       cursor: pointer;
-      transition: all 0.15s ease;
-      touch-action: manipulation;
     }
-
-    .studio-lang-tab.active {
-      background: #7C3AED;
-      color: #FFFFFF;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
-    }
-
-    .studio-lang-pane {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .btn-ai-magic:active { transform: scale(0.97); }
 
     .studio-field-group {
       display: flex;
       flex-direction: column;
       gap: 5px;
+      margin-top: 8px;
     }
-
     .studio-label {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #4C1D95;
-      letter-spacing: 0.01em;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
     }
-
-    .studio-input, .studio-textarea {
-      background: #FFFFFF;
-      border: 1.5px solid #DDD6FE;
-      border-radius: 12px;
-      padding: 10px 14px;
-      color: #0F172A;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 14px;
+    .studio-input {
+      width: 100%;
+      height: 42px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 12px;
+      font-size: 13.5px;
+      color: var(--text-main);
+      transition: all 0.15s;
+    }
+    .studio-input:focus {
       outline: none;
-      transition: all 0.15s ease;
-    }
-
-    .studio-input:focus, .studio-textarea:focus {
-      border-color: #7C3AED;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
       background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px var(--brand-ring);
     }
-
     .studio-textarea {
+      width: 100%;
+      min-height: 80px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      color: var(--text-main);
       resize: vertical;
-      min-height: 56px;
-      line-height: 1.4;
+      transition: all 0.15s;
+    }
+    .studio-textarea:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px var(--brand-ring);
     }
 
     .btn-danger-studio {
       width: 100%;
-      background: #FEF2F2;
-      border: 1.5px solid #FECACA;
+      height: 40px;
+      background: transparent;
+      border: 1px dashed #FCA5A5;
       color: #DC2626;
-      font-size: 12.5px;
-      font-weight: 700;
-      padding: 10px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      touch-action: manipulation;
-    }
-
-    .btn-danger-studio:active {
-      background: #DC2626;
-      color: #FFFFFF;
-    }
-
-    .studio-foot {
-      padding: 10px 0 calc(12px + var(--safe-bottom));
-      position: sticky;
-      bottom: 0;
-      z-index: 20;
-      background: linear-gradient(180deg, rgba(248, 250, 252, 0) 0%, #F8FAFC 35%);
-    }
-
-    .btn-studio-save-main {
-      width: 100%;
-      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-      color: #FFFFFF;
-      font-size: 15px;
-      font-weight: 800;
-      padding: 14px;
-      border-radius: 16px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.15s ease;
-      touch-action: manipulation;
-    }
-
-    .btn-studio-save-main:active {
-      transform: scale(0.98);
-      opacity: 0.9;
-    }
-
-    /* Botones del Modal */
-    .modal-foot {
-      padding: 14px 18px;
-      border-top: 1.5px solid #E2E8F0;
-      background: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-
-    .btn-modal-cancel {
-      background: none;
-      border: none;
-      color: #64748B;
+      border-radius: 10px;
       font-size: 13px;
       font-weight: 600;
-      padding: 10px 16px;
       cursor: pointer;
-      touch-action: manipulation;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.15s;
     }
+    .btn-danger-studio:hover { background: #FEF2F2; }
 
-    .btn-modal-cancel:hover {
-      color: #0F172A;
+    /* Sticky Bottom Actions */
+    .studio-foot {
+      padding: 12px 18px calc(14px + var(--safe-bottom));
+      border-top: 1px solid var(--border-subtle);
+      background: #FFFFFF;
+      flex-shrink: 0;
     }
-
-    .btn-modal-save {
-      padding: 11px 22px;
-      background: #10B981;
+    .btn-studio-save-main {
+      width: 100%;
+      height: 48px;
+      background: var(--brand-primary);
       color: #FFFFFF;
       border: none;
       border-radius: 12px;
-      font-size: 13.5px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      white-space: nowrap;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
-      transition: all 0.15s ease;
-      touch-action: manipulation;
-      min-width: 120px;
+      box-shadow: 0 4px 14px rgba(24, 51, 33, 0.3);
+      transition: transform 0.15s;
     }
+    .btn-studio-save-main:active { transform: scale(0.98); }
 
-    .btn-modal-save:hover {
-      background: #059669;
-    }
-
-    .btn-modal-save:active {
-      transform: scale(0.98);
-    }
-
-    /* Auto Translate Button */
-    .btn-auto-trans {
-      background: #7C3AED;
-      color: #FFFFFF;
-      border: none;
-      padding: 7px 12px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin-left: auto;
-    }
-
-    .btn-auto-trans:hover {
-      background: #6D28D9;
-    }
-
-    /* Lang Tabs */
-    .lang-tabs-bar {
+    /* ========================================================
+       9. PANTALLA COMPLETA DE AJUSTES & GERENCIA (100DVH)
+       ======================================================== */
+    .profile-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       display: flex;
-      border-bottom: 2px solid #E2E8F0;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .profile-drawer-sheet {
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100dvh;
+      background: #F8FAFC;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: slideUpSheet 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @media (min-width: 769px) {
+      .profile-drawer-overlay {
+        justify-content: flex-end;
+      }
+      .profile-drawer-sheet {
+        max-width: 480px;
+        border-radius: 20px 0 0 20px;
+      }
+    }
+
+    .drawer-header {
+      padding: calc(14px + var(--safe-top)) 18px 14px;
+      background: linear-gradient(135deg, #183321 0%, #112518 100%);
+      color: #FAF8F5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(197, 168, 128, 0.3);
+      flex-shrink: 0;
+    }
+    .drawer-user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .drawer-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #C5A880;
+      color: #183321;
+      font-size: 15px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close-btn-white {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FAF8F5;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .drawer-body {
+      padding: 16px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    /* Stat Cards in Settings */
+    .settings-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .setting-stat-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .setting-stat-num {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--brand-primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .setting-stat-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .bento-card-dark {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-card);
+    }
+    .bento-head-dark {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .bento-title-dark {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
       gap: 6px;
     }
-
-    .lang-tab-item {
-      padding: 6px 12px;
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -2px;
+    .bento-desc-dark {
       font-size: 12px;
-      font-weight: 600;
-      color: #64748B;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .btn-sync-action {
+      height: 42px;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 6px;
     }
 
-    .lang-tab-item.active {
-      color: #2563EB;
-      border-bottom-color: #2563EB;
+    .ios-menu-group {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+    }
+    .ios-menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border-subtle);
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .ios-menu-item:last-child { border-bottom: none; }
+    .ios-menu-item:hover { background: var(--border-subtle); }
+    .ios-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ios-icon-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: var(--border-subtle);
+    }
+    .ios-item-title {
+      font-size: 13.5px;
       font-weight: 700;
+      color: var(--text-main);
+      display: block;
+    }
+    .ios-item-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      display: block;
+    }
+    .ios-chevron {
+      color: var(--text-subtle);
+      font-size: 18px;
+    }
+
+    .btn-logout-drawer {
+      height: 44px;
+      background: transparent;
+      border: 1px solid #FCA5A5;
+      color: #DC2626;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    /* Modal standard window */
+    .modal-window {
+      width: 100%;
+      max-width: 440px;
+      background: #FFFFFF;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-float);
+      margin: auto 16px;
+    }
+    .modal-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Mini Mockups Ilustrativos de Instalación PWA */
+    .pwa-step-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .pwa-step-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pwa-mockup-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      color: #2563EB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* Logs Sheet */
+    .logs-sheet {
+      width: 100%;
+      max-width: 520px;
+      max-height: 85vh;
+      background: #FFFFFF;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow-float);
+      margin: auto 16px;
+    }
+    .logs-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logs-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--brand-primary);
+    }
+    .logs-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .logs-list {
+      padding: 16px 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 65vh;
     }
 
     /* Toast */
     .toast-pill {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      left: 20px;
-      z-index: 100;
-      pointer-events: none;
-      transition: all 0.25s ease;
-      transform: translateY(80px);
+      bottom: calc(76px + var(--safe-bottom));
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
       opacity: 0;
+      pointer-events: none;
+      z-index: 200;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    @media (min-width: 500px) {
-      .toast-pill {
-        left: auto;
-        right: 20px;
-        max-width: 320px;
-      }
-    }
-
-    .toast-pill.active {
-      transform: translateY(0);
+    .toast-pill.show {
+      transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
-
     .toast-inner {
       background: #0F172A;
       color: #FFFFFF;
-      border-radius: 12px;
-      padding: 12px 16px;
+      padding: 10px 18px;
+      border-radius: 9999px;
       font-size: 13px;
       font-weight: 600;
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.3);
     }
-    /* ===== Registro de cambios (Neo-Bento Light Sheet) ===== */
-    .logs-sheet {
-      background: #FFFFFF; width: 100%; max-width: 560px; max-height: 85vh;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 22px 22px 0 0; display: flex; flex-direction: column; overflow: hidden;
-      box-shadow: 0 -10px 40px rgba(0,0,0,0.08); align-self: flex-end;
-      color: #0F172A;
-    }
-    @media (min-width: 769px) { .logs-sheet { border-radius: 22px; align-self: center; } }
-    @media (max-width: 768px) {
-      .logs-sheet {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 100% !important;
-        height: 100dvh !important;
-        max-height: 100dvh !important;
-        border-radius: 0 !important;
-        border: none !important;
-        margin: 0 !important;
-        animation: screenSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
-        align-self: stretch !important;
-      }
-      .logs-head {
-        padding-top: calc(14px + var(--safe-top));
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: #FFFFFF;
-      }
-      .logs-list {
-        flex: 1;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: max(24px, env(safe-area-inset-bottom, 24px));
-      }
-    }
-    .logs-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 12px; border-bottom: 1.5px solid #E2E8F0; background: #FFFFFF; }
-    .logs-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #2563EB; }
-    .logs-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: #0F172A; }
-    .logs-close { width: 34px; height: 34px; border-radius: 50%; border: 1px solid #E2E8F0; background: #F1F5F9; color: #475569; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; }
-    .logs-list { overflow-y: auto; padding: 6px 20px 24px; background: #F8FAFC; }
-    .logs-day { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #64748B; margin: 16px 0 6px; }
-    .log-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E2E8F0; }
-    .log-item:last-child { border-bottom: none; }
-    .log-dot { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; }
-    .log-dot.create { background: #ECFDF5; border: 1px solid #A7F3D0; } .log-dot.update { background: #EFF6FF; border: 1px solid #BFDBFE; }
-    .log-dot.price { background: #FFFBEB; border: 1px solid #FDE68A; } .log-dot.delete { background: #FEF2F2; border: 1px solid #FECACA; }
-    .log-body { flex: 1; min-width: 0; }
-    .log-line { font-size: 13.5px; color: #0F172A; line-height: 1.35; }
-    .log-line b { font-weight: 700; color: #0F172A; }
-    .log-details { font-size: 12px; color: #64748B; margin-top: 2px; }
-    .log-time { font-size: 11px; color: #94A3B8; white-space: nowrap; padding-top: 2px; }
-
-    /* ===== Ajustes móvil ===== */
-    html, body { max-width: 100%; overflow-x: hidden; }
-    .admin-container, .toolbar-card, .menu-card, #itemsList { min-width: 0; max-width: 100%; }
-    .categories-strip { scrollbar-width: none; }
-    .categories-strip::-webkit-scrollbar { display: none; }
-    @media (max-width: 600px) {
-      .toolbar-row { flex-wrap: nowrap; }
-      .search-box { min-width: 0; }
-      .toolbar-row .btn-add-dish { padding: 9px 12px; }
-      .toolbar-row .btn-add-dish span { display: none; }
-      .btn-sync { padding: 5px 9px; font-size: 11px; }
-      .categories-strip { margin: 0 -12px; padding: 2px 12px; }
-      .section-list { border-radius: 14px; }
-    }
+    .toast-pill.error .toast-inner { background: #DC2626; }
   </style>
 </head>
 <body>
@@ -2353,20 +1709,20 @@
         </button>
       </form>
 
-      <div style="border-top: 1px solid var(--border-subtle); padding-top: 10px; font-size: 11px; color: var(--text-light); display: flex; justify-content: space-between;">
+      <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 12px; font-size: 11px; color: rgba(250, 248, 245, 0.6); display: flex; justify-content: space-between;">
         <span>Buon Appetito · Andratx</span>
-        <a href="/" style="color: var(--burgundy); text-decoration: none; font-weight: 600;">Volver a la Web</a>
+        <a href="/" style="color: #10B981; text-decoration: none; font-weight: 600;">Volver a la Web</a>
       </div>
 
     </div>
   </div>
 
   <!-- ======================================================== -->
-  <!-- 2. PANEL PRINCIPAL (LIMPIO & COMPACTO) -->
+  <!-- 2. PANEL PRINCIPAL (LUXURY EMERALD HEADER & TOUCH CARDS) -->
   <!-- ======================================================== -->
-  <div id="appShell" style="display: none; flex-direction: column; min-height: 100vh;">
+  <div id="appShell" class="app-shell">
 
-    <!-- Header Principal Ultra-Limpio -->
+    <!-- Header Principal -->
     <header class="top-header">
       <div class="header-bar">
         
@@ -2375,16 +1731,16 @@
         </a>
 
         <div class="header-actions">
-          <!-- Botón de Sincronización Explícito y Limpio -->
-          <button id="btnSync" class="btn-sync synced" title="Comprobar y forzar sincronización con la base de datos">
+          <!-- Sincronización -->
+          <button id="btnSync" class="btn-sync" title="Comprobar sincronización con InsForge">
             <span class="sync-dot" id="syncDot"></span>
-            <span id="syncText">Carta al día</span>
+            <span id="syncText">En línea</span>
           </button>
 
-          <!-- Botón Perfil / Gerente -->
-          <button id="btnProfile" class="btn-profile" title="Perfil y Ajustes de Gerencia">
+          <!-- Perfil / Ajustes -->
+          <button id="btnProfile" class="btn-profile" title="Ajustes de Gerencia">
             <div class="avatar-badge">BA</div>
-            <span class="profile-label">Gerencia</span>
+            <span>Ajustes</span>
             <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
         </div>
@@ -2392,91 +1748,88 @@
       </div>
     </header>
 
-    <!-- Contenido -->
+    <!-- Contenedor Principal -->
     <main class="admin-container">
 
-      <!-- Selector de 3 Cartas: Comida, Bebidas, Bodega -->
+      <!-- Selector de Cartas (SOLO DESKTOP - SE OCULTA AUTOMÁTICAMENTE EN MÓVIL) -->
       <div class="menu-type-selector" id="menuTypeSelector">
         <button type="button" class="menu-tab-btn active" data-type="comida">
-          <span>🍽️ Comida</span>
+          <span>Comida</span>
           <span class="tab-badge" id="countComida">0</span>
         </button>
         <button type="button" class="menu-tab-btn" data-type="bebidas">
-          <span>🍹 Bebidas</span>
+          <span>Bebidas</span>
           <span class="tab-badge" id="countBebidas">0</span>
         </button>
         <button type="button" class="menu-tab-btn" data-type="vinos">
-          <span>🍷 Bodega</span>
+          <span>Bodega</span>
           <span class="tab-badge" id="countVinos">0</span>
         </button>
       </div>
 
-      <!-- Barra de Herramientas -->
+      <!-- Barra de Herramientas (Buscador y Categorías) -->
       <div class="toolbar-card">
         
         <div class="toolbar-row">
-          
           <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Buscar plato o ingrediente..." class="search-input">
-            <svg width="14" height="14" fill="none" stroke="#A8A29E" viewBox="0 0 24 24" style="position: absolute; left: 11px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="position: absolute; left: 12px; color: var(--text-muted);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <input type="text" id="searchInput" placeholder="Buscar por nombre o ingrediente..." class="search-input">
           </div>
-
-
 
           <button id="btnNewDish" class="btn-add-dish">
             <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
             <span>Nuevo Plato</span>
           </button>
-
         </div>
 
-        <!-- Píldoras de Categorías -->
+        <!-- Píldoras de Categorías (Carrusel Táctil) -->
         <div class="categories-strip no-scrollbar" id="categoriesBar">
-          <!-- Populated by JS -->
+          <!-- Generado dinámicamente -->
         </div>
 
       </div>
 
-      <!-- Tarjeta de Platos (Consola Operativa) -->
-      <div class="menu-card">
-        
-        <!-- Barra de Resumen Operativo / Kitchen POS Status -->
-        <div class="ops-kpi-bar" id="opsKpiBar">
-          <div class="ops-kpi-left">
-            <div class="ops-kpi-item">
-              <span class="kpi-dot live"></span>
-              <span class="kpi-label">En carta:</span>
-              <span class="kpi-val" id="kpiActiveCount">0</span>
-            </div>
-            <div class="ops-kpi-divider"></div>
-            <div class="ops-kpi-item">
-              <span class="kpi-dot out"></span>
-              <span class="kpi-label">Agotados:</span>
-              <span class="kpi-val" id="kpiOutCount">0</span>
-            </div>
+      <!-- Resumen Operativo / KPI de Cocina -->
+      <div class="ops-kpi-bar" id="opsKpiBar">
+        <div class="ops-kpi-left">
+          <div class="ops-kpi-item">
+            <span class="kpi-dot live"></span>
+            <span>En carta:</span>
+            <span class="kpi-val" id="kpiActiveCount">0</span>
           </div>
-          <a href="/carta" target="_blank" class="ops-kpi-link">
-            <span>Ver carta web</span>
-            <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </a>
+          <div class="ops-kpi-divider"></div>
+          <div class="ops-kpi-item">
+            <span class="kpi-dot out"></span>
+            <span>Agotados:</span>
+            <span class="kpi-val" id="kpiOutCount">0</span>
+          </div>
         </div>
+        <a href="/carta" target="_blank" class="ops-kpi-link">
+          <span>Ver carta web</span>
+          <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
 
-        <div class="menu-header">
-          <span class="menu-header-title">
-            <span id="currentCategoryTitle">Todos los Platos</span>
-            <span style="font-size: 11px; background: #E8E5DF; padding: 2px 7px; border-radius: 9999px; color: #57534E;" id="itemsCountBadge">0</span>
-          </span>
-        </div>
+      <!-- Header de Categoría Activa -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding: 0 4px;">
+        <span style="font-size: 15px; font-weight: 700; color: var(--text-main);" id="currentCategoryTitle">Carta de Comida</span>
+        <span style="font-size: 11px; font-weight: 700; background: var(--border-subtle); border: 1px solid var(--border); padding: 2px 8px; border-radius: 9999px; color: var(--text-muted);" id="itemsCountBadge">0</span>
+      </div>
 
-        <div id="itemsList">
-          <div style="padding: 32px; text-align: center; color: var(--text-muted); font-size: 13px;">Cargando carta...</div>
-        </div>
-
+      <!-- Lista de Platos -->
+      <div id="itemsList">
+        <div style="padding: 40px; text-align: center; color: var(--text-muted); font-size: 13.5px;">Cargando carta...</div>
       </div>
 
     </main>
 
-    <!-- Toast de Feedback -->
+    <!-- Botón Flotante Móvil (FAB) "+ Añadir" -->
+    <button type="button" id="btnFabNewDish" class="mobile-fab-btn" title="Añadir plato, bebida o vino">
+      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+      <span>Añadir</span>
+    </button>
+
+    <!-- Toast de Notificación -->
     <div id="toast" class="toast-pill">
       <div class="toast-inner">
         <span id="toastIcon">✓</span>
@@ -2484,43 +1837,47 @@
       </div>
     </div>
 
-    <!-- Barra Inferior Fija Mobile-First -->
+    <!-- Barra Inferior Fija Mobile-First (Iconos SVG Vectoriales Lucide) -->
     <nav class="mobile-bottom-nav">
       <button type="button" class="bottom-nav-item active" data-nav="comida">
-        <span class="b-icon">🍽️</span>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.4 7.4a4.2 4.2 0 0 0 6 0L15 15Zm0 0 7 7M2.1 21.9l7-7"/></svg>
         <span class="b-label">Comida</span>
       </button>
       <button type="button" class="bottom-nav-item" data-nav="bebidas">
-        <span class="b-icon">🍹</span>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 22h8"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 11v11"/><path stroke-linecap="round" stroke-linejoin="round" d="m19 3-4 8H9L5 3Z"/></svg>
         <span class="b-label">Bebidas</span>
       </button>
       <button type="button" class="bottom-nav-item" data-nav="vinos">
-        <span class="b-icon">🍷</span>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 22h8"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 10h10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v7"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/></svg>
         <span class="b-label">Bodega</span>
       </button>
       <button type="button" class="bottom-nav-item" data-nav="perfil" id="btnBottomProfile">
-        <span class="b-icon">👤</span>
-        <span class="b-label">Perfil</span>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="b-label">Ajustes</span>
       </button>
     </nav>
 
   </div>
 
   <!-- ======================================================== -->
-  <!-- 3. MODAL DE EDICIÓN / NUEVO PLATO (NEO-BENTO STUDIO) -->
+  <!-- 3. MODAL DE EDICIÓN / NUEVO PLATO (CON SELECTOR DE CARTA) -->
   <!-- ======================================================== -->
   <div id="dishModal" class="modal-overlay" style="display: none;">
-    <div class="modal-window dish-studio-window">
+    <div class="dish-studio-window">
       
-      <!-- Cabecera Superior Fija con Botón Guardar Rápido -->
+      <!-- iOS Drag Handle -->
+      <div class="drawer-grabber"></div>
+
+      <!-- Cabecera Superior Fija -->
       <div class="studio-head">
         <button type="button" id="closeModalBtn" class="studio-btn-cancel">Cancelar</button>
-        <span class="studio-title" id="modalHeading">Editar Plato</span>
+        <span class="studio-title" id="modalHeading">Editar Ficha</span>
         <button type="submit" form="dishForm" id="btnSaveModalHeader" class="studio-btn-save-head">
           <span>Guardar</span>
         </button>
       </div>
 
+      <!-- Cuerpo Scrollable Independiente -->
       <form id="dishForm" class="studio-body-scroll">
         <input type="hidden" id="dishId">
         <input type="hidden" id="dishOrder">
@@ -2528,16 +1885,40 @@
         <input type="file" id="dishImageFile" accept="image/*" style="display: none;">
         <select id="dishCategory" required style="display: none;"></select>
 
-        <!-- BENTO CARD 1: PRECIO HERO (VERDE ESMERALDA) -->
-        <div class="bento-box bento-price">
-          <div class="bento-badge-row">
-            <span class="bento-tag tag-emerald">💶 Precio en Carta</span>
-            <span class="bento-subtag">PVP Final Comensal</span>
+        <!-- SECCIÓN 1: TIPO DE CARTA Y CATEGORÍA (PERMITE SUBIR COMIDA, BEBIDAS O BODEGA) -->
+        <div class="form-card-section">
+          <div class="section-title-row">
+            <span class="section-label">Carta & Sección</span>
+            <span class="section-helper" id="activeCategoryName">Seleccionar</span>
           </div>
-          <div class="price-input-hero">
-            <input type="number" step="0.05" id="dishPrice" required placeholder="0.00" class="hero-price-field">
-            <span class="currency-symbol">€</span>
+
+          <!-- Selector de Carta en el Formulario -->
+          <div class="modal-menu-type-tabs" id="modalMenuTypeTabs">
+            <button type="button" class="modal-type-btn active" data-target-type="comida">🍽️ Comida</button>
+            <button type="button" class="modal-type-btn" data-target-type="bebidas">🍹 Bebidas</button>
+            <button type="button" class="modal-type-btn" data-target-type="vinos">🍷 Bodega</button>
           </div>
+
+          <!-- Cuadrícula de Categorías Dinámica -->
+          <div id="categoryChipsGrid" class="category-chips-grid">
+            <!-- Chips de categorías generados dinámicamente -->
+          </div>
+        </div>
+
+        <!-- SECCIÓN 2: PRECIO Y DISPONIBILIDAD EN COCINA -->
+        <div class="form-card-section">
+          <div class="section-title-row">
+            <span class="section-label">Precio en Carta</span>
+            <span class="section-helper">PVP comensal</span>
+          </div>
+          
+          <div class="price-input-row">
+            <div class="price-field-wrap">
+              <input type="number" step="0.05" id="dishPrice" required placeholder="0.00" class="hero-price-field">
+              <span class="currency-symbol">€</span>
+            </div>
+          </div>
+
           <div class="quick-price-chips">
             <button type="button" class="btn-q-price" data-add="0.50">+0,50€</button>
             <button type="button" class="btn-q-price" data-add="1.00">+1,00€</button>
@@ -2545,39 +1926,26 @@
             <button type="button" class="btn-q-price" data-add="5.00">+5,00€</button>
             <button type="button" class="btn-q-price" id="btnRoundPrice">Redondear .00</button>
           </div>
-        </div>
 
-        <!-- BENTO CARD 2: CATEGORÍA DEL MENÚ (AZUL ZAFIRO) -->
-        <div class="bento-box bento-category">
-          <div class="bento-badge-row">
-            <span class="bento-tag tag-blue">🏷️ Sección de la Carta</span>
-            <span class="bento-subtag" id="activeCategoryName">Seleccionar</span>
-          </div>
-          <div id="categoryChipsGrid" class="category-chips-grid">
-            <!-- Chips de categorías generados dinámicamente -->
-          </div>
-        </div>
+          <div style="height: 1px; background: var(--border-subtle); margin: 4px 0;"></div>
 
-        <!-- BENTO CARD 3: DISPONIBILIDAD INMEDIATA (ÁMBAR / ESMERALDA) -->
-        <div class="bento-box bento-availability">
-          <div class="availability-flex">
-            <div>
-              <div class="bento-badge-row" style="margin-bottom: 4px;">
-                <span class="bento-tag tag-emerald" id="stockStatusBadge">● En Carta Activo</span>
-              </div>
+          <!-- Switch de disponibilidad en cocina (AQUÍ SÍ, DENTRO DE EDITAR) -->
+          <div class="kitchen-switch-card">
+            <div class="kitchen-text-wrap">
+              <span class="kitchen-title" id="stockStatusBadge">Disponible en cocina</span>
               <p class="stock-explainer" id="stockExplainer">Visible y disponible para comandas en cocina.</p>
             </div>
-            <label class="ios-switch-large">
+            <label class="ios-switch">
               <input type="checkbox" id="dishAvailableCheck" checked>
-              <span class="ios-slider-large"></span>
+              <span class="ios-slider"></span>
             </label>
           </div>
         </div>
 
-        <!-- BENTO CARD 4: TRADUCCIONES & CONTENIDO (PÚRPURA / VIOLETA AI) -->
-        <div class="bento-box bento-content">
-          <div class="bento-badge-row">
-            <span class="bento-tag tag-purple">🌐 Textos & Traducciones</span>
+        <!-- SECCIÓN 3: TEXTOS & TRADUCCIONES MULTIIDIOMA -->
+        <div class="form-card-section">
+          <div class="section-title-row">
+            <span class="section-label">Textos & Idiomas</span>
             <button type="button" id="btnAutoTranslate" class="btn-ai-magic">
               <span id="transSpinner" style="display: none;">⏳</span>
               <span id="transText">✨ Auto-traducir (IA)</span>
@@ -2586,20 +1954,20 @@
 
           <!-- Selector de Idioma Segmented -->
           <div class="studio-lang-selector">
-            <button type="button" class="studio-lang-tab active" data-lang="es">🇪🇸 Español</button>
-            <button type="button" class="studio-lang-tab" data-lang="en">🇬🇧 English</button>
-            <button type="button" class="studio-lang-tab" data-lang="de">🇩🇪 Deutsch</button>
+            <button type="button" class="studio-lang-tab active" data-lang="es">Español</button>
+            <button type="button" class="studio-lang-tab" data-lang="en">English</button>
+            <button type="button" class="studio-lang-tab" data-lang="de">Deutsch</button>
           </div>
 
           <!-- Formulario ES -->
           <div id="tabContent_es" class="studio-lang-pane">
             <div class="studio-field-group">
-              <label class="studio-label">Nombre del plato (Español)</label>
+              <label class="studio-label">Nombre del plato o bebida (Español)</label>
               <input type="text" id="title_es" required placeholder="Ej: Bruschetta de Pan Tostado" class="studio-input">
             </div>
             <div class="studio-field-group">
               <label class="studio-label">Ingredientes / Descripción (Español)</label>
-              <textarea id="desc_es" rows="2" placeholder="Detalla ingredientes, alérgenos o preparación..." class="studio-textarea"></textarea>
+              <textarea id="desc_es" rows="3" placeholder="Detalla ingredientes, alérgenos o preparación..." class="studio-textarea"></textarea>
             </div>
           </div>
 
@@ -2611,7 +1979,7 @@
             </div>
             <div class="studio-field-group">
               <label class="studio-label">Description (English)</label>
-              <textarea id="desc_en" rows="2" placeholder="Ingredients or preparation in English..." class="studio-textarea"></textarea>
+              <textarea id="desc_en" rows="3" placeholder="Ingredients or preparation in English..." class="studio-textarea"></textarea>
             </div>
           </div>
 
@@ -2623,108 +1991,128 @@
             </div>
             <div class="studio-field-group">
               <label class="studio-label">Beschreibung (Deutsch)</label>
-              <textarea id="desc_de" rows="2" placeholder="Zutaten auf Deutsch..." class="studio-textarea"></textarea>
+              <textarea id="desc_de" rows="3" placeholder="Zutaten auf Deutsch..." class="studio-textarea"></textarea>
             </div>
           </div>
         </div>
 
-        <!-- Zona de Peligro (Eliminar plato) -->
+        <!-- Zona de Peligro (Eliminar elemento) -->
         <div id="deleteContainer" style="display: none;">
           <button type="button" id="btnDeleteDish" class="btn-danger-studio">
-            <span>🗑️ Eliminar este plato de la carta</span>
-          </button>
-        </div>
-
-        <!-- Botón Inferior Grande Fijo -->
-        <div class="studio-foot">
-          <button type="submit" id="btnSaveModal" class="btn-studio-save-main">
-            <span id="saveSpinner" style="display: none;">⏳</span>
-            <span id="saveText">Guardar Plato en Carta</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            <span>Eliminar elemento de la carta</span>
           </button>
         </div>
 
       </form>
+
+      <!-- Botón Fijo Inferior -->
+      <div class="studio-foot">
+        <button type="submit" form="dishForm" id="btnSaveModal" class="btn-studio-save-main">
+          <span id="saveSpinner" style="display: none;">⏳</span>
+          <span id="saveText">Guardar en Carta</span>
+        </button>
+      </div>
+
     </div>
   </div>
 
-  <!-- REGISTRO DE CAMBIOS -->
+  <!-- REGISTRO DE CAMBIOS (CON FECHA Y HORA EXACTA) -->
   <div id="logsModal" class="modal-overlay" style="display: none;">
     <div class="logs-sheet">
       <div class="logs-head">
         <div>
-          <div class="logs-eyebrow">Historial</div>
-          <h3 class="logs-title">Registro de cambios</h3>
+          <div class="logs-eyebrow">Auditoría en Vivo</div>
+          <h3 class="logs-title">Historial de Cambios</h3>
         </div>
-        <button id="closeLogsBtn" class="logs-close" aria-label="Cerrar">✕</button>
+        <button id="closeLogsBtn" class="modal-close-btn-white" style="background: var(--border-subtle); color: var(--text-main); border: none;" aria-label="Cerrar">✕</button>
       </div>
       <div id="logsList" class="logs-list"></div>
     </div>
   </div>
 
-  <!-- CAJÓN DE PERFIL & AJUSTES DE GERENCIA (OBSIDIAN LUXURY SHEET) -->
+  <!-- ======================================================== -->
+  <!-- 4. PANTALLA COMPLETA DE AJUSTES & GERENCIA (100DVH) -->
+  <!-- ======================================================== -->
   <div id="profileDrawer" class="profile-drawer-overlay" style="display: none;">
     <div class="profile-drawer-sheet">
-      <div class="drawer-grabber"></div>
       
       <div class="drawer-header">
         <div class="drawer-user-info">
           <div class="drawer-avatar">BA</div>
           <div>
-            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; line-height: 1.2; color: #0F172A;">Buon Appetito</h3>
-            <p style="font-size: 12px; color: #64748B;" id="drawerUserEmail">buonappetitoandratx@gmail.com</p>
+            <h3 style="font-size: 16px; font-weight: 800; color: #FAF8F5;">Buon Appetito</h3>
+            <p style="font-size: 12px; color: rgba(250, 248, 245, 0.7);" id="drawerUserEmail">buonappetitoandratx@gmail.com</p>
           </div>
         </div>
-        <button id="closeProfileBtn" class="modal-close-btn">✕</button>
+        <button id="closeProfileBtn" class="modal-close-btn-white" title="Volver a la carta">✕</button>
       </div>
       
       <div class="drawer-body">
-        <!-- Tarjeta 1: Sincronización Web en Vivo -->
+
+        <!-- Métricas Rápidas de la Carta -->
+        <div class="settings-stats-grid">
+          <div class="setting-stat-box">
+            <span class="setting-stat-num" id="statComida">0</span>
+            <span class="setting-stat-lbl">Comida</span>
+          </div>
+          <div class="setting-stat-box">
+            <span class="setting-stat-num" id="statBebidas">0</span>
+            <span class="setting-stat-lbl">Bebidas</span>
+          </div>
+          <div class="setting-stat-box">
+            <span class="setting-stat-num" id="statVinos">0</span>
+            <span class="setting-stat-lbl">Bodega</span>
+          </div>
+        </div>
+
+        <!-- Sincronización Web -->
         <div class="bento-card-dark">
           <div class="bento-head-dark">
             <span class="bento-title-dark">
               <span>🔄</span> Sincronización Web
             </span>
-            <span id="drawerSyncBadge" style="font-size: 11px; font-weight: 700; color: #047857; background: #D1FAE5; border: 1px solid #A7F3D0; padding: 3px 9px; border-radius: 999px;">Al día</span>
+            <span id="drawerSyncBadge" style="font-size: 11px; font-weight: 700; color: #047857; background: #D1FAE5; padding: 2px 8px; border-radius: 999px;">En línea</span>
           </div>
           <p class="bento-desc-dark">
-            Publica al instante los cambios de platos, precios y disponibilidad en la web visible por los clientes.
+            Publica al instante los cambios de platos, precios y disponibilidad en la web pública de los comensales.
           </p>
           <button type="button" id="btnDrawerSync" class="btn-sync-action">
             <span id="drawerSyncIcon">⚡</span>
-            <span id="drawerSyncText">Publicar cambios en la Web</span>
+            <span id="drawerSyncText">Forzar actualización en la Web</span>
           </button>
         </div>
 
-        <!-- Grupo 2: Opciones de Gerencia estilo iOS Inset Grouped -->
+        <!-- Menú de Opciones -->
         <div class="ios-menu-group">
-          <!-- PWA -->
+          <!-- PWA con mini fotos -->
           <button type="button" id="btnOpenPwaFromDrawer" class="ios-menu-item">
             <div class="ios-item-left">
-              <div class="ios-icon-circle gold">📱</div>
+              <div class="ios-icon-circle">📱</div>
               <div class="ios-item-text">
                 <span class="ios-item-title">App en tu Smartphone</span>
-                <span class="ios-item-sub">Instalar acceso directo PWA</span>
+                <span class="ios-item-sub">Instalar acceso directo en iPhone y Android</span>
               </div>
             </div>
             <span class="ios-chevron">›</span>
           </button>
 
-          <!-- Historial -->
+          <!-- Historial con fecha y hora -->
           <button type="button" id="btnOpenLogsFromDrawer" class="ios-menu-item">
             <div class="ios-item-left">
-              <div class="ios-icon-circle blue">📋</div>
+              <div class="ios-icon-circle">📋</div>
               <div class="ios-item-text">
                 <span class="ios-item-title">Historial de Cambios</span>
-                <span class="ios-item-sub">Auditoría de precios y platos</span>
+                <span class="ios-item-sub">Auditoría con fecha, hora y datos modificados</span>
               </div>
             </div>
             <span class="ios-chevron">›</span>
           </button>
 
-          <!-- Seguridad -->
+          <!-- Seguridad & Contraseña -->
           <button type="button" id="btnOpenSecurityFromDrawer" class="ios-menu-item">
             <div class="ios-item-left">
-              <div class="ios-icon-circle green">🔑</div>
+              <div class="ios-icon-circle">🔑</div>
               <div class="ios-item-text">
                 <span class="ios-item-title">Seguridad & Contraseña</span>
                 <span class="ios-item-sub">Cambiar clave del panel</span>
@@ -2739,45 +2127,79 @@
           <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
           <span>Cerrar sesión en este dispositivo</span>
         </button>
+
       </div>
     </div>
   </div>
 
-  <!-- GUÍA DE INSTALACIÓN PWA (NEO-BENTO LIGHT) -->
+  <!-- GUÍA DE INSTALACIÓN PWA (CON MINI MOCKUPS GRÁFICOS) -->
   <div id="pwaModal" class="modal-overlay" style="display: none;">
-    <div class="modal-window" style="max-width: 440px;">
+    <div class="modal-window" style="max-height: 90vh; display: flex; flex-direction: column;">
       <div class="modal-head">
         <div>
-          <div style="font-size: 10px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #2563EB;">Web App Móvil</div>
-          <h3 class="modal-title">Instalar en tu Smartphone</h3>
+          <div style="font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue);">Web App Móvil</div>
+          <h3 class="modal-title">Instalar en Smartphone</h3>
         </div>
-        <button id="closePwaBtn" class="modal-close-btn">✕</button>
+        <button id="closePwaBtn" class="modal-close-btn-white" style="background: var(--border-subtle); color: var(--text-main); border: none;">✕</button>
       </div>
-      <div class="modal-body-scroll" style="display: flex; flex-direction: column; gap: 14px; padding: 20px; background: #F8FAFC; color: #0F172A;">
-        <p style="font-size: 13px; color: #64748B; line-height: 1.45;">
-          Instala el panel como una aplicación nativa para acceder en 1 toque desde la pantalla de tu móvil, en pantalla completa y con la sesión siempre abierta:
-        </p>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 20px; overflow-y: auto;">
         
-        <div style="background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 8px;">
-          <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: #1E40AF; font-size: 13px;">
-            <span>🍏</span> En iPhone (Safari)
-          </div>
-          <ol style="margin: 0; padding-left: 20px; font-size: 12.5px; color: #334155; line-height: 1.5; display: flex; flex-direction: column; gap: 4px;">
-            <li>Pulsa el botón <b>Compartir</b> de Safari (el icono del cuadrado con flecha hacia arriba ⎋).</li>
-            <li>Baja por las opciones y pulsa en <b>"Añadir a pantalla de inicio"</b> (o <i>Add to Home Screen</i>).</li>
-            <li>Confirma tocando <b>Añadir</b> arriba a la derecha.</li>
-          </ol>
+        <!-- Pestañas de Sistema Operativo -->
+        <div class="modal-menu-type-tabs" id="pwaOsTabs">
+          <button type="button" class="modal-type-btn active" data-pwa-os="ios">🍏 iPhone (Safari)</button>
+          <button type="button" class="modal-type-btn" data-pwa-os="android">🤖 Android (Chrome)</button>
         </div>
 
-        <div style="background: #ECFDF5; border: 1.5px solid #A7F3D0; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 8px;">
-          <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: #065F46; font-size: 13px;">
-            <span>🤖</span> En Android (Chrome)
+        <!-- Guía iPhone con Mini Mockups -->
+        <div id="pwaGuideIos" style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="pwa-step-card">
+            <span class="pwa-step-badge">1</span>
+            <div class="pwa-mockup-icon" title="Botón compartir">⎋</div>
+            <div>
+              <p style="font-size: 13px; font-weight: 700; color: var(--text-main);">Pulsa Compartir en Safari</p>
+              <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Toca el icono del cuadrado con la flecha hacia arriba en la barra inferior de Safari.</p>
+            </div>
           </div>
-          <ol style="margin: 0; padding-left: 20px; font-size: 12.5px; color: #334155; line-height: 1.5; display: flex; flex-direction: column; gap: 4px;">
-            <li>Toca el menú de <b>tres puntos (⋮)</b> arriba a la derecha en Chrome.</li>
-            <li>Selecciona <b>"Instalar aplicación"</b> o <b>"Añadir a pantalla principal"</b>.</li>
-            <li>Confirma la instalación.</li>
-          </ol>
+
+          <div class="pwa-step-card">
+            <span class="pwa-step-badge">2</span>
+            <div class="pwa-mockup-icon" style="color: #059669; background: #ECFDF5; border-color: #A7F3D0;">⊞</div>
+            <div>
+              <p style="font-size: 13px; font-weight: 700; color: var(--text-main);">Añadir a pantalla de inicio</p>
+              <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Desliza hacia abajo en el menú de opciones y pulsa en "Añadir a pantalla de inicio".</p>
+            </div>
+          </div>
+
+          <div class="pwa-step-card">
+            <span class="pwa-step-badge">3</span>
+            <div class="pwa-mockup-icon" style="color: #7C3AED; background: #F5F3FF; border-color: #DDD6FE;">✓</div>
+            <div>
+              <p style="font-size: 13px; font-weight: 700; color: var(--text-main);">Confirmar y Guardar</p>
+              <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Toca <b>"Añadir"</b> arriba a la derecha. Tendrás la App en tu pantalla de inicio.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guía Android -->
+        <div id="pwaGuideAndroid" style="display: none; flex-direction: column; gap: 10px;">
+          <div class="pwa-step-card">
+            <span class="pwa-step-badge">1</span>
+            <div class="pwa-mockup-icon">⋮</div>
+            <div>
+              <p style="font-size: 13px; font-weight: 700; color: var(--text-main);">Menú de Opciones en Chrome</p>
+              <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Toca el icono de los tres puntos verticales en la esquina superior derecha de Chrome.</p>
+            </div>
+          </div>
+
+          <div class="pwa-step-card">
+            <span class="pwa-step-badge">2</span>
+            <div class="pwa-mockup-icon" style="color: #059669; background: #ECFDF5; border-color: #A7F3D0;">⬇</div>
+            <div>
+              <p style="font-size: 13px; font-weight: 700; color: var(--text-main);">Instalar aplicación</p>
+              <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Selecciona "Instalar aplicación" o "Añadir a pantalla principal".</p>
+            </div>
+          </div>
         </div>
 
         <button type="button" id="btnDismissPwa" class="btn-studio-save-main" style="margin-top: 6px;">
@@ -2787,16 +2209,16 @@
     </div>
   </div>
 
-  <!-- MODAL DE SEGURIDAD & CONTRASEÑA (NEO-BENTO LIGHT) -->
+  <!-- MODAL DE SEGURIDAD -->
   <div id="securityModal" class="modal-overlay" style="display: none;">
-    <div class="modal-window" style="max-width: 420px;">
+    <div class="modal-window">
       <div class="modal-head">
         <span class="modal-title">Seguridad & Contraseña</span>
-        <button id="closeSecurityBtn" class="modal-close-btn">✕</button>
+        <button id="closeSecurityBtn" class="modal-close-btn-white" style="background: var(--border-subtle); color: var(--text-main); border: none;">✕</button>
       </div>
-      <form id="securityForm" class="modal-body-scroll" style="display: flex; flex-direction: column; gap: 14px; padding: 20px; background: #F8FAFC; color: #0F172A;">
-        <p style="font-size: 12.5px; color: #64748B; line-height: 1.4;">
-          Modifica la contraseña del panel de administración de Buon Appetito en este dispositivo.
+      <form id="securityForm" style="display: flex; flex-direction: column; gap: 14px; padding: 20px;">
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.4;">
+          Modifica la contraseña del panel de administración en este dispositivo.
         </p>
         <div class="studio-field-group">
           <label class="studio-label">Contraseña actual</label>
@@ -2811,9 +2233,9 @@
           <input type="password" id="confirmPassInput" required minlength="4" class="studio-input" placeholder="Repite la nueva clave">
         </div>
         <div id="securityError" class="login-error" style="display: none;"></div>
-        <div class="modal-foot" style="padding: 10px 0 0; background: transparent; border: none; display: flex; gap: 8px;">
-          <button type="button" id="btnCancelSecurity" class="studio-btn-cancel">Cancelar</button>
-          <button type="submit" class="btn-studio-save-main" style="flex: 1;">Guardar clave</button>
+        <div style="display: flex; gap: 8px; margin-top: 6px;">
+          <button type="button" id="btnCancelSecurity" class="studio-btn-cancel" style="flex: 1;">Cancelar</button>
+          <button type="submit" class="btn-studio-save-main" style="flex: 2; height: 42px;">Guardar clave</button>
         </div>
       </form>
     </div>
@@ -2840,6 +2262,7 @@
     let state = {
       isAuthenticated: false,
       currentMenuType: 'comida', // 'comida' | 'bebidas' | 'vinos'
+      currentModalTargetType: 'comida', // selector dentro del modal
       categories: [],
       items: [],
       selectedCategory: 'all',
@@ -2872,6 +2295,7 @@
     const currentCategoryTitle = document.getElementById('currentCategoryTitle');
     const searchInput = document.getElementById('searchInput');
     const btnNewDish = document.getElementById('btnNewDish');
+    const btnFabNewDish = document.getElementById('btnFabNewDish');
     const toast = document.getElementById('toast');
     const toastMsg = document.getElementById('toastMsg');
     const toastIcon = document.getElementById('toastIcon');
@@ -2891,10 +2315,15 @@
     const btnOpenLogsFromDrawer = document.getElementById('btnOpenLogsFromDrawer');
     const btnOpenSecurityFromDrawer = document.getElementById('btnOpenSecurityFromDrawer');
     const btnLogoutDrawer = document.getElementById('btnLogoutDrawer');
+    const statComida = document.getElementById('statComida');
+    const statBebidas = document.getElementById('statBebidas');
+    const statVinos = document.getElementById('statVinos');
 
     const pwaModal = document.getElementById('pwaModal');
     const closePwaBtn = document.getElementById('closePwaBtn');
     const btnDismissPwa = document.getElementById('btnDismissPwa');
+    const pwaGuideIos = document.getElementById('pwaGuideIos');
+    const pwaGuideAndroid = document.getElementById('pwaGuideAndroid');
 
     const securityModal = document.getElementById('securityModal');
     const closeSecurityBtn = document.getElementById('closeSecurityBtn');
@@ -2905,7 +2334,7 @@
     const confirmPassInput = document.getElementById('confirmPassInput');
     const securityError = document.getElementById('securityError');
 
-    // DOM Elements - Dish Modal & Photo Upload
+    // DOM Elements - Dish Modal
     const dishModal = document.getElementById('dishModal');
     const dishForm = document.getElementById('dishForm');
     const modalHeading = document.getElementById('modalHeading');
@@ -2915,13 +2344,12 @@
     const dishPrice = document.getElementById('dishPrice');
     const dishImageFile = document.getElementById('dishImageFile');
     const dishImageUrl = document.getElementById('dishImageUrl');
-    const photoDropzone = document.getElementById('photoDropzone');
-    const photoPreviewBox = document.getElementById('photoPreviewBox');
-    const photoPreviewImg = document.getElementById('photoPreviewImg');
-    const btnSelectPhotoTrigger = document.getElementById('btnSelectPhotoTrigger');
-    const btnChangePhoto = document.getElementById('btnChangePhoto');
-    const btnRemovePhoto = document.getElementById('btnRemovePhoto');
     const dishAvailableCheck = document.getElementById('dishAvailableCheck');
+    const stockStatusBadge = document.getElementById('stockStatusBadge');
+    const stockExplainer = document.getElementById('stockExplainer');
+    const categoryChipsGrid = document.getElementById('categoryChipsGrid');
+    const activeCategoryName = document.getElementById('activeCategoryName');
+    const btnRoundPrice = document.getElementById('btnRoundPrice');
     const title_es = document.getElementById('title_es');
     const desc_es = document.getElementById('desc_es');
     const title_en = document.getElementById('title_en');
@@ -2934,22 +2362,20 @@
     const deleteContainer = document.getElementById('deleteContainer');
     const btnDeleteDish = document.getElementById('btnDeleteDish');
     const closeModalBtn = document.getElementById('closeModalBtn');
-    const btnCancelModal = document.getElementById('btnCancelModal');
     const saveSpinner = document.getElementById('saveSpinner');
     const saveText = document.getElementById('saveText');
 
-    const CAT_ICONS = {
-      entrantes: '🥗',
-      ensaladas: '🥬',
-      pescados: '🐟',
-      carnes: '🥩',
-      arroces: '🥘',
-      pastas: '🍝',
-      pizzas: '🍕',
-      bebidas: '🍹',
-      vinos: '🍷',
-      bodega: '🍾'
-    };
+    // ========================================================
+    // PREVENCIÓN ESTRICTA DE DOBLE TOQUE ZOOM EN SAFARI IPHONE
+    // ========================================================
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', (e) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, { passive: false });
 
     // ========================================================
     // AUTENTICACIÓN & RECORDAR SESIÓN (PWA)
@@ -3032,7 +2458,7 @@
       state.currentMenuType = type;
       state.selectedCategory = 'all';
 
-      // Pestañas superiores (desktop y mobile)
+      // Pestañas desktop
       document.querySelectorAll('#menuTypeSelector .menu-tab-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.type === type);
       });
@@ -3048,30 +2474,11 @@
     }
 
     document.querySelectorAll('#menuTypeSelector .menu-tab-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        switchMenuType(btn.dataset.type);
-      });
+      btn.addEventListener('click', () => switchMenuType(btn.dataset.type));
     });
 
     document.querySelectorAll('.mobile-bottom-nav .bottom-nav-item').forEach(btn => {
-      let touchMoved = false;
-      btn.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
-      btn.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
-      btn.addEventListener('touchend', (e) => {
-        if (!touchMoved) {
-          e.preventDefault();
-          const nav = btn.dataset.nav;
-          if (nav === 'perfil') {
-            openProfileDrawer();
-          } else {
-            switchMenuType(nav);
-          }
-        }
-      }, { passive: false });
-
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
+      btn.addEventListener('click', () => {
         const nav = btn.dataset.nav;
         if (nav === 'perfil') {
           openProfileDrawer();
@@ -3081,225 +2488,114 @@
       });
     });
 
-    function getCurrentTypeCategories() {
-      if (state.currentMenuType === 'comida') {
-        return state.categories.filter(c => FOOD_CATEGORIES.includes(c.id));
-      } else if (state.currentMenuType === 'bebidas') {
-        return state.categories.filter(c => DRINK_CATEGORIES.includes(c.id));
-      } else {
-        return state.categories.filter(c => WINE_CATEGORIES.includes(c.id));
-      }
+    function getCurrentTypeCategories(menuType = state.currentMenuType) {
+      let allowed = FOOD_CATEGORIES;
+      if (menuType === 'bebidas') allowed = DRINK_CATEGORIES;
+      else if (menuType === 'vinos') allowed = WINE_CATEGORIES;
+
+      return state.categories.filter(c => allowed.includes(c.id));
     }
 
     function updateBadges() {
-      const cComida = state.items.filter(i => FOOD_CATEGORIES.includes(i.category_id)).length;
-      const cBebidas = state.items.filter(i => DRINK_CATEGORIES.includes(i.category_id)).length;
-      const cVinos = state.items.filter(i => WINE_CATEGORIES.includes(i.category_id)).length;
+      const foodCount = state.items.filter(i => FOOD_CATEGORIES.includes(i.category_id)).length;
+      const drinkCount = state.items.filter(i => DRINK_CATEGORIES.includes(i.category_id)).length;
+      const wineCount = state.items.filter(i => WINE_CATEGORIES.includes(i.category_id)).length;
 
-      const elComida = document.getElementById('countComida');
-      const elBebidas = document.getElementById('countBebidas');
-      const elVinos = document.getElementById('countVinos');
+      const cComida = document.getElementById('countComida');
+      const cBebidas = document.getElementById('countBebidas');
+      const cVinos = document.getElementById('countVinos');
 
-      if (elComida) elComida.textContent = cComida;
-      if (elBebidas) elBebidas.textContent = cBebidas;
-      if (elVinos) elVinos.textContent = cVinos;
+      if (cComida) cComida.textContent = foodCount;
+      if (cBebidas) cBebidas.textContent = drinkCount;
+      if (cVinos) cVinos.textContent = wineCount;
+
+      if (statComida) statComida.textContent = foodCount;
+      if (statBebidas) statBebidas.textContent = drinkCount;
+      if (statVinos) statVinos.textContent = wineCount;
     }
 
-    // ========================================================
-    // BLOQUEO ABSOLUTO DEL FONDO (CERO DESPLAZAMIENTOS EN MÓVIL)
-    // ========================================================
-    let savedScrollY = 0;
-    let modalLockCount = 0;
-
+    // Bloqueo de scroll seguro en móvil
+    let originalBodyOverflow = '';
     function lockBackgroundScroll() {
-      if (modalLockCount === 0) {
-        savedScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-        document.documentElement.style.overflow = 'hidden';
-        document.documentElement.style.height = '100%';
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${savedScrollY}px`;
-        document.body.style.left = '0';
-        document.body.style.right = '0';
-        document.body.style.width = '100%';
-        document.body.style.height = '100%';
-        document.body.style.overflow = 'hidden';
-        
-        if (appShell) {
-          appShell.style.pointerEvents = 'none';
-          appShell.setAttribute('aria-hidden', 'true');
-        }
-      }
-      modalLockCount++;
+      originalBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      const main = document.querySelector('main');
+      if (main) main.style.pointerEvents = 'none';
     }
 
     function unlockBackgroundScroll() {
-      modalLockCount = Math.max(0, modalLockCount - 1);
-      if (modalLockCount === 0) {
-        document.documentElement.style.removeProperty('overflow');
-        document.documentElement.style.removeProperty('height');
-        document.body.style.removeProperty('position');
-        document.body.style.removeProperty('top');
-        document.body.style.removeProperty('left');
-        document.body.style.removeProperty('right');
-        document.body.style.removeProperty('width');
-        document.body.style.removeProperty('height');
-        document.body.style.removeProperty('overflow');
-        
-        if (appShell) {
-          appShell.style.removeProperty('pointer-events');
-          appShell.removeAttribute('aria-hidden');
-        }
-        window.scrollTo(0, savedScrollY);
-      }
+      document.body.style.overflow = originalBodyOverflow || '';
+      const main = document.querySelector('main');
+      if (main) main.style.pointerEvents = '';
     }
 
     // ========================================================
-    // CAJÓN DE PERFIL & MODALES (SIN BLOQUEOS NI RETRASOS)
+    // CAJÓN DE AJUSTES & GERENCIA (PANTALLA COMPLETA 100DVH)
     // ========================================================
     function openProfileDrawer() {
+      updateBadges();
       lockBackgroundScroll();
       profileDrawer.style.display = 'flex';
-      const bottomProfile = document.getElementById('btnBottomProfile');
-      if (bottomProfile) bottomProfile.classList.add('active');
     }
 
     function closeProfileDrawer() {
-      if (profileDrawer.style.display === 'none') return;
-      profileDrawer.style.display = 'none';
       unlockBackgroundScroll();
-      const bottomProfile = document.getElementById('btnBottomProfile');
-      if (bottomProfile) bottomProfile.classList.remove('active');
+      profileDrawer.style.display = 'none';
     }
 
-    btnProfile.addEventListener('click', (e) => {
-      e.preventDefault();
-      openProfileDrawer();
-    });
-
-    closeProfileBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      closeProfileDrawer();
-    });
-
-    // Cerrar al pulsar sobre el fondo oscuro (Desktop y Móvil)
+    if (btnProfile) btnProfile.addEventListener('click', openProfileDrawer);
+    if (closeProfileBtn) closeProfileBtn.addEventListener('click', closeProfileDrawer);
     profileDrawer.addEventListener('click', (e) => {
       if (e.target === profileDrawer) closeProfileDrawer();
     });
-    profileDrawer.addEventListener('touchend', (e) => {
-      if (e.target === profileDrawer) {
-        e.preventDefault();
-        closeProfileDrawer();
-      }
-    }, { passive: false });
 
-    const drawerGrabber = document.querySelector('.drawer-grabber');
-    if (drawerGrabber) {
-      drawerGrabber.addEventListener('click', closeProfileDrawer);
-      drawerGrabber.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        closeProfileDrawer();
-      }, { passive: false });
-    }
-
-    // Gesto de deslizar hacia abajo para cerrar en móvil
-    let drawerStartY = 0;
-    const profileSheet = document.querySelector('.profile-drawer-sheet');
-    if (profileSheet) {
-      profileSheet.addEventListener('touchstart', (e) => {
-        if (profileSheet.scrollTop <= 0) {
-          drawerStartY = e.touches[0].clientY;
-        } else {
-          drawerStartY = 0;
-        }
-      }, { passive: true });
-
-      profileSheet.addEventListener('touchend', (e) => {
-        if (drawerStartY > 0) {
-          const dy = e.changedTouches[0].clientY - drawerStartY;
-          if (dy > 70) closeProfileDrawer();
-        }
-        drawerStartY = 0;
-      }, { passive: true });
-    }
-
-    btnLogoutDrawer.addEventListener('click', (e) => {
-      e.preventDefault();
-      logout();
+    if (btnLogoutDrawer) btnLogoutDrawer.addEventListener('click', logout);
+    if (btnDrawerSync) btnDrawerSync.addEventListener('click', async () => {
+      await triggerSync();
+      closeProfileDrawer();
     });
 
-    // Guía PWA
+    // PWA Modal
     function openPwaModal() {
       closeProfileDrawer();
       lockBackgroundScroll();
       pwaModal.style.display = 'flex';
     }
-
     function closePwaModal() {
-      if (pwaModal.style.display === 'none') return;
-      pwaModal.style.display = 'none';
       unlockBackgroundScroll();
+      pwaModal.style.display = 'none';
     }
+    if (btnOpenPwaFromDrawer) btnOpenPwaFromDrawer.addEventListener('click', openPwaModal);
+    if (closePwaBtn) closePwaBtn.addEventListener('click', closePwaModal);
+    if (btnDismissPwa) btnDismissPwa.addEventListener('click', closePwaModal);
 
-    btnOpenPwaFromDrawer.addEventListener('click', (e) => {
-      e.preventDefault();
-      openPwaModal();
+    // Conmutador pestañas PWA OS
+    document.querySelectorAll('#pwaOsTabs .modal-type-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const os = btn.dataset.pwaOs;
+        document.querySelectorAll('#pwaOsTabs .modal-type-btn').forEach(b => b.classList.toggle('active', b === btn));
+        pwaGuideIos.style.display = os === 'ios' ? 'flex' : 'none';
+        pwaGuideAndroid.style.display = os === 'android' ? 'flex' : 'none';
+      });
     });
-    closePwaBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      closePwaModal();
-    });
-    btnDismissPwa.addEventListener('click', (e) => {
-      e.preventDefault();
-      closePwaModal();
-    });
-    pwaModal.addEventListener('click', (e) => {
-      if (e.target === pwaModal) closePwaModal();
-    });
-    pwaModal.addEventListener('touchend', (e) => {
-      if (e.target === pwaModal) {
-        e.preventDefault();
-        closePwaModal();
-      }
-    }, { passive: false });
 
-    // Modal de Seguridad & Cambio de Clave
+    // Security Modal
     function openSecurityModal() {
       closeProfileDrawer();
-      securityError.style.display = 'none';
       currentPassInput.value = '';
       newPassInput.value = '';
       confirmPassInput.value = '';
+      securityError.style.display = 'none';
       lockBackgroundScroll();
       securityModal.style.display = 'flex';
     }
-
     function closeSecurityModal() {
-      if (securityModal.style.display === 'none') return;
-      securityModal.style.display = 'none';
       unlockBackgroundScroll();
+      securityModal.style.display = 'none';
     }
-
-    btnOpenSecurityFromDrawer.addEventListener('click', (e) => {
-      e.preventDefault();
-      openSecurityModal();
-    });
-    closeSecurityBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      closeSecurityModal();
-    });
-    btnCancelSecurity.addEventListener('click', (e) => {
-      e.preventDefault();
-      closeSecurityModal();
-    });
-    securityModal.addEventListener('click', (e) => {
-      if (e.target === securityModal) closeSecurityModal();
-    });
-    securityModal.addEventListener('touchend', (e) => {
-      if (e.target === securityModal) {
-        e.preventDefault();
-        closeSecurityModal();
-      }
-    }, { passive: false });
+    if (btnOpenSecurityFromDrawer) btnOpenSecurityFromDrawer.addEventListener('click', openSecurityModal);
+    if (closeSecurityBtn) closeSecurityBtn.addEventListener('click', closeSecurityModal);
+    if (btnCancelSecurity) btnCancelSecurity.addEventListener('click', closeSecurityModal);
 
     securityForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -3310,246 +2606,221 @@
         return;
       }
       if (newPassInput.value !== confirmPassInput.value) {
-        securityError.textContent = 'Las nuevas contraseñas no coinciden.';
+        securityError.textContent = 'Las contraseñas no coinciden.';
         securityError.style.display = 'block';
         return;
       }
-      if (newPassInput.value.length < 4) {
-        securityError.textContent = 'La contraseña debe tener al menos 4 caracteres.';
-        securityError.style.display = 'block';
-        return;
-      }
-
       localStorage.setItem('buon_custom_pass', newPassInput.value);
       closeSecurityModal();
       showToast('Contraseña actualizada con éxito');
     });
 
     // ========================================================
-    // REGISTRO DE CAMBIOS (LOGS)
+    // AUDITORÍA / HISTORIAL CON FECHA Y HORA EXACTA
     // ========================================================
-    const fmtEUR = n => Number(n).toFixed(2).replace('.', ',') + ' €';
+    const LOGS_KEY = 'buon_admin_logs';
+    function getLogs() {
+      try { return JSON.parse(localStorage.getItem(LOGS_KEY)) || []; }
+      catch { return []; }
+    }
     async function logAction(action, item_id, item_title, details = '') {
+      const logs = getLogs();
+      const newEntry = { 
+        id: Date.now(), 
+        action, 
+        item_id, 
+        item_title, 
+        details, 
+        timestamp: new Date().toISOString() 
+      };
+      logs.unshift(newEntry);
+      localStorage.setItem(LOGS_KEY, JSON.stringify(logs.slice(0, 50)));
+
+      // Registro en InsForge (en segundo plano si aplica)
       try {
-        await adminClient.database.from('menu_logs').insert([{ action, item_id, item_title, details }]);
-      } catch (e) { console.warn('No se pudo registrar la acción', e); }
+        adminClient.database.from('audit_logs').insert([{
+          action,
+          item_id,
+          item_title,
+          details,
+          created_at: newEntry.timestamp
+        }]).then(() => {}).catch(() => {});
+      } catch (e) {}
     }
+
     function describeChanges(before, after) {
-      const out = [];
-      if (Number(before.price) !== Number(after.price)) out.push(`Precio ${fmtEUR(before.price)} → ${fmtEUR(after.price)}`);
-      if (before.category_id !== after.category_id) {
-        const n = id => (state.categories.find(c => c.id === id) || {}).name_es || id;
-        out.push(`Sección ${n(before.category_id)} → ${n(after.category_id)}`);
-      }
-      if ((before.title_es || '') !== after.title_es) out.push(`Nombre: "${before.title_es}" → "${after.title_es}"`);
-      if ((before.description_es || '') !== after.description_es) out.push('Descripción modificada');
-      const tr = ['title_en','title_de','description_en','description_de'].some(k => (before[k] || '') !== after[k]);
-      if (tr) out.push('Traducciones EN/DE modificadas');
-      if (before.is_available !== after.is_available) {
-        out.push(after.is_available ? 'Disponible en carta' : 'Agotado');
-      }
-      if ((before.image_url || '') !== (after.image_url || '')) {
-        out.push(after.image_url ? 'Foto actualizada' : 'Foto eliminada');
-      }
-      return out;
+      const changes = [];
+      if (before.price !== after.price) changes.push(`Precio: ${fmtEUR(before.price)} → ${fmtEUR(after.price)}`);
+      if (before.is_available !== after.is_available) changes.push(after.is_available ? 'Marcado disponible' : 'Marcado agotado');
+      if (before.category_id !== after.category_id) changes.push(`Categoría cambiada`);
+      if (before.title_es !== after.title_es) changes.push('Nombre modificado');
+      return changes;
     }
-    const logsModal = document.getElementById('logsModal');
-    const logsList = document.getElementById('logsList');
+
+    function formatFullDate(isoString) {
+      try {
+        const d = new Date(isoString);
+        const dateStr = d.toLocaleDateString('es-ES', { 
+          day: 'numeric', 
+          month: 'short', 
+          year: 'numeric' 
+        });
+        const timeStr = d.toLocaleTimeString('es-ES', { 
+          hour: '2-digit', 
+          minute: '2-digit', 
+          second: '2-digit' 
+        });
+        return `${dateStr} · ${timeStr}`;
+      } catch {
+        return isoString;
+      }
+    }
+
     function closeLogsModal() {
-      if (logsModal.style.display === 'none') return;
-      logsModal.style.display = 'none';
       unlockBackgroundScroll();
+      logsModal.style.display = 'none';
     }
+
     async function openLogs() {
       closeProfileDrawer();
+      const list = getLogs();
+      const logsList = document.getElementById('logsList');
+      if (!list.length) {
+        logsList.innerHTML = '<div style="padding: 32px 16px; text-align: center; color: var(--text-muted); font-size: 13px;">No hay cambios registrados todavía en esta sesión.</div>';
+      } else {
+        logsList.innerHTML = list.map(l => {
+          let badgeColor = '#2563EB';
+          let badgeBg = '#EFF6FF';
+          let badgeText = 'Modificación';
+
+          if (l.action === 'create') {
+            badgeColor = '#059669';
+            badgeBg = '#ECFDF5';
+            badgeText = 'Nuevo Plato';
+          } else if (l.action === 'delete') {
+            badgeColor = '#DC2626';
+            badgeBg = '#FEF2F2';
+            badgeText = 'Eliminado';
+          } else if (l.action === 'availability') {
+            badgeColor = '#D97706';
+            badgeBg = '#FFFBEB';
+            badgeText = 'Disponibilidad';
+          }
+
+          return `
+            <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow-card);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <span style="font-weight: 700; font-size: 14px; color: var(--text-main);">${l.item_title || 'Elemento'}</span>
+                <span style="font-size: 10px; font-weight: 700; color: ${badgeColor}; background: ${badgeBg}; padding: 2px 8px; border-radius: 999px;">${badgeText}</span>
+              </div>
+              <div style="color: var(--text-muted); font-size: 12.5px; margin: 4px 0 6px;">${l.details || l.action}</div>
+              <div style="font-size: 11px; font-weight: 600; color: var(--text-subtle); display: flex; align-items: center; gap: 4px;">
+                <span>🕒</span>
+                <span>${formatFullDate(l.timestamp)}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
       lockBackgroundScroll();
       logsModal.style.display = 'flex';
-      logsList.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--text-muted); font-size: 13px;">Cargando…</div>';
-      try {
-        const { data, error } = await adminClient.database.from('menu_logs').select().order('created_at', { ascending: false }).limit(100);
-        if (error) throw error;
-        if (!data || !data.length) {
-          logsList.innerHTML = '<div style="padding: 30px; text-align: center; color: var(--text-muted); font-size: 13px;">Todavía no hay cambios registrados.</div>';
-          return;
-        }
-        const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-        const icons = { create: '➕', update: '✏️', price: '💶', delete: '🗑️' };
-        const verbs = { create: 'Añadido', update: 'Modificado', price: 'Precio cambiado', delete: 'Eliminado' };
-        const today = new Date().toDateString();
-        const yest = new Date(Date.now() - 864e5).toDateString();
-        let html = '', lastDay = '';
-        data.forEach(l => {
-          const d = new Date(l.created_at);
-          const ds = d.toDateString();
-          const label = ds === today ? 'Hoy' : ds === yest ? 'Ayer' : d.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-          if (ds !== lastDay) { html += `<div class="logs-day">${label}</div>`; lastDay = ds; }
-          html += `<div class="log-item">
-            <div class="log-dot ${esc(l.action)}">${icons[l.action] || '•'}</div>
-            <div class="log-body">
-              <div class="log-line">${verbs[l.action] || esc(l.action)}: <b>${esc(l.item_title)}</b></div>
-              ${l.details ? `<div class="log-details">${esc(l.details)}</div>` : ''}
-            </div>
-            <div class="log-time">${d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</div>
-          </div>`;
-        });
-        logsList.innerHTML = html;
-      } catch (e) {
-        logsList.innerHTML = '<div style="padding: 30px; text-align: center; color: #B91C1C; font-size: 13px;">No se pudo cargar el registro.</div>';
-      }
     }
-    btnOpenLogsFromDrawer.addEventListener('click', (e) => {
-      e.preventDefault();
-      openLogs();
-    });
+    if (btnOpenLogsFromDrawer) btnOpenLogsFromDrawer.addEventListener('click', openLogs);
     const closeLogsBtn = document.getElementById('closeLogsBtn');
-    if (closeLogsBtn) {
-      closeLogsBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        closeLogsModal();
-      });
-    }
-    logsModal.addEventListener('click', e => { if (e.target === logsModal) closeLogsModal(); });
-    logsModal.addEventListener('touchend', e => {
-      if (e.target === logsModal) {
-        e.preventDefault();
-        closeLogsModal();
-      }
-    }, { passive: false });
+    if (closeLogsBtn) closeLogsBtn.addEventListener('click', closeLogsModal);
 
     // Toast
+    let toastTimeout;
     function showToast(message, isError = false) {
+      clearTimeout(toastTimeout);
       toastMsg.textContent = message;
       toastIcon.textContent = isError ? '✕' : '✓';
-      toast.classList.add('active');
-      setTimeout(() => toast.classList.remove('active'), 2500);
+      toast.classList.toggle('error', isError);
+      toast.classList.add('show');
+      toastTimeout = setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
-    // ========================================================
-    // PUBLICAR / SINCRONIZAR CAMBIOS CON LA WEB
-    // ========================================================
+    // Sincronización Web
     async function triggerSync() {
       if (state.isSyncing) return;
       state.isSyncing = true;
-
-      btnSync.className = 'btn-sync syncing';
-      syncText.textContent = 'Publicando...';
-      if (drawerSyncBadge) {
-        drawerSyncBadge.textContent = 'Publicando...';
-        drawerSyncBadge.style.color = '#D97706';
-        drawerSyncBadge.style.background = 'rgba(217,119,6,0.15)';
-      }
-      if (drawerSyncIcon) drawerSyncIcon.textContent = '⏳';
-      if (drawerSyncText) drawerSyncText.textContent = 'Publicando en la Web...';
+      btnSync.classList.add('syncing');
+      syncText.textContent = 'Actualizando...';
 
       try {
         await loadData(false);
-        btnSync.className = 'btn-sync synced';
-        syncText.textContent = 'Carta al día';
-        if (drawerSyncBadge) {
-          drawerSyncBadge.textContent = 'Al día';
-          drawerSyncBadge.style.color = '#059669';
-          drawerSyncBadge.style.background = 'rgba(5,150,105,0.12)';
-        }
-        if (drawerSyncIcon) drawerSyncIcon.textContent = '⚡';
-        if (drawerSyncText) drawerSyncText.textContent = 'Publicar cambios en la Web';
-        showToast('Carta sincronizada y publicada en la web');
-      } catch (e) {
-        btnSync.className = 'btn-sync needs-sync';
-        syncText.textContent = 'Reintentar sync';
-        if (drawerSyncBadge) {
-          drawerSyncBadge.textContent = 'Sin conexión';
-          drawerSyncBadge.style.color = '#DC2626';
-          drawerSyncBadge.style.background = 'rgba(220,38,38,0.15)';
-        }
-        if (drawerSyncIcon) drawerSyncIcon.textContent = '⚠️';
-        if (drawerSyncText) drawerSyncText.textContent = 'Reintentar sincronización';
-        showToast('Error al sincronizar con la base de datos', true);
+        showToast('Carta web sincronizada');
+        syncText.textContent = 'En línea';
+      } catch (err) {
+        showToast('Error al sincronizar', true);
+        syncText.textContent = 'Error';
       } finally {
         state.isSyncing = false;
+        btnSync.classList.remove('syncing');
       }
     }
-
     btnSync.addEventListener('click', triggerSync);
-    btnDrawerSync.addEventListener('click', triggerSync);
 
     // ========================================================
-    // CARGA DE DATOS DESDE INSFORGE
+    // CARGA DE DATOS & RENDERIZADO
     // ========================================================
+    const fmtEUR = n => (Number(n) || 0).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+
     async function loadData(showLoadingIndicator = true) {
-      try {
-        if (showLoadingIndicator) {
-          btnSync.className = 'btn-sync syncing';
-          syncText.textContent = 'Cargando...';
-        }
+      if (showLoadingIndicator) {
+        itemsList.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--text-muted); font-size: 13.5px;">Cargando carta...</div>';
+      }
 
-        const [catRes, itemRes] = await Promise.all([
+      try {
+        const [catsRes, itemsRes] = await Promise.all([
           client.database.from('menu_categories').select().order('display_order', { ascending: true }),
           client.database.from('menu_items').select().order('display_order', { ascending: true })
         ]);
 
-        if (catRes.error) throw catRes.error;
-        if (itemRes.error) throw itemRes.error;
+        if (catsRes.error) throw catsRes.error;
+        if (itemsRes.error) throw itemsRes.error;
 
-        state.categories = catRes.data || [];
-        state.items = itemRes.data || [];
+        state.categories = catsRes.data || [];
+        state.items = itemsRes.data || [];
 
-        populateCategorySelect();
         updateBadges();
         renderCategoriesBar();
         renderItems();
-
-        btnSync.className = 'btn-sync synced';
-        syncText.textContent = 'Carta al día';
       } catch (err) {
-        console.error('Error cargando datos:', err);
-        btnSync.className = 'btn-sync needs-sync';
-        syncText.textContent = 'Sin conexión';
-        showToast('Error al conectar con la base de datos', true);
+        console.error('Error cargando carta:', err);
+        itemsList.innerHTML = '<div style="padding: 40px; text-align: center; color: #DC2626; font-size: 13.5px;">Error al conectar con la base de datos. Pulsa en En línea para reintentar.</div>';
       }
-    }
-
-    function populateCategorySelect() {
-      dishCategory.innerHTML = state.categories.map(c => `
-        <option value="${c.id}">${c.name_es}</option>
-      `).join('');
     }
 
     function renderCategoriesBar() {
       const typeCats = getCurrentTypeCategories();
-      const currentItems = state.items.filter(item => {
-        if (state.currentMenuType === 'comida') return FOOD_CATEGORIES.includes(item.category_id);
-        if (state.currentMenuType === 'bebidas') return DRINK_CATEGORIES.includes(item.category_id);
-        return WINE_CATEGORIES.includes(item.category_id);
-      });
-
-      // Si sólo hay una categoría en este tipo de carta, ocultar completamente la barra para no saturar
-      if (typeCats.length <= 1) {
-        categoriesBar.style.display = 'none';
-        categoriesBar.innerHTML = '';
-        return;
-      }
-
-      categoriesBar.style.display = 'flex';
+      const allItemCount = state.items.filter(i => {
+        let allowed = FOOD_CATEGORIES;
+        if (state.currentMenuType === 'bebidas') allowed = DRINK_CATEGORIES;
+        else if (state.currentMenuType === 'vinos') allowed = WINE_CATEGORIES;
+        return allowed.includes(i.category_id);
+      }).length;
 
       let html = `
-        <button class="cat-btn ${state.selectedCategory === 'all' ? 'active' : ''}" data-cat="all">
-          Todos (${currentItems.length})
+        <button type="button" class="cat-chip ${state.selectedCategory === 'all' ? 'active' : ''}" data-cat="all">
+          <span>Todos</span>
+          <span class="cat-chip-count">(${allItemCount})</span>
         </button>
       `;
 
       typeCats.forEach(cat => {
-        const count = currentItems.filter(i => i.category_id === cat.id).length;
-        const active = state.selectedCategory === cat.id;
+        const count = state.items.filter(i => i.category_id === cat.id).length;
         html += `
-          <button class="cat-btn ${active ? 'active' : ''}" data-cat="${cat.id}">
-            ${cat.name_es} (${count})
+          <button type="button" class="cat-chip ${state.selectedCategory === cat.id ? 'active' : ''}" data-cat="${cat.id}">
+            <span>${cat.name_es}</span>
+            <span class="cat-chip-count">(${count})</span>
           </button>
         `;
       });
 
       categoriesBar.innerHTML = html;
 
-      categoriesBar.querySelectorAll('.cat-btn').forEach(btn => {
+      categoriesBar.querySelectorAll('.cat-chip').forEach(btn => {
         btn.addEventListener('click', () => {
           state.selectedCategory = btn.dataset.cat;
           renderCategoriesBar();
@@ -3559,13 +2830,13 @@
     }
 
     function getFilteredItems() {
-      return state.items.filter(item => {
-        if (state.currentMenuType === 'comida' && !FOOD_CATEGORIES.includes(item.category_id)) return false;
-        if (state.currentMenuType === 'bebidas' && !DRINK_CATEGORIES.includes(item.category_id)) return false;
-        if (state.currentMenuType === 'vinos' && !WINE_CATEGORIES.includes(item.category_id)) return false;
+      let allowed = FOOD_CATEGORIES;
+      if (state.currentMenuType === 'bebidas') allowed = DRINK_CATEGORIES;
+      else if (state.currentMenuType === 'vinos') allowed = WINE_CATEGORIES;
 
+      return state.items.filter(item => {
+        if (!allowed.includes(item.category_id)) return false;
         if (state.selectedCategory !== 'all' && item.category_id !== state.selectedCategory) return false;
-        
         if (state.searchQuery) {
           const q = state.searchQuery.toLowerCase();
           const matchTitle = (item.title_es || '').toLowerCase().includes(q) ||
@@ -3578,77 +2849,24 @@
       });
     }
 
-    // ========================================================
-    // GESTIÓN DE KPIS & DISPONIBILIDAD OPERATIVA (POS)
-    // ========================================================
     function updateKpiCounts() {
-      const currentFiltered = getFilteredItems();
-      const activeCount = currentFiltered.filter(i => i.is_available !== false).length;
-      const outCount = currentFiltered.filter(i => i.is_available === false).length;
+      let allowed = FOOD_CATEGORIES;
+      if (state.currentMenuType === 'bebidas') allowed = DRINK_CATEGORIES;
+      else if (state.currentMenuType === 'vinos') allowed = WINE_CATEGORIES;
 
-      if (kpiActiveCount) kpiActiveCount.textContent = activeCount;
-      if (kpiOutCount) kpiOutCount.textContent = outCount;
+      const currentTypeItems = state.items.filter(i => allowed.includes(i.category_id));
+      const active = currentTypeItems.filter(i => i.is_available !== false).length;
+      const out = currentTypeItems.length - active;
+
+      if (kpiActiveCount) kpiActiveCount.textContent = active;
+      if (kpiOutCount) kpiOutCount.textContent = out;
     }
 
-    async function toggleAvailability(id, isAvailable) {
-      const item = state.items.find(i => i.id === id);
-      if (!item) return;
-
-      const previousState = item.is_available !== false;
-      item.is_available = isAvailable;
-
-      // Actualización optimista ultra-rápida en DOM
-      const rowEl = document.querySelector(`.dish-row[data-id="${id}"]`);
-      if (rowEl) {
-        rowEl.classList.toggle('out-of-stock', !isAvailable);
-        const badge = rowEl.querySelector('.badge-stock');
-        if (badge) {
-          badge.className = `badge-stock ${isAvailable ? 'in' : 'out'}`;
-          badge.textContent = isAvailable ? '● En carta' : '✕ Agotado';
-        }
-      }
-
-      updateKpiCounts();
-
-      try {
-        const { error } = await adminClient.database
-          .from('menu_items')
-          .update({ is_available: isAvailable, updated_at: new Date().toISOString() })
-          .eq('id', id);
-
-        if (error) throw error;
-
-        logAction('update', id, item.title_es, isAvailable ? 'Marcado como disponible en carta' : 'Marcado como agotado temporalmente');
-        showToast(isAvailable ? `"${item.title_es}" disponible en carta` : `"${item.title_es}" marcado como agotado`);
-        btnSync.className = 'btn-sync synced';
-        syncText.textContent = 'Carta al día';
-      } catch (err) {
-        console.error('Error actualizando disponibilidad:', err);
-        // Rollback
-        item.is_available = previousState;
-        if (rowEl) {
-          rowEl.classList.toggle('out-of-stock', !previousState);
-          const badge = rowEl.querySelector('.badge-stock');
-          if (badge) {
-            badge.className = `badge-stock ${previousState ? 'in' : 'out'}`;
-            badge.textContent = previousState ? '● En carta' : '✕ Agotado';
-          }
-          const cb = rowEl.querySelector('.stock-toggle-cb');
-          if (cb) cb.checked = previousState;
-        }
-        updateKpiCounts();
-        showToast('Error al actualizar disponibilidad', true);
-      }
-    }
-
-    // ========================================================
-    // RENDERIZADO DE PLATOS (CONSOLA POS OPERATIVA)
-    // ========================================================
     function renderItems() {
       const filtered = getFilteredItems();
       itemsCountBadge.textContent = filtered.length;
       updateKpiCounts();
-      
+
       const typeCats = getCurrentTypeCategories();
       const currentCatObj = typeCats.find(c => c.id === state.selectedCategory);
 
@@ -3661,60 +2879,37 @@
       }
 
       if (filtered.length === 0) {
-        if (state.currentMenuType === 'vinos') {
-          itemsList.innerHTML = `
-            <div class="section-list" style="padding: 48px 20px; text-align: center; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; gap: 12px;">
-              <span style="font-size: 32px;">🍷</span>
-              <div>
-                <h4 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 700; color: var(--dark);">Bodega de Vinos</h4>
-                <p style="font-size: 13px; margin-top: 4px;">No hay vinos registrados todavía en esta sección.</p>
-              </div>
-              <button type="button" class="btn-add-dish" id="btnEmptyAddWine" style="margin-top: 6px;">
-                + Añadir Vino a la Bodega
-              </button>
-            </div>`;
-          const btnEmptyAddWine = document.getElementById('btnEmptyAddWine');
-          if (btnEmptyAddWine) btnEmptyAddWine.addEventListener('click', openNewDishModal);
-        } else {
-          itemsList.innerHTML = `<div class="section-list" style="padding: 40px 20px; text-align: center; color: var(--text-muted); font-size: 13px;">No se ha encontrado ningún producto.</div>`;
-        }
+        itemsList.innerHTML = `
+          <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 48px 20px; text-align: center; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <p style="font-size: 14px; font-weight: 700; color: var(--text-main);">No hay elementos en esta sección</p>
+            <p style="font-size: 12.5px;">Prueba a cambiar el filtro o pulsa en Añadir para registrar un nuevo plato, bebida o vino.</p>
+          </div>`;
         return;
       }
 
       const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-      const row = (item, i) => {
+      
+      // TARJETA LIMPIA: SIN BOTÓN DE ACTIVO EN LA LISTA PRINCIPAL
+      const row = (item) => {
         const isAvailable = item.is_available !== false;
-        const catIcon = CAT_ICONS[item.category_id] || '🍽️';
-        const thumbHtml = item.image_url
-          ? `<img src="${esc(item.image_url)}" alt="${esc(item.title_es)}" class="dish-thumb-img" onerror="this.onerror=null;this.parentElement.innerHTML='<span class=\\'dish-thumb-icon\\'>${catIcon}</span>';">`
-          : `<span class="dish-thumb-icon">${catIcon}</span>`;
+        const catObj = state.categories.find(c => c.id === item.category_id);
+        const catName = catObj ? catObj.name_es : item.category_id;
 
         return `
-          <div class="dish-row ${!isAvailable ? 'out-of-stock' : ''}" data-id="${esc(item.id)}" style="animation-delay:${Math.min(i, 12) * 18}ms">
-            <div class="dish-thumb">
-              ${thumbHtml}
-            </div>
+          <div class="dish-row ${!isAvailable ? 'out-of-stock' : ''}" data-id="${esc(item.id)}">
             <div class="dish-content">
               <div class="dish-top-row">
                 <span class="dish-name">${esc(item.title_es)}</span>
                 <span class="dish-price">${fmtEUR(item.price)}</span>
               </div>
               ${item.description_es ? `<p class="dish-desc">${esc(item.description_es)}</p>` : ''}
-              <div class="dish-bottom-row">
-                <div class="dish-status-left">
-                  <span class="badge-stock ${isAvailable ? 'in' : 'out'}">${isAvailable ? '● En carta' : '✕ Agotado'}</span>
-                  <button type="button" class="btn-quick-edit" data-id="${esc(item.id)}" title="Editar plato" onclick="event.stopPropagation();">
-                    <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
-                    <span>Editar</span>
-                  </button>
-                </div>
-                <div class="dish-switch-wrap" onclick="event.stopPropagation();">
-                  <label class="ios-switch" title="${isAvailable ? 'Marcar agotado' : 'Marcar disponible'}">
-                    <input type="checkbox" class="stock-toggle-cb" data-id="${esc(item.id)}" ${isAvailable ? 'checked' : ''}>
-                    <span class="ios-slider"></span>
-                  </label>
-                </div>
+              <div class="dish-meta-row">
+                <span>${esc(catName)}</span>
+                ${!isAvailable ? '<span>•</span><span class="dish-badge-status out">○ Fuera de carta</span>' : ''}
               </div>
+            </div>
+            <div class="dish-row-arrow">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>`;
       };
@@ -3742,110 +2937,87 @@
           </section>`;
       }).join('');
 
-      // Click en fila para abrir modal
+      // Click en cualquier fila para abrir el modal de edición
       itemsList.querySelectorAll('.dish-row').forEach(r => {
         r.addEventListener('click', () => openEditModal(r.dataset.id));
       });
-
-      // Click en botón editar (Editar)
-      itemsList.querySelectorAll('.btn-quick-edit').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          openEditModal(btn.dataset.id);
-        });
-      });
-
-      // Switch instantáneo de disponibilidad
-      itemsList.querySelectorAll('.stock-toggle-cb').forEach(cb => {
-        cb.addEventListener('change', (e) => {
-          e.stopPropagation();
-          toggleAvailability(cb.dataset.id, cb.checked);
-        });
-      });
     }
 
     // ========================================================
-    // MODAL DE EDICIÓN / ALTA DE PLATO (NEO-BENTO STUDIO)
+    // MODAL DE EDICIÓN & BOTTOM SHEET (SELECTOR MULTICARTA)
     // ========================================================
     function updateStockBadge(isAvailable) {
-      const badge = document.getElementById('stockStatusBadge');
-      const explainer = document.getElementById('stockExplainer');
-      if (!badge || !explainer) return;
-
       if (isAvailable) {
-        badge.className = 'bento-tag tag-emerald';
-        badge.textContent = '● En Carta Activo';
-        explainer.textContent = 'Visible y disponible para comandas en cocina.';
+        stockStatusBadge.textContent = 'Disponible en cocina';
+        stockStatusBadge.style.color = 'var(--emerald-text)';
+        stockExplainer.textContent = 'Visible y disponible para comandas en cocina.';
       } else {
-        badge.className = 'bento-tag tag-ruby';
-        badge.textContent = '✕ Agotado en Cocina';
-        explainer.textContent = 'Temporalmente oculto a clientes hasta reposición.';
+        stockStatusBadge.textContent = 'Marcado como Agotado';
+        stockStatusBadge.style.color = 'var(--amber-text)';
+        stockExplainer.textContent = 'Oculto o bloqueado para evitar pedidos en cocina.';
       }
     }
 
-    if (dishAvailableCheck) {
-      dishAvailableCheck.addEventListener('change', () => {
-        updateStockBadge(dishAvailableCheck.checked);
-      });
-    }
-
-    // Botones de incremento rápido de precio (+0.50€, +1.00€, etc.)
-    document.querySelectorAll('.btn-q-price').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const addVal = parseFloat(btn.dataset.add);
-        let curr = parseFloat(dishPrice.value) || 0;
-        if (!isNaN(addVal)) {
-          curr = Math.round((curr + addVal) * 100) / 100;
-          dishPrice.value = curr.toFixed(2);
-        } else if (btn.id === 'btnRoundPrice') {
-          curr = Math.ceil(curr);
-          dishPrice.value = curr.toFixed(2);
-        }
-      });
+    dishAvailableCheck.addEventListener('change', (e) => {
+      updateStockBadge(e.target.checked);
     });
 
-    function renderModalCategoryChips(selectedId) {
-      const grid = document.getElementById('categoryChipsGrid');
-      const activeNameEl = document.getElementById('activeCategoryName');
-      if (!grid) return;
+    function getMenuTypeForCategory(catId) {
+      if (DRINK_CATEGORIES.includes(catId)) return 'bebidas';
+      if (WINE_CATEGORIES.includes(catId)) return 'vinos';
+      return 'comida';
+    }
 
-      const typeCats = getCurrentTypeCategories();
-      let cats = [...typeCats];
-      if (selectedId && !cats.some(c => c.id === selectedId)) {
-        const found = state.categories.find(c => c.id === selectedId);
-        if (found) cats.unshift(found);
+    function renderModalCategoryChips(selectedId, menuType) {
+      state.currentModalTargetType = menuType;
+      
+      // Actualizar pestañas de carta dentro del modal
+      document.querySelectorAll('#modalMenuTypeTabs .modal-type-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.targetType === menuType);
+      });
+
+      const typeCats = getCurrentTypeCategories(menuType);
+      let activeCat = typeCats.find(c => c.id === selectedId);
+      if (!activeCat && typeCats.length) {
+        activeCat = typeCats[0];
+        selectedId = activeCat.id;
       }
-      if (!cats.length) cats = state.categories;
-
-      const activeCat = state.categories.find(c => c.id === selectedId) || cats[0];
-      if (activeNameEl && activeCat) {
-        activeNameEl.textContent = activeCat.name_es;
+      
+      if (activeCategoryName && activeCat) {
+        activeCategoryName.textContent = activeCat.name_es;
       }
+      dishCategory.value = selectedId;
 
-      grid.innerHTML = cats.map(cat => {
-        const isActive = cat.id === selectedId;
-        const icon = CAT_ICONS[cat.id] || '🏷️';
+      categoryChipsGrid.innerHTML = typeCats.map(cat => {
+        const isSel = cat.id === selectedId;
         return `
-          <button type="button" class="cat-chip ${isActive ? 'active' : ''}" data-cat-id="${cat.id}">
-            <span>${icon}</span>
-            <span>${cat.name_es}</span>
+          <button type="button" class="modal-cat-chip ${isSel ? 'active' : ''}" data-cat-id="${cat.id}">
+            ${cat.name_es}
           </button>
         `;
       }).join('');
 
-      grid.querySelectorAll('.cat-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-          const cid = chip.dataset.catId;
-          dishCategory.value = cid;
-          grid.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
-          chip.classList.add('active');
-          const cObj = state.categories.find(c => c.id === cid);
-          if (activeNameEl && cObj) {
-            activeNameEl.textContent = cObj.name_es;
-          }
+      categoryChipsGrid.querySelectorAll('.modal-cat-chip').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = btn.dataset.catId;
+          dishCategory.value = targetId;
+          const found = typeCats.find(c => c.id === targetId);
+          if (activeCategoryName && found) activeCategoryName.textContent = found.name_es;
+          categoryChipsGrid.querySelectorAll('.modal-cat-chip').forEach(b => {
+            b.classList.toggle('active', b.dataset.catId === targetId);
+          });
         });
       });
     }
+
+    // Eventos de cambio de tipo de carta dentro del modal
+    document.querySelectorAll('#modalMenuTypeTabs .modal-type-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetType = btn.dataset.targetType;
+        renderModalCategoryChips(null, targetType);
+      });
+    });
 
     function openEditModal(id) {
       const item = state.items.find(i => i.id === id);
@@ -3853,20 +3025,18 @@
 
       dishId.value = item.id;
       dishOrder.value = item.display_order || 1;
-      modalHeading.textContent = `Editar: ${item.title_es}`;
+      modalHeading.textContent = 'Editar Ficha';
       
-      dishCategory.value = item.category_id;
       dishPrice.value = item.price !== undefined ? item.price : '';
       dishImageUrl.value = item.image_url || '';
       dishImageFile.value = '';
 
-      // Disponibilidad en cocina
       const isAvail = item.is_available !== false;
       dishAvailableCheck.checked = isAvail;
       updateStockBadge(isAvail);
 
-      // Categoría Bento Chips
-      renderModalCategoryChips(item.category_id);
+      const itemMenuType = getMenuTypeForCategory(item.category_id);
+      renderModalCategoryChips(item.category_id, itemMenuType);
 
       title_es.value = item.title_es || '';
       desc_es.value = item.description_es || '';
@@ -3879,33 +3049,22 @@
       switchModalLangTab('es');
       lockBackgroundScroll();
       dishModal.style.display = 'flex';
+      dishForm.scrollTop = 0;
     }
 
     function openNewDishModal() {
       dishId.value = '';
       dishOrder.value = state.items.length + 1;
-      
-      let defaultCat = 'entrantes';
-      if (state.currentMenuType === 'bebidas') {
-        modalHeading.textContent = 'Añadir Bebida';
-        defaultCat = 'bebidas';
-      } else if (state.currentMenuType === 'vinos') {
-        modalHeading.textContent = 'Añadir Vino a Bodega';
-        defaultCat = state.categories.find(c => WINE_CATEGORIES.includes(c.id))?.id || (state.categories[0]?.id || 'bebidas');
-      } else {
-        modalHeading.textContent = 'Añadir Nuevo Plato';
-        defaultCat = state.selectedCategory !== 'all' ? state.selectedCategory : (state.categories[0]?.id || 'entrantes');
-      }
-      dishCategory.value = defaultCat;
-      
+      modalHeading.textContent = 'Añadir a la Carta';
+
+      const initialType = state.currentMenuType; // Hereda la carta actual (comida, bebidas o vinos)
       dishPrice.value = '';
       dishImageUrl.value = '';
       dishImageFile.value = '';
+
       dishAvailableCheck.checked = true;
       updateStockBadge(true);
-
-      // Categoría Bento Chips
-      renderModalCategoryChips(defaultCat);
+      renderModalCategoryChips(null, initialType);
 
       title_es.value = '';
       desc_es.value = '';
@@ -3918,115 +3077,133 @@
       switchModalLangTab('es');
       lockBackgroundScroll();
       dishModal.style.display = 'flex';
-      setTimeout(() => title_es.focus(), 120);
+      dishForm.scrollTop = 0;
     }
 
     function closeDishModal() {
-      if (dishModal.style.display === 'none') return;
-      dishModal.style.display = 'none';
       unlockBackgroundScroll();
+      dishModal.style.display = 'none';
     }
 
     function switchModalLangTab(lang) {
       state.activeModalLangTab = lang;
-      document.querySelectorAll('.studio-lang-tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.lang === lang);
+      document.querySelectorAll('.studio-lang-tab').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
       });
-
-      const tabEs = document.getElementById('tabContent_es');
-      const tabEn = document.getElementById('tabContent_en');
-      const tabDe = document.getElementById('tabContent_de');
-      if (tabEs) tabEs.style.display = lang === 'es' ? 'flex' : 'none';
-      if (tabEn) tabEn.style.display = lang === 'en' ? 'flex' : 'none';
-      if (tabDe) tabDe.style.display = lang === 'de' ? 'flex' : 'none';
+      document.getElementById('tabContent_es').style.display = lang === 'es' ? 'block' : 'none';
+      document.getElementById('tabContent_en').style.display = lang === 'en' ? 'block' : 'none';
+      document.getElementById('tabContent_de').style.display = lang === 'de' ? 'block' : 'none';
     }
 
-    document.querySelectorAll('.studio-lang-tab').forEach(t => {
-      t.addEventListener('click', () => switchModalLangTab(t.dataset.lang));
+    document.querySelectorAll('.studio-lang-tab').forEach(b => {
+      b.addEventListener('click', () => switchModalLangTab(b.dataset.lang));
     });
 
-    // Traducción asistida gratuita
+    // Incrementos Rápidos de Precio
+    document.querySelectorAll('.btn-q-price[data-add]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const add = parseFloat(btn.dataset.add) || 0;
+        let curr = parseFloat(dishPrice.value) || 0;
+        dishPrice.value = (curr + add).toFixed(2);
+      });
+    });
+
+    if (btnRoundPrice) {
+      btnRoundPrice.addEventListener('click', () => {
+        let curr = parseFloat(dishPrice.value) || 0;
+        dishPrice.value = Math.round(curr).toFixed(2);
+      });
+    }
+
+    // Traducción IA
     async function translateText(text, targetLang) {
       if (!text || !text.trim()) return '';
       try {
-        const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.trim())}&langpair=es|${targetLang}`;
+        const langMap = { en: 'en', de: 'de', es: 'es' };
+        const tgt = langMap[targetLang] || targetLang;
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=${tgt}&dt=t&q=${encodeURIComponent(text.trim())}`;
         const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        if (data && data.responseData && data.responseData.translatedText) {
-          const t = data.responseData.translatedText;
-          if (!t.toUpperCase().includes('MYMEMORY WARNING')) return t;
+        if (Array.isArray(data) && Array.isArray(data[0])) {
+          return data[0].map(s => s[0]).join('').trim();
         }
-        return text;
-      } catch (e) {
-        return text;
+      } catch (err) {
+        console.warn('Fallo traducción:', err);
       }
+      return text;
     }
 
     btnAutoTranslate.addEventListener('click', async () => {
-      const esTitle = title_es.value.trim();
-      const esDesc = desc_es.value.trim();
+      const srcTitle = title_es.value.trim();
+      const srcDesc = desc_es.value.trim();
 
-      if (!esTitle) {
-        alert('Escribe el nombre en español primero.');
+      if (!srcTitle && !srcDesc) {
+        showToast('Escribe primero el nombre en español', true);
         title_es.focus();
         return;
       }
 
-      transSpinner.style.display = 'inline';
+      transSpinner.style.display = 'inline-block';
       transText.textContent = 'Traduciendo...';
       btnAutoTranslate.disabled = true;
 
       try {
-        const [enTitle, deTitle, enDesc, deDesc] = await Promise.all([
-          translateText(esTitle, 'en'),
-          translateText(esTitle, 'de'),
-          esDesc ? translateText(esDesc, 'en') : Promise.resolve(''),
-          esDesc ? translateText(esDesc, 'de') : Promise.resolve('')
+        const [enTitle, enDesc, deTitle, deDesc] = await Promise.all([
+          translateText(srcTitle, 'en'),
+          translateText(srcDesc, 'en'),
+          translateText(srcTitle, 'de'),
+          translateText(srcDesc, 'de')
         ]);
 
-        title_en.value = enTitle;
-        desc_en.value = enDesc;
-        title_de.value = deTitle;
-        desc_de.value = deDesc;
+        if (enTitle) title_en.value = enTitle;
+        if (enDesc) desc_en.value = enDesc;
+        if (deTitle) title_de.value = deTitle;
+        if (deDesc) desc_de.value = deDesc;
 
-        showToast('Traducciones generadas');
-        switchModalLangTab('en');
+        showToast('Traducción completada con éxito');
       } catch (err) {
-        showToast('Error al traducir', true);
+        showToast('Error en la traducción automática', true);
       } finally {
         transSpinner.style.display = 'none';
-        transText.textContent = '✨ Auto-traducir';
+        transText.textContent = '✨ Auto-traducir (IA)';
         btnAutoTranslate.disabled = false;
       }
     });
 
+    // Guardado de Plato / Bebida / Vino
     dishForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
-      const id = dishId.value;
-      const isNew = !id;
-      const category_id = dishCategory.value;
-      const price = parseFloat(dishPrice.value);
-      const is_available = dishAvailableCheck.checked;
-      const image_url = dishImageUrl.value.trim() || null;
 
+      const id = dishId.value;
       const t_es = title_es.value.trim();
       const d_es = desc_es.value.trim();
-      const t_en = title_en.value.trim() || t_es;
-      const d_en = desc_en.value.trim() || d_es;
-      const t_de = title_de.value.trim() || t_es;
-      const d_de = desc_de.value.trim() || d_es;
+      const t_en = title_en.value.trim();
+      const d_en = desc_en.value.trim();
+      const t_de = title_de.value.trim();
+      const d_de = desc_de.value.trim();
+      const price = parseFloat(dishPrice.value);
+      const category_id = dishCategory.value;
+      const is_available = dishAvailableCheck.checked;
+      const image_url = dishImageUrl.value.trim();
 
-      saveSpinner.style.display = 'inline';
+      if (!t_es) {
+        showToast('El nombre en español es obligatorio', true);
+        return;
+      }
+      if (isNaN(price) || price < 0) {
+        showToast('Introduce un precio válido', true);
+        return;
+      }
+
+      saveSpinner.style.display = 'inline-block';
       saveText.textContent = 'Guardando...';
 
       try {
-        if (isNew) {
-          const itemCode = `${category_id}-${String(state.items.length + 1).padStart(2, '0')}`;
+        if (!id) {
           const newPayload = {
-            id: itemCode,
+            id: 'item_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
             category_id,
-            item_code: itemCode,
             title_es: t_es,
             title_en: t_en,
             title_de: t_de,
@@ -4036,7 +3213,9 @@
             price,
             image_url,
             is_available,
-            display_order: parseInt(dishOrder.value) || state.items.length + 1
+            display_order: parseInt(dishOrder.value) || state.items.length + 1,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
           };
 
           const { data, error } = await adminClient.database
@@ -4086,14 +3265,12 @@
         updateBadges();
         renderCategoriesBar();
         renderItems();
-        btnSync.className = 'btn-sync synced';
-        syncText.textContent = 'Carta al día';
       } catch (err) {
         console.error('Error guardando:', err);
         showToast('Error al guardar datos', true);
       } finally {
         saveSpinner.style.display = 'none';
-        saveText.textContent = 'Guardar Plato';
+        saveText.textContent = 'Guardar en Carta';
       }
     });
 
@@ -4125,24 +3302,18 @@
     });
 
     btnNewDish.addEventListener('click', openNewDishModal);
+    if (btnFabNewDish) btnFabNewDish.addEventListener('click', openNewDishModal);
     if (closeModalBtn) closeModalBtn.addEventListener('click', closeDishModal);
-    if (btnCancelModal) btnCancelModal.addEventListener('click', closeDishModal);
     dishModal.addEventListener('click', (e) => {
       if (e.target === dishModal) closeDishModal();
     });
-    dishModal.addEventListener('touchend', (e) => {
-      if (e.target === dishModal) {
-        e.preventDefault();
-        closeDishModal();
-      }
-    }, { passive: false });
 
     searchInput.addEventListener('input', (e) => {
       state.searchQuery = e.target.value.trim();
       renderItems();
     });
 
-    // Tecla Escape para cerrar cualquier modal abierto
+    // Tecla Escape para cerrar modales
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (dishModal.style.display === 'flex') closeDishModal();
