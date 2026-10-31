@@ -25,19 +25,43 @@
       />
     </a>
 
-    <!-- Desktop Navigation Links: Clean 4 sections con estilo marfil cálido y hover dorado italiano -->
-    <nav class="hidden lg:flex items-center space-x-7 xl:space-x-9" aria-label="Navegación principal">
-      <a href="/" data-i18n="nav_inicio" class="nav-desktop-link text-[#FBF9F5]/90 hover:text-[#E8C547] text-[13px] font-medium uppercase tracking-[0.2em] transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] relative py-1">
-        Inicio
+    <!-- Desktop Navigation Links: Premium Glass Capsule con indicador de sección activa en scroll -->
+    <nav class="hidden lg:flex items-center space-x-1 bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/15 shadow-[0_4px_20px_rgba(0,0,0,0.25)]" aria-label="Navegación principal">
+      <a 
+        href="/" 
+        data-nav-target="inicio" 
+        data-i18n="nav_inicio" 
+        class="nav-desktop-item active text-[#FBF9F5] hover:text-[#E8C547] text-[12.5px] font-medium uppercase tracking-[0.16em] px-3.5 py-1.5 rounded-full transition-all duration-300 relative select-none"
+      >
+        <span>Inicio</span>
+        <span class="nav-active-pill absolute inset-0 bg-white/15 rounded-full -z-10 transition-all duration-300 opacity-100 scale-100 border border-white/25"></span>
       </a>
-      <a href="/#sobre-nosotros" data-i18n="nav_sobre_nosotros" class="nav-desktop-link text-[#FBF9F5]/80 hover:text-[#E8C547] text-[13px] font-medium uppercase tracking-[0.2em] transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] relative py-1">
-        Sobre nosotros
+      <a 
+        href="/#sobre-nosotros" 
+        data-nav-target="sobre-nosotros" 
+        data-i18n="nav_sobre_nosotros" 
+        class="nav-desktop-item text-[#FBF9F5]/75 hover:text-[#E8C547] text-[12.5px] font-medium uppercase tracking-[0.16em] px-3.5 py-1.5 rounded-full transition-all duration-300 relative select-none"
+      >
+        <span>Sobre nosotros</span>
+        <span class="nav-active-pill absolute inset-0 bg-white/15 rounded-full -z-10 transition-all duration-300 opacity-0 scale-90 border border-white/25"></span>
       </a>
-      <a href="/carta" data-i18n="nav_menu" class="nav-desktop-link text-[#FBF9F5]/80 hover:text-[#E8C547] text-[13px] font-medium uppercase tracking-[0.2em] transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] relative py-1">
-        Menú
+      <a 
+        href="/#menu" 
+        data-nav-target="menu" 
+        data-i18n="nav_menu" 
+        class="nav-desktop-item text-[#FBF9F5]/75 hover:text-[#E8C547] text-[12.5px] font-medium uppercase tracking-[0.16em] px-3.5 py-1.5 rounded-full transition-all duration-300 relative select-none"
+      >
+        <span>Menú</span>
+        <span class="nav-active-pill absolute inset-0 bg-white/15 rounded-full -z-10 transition-all duration-300 opacity-0 scale-90 border border-white/25"></span>
       </a>
-      <a href="/#donde-estamos" data-i18n="nav_donde_estamos" class="nav-desktop-link text-[#FBF9F5]/80 hover:text-[#E8C547] text-[13px] font-medium uppercase tracking-[0.2em] transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] relative py-1">
-        Dónde estamos
+      <a 
+        href="/#donde-estamos" 
+        data-nav-target="donde-estamos" 
+        data-i18n="nav_donde_estamos" 
+        class="nav-desktop-item text-[#FBF9F5]/75 hover:text-[#E8C547] text-[12.5px] font-medium uppercase tracking-[0.16em] px-3.5 py-1.5 rounded-full transition-all duration-300 relative select-none"
+      >
+        <span>Dónde estamos</span>
+        <span class="nav-active-pill absolute inset-0 bg-white/15 rounded-full -z-10 transition-all duration-300 opacity-0 scale-90 border border-white/25"></span>
       </a>
     </nav>
 
@@ -278,6 +302,50 @@
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
   window.addEventListener('resize', updateHeaderOnScroll, { passive: true });
   updateHeaderOnScroll();
+
+  // Control de scroll spy para marcar la sección activa en el menú de escritorio
+  const navItems = document.querySelectorAll('.nav-desktop-item');
+  const sections = ['inicio', 'sobre-nosotros', 'menu', 'donde-estamos'];
+
+  function updateActiveNavSection() {
+    if (window.innerWidth < 1024) return;
+    const scrollPosition = window.scrollY + 180;
+
+    let currentSection = 'inicio';
+    for (const sectionId of sections) {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        const top = el.offsetTop;
+        const height = el.offsetHeight;
+        if (scrollPosition >= top && scrollPosition < top + height) {
+          currentSection = sectionId;
+        }
+      }
+    }
+
+    navItems.forEach(item => {
+      const target = item.getAttribute('data-nav-target');
+      const pill = item.querySelector('.nav-active-pill') as HTMLElement | null;
+      if (target === currentSection) {
+        item.classList.add('active', 'text-[#FBF9F5]');
+        item.classList.remove('text-[#FBF9F5]/75');
+        if (pill) {
+          pill.classList.remove('opacity-0', 'scale-90');
+          pill.classList.add('opacity-100', 'scale-100');
+        }
+      } else {
+        item.classList.remove('active', 'text-[#FBF9F5]');
+        item.classList.add('text-[#FBF9F5]/75');
+        if (pill) {
+          pill.classList.remove('opacity-100', 'scale-100');
+          pill.classList.add('opacity-0', 'scale-90');
+        }
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNavSection, { passive: true });
+  updateActiveNavSection();
 
   // Control interactivo del selector de idioma desplegable hacia la izquierda
   const langContainer = document.getElementById('desktop-lang-container');
